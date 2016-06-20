@@ -64,38 +64,38 @@ CRAlertAction *actionDefault = [CRAlertAction actionWithTitle : @"Ohk"
                                footerView : (UIView *)footerView
                    didDismissAlertHandler : (CRAlertViewControllerDismissBlock)dismiss;
 ```
-##### Title and Subtitle
-> You can set custom title and subtitle of the alert (pass nil if you don’t need them). 
+##### Title and Subtitle  
+You can set custom title and subtitle of the alert (pass nil if you don’t need them).
 
-##### Alignment
-> You can customise alignment of the title and subtitle. Set the `textAlignment` property with one of the following values : 
+##### Alignment  
+You can customise alignment of the title and subtitle. Set the `textAlignment` property with one of the following values : 
 ```
 NSTextAlignmentLeft,    
 NSTextAlignmentRight,    
 NSTextAlignmentCenter
 ```
 
-##### Alert Style
-> Presentation style of the alert can be customised as Alert or Action sheet. Just set the `preferredStyle` property with one of the following values :
+##### Alert Style  
+Presentation style of the alert can be customised as Alert or Action sheet. Just set the `preferredStyle` property with one of the following values :
 ```
 CRAlertControllerStyleAlert,
 CRAlertControllerStyleActionSheet
 ```
 
 ##### Header / Footer
-> You can add header and footer to the alert (as shown in the gif). Set properties `headerView` and `footerView` with custom views (subclass of UIView). You can pass nil to this properties to opt them out.  Some examples where you can make the use of Header / Footer  
+ You can add header and footer to the alert (as shown in the gif). Set properties `headerView` and `footerView` with custom views (subclass of UIView). You can pass nil to this properties to opt them out.  Some examples where you can make the use of Header / Footer  
 1) To show some error Image on header  
-<p align="center">
-  <img src="https://github.com/vinayak-codigami/temp/blob/master/IMG_2734.PNG" width="350" />
-</p>
+<!--<p align="center">-->
+<!--  <img src="https://github.com/vinayak-codigami/temp/blob/master/IMG_2734.PNG" width="350" />-->
+<!--</p>-->
 
->2) To give user more option than just dismissing the Alert
-<p align="center">
-  <img src="https://github.com/vinayak-codigami/temp/blob/master/IMG_2734.PNG" width="350" />
-</p>
+2) To give user more option than just dismissing the Alert
+<!--<p align="center">-->
+<!--  <img src="https://github.com/vinayak-codigami/temp/blob/master/IMG_2734.PNG" width="350" />-->
+<!--</p>-->
 
 ##### Callback
-> A block (of type CRAlertViewControllerDismissBlock) gets called when the Alert / Action Sheet is dismissed. You can use it to handle call backs.
+A block (of type CRAlertViewControllerDismissBlock) gets called when the Alert / Action Sheet is dismissed. You can use it to handle call backs.
 
 ### Actions
 ```
@@ -106,10 +106,10 @@ CRAlertControllerStyleActionSheet
                            handler : (CRAlertActionHandlerBlock)handler;
 ```                           
 ##### Title
-> You can set the title of action button to be added.  
+You can set the title of action button to be added.  
 
 ##### Action Style
-> Configure the style of the action button that is to be added to alert view. Set `style` property of the above method with one of the following Action style  
+Configure the style of the action button that is to be added to alert view. Set `style` property of the above method with one of the following Action style  
 ```
  CRAlertActionStyleDefault,
  CRAlertActionStyleCancel,
@@ -117,7 +117,7 @@ CRAlertControllerStyleActionSheet
 ```
 
 ##### Actions Alignment
-> Configure the alignment of the action button added to the alert view. Set `alignment` property of  CRAction constructor with one of the following action types
+Configure the alignment of the action button added to the alert view. Set `alignment` property of  CRAction constructor with one of the following action types
 ```
  CRAlertActionAlignmentJustified (Action Button occupies the full width),
  CRAlertActionAlignmentRight,
@@ -126,5 +126,5 @@ CRAlertControllerStyleActionSheet
 ```
 
 ##### Callback
-> A block (of type CRAlertActionHandlerBlock) gets called when action is tapped. 
+A block (of type CRAlertActionHandlerBlock) gets called when action is tapped. 
 

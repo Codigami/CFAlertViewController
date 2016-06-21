@@ -90,7 +90,7 @@
     someView.frame = self.bounds;
     someView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     someView.translatesAutoresizingMaskIntoConstraints = YES;
-    self.backgroundColor = [UIColor redColor];
+    self.backgroundColor = [UIColor clearColor];
     [self addSubview:someView];
     
     // Basic Initialisation
@@ -113,7 +113,6 @@
     self.tweetTextContainerView.layer.cornerRadius = 8.0;
     self.tweetTextContainerView.layer.borderColor = [UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:1].CGColor;
     self.tweetTextContainerView.layer.borderWidth = 1.0;
-    
     
     // Set Tweet Text View Properties
     self.tweetTextView.textContainerInset = UIEdgeInsetsMake(10, 10, 10, 10);

@@ -324,7 +324,6 @@
         
         // Update Content Size
         self.tableViewHeightConstraint.constant = self.tableView.contentSize.height;
-        [self.containerView layoutIfNeeded];
         
         // Enable / Disable Bounce Effect
         if (self.tableView.contentSize.height <= self.containerView.frame.size.height) {

@@ -9,8 +9,6 @@ CFAlertViewController works on devices (iPhone and iPad) with iOS 8.0+. It depen
 
 * Foundation.framework
 * UIKit.framework
-* 
-## Install :
 
 #### Install using Cocoapods (recommended)
 We assume that your Cocoapods is already configured. If you are new to Cocoapods, have a look at the [documentation](https://cocoapods.org/)

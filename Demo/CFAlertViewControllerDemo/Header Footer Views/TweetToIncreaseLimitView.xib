@@ -24,7 +24,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j8n-44-QlS">
                     <rect key="frame" x="0.0" y="18" width="600" height="230"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tweet to increase limit" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2OV-0V-JgS">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tweet this to increase your limit" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2OV-0V-JgS">
                             <rect key="frame" x="20" y="38" width="560" height="20"/>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                             <color key="textColor" red="0.0039215686274509803" green="0.20000000000000001" blue="0.33725490196078434" alpha="1" colorSpace="calibratedRGB"/>
@@ -33,7 +33,7 @@
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yla-dj-nKY">
                             <rect key="frame" x="20" y="72" width="560" height="87"/>
                             <subviews>
-                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Enter the content of the tweet here." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9Rl-s1-saP" customClass="SZTextView">
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="I'm using Crowdfire to grown on social media and it's awesome! Check it out: www.crowdfireapp.com" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9Rl-s1-saP" customClass="SZTextView">
                                     <rect key="frame" x="0.0" y="0.0" width="560" height="87"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>

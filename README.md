@@ -1,11 +1,11 @@
-#CRAlertController
-`CRAlertController` is a library that helps you display and customise **alerts and action sheets** on iPad and iPhone. It offers screen rotation as well as an adaptive UI support. CRAlertController’s functionality is almost similar to the native UIAlertController. You can check out the variations you can implement by using the library:
+#CFAlertViewController
+`CFAlertViewController` is a library that helps you display and customise **alerts and action sheets** on iPad and iPhone. It offers screen rotation as well as an adaptive UI support. CFAlertViewController’s functionality is almost similar to the native UIAlertController. You can check out the variations you can implement by using the library:
 
 <GIF>
 
 ## Requirements :
 
-CRAlertController works on devices (iPhone and iPad) with iOS 8.0+. It depends on the following Apple frameworks: 
+CFAlertViewController works on devices (iPhone and iPad) with iOS 8.0+. It depends on the following Apple frameworks: 
 
 * Foundation.framework
 * UIKit.framework
@@ -15,13 +15,13 @@ CRAlertController works on devices (iPhone and iPad) with iOS 8.0+. It depends o
 #### Install using Cocoapods (recommended)
 We assume that your Cocoapods is already configured. If you are new to Cocoapods, have a look at the [documentation](https://cocoapods.org/)
 
-1. Add `pod CRAlertController 8.0` to your Podfile.
+1. Add `pod CFAlertViewController 8.0` to your Podfile.
 2. Install the pod(s) by running `pod install` in terminal (in folder where `Podfile` file is located).
-3. Include CRAlertController wherever you need it with `#import "CRAlertViewController.h"`.
+3. Include CFAlertViewController wherever you need it with `#import "CFAlertViewController.h"`.
 
 #### Install using Source file  
-1. Open the downloaded project in Xcode, then drag and drop folder named **CRAlertViewController** onto your project (use the "Product Navigator view"). Make sure to select Copy items when asked if you extracted the code archive outside of your project.
-2. Include CRAlertController wherever you need it with `#import "CRAlertViewController.h"`.
+1. Open the downloaded project in Xcode, then drag and drop folder named **CFAlertViewController** onto your project (use the "Product Navigator view"). Make sure to select Copy items when asked if you extracted the code archive outside of your project.
+2. Include CFAlertViewController wherever you need it with `#import "CFAlertViewController.h"`.
 
 ## Usage :
 <p align="center">

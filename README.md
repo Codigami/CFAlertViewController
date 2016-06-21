@@ -28,26 +28,23 @@ We assume that your Cocoapods is already configured. If you are new to Cocoapods
 
 The alertview shown above can be implemented with following code snippet : 
 ```
-CRAlertViewController *alert = [CRAlertViewController alertControllerWithTitle : @"Oops!"
-                                                                       message : @"Please enter your name"
-                                                                 textAlignment : NSTextAlignmentCenter
-                                                                preferredStyle : CRAlertControllerStyleAlert
-                                                                    headerView : nil
-                                                                    footerView : nil
-                                                        didDismissAlertHandler : ^{
-                                                                            NSLog(@"Alert Dismissed");
-                                                                            }];
-    
-CRAlertAction *actionDefault = [CRAlertAction actionWithTitle : @"Ohk"
-                                                        style : CRAlertActionStyleDefault
-                                                    alignment : CRAlertActionAlignmentJustified
-                                                    color : [UIColor colorWithRed:46.0/255.0 green:204.0/255.0 blue:113.0/255.0 alpha:1] 
-                                                      handler : ^(CRAlertAction *action) {
-                                                         NSLog(@"Button with %@ title tapped",action.title);
-                                                        }];
-[alert addAction:actionDefault];
-    
-[self presentViewController:alert animated:YES completion:nil];
+    CFAlertViewController *alert = [CFAlertViewController alertControllerWithTitle:@"Oops!"
+                                                                           message:@"Please set some properties of Alert view"
+                                                                     textAlignment:NSTextAlignmentCenter
+                                                                    preferredStyle:CFAlertControllerStyleAlert
+                                                            didDismissAlertHandler:^{
+                                                                NSLog(@"Alert Dismissed");
+                                                            }];
+    CFAlertAction *actionDefault = [CFAlertAction actionWithTitle : @"Ohk"
+                                                            style : CFAlertActionStyleDefault
+                                                        alignment : CFAlertActionAlignmentJustified
+                                                            color : [UIColor colorWithRed:46.0/255.0 green:204.0/255.0 blue:113.0/255.0 alpha:1]
+                                                          handler : ^(CFAlertAction *action) {
+                                                              NSLog(@"Button with %@ title tapped",action.title);
+                                                          }];
+    [alert addAction:actionDefault];
+
+    [self presentViewController:alert animated:YES completion:nil];
 ```
 
 ## Customisations :
@@ -57,10 +54,10 @@ CRAlertAction *actionDefault = [CRAlertAction actionWithTitle : @"Ohk"
 + (instancetype) alertControllerWithTitle : (NSString *)title
                                   message : (NSString *)message
                             textAlignment : (NSTextAlignment)textAlignment
-                           preferredStyle : (CRAlertControllerStyle)preferredStyle
+                           preferredStyle : (CFAlertControllerStyle)preferredStyle
                                headerView : (UIView *)headerView
                                footerView : (UIView *)footerView
-                   didDismissAlertHandler : (CRAlertViewControllerDismissBlock)dismiss;
+                   didDismissAlertHandler : (CFAlertViewControllerDismissBlock)dismiss;
 ```
 ##### Title and Subtitle  
 You can set custom title and subtitle of the alert (pass nil if you don’t need them).
@@ -76,8 +73,8 @@ NSTextAlignmentCenter
 ##### Alert Style  
 Presentation style of the alert can be customised as Alert or Action sheet. Just set the `preferredStyle` property with one of the following values :
 ```
-CRAlertControllerStyleAlert,
-CRAlertControllerStyleActionSheet
+CFAlertControllerStyleAlert,
+CFAlertControllerStyleActionSheet
 ```
 
 ##### Header / Footer
@@ -93,15 +90,15 @@ CRAlertControllerStyleActionSheet
 <!--</p>-->
 
 ##### Callback
-A block (of type CRAlertViewControllerDismissBlock) gets called when the Alert / Action Sheet is dismissed. You can use it to handle call backs.
+A block (of type CFAlertViewControllerDismissBlock) gets called when the Alert / Action Sheet is dismissed. You can use it to handle call backs.
 
 ### Actions
 ```
-+ (CRAlertAction *)actionWithTitle : (NSString *)title
-                             style : (CRAlertActionStyle)style
-                         alignment : (CRAlertActionAlignment)alignment
++ (CFAlertAction *)actionWithTitle : (NSString *)title
+                             style : (CFAlertActionStyle)style
+                         alignment : (CFAlertActionAlignment)alignment
                              color : (UIColor *)color
-                           handler : (CRAlertActionHandlerBlock)handler;
+                           handler : (CFAlertActionHandlerBlock)handler;
 ```                           
 ##### Title
 You can set the title of action button to be added.  
@@ -109,20 +106,20 @@ You can set the title of action button to be added.
 ##### Action Style
 Configure the style of the action button that is to be added to alert view. Set `style` property of the above method with one of the following Action style  
 ```
- CRAlertActionStyleDefault,
- CRAlertActionStyleCancel,
- CRAlertActionStyleDestructive
+ CFAlertActionStyleDefault,
+ CFAlertActionStyleCancel,
+ CFAlertActionStyleDestructive
 ```
 
 ##### Actions Alignment
-Configure the alignment of the action button added to the alert view. Set `alignment` property of  CRAction constructor with one of the following action types
+Configure the alignment of the action button added to the alert view. Set `alignment` property of  CFAction constructor with one of the following action types
 ```
- CRAlertActionAlignmentJustified (Action Button occupies the full width),
- CRAlertActionAlignmentRight,
- CRAlertActionAlignmentLeft,
- CRAlertActionAlignmentCenter,
+ CFAlertActionAlignmentJustified (Action Button occupies the full width),
+ CFAlertActionAlignmentRight,
+ CFAlertActionAlignmentLeft,
+ CFAlertActionAlignmentCenter,
 ```
 
 ##### Callback
-A block (of type CRAlertActionHandlerBlock) gets called when action is tapped. 
+A block (of type CFAlertActionHandlerBlock) gets called when action is tapped. 
 

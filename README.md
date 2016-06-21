@@ -9,7 +9,7 @@ CRAlertController works on devices (iPhone and iPad) with iOS 8.0+. It depends o
 
 * Foundation.framework
 * UIKit.framework
-
+* 
 ## Install :
 
 #### Install using Cocoapods (recommended)

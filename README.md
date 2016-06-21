@@ -35,11 +35,11 @@ The alertview shown above can be implemented with following code snippet :
                                                             didDismissAlertHandler:^{
                                                                 NSLog(@"Alert Dismissed");
                                                             }];
-    CFAlertAction *actionDefault = [CFAlertAction actionWithTitle : @"Ohk"
-                                                            style : CFAlertActionStyleDefault
-                                                        alignment : CFAlertActionAlignmentJustified
-                                                            color : [UIColor colorWithRed:46.0/255.0 green:204.0/255.0 blue:113.0/255.0 alpha:1]
-                                                          handler : ^(CFAlertAction *action) {
+    CFAlertAction *actionDefault = [CFAlertAction actionWithTitle:@"Ohk"
+                                                            style:CFAlertActionStyleDefault
+                                                        alignment:CFAlertActionAlignmentJustified
+                                                            color:[UIColor colorWithRed:46.0/255.0 green:204.0/255.0  blue:113.0/255.0 alpha:1]
+                                                          handler:^(CFAlertAction *action) {
                                                               NSLog(@"Button with %@ title tapped",action.title);
                                                           }];
     [alert addAction:actionDefault];

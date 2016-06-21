@@ -13,7 +13,7 @@ CFAlertViewController works on devices (iPhone and iPad) with iOS 8.0+. It depen
 #### Install using Cocoapods (recommended)
 We assume that your Cocoapods is already configured. If you are new to Cocoapods, have a look at the [documentation](https://cocoapods.org/)
 
-1. Add `pod CFAlertViewController 8.0` to your Podfile.
+1. Add `pod 'CFAlertViewController'` to your Podfile.
 2. Install the pod(s) by running `pod install` in terminal (in folder where `Podfile` file is located).
 3. Include CFAlertViewController wherever you need it with `#import "CFAlertViewController.h"`.
 
@@ -51,13 +51,13 @@ The alertview shown above can be implemented with following code snippet :
 
 ### Alerts
 ```
-+ (instancetype) alertControllerWithTitle : (NSString *)title
-                                  message : (NSString *)message
-                            textAlignment : (NSTextAlignment)textAlignment
-                           preferredStyle : (CFAlertControllerStyle)preferredStyle
-                               headerView : (UIView *)headerView
-                               footerView : (UIView *)footerView
-                   didDismissAlertHandler : (CFAlertViewControllerDismissBlock)dismiss;
++ (nonnull instancetype) alertControllerWithTitle:(nullable NSString *)title
+                                          message:(nullable NSString *)message
+                                    textAlignment:(NSTextAlignment)textAlignment
+                                   preferredStyle:(CFAlertControllerStyle)preferredStyle
+                                       headerView:(nullable UIView *)headerView
+                                       footerView:(nullable UIView *)footerView
+                           didDismissAlertHandler:(nullable CFAlertViewControllerDismissBlock)dismiss;
 ```
 ##### Title and Subtitle  
 You can set custom title and subtitle of the alert (pass nil if you don’t need them).
@@ -94,11 +94,11 @@ A block (of type CFAlertViewControllerDismissBlock) gets called when the Alert /
 
 ### Actions
 ```
-+ (CFAlertAction *)actionWithTitle : (NSString *)title
-                             style : (CFAlertActionStyle)style
-                         alignment : (CFAlertActionAlignment)alignment
-                             color : (UIColor *)color
-                           handler : (CFAlertActionHandlerBlock)handler;
++ (nullable instancetype) actionWithTitle:(nonnull NSString *)title
+                                    style:(CFAlertActionStyle)style
+                                alignment:(CFAlertActionAlignment)alignment
+                                    color:(nullable UIColor *)color
+                                  handler:(nullable CFAlertActionHandlerBlock)handler
 ```                           
 ##### Title
 You can set the title of action button to be added.  

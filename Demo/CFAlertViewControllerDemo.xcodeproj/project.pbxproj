@@ -142,10 +142,10 @@
 		2F8E900C1D181F07004450F5 /* CFAlertViewController */ = {
 			isa = PBXGroup;
 			children = (
-				2F8E900D1D181F07004450F5 /* Cells */,
 				2F8E90141D181F07004450F5 /* CFAlertViewController.h */,
 				2F8E90151D181F07004450F5 /* CFAlertViewController.m */,
 				2F8E90161D181F07004450F5 /* CFAlertViewController.xib */,
+				2F8E900D1D181F07004450F5 /* Cells */,
 				2F8E90171D181F07004450F5 /* Models */,
 				2F8E901A1D181F07004450F5 /* Subclass */,
 				2F8E901E1D181F07004450F5 /* Transitions */,

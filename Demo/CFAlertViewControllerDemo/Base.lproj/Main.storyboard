@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--CRAlertController-->
+        <!--CFAlertController-->
         <scene sceneID="gg0-RD-td4">
             <objects>
                 <tableViewController id="7MK-XY-ihQ" customClass="HomeTableViewController" sceneMemberID="viewController">
@@ -301,7 +301,7 @@
                             <outlet property="delegate" destination="7MK-XY-ihQ" id="FQo-2n-qfg"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="CRAlertController" id="KBl-r1-YdK">
+                    <navigationItem key="navigationItem" title="CFAlertController" id="KBl-r1-YdK">
                         <barButtonItem key="rightBarButtonItem" title="Show" style="done" id="cAk-By-Ka7">
                             <connections>
                                 <action selector="showAlertButtonClicked:" destination="7MK-XY-ihQ" id="XRP-UF-YwV"/>

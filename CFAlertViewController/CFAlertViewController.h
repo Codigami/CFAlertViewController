@@ -40,7 +40,7 @@ typedef NS_ENUM(NSInteger, CFAlertControllerStyle) {
 };
 
 
-typedef void (^CFAlertViewControllerDismissBlock)();
+typedef void (^ _Nullable CFAlertViewControllerDismissBlock)();
 
 
 @interface CFAlertViewController : UIViewController <UIViewControllerTransitioningDelegate> {
@@ -48,34 +48,34 @@ typedef void (^CFAlertViewControllerDismissBlock)();
 }
 
 
-+ (instancetype) alertControllerWithTitle:(NSString *)title
-                                  message:(NSString *)message
-                            textAlignment:(NSTextAlignment)textAlignment
-                           preferredStyle:(CFAlertControllerStyle)preferredStyle
-                   didDismissAlertHandler:(CFAlertViewControllerDismissBlock)dismiss;
++ (nonnull instancetype) alertControllerWithTitle:(nullable NSString *)title
+                                          message:(nullable NSString *)message
+                                    textAlignment:(NSTextAlignment)textAlignment
+                                   preferredStyle:(CFAlertControllerStyle)preferredStyle
+                           didDismissAlertHandler:(nullable CFAlertViewControllerDismissBlock)dismiss;
 
-+ (instancetype) alertControllerWithTitle:(NSString *)title
-                                  message:(NSString *)message
-                            textAlignment:(NSTextAlignment)textAlignment
-                           preferredStyle:(CFAlertControllerStyle)preferredStyle
-                               headerView:(UIView *)headerView
-                               footerView:(UIView *)footerView
-                   didDismissAlertHandler:(CFAlertViewControllerDismissBlock)dismiss;
++ (nonnull instancetype) alertControllerWithTitle:(nullable NSString *)title
+                                          message:(nullable NSString *)message
+                                    textAlignment:(NSTextAlignment)textAlignment
+                                   preferredStyle:(CFAlertControllerStyle)preferredStyle
+                                       headerView:(nullable UIView *)headerView
+                                       footerView:(nullable UIView *)footerView
+                           didDismissAlertHandler:(nullable CFAlertViewControllerDismissBlock)dismiss;
 
-- (void)addAction:(CFAlertAction *)action;
-@property (nonatomic, readonly) NSArray<CFAlertAction *> *actions;
+- (void)addAction:(nonnull CFAlertAction *)action;
+@property (nonatomic, readonly, nullable) NSArray<CFAlertAction *> *actions;
 
 @property (nonatomic, readonly) NSTextAlignment textAlignment;
 @property (nonatomic, readonly) CFAlertControllerStyle preferredStyle;
 
-@property (nonatomic, strong) UIView *headerView;
-@property (nonatomic, strong) UIView *footerView;
+@property (nonatomic, strong, nullable) UIView * headerView;
+@property (nonatomic, strong, nullable) UIView * footerView;
 
 // Default is YES
 @property (nonatomic, assign) BOOL shouldDismissOnBackgroundTap;
 
 // Transition Reference Object
-@property (nonatomic, weak) IBOutlet UIView *containerView;
+@property (nonatomic, weak, nullable) IBOutlet UIView * containerView;
 
 // Dismiss Alert Controller
 - (void) dismissAlertWithAnimation:(BOOL)animate completion:(void (^__nullable)(void))completion;

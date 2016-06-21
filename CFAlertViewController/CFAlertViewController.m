@@ -65,11 +65,11 @@
 
 #pragma mark - Initialisation Method
 
-+ (instancetype) alertControllerWithTitle:(NSString *)title
-                                  message:(NSString *)message
-                            textAlignment:(NSTextAlignment)textAlignment
-                           preferredStyle:(CFAlertControllerStyle)preferredStyle
-                   didDismissAlertHandler:(CFAlertViewControllerDismissBlock)dismiss
++ (nonnull instancetype) alertControllerWithTitle:(nullable NSString *)title
+                                          message:(nullable NSString *)message
+                                    textAlignment:(NSTextAlignment)textAlignment
+                                   preferredStyle:(CFAlertControllerStyle)preferredStyle
+                           didDismissAlertHandler:(nullable CFAlertViewControllerDismissBlock)dismiss
 {
     return [CFAlertViewController alertControllerWithTitle:title
                                                    message:message
@@ -80,13 +80,13 @@
                                     didDismissAlertHandler:dismiss];
 }
 
-+ (instancetype) alertControllerWithTitle:(NSString *)title
-                                  message:(NSString *)message
-                            textAlignment:(NSTextAlignment)textAlignment
-                           preferredStyle:(CFAlertControllerStyle)preferredStyle
-                               headerView:(UIView *)headerView
-                               footerView:(UIView *)footerView
-                   didDismissAlertHandler:(CFAlertViewControllerDismissBlock)dismiss
++ (nonnull instancetype) alertControllerWithTitle:(nullable NSString *)title
+                                          message:(nullable NSString *)message
+                                    textAlignment:(NSTextAlignment)textAlignment
+                                   preferredStyle:(CFAlertControllerStyle)preferredStyle
+                                       headerView:(nullable UIView *)headerView
+                                       footerView:(nullable UIView *)footerView
+                           didDismissAlertHandler:(nullable CFAlertViewControllerDismissBlock)dismiss
 {
     NSString *currentClassName = NSStringFromClass([CFAlertViewController class]);
     
@@ -107,7 +107,7 @@
     return alert;
 }
 
-- (instancetype) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil   {
+- (instancetype)initWithNibName:(nullable NSString *)nibNameOrNil bundle:(nullable NSBundle *)nibBundleOrNil   {
     
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -286,6 +286,9 @@
         if (action.style == CFAlertActionStyleCancel) {
             
             for (CFAlertAction *existingAction in self.actionList) {
+                
+                // This line of code added to just supress the warning (Unused Variable) at build time
+                #pragma unused(existingAction)
                 
                 // It means this alert already contains a Cancel action. Throw an Assert so developer understands the reason.
                 NSAssert(existingAction.style != CFAlertActionStyleCancel, @"ERROR : CFAlertViewController can only have one action with a style of CFAlertActionStyleCancel");

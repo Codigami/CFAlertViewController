@@ -47,23 +47,22 @@ typedef NS_ENUM(NSInteger, CFAlertActionAlignment) {
     CFAlertActionAlignmentCenter
 };
 
-typedef void (^CFAlertActionHandlerBlock)(CFAlertAction *action);
+typedef void (^ _Nullable CFAlertActionHandlerBlock)(CFAlertAction *_Nonnull action);
 
 
-@interface CFAlertAction : NSObject<NSCopying>
+@interface CFAlertAction : NSObject <NSCopying>
 
 
-+ (CFAlertAction *)actionWithTitle:(NSString *)title
-                             style:(CFAlertActionStyle)style
-                             alignment:(CFAlertActionAlignment)alignment
-                             color:(UIColor *)color
-                           handler:(CFAlertActionHandlerBlock)handler;
++ (nullable instancetype) actionWithTitle:(nonnull NSString *)title
+                                    style:(CFAlertActionStyle)style
+                                alignment:(CFAlertActionAlignment)alignment
+                                    color:(nullable UIColor *)color
+                                  handler:(nullable CFAlertActionHandlerBlock)handler;
 
-@property (nonatomic, readonly) NSString *title;
+@property (nonatomic, readonly, nonnull) NSString *title;
 @property (nonatomic, readonly) CFAlertActionStyle style;
-@property (nonatomic, readonly) UIColor *color;
 @property (nonatomic, readonly) CFAlertActionAlignment alignment;
-@property (nonatomic, copy, readonly) CFAlertActionHandlerBlock handler;
-@property (nonatomic, getter=isEnabled) BOOL enabled;
+@property (nonatomic, readonly, nullable) UIColor *color;
+@property (nonatomic, readonly, copy, nullable) CFAlertActionHandlerBlock handler;
 
 @end

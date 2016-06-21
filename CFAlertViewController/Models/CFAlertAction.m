@@ -33,6 +33,19 @@
 
 @implementation CFAlertAction
 
+#pragma mark - Initialisation Methods
+
++ (nullable instancetype) actionWithTitle:(nonnull NSString *)title
+                                    style:(CFAlertActionStyle)style
+                                alignment:(CFAlertActionAlignment)alignment
+                                    color:(nullable UIColor *)color
+                                  handler:(nullable CFAlertActionHandlerBlock)handler
+{
+    CFAlertAction *action = [[CFAlertAction alloc] initWithTitle:title style:style alignment:alignment color:color handler:handler];
+    
+    return action;
+}
+
 - (instancetype)initWithTitle:(NSString *)title
                         style:(CFAlertActionStyle)style
                     alignment:(CFAlertActionAlignment)alignment
@@ -50,21 +63,14 @@
     return self;
 }
 
-+ (CFAlertAction *)actionWithTitle:(NSString *)title
-                             style:(CFAlertActionStyle)style
-                         alignment:(CFAlertActionAlignment)alignment
-                             color:(UIColor *)color
-                           handler:(CFAlertActionHandlerBlock)handler{
-    
-    CFAlertAction *action = [[CFAlertAction alloc] initWithTitle:title style:style alignment:alignment color:color handler:handler];
-    
-    return action;
-}
-
 #pragma mark - NSCopying
 
 - (id)copyWithZone:(NSZone *)zone{
-    CFAlertAction *copy = [[CFAlertAction alloc] initWithTitle:self.title style:self.style alignment:self.alignment color:self.color handler:self.handler];
+    CFAlertAction *copy = [[CFAlertAction alloc] initWithTitle:self.title
+                                                         style:self.style
+                                                     alignment:self.alignment
+                                                         color:self.color
+                                                       handler:self.handler];
     return copy;
 }
 

@@ -22,9 +22,22 @@ We assume that your Cocoapods is already configured. If you are new to Cocoapods
 2. Include CFAlertViewController wherever you need it with `#import "CFAlertViewController.h"`.
 
 ## Usage :
-<p align="center">
-  <img src="https://github.com/vinayak-codigami/temp/blob/master/IMG_2734.PNG" width="350" />
-</p>
+<div class="container">
+    <figure>
+    <img src="https://github.com/Codigami/CFAlertViewController/blob/develop/Images/1%20-%20Simple%20Popup.png" width="250" />
+    <figcaption>This is image 1</figcaption>
+    </figure>
+    
+    <figure>
+    <img src="https://github.com/Codigami/CFAlertViewController/blob/develop/Images/2%20-%20Multi%20Action%20Popup.png" width="250" />
+    <figcaption>This is image 2</figcaption>
+    </figure>
+    
+    <figure>
+  <img src="https://github.com/Codigami/CFAlertViewController/blob/develop/Images/3%20-%20Action%20Sheet.png" width="250" />
+    <figcaption>This is image 3</figcaption>
+    </figure>
+</div>
 
 The alertview shown above can be implemented with following code snippet : 
 ```
@@ -80,14 +93,23 @@ CFAlertControllerStyleActionSheet
 ##### Header / Footer
  You can add header and footer to the alert (as shown in the gif). Set properties `headerView` and `footerView` with custom views (subclass of UIView). You can pass nil to this properties to opt them out.  Some examples where you can make the use of Header / Footer  
 1) To show some error Image on header  
-<!--<p align="center">-->
-<!--  <img src="https://github.com/vinayak-codigami/temp/blob/master/IMG_2734.PNG" width="350" />-->
-<!--</p>-->
-
 2) To give user more option than just dismissing the Alert
-<!--<p align="center">-->
-<!--  <img src="https://github.com/vinayak-codigami/temp/blob/master/IMG_2734.PNG" width="350" />-->
-<!--</p>-->
+<div class="container">
+    <figure>
+    <img src="https://github.com/Codigami/CFAlertViewController/blob/develop/Images/4%20-%20Header.png" width="250" />
+    <figcaption>This is image 1</figcaption>
+    </figure>
+    
+    <figure>
+    <img src="https://github.com/Codigami/CFAlertViewController/blob/develop/Images/5%20-%20Footer.png" width="250" />
+    <figcaption>This is image 2</figcaption>
+    </figure>
+    
+    <figure>
+  <img src="https://github.com/Codigami/CFAlertViewController/blob/develop/Images/6%20-%20Keyboard.png" width="250" />
+    <figcaption>This is image 3</figcaption>
+    </figure>
+</div>
 
 ##### Callback
 A block (of type CFAlertViewControllerDismissBlock) gets called when the Alert / Action Sheet is dismissed. You can use it to handle call backs.

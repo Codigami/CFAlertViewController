@@ -123,5 +123,5 @@ Configure the alignment of the action button added to the alert view. Set `align
 ##### Callback
 A block (of type CFAlertActionHandlerBlock) gets invoked when action is tapped. 
 
-##### License
+##License
 This code is distributed under the terms and conditions of the MIT license.

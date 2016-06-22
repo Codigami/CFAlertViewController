@@ -26,30 +26,36 @@ We assume that your Cocoapods is already configured. If you are new to Cocoapods
     <img src="https://github.com/Codigami/CFAlertViewController/blob/develop/Images/Alert%20%26%20Action%20sheet.png" style="width: 100%" />
 </p>  
 The above shown alert and actionsheet can easily be implemented using the code snippet given below by some small tweaks
-```
-    CFAlertViewController *alert = [CFAlertViewController alertControllerWithTitle:@"You've hit the limit!"
-                                                                           message:@"Looks like you've hit your daily follow/unfollow limit. Upgrade to our paid plan to be able to remove your limits."
-                                                                     textAlignment:NSTextAlignmentLeft
-                                                                    preferredStyle:CFAlertControllerStyleAlert
-                                                            didDismissAlertHandler:^{
-                                                                NSLog(@"Alert Dismissed");
-                                                            }];
-    CFAlertAction *actionDefault = [CFAlertAction actionWithTitle:@"UPGRADE"
-                                                            style:CFAlertActionStyleDefault
-                                                        alignment:CFAlertActionAlignmentRight
-                                                            color:[UIColor colorWithRed:46.0/255.0 green:204.0/255.0  blue:113.0/255.0 alpha:1]
-                                                          handler:^(CFAlertAction *action) {
-                                                              NSLog(@"Button with %@ title tapped",action.title);
-                                                          }];
-    [alert addAction:actionDefault];
-
-    [self presentViewController:alert animated:YES completion:nil];
+```objective-c
+// Create Alert
+CFAlertViewController *alert = [CFAlertViewController alertControllerWithTitle:@"You've hit the limit!"
+                                                                       message:@"Looks like you've hit your daily follow/unfollow limit. Upgrade to our paid plan to be able to remove your limits."
+                                                                 textAlignment:NSTextAlignmentCenter
+                                                                preferredStyle:CFAlertControllerStyleAlert
+                                                        didDismissAlertHandler:^{
+                                                            NSLog(@"Alert Dismissed");
+                                                        }];
+    
+// Add Action Button
+CFAlertAction *actionDefault = [CFAlertAction actionWithTitle:@"UPGRADE"
+                                                        style:CFAlertActionStyleDefault
+                                                    alignment:CFAlertActionAlignmentJustified
+                                                        color:[UIColor colorWithRed:46.0/255.0 green:204.0/255.0 blue:113.0/255.0 alpha:1]
+                                                      handler: ^(CFAlertAction *action) {
+                                                          NSLog(@"Button with %@ title tapped",action.title);
+                                                       }];
+                                                       
+// Add Action Button Into Alert
+[alert addAction:actionDefault];
+    
+// Present Alert
+[self presentViewController:alert animated:YES completion:nil];
 ```
 
 ## Customisations :
 
 ### Alerts
-```
+```objective-c
 + (nonnull instancetype) alertControllerWithTitle:(nullable NSString *)title
                                           message:(nullable NSString *)message
                                     textAlignment:(NSTextAlignment)textAlignment
@@ -63,7 +69,7 @@ You can set custom title and message of the alert (pass nil if you don’t need 
 
 ##### Alignment  
 You can customise alignment of the title and message. Set the `textAlignment` property with one of the following values : 
-```
+```objective-c
 NSTextAlignmentLeft,    
 NSTextAlignmentRight,    
 NSTextAlignmentCenter
@@ -71,7 +77,7 @@ NSTextAlignmentCenter
 
 ##### Alert Style  
 Presentation style of the alert can be customised as Alert or Action sheet. Just set the `preferredStyle` property with one of the following values :
-```
+```objective-c
 CFAlertControllerStyleAlert,
 CFAlertControllerStyleActionSheet
 ```
@@ -93,7 +99,7 @@ CFAlertControllerStyleActionSheet
 A block (of type CFAlertViewControllerDismissBlock) gets called when the Alert / Action Sheet is dismissed. You can use it to handle call back.
 
 ### Actions
-```
+```objective-c
 + (nullable instancetype) actionWithTitle:(nonnull NSString *)title
                                     style:(CFAlertActionStyle)style
                                 alignment:(CFAlertActionAlignment)alignment
@@ -105,7 +111,7 @@ You can set the title of action button to be added.
 
 ##### Action Style
 Configure the style of the action button that is to be added to alert view. Set `style` property of the above method with one of the following Action style  
-```
+```objective-c
  CFAlertActionStyleDefault,
  CFAlertActionStyleCancel,
  CFAlertActionStyleDestructive
@@ -113,8 +119,8 @@ Configure the style of the action button that is to be added to alert view. Set 
 
 ##### Actions Alignment
 Configure the alignment of the action button added to the alert view. Set `alignment` property of  CFAction constructor with one of the following action types
-```
- CFAlertActionAlignmentJustified (Action Button occupies the full width),
+```objective-c
+ CFAlertActionAlignmentJustified,   // Action Button occupies the full width
  CFAlertActionAlignmentRight,
  CFAlertActionAlignmentLeft,
  CFAlertActionAlignmentCenter,

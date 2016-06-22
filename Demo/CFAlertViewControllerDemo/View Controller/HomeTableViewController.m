@@ -15,11 +15,11 @@
 #define DEFAULT_BTN_TITLE       @"DEFAULT"
 #define DEFAULT_BTN_COLOR       [UIColor colorWithRed:41.0/255.0 green:198.0/255.0 blue:77.0/255.0 alpha:1.0]
 
-#define CANCEL_BTN_TITLE        @"CANCEL"
-#define CANCEL_BTN_COLOR        [UIColor colorWithRed:103.0/255.0 green:104.0/255.0 blue:217.0/255.0 alpha:1.0]
-
-#define DESTRUCTIVE_BTN_TITLE   @"DELETE"
+#define DESTRUCTIVE_BTN_TITLE   @"DESTRUCTIVE"
 #define DESTRUCTIVE_BTN_COLOR   [UIColor colorWithRed:255.0/255.0 green:75.0/255.0 blue:75.0/255.0 alpha:1.0]
+
+#define CANCEL_BTN_TITLE        @"CANCEL"
+#define CANCEL_BTN_COLOR        [UIColor grayColor]
 
 
 
@@ -58,9 +58,9 @@
     UIView *headerView;
     if (self.settingAddHeaderSwitch.isOn) {
         headerView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"header_image"]];
-        headerView.contentMode = UIViewContentModeScaleAspectFill;
+        headerView.contentMode = UIViewContentModeBottom;
         headerView.clipsToBounds = YES;
-        headerView.frame = CGRectMake(0, 0, 0, 150.0);
+        headerView.frame = CGRectMake(0, 0, 0, 70.0);
     }
     
     // Create Title & Subtitle
@@ -95,16 +95,6 @@
         [alert addAction:actionDefault];
     }
     
-    // Add Cancel Button Action
-    if (self.actionCancelSwitch.isOn) {
-        CFAlertAction *actionCancel = [CFAlertAction actionWithTitle:CANCEL_BTN_TITLE
-                                                               style:CFAlertActionStyleCancel
-                                                           alignment:[self getActionsTextAlignment]
-                                                               color:CANCEL_BTN_COLOR
-                                                             handler:nil];
-        [alert addAction:actionCancel];
-    }
-    
     // Add Destructive Button Action
     if (self.actionDestructiveSwitch.isOn) {
         CFAlertAction *actionDestruct = [CFAlertAction actionWithTitle:DESTRUCTIVE_BTN_TITLE
@@ -113,6 +103,16 @@
                                                                  color:DESTRUCTIVE_BTN_COLOR
                                                                handler:nil];
         [alert addAction:actionDestruct];
+    }
+    
+    // Add Cancel Button Action
+    if (self.actionCancelSwitch.isOn) {
+        CFAlertAction *actionCancel = [CFAlertAction actionWithTitle:CANCEL_BTN_TITLE
+                                                               style:CFAlertActionStyleCancel
+                                                           alignment:[self getActionsTextAlignment]
+                                                               color:CANCEL_BTN_COLOR
+                                                             handler:nil];
+        [alert addAction:actionCancel];
     }
     
     if (alert.actions.count==0 &&

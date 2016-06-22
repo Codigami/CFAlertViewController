@@ -51,7 +51,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="You've hit the limit!" placeholder="Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KFV-aS-6dI">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="You've hit the limit!" placeholder="Title" minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="KFV-aS-6dI">
                                                     <rect key="frame" x="20" y="5" width="560" height="33.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -72,7 +72,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Looks like you've hit your daily follow/unfollow limit. Upgrade to our paid plan to be able to remove your limits." placeholder="Description" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8vM-Tq-ndQ">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Looks like you've hit your daily follow/unfollow limit. Upgrade to our paid plan to be able to remove your limits." placeholder="Description" minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8vM-Tq-ndQ">
                                                     <rect key="frame" x="20" y="5" width="560" height="33.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -139,33 +139,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="NQk-pH-idU">
-                                        <rect key="frame" x="0.0" y="465.5" width="600" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NQk-pH-idU" id="FTG-uG-BTj">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cancel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9dH-nR-V7m">
-                                                    <rect key="frame" x="18" y="11" width="53" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="h1K-xu-NWF">
-                                                    <rect key="frame" x="533" y="6.5" width="51" height="31"/>
-                                                </switch>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="9dH-nR-V7m" firstAttribute="centerY" secondItem="FTG-uG-BTj" secondAttribute="centerY" id="PWK-3n-urQ"/>
-                                                <constraint firstItem="9dH-nR-V7m" firstAttribute="leading" secondItem="FTG-uG-BTj" secondAttribute="leadingMargin" constant="10" id="ltH-sl-tCv"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="h1K-xu-NWF" secondAttribute="trailing" constant="10" id="mZy-Ht-whc"/>
-                                                <constraint firstItem="h1K-xu-NWF" firstAttribute="centerY" secondItem="FTG-uG-BTj" secondAttribute="centerY" id="oXy-0B-SDC"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="cXy-RX-eAA">
-                                        <rect key="frame" x="0.0" y="509.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="465.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cXy-RX-eAA" id="qZT-s1-P1i">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -186,6 +161,31 @@
                                                 <constraint firstItem="UWu-Tp-mJr" firstAttribute="leading" secondItem="qZT-s1-P1i" secondAttribute="leadingMargin" constant="10" id="LXD-Eo-jsL"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="R7W-ZE-B9d" secondAttribute="trailing" constant="10" id="PJp-UE-2ZV"/>
                                                 <constraint firstItem="UWu-Tp-mJr" firstAttribute="centerY" secondItem="qZT-s1-P1i" secondAttribute="centerY" id="QJn-65-EXY"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="NQk-pH-idU">
+                                        <rect key="frame" x="0.0" y="509.5" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NQk-pH-idU" id="FTG-uG-BTj">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cancel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9dH-nR-V7m">
+                                                    <rect key="frame" x="18" y="11" width="53" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="h1K-xu-NWF">
+                                                    <rect key="frame" x="533" y="6.5" width="51" height="31"/>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="9dH-nR-V7m" firstAttribute="centerY" secondItem="FTG-uG-BTj" secondAttribute="centerY" id="PWK-3n-urQ"/>
+                                                <constraint firstItem="9dH-nR-V7m" firstAttribute="leading" secondItem="FTG-uG-BTj" secondAttribute="leadingMargin" constant="10" id="ltH-sl-tCv"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="h1K-xu-NWF" secondAttribute="trailing" constant="10" id="mZy-Ht-whc"/>
+                                                <constraint firstItem="h1K-xu-NWF" firstAttribute="centerY" secondItem="FTG-uG-BTj" secondAttribute="centerY" id="oXy-0B-SDC"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

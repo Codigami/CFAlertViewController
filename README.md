@@ -1,5 +1,5 @@
 #CFAlertViewController
-`CFAlertViewController` is a library that helps you display and customise **alerts and action sheets** on iPad and iPhone. It offers screen rotation as well as an adaptive UI support. CFAlertViewController’s functionality is almost similar to the native UIAlertController. You can check out the variations you can implement by using the library:
+`CFAlertViewController` is a library that helps you display and customise **alerts and action sheets** on iPad and iPhone. It offers screen rotation as well as an adaptive UI support. CFAlertViewController’s functionality is almost similar to the native UIAlertController.
 
 <GIF>
 
@@ -21,11 +21,11 @@ We assume that your Cocoapods is already configured. If you are new to Cocoapods
 1. Open the downloaded project in Xcode, then drag and drop folder named **CFAlertViewController** onto your project (use the "Product Navigator view"). Make sure to select Copy items when asked if you extracted the code archive outside of your project.
 2. Include CFAlertViewController wherever you need it with `#import "CFAlertViewController.h"`.
 
-## Usage :
-Below are variations with Alerts and Actionsheets which can be implemented easily
+## Usage :  
 <p>
-<img src="https://github.com/Codigami/CFAlertViewController/blob/develop/Images/Alert%20%26%20Action%20sheet.png" style="width: 100%" />
-</p>
+    <img src="https://github.com/Codigami/CFAlertViewController/blob/develop/Images/Alert%20%26%20Action%20sheet.png" style="width: 100%" />
+</p>  
+The above shown alert and actionsheet can easily be implemented using the code snippet given below by some small tweaks
 ```
     CFAlertViewController *alert = [CFAlertViewController alertControllerWithTitle:@"You've hit the limit!"
                                                                            message:@"Looks like you've hit your daily follow/unfollow limit. Upgrade to our paid plan to be able to remove your limits."
@@ -77,14 +77,14 @@ CFAlertControllerStyleActionSheet
 ```
 
 ##### Header / Footer
- You can add header and footer to the alert (as shown in the gif). Set properties `headerView` and `footerView` with custom views (subclass of UIView). You can pass nil to this properties to opt them out.  Some examples where you can make the use of Header / Footer  
+ You can add header and footer to the alert (as shown in the gif). Set properties `headerView` and `footerView` with custom views (subclass of UIView). You can pass nil to this properties to opt them out.  
  
-1) To show an image in header related to the Title and Subtitle  
+ 1) Some examples where you can make the use of Header in alerts (the dollar image is in header)
 <p>
     <img src="https://github.com/Codigami/CFAlertViewController/blob/develop/Images/Alert%20With%20Header.png" style="width: 100%" />
 </p>
 
-2) To give user more option than just dismissing the Alert
+2) Some examples where you can make the use of Footer in alert
 <p>
     <img src="https://github.com/Codigami/CFAlertViewController/blob/develop/Images/Alert%20With%20Footer.png" style="width: 100%" />
 </p>

@@ -27,29 +27,23 @@ We assume that your Cocoapods is already configured. If you are new to Cocoapods
 </p>  
 The above shown alert and actionsheet can easily be implemented using the code snippet given below by some small tweaks
 ```
-// Create Alert
-CFAlertViewController *alert = [CFAlertViewController alertControllerWithTitle:@"You've hit the limit!"
-                                                                       message:@"Looks like you've hit your daily follow/unfollow limit. Upgrade to our paid plan to be able to remove your limits."
-                                                                 textAlignment:NSTextAlignmentCenter
-                                                                preferredStyle:CFAlertControllerStyleAlert
-                                                        didDismissAlertHandler:^{
-                                                            NSLog(@"Alert Dismissed");
-                                                        }];
-    
-// Add Action Button
-CFAlertAction *actionDefault = [CFAlertAction actionWithTitle:@"UPGRADE"
-                                                        style:CFAlertActionStyleDefault
-                                                    alignment:CFAlertActionAlignmentJustified
-                                                        color:[UIColor colorWithRed:46.0/255.0 green:204.0/255.0 blue:113.0/255.0 alpha:1]
-                                                      handler: ^(CFAlertAction *action) {
-                                                          NSLog(@"Button with %@ title tapped",action.title);
-                                                       }];
-                                                       
-// Add Action Button Into Alert
-[alert addAction:actionDefault];
-    
-// Present Alert
-[self presentViewController:alert animated:YES completion:nil];
+    CFAlertViewController *alert = [CFAlertViewController alertControllerWithTitle:@"You've hit the limit!"
+                                                                           message:@"Looks like you've hit your daily follow/unfollow limit. Upgrade to our paid plan to be able to remove your limits."
+                                                                     textAlignment:NSTextAlignmentLeft
+                                                                    preferredStyle:CFAlertControllerStyleAlert
+                                                            didDismissAlertHandler:^{
+                                                                NSLog(@"Alert Dismissed");
+                                                            }];
+    CFAlertAction *actionDefault = [CFAlertAction actionWithTitle:@"UPGRADE"
+                                                            style:CFAlertActionStyleDefault
+                                                        alignment:CFAlertActionAlignmentRight
+                                                            color:[UIColor colorWithRed:46.0/255.0 green:204.0/255.0  blue:113.0/255.0 alpha:1]
+                                                          handler:^(CFAlertAction *action) {
+                                                              NSLog(@"Button with %@ title tapped",action.title);
+                                                          }];
+    [alert addAction:actionDefault];
+
+    [self presentViewController:alert animated:YES completion:nil];
 ```
 
 ## Customisations :
@@ -64,11 +58,11 @@ CFAlertAction *actionDefault = [CFAlertAction actionWithTitle:@"UPGRADE"
                                        footerView:(nullable UIView *)footerView
                            didDismissAlertHandler:(nullable CFAlertViewControllerDismissBlock)dismiss;
 ```
-##### Title and Subtitle  
-You can set custom title and subtitle of the alert (pass nil if you don’t need them).
+##### Title and Message  
+You can set custom title and message of the alert (pass nil if you don’t need them).
 
 ##### Alignment  
-You can customise alignment of the title and subtitle. Set the `textAlignment` property with one of the following values : 
+You can customise alignment of the title and message. Set the `textAlignment` property with one of the following values : 
 ```
 NSTextAlignmentLeft,    
 NSTextAlignmentRight,    
@@ -83,20 +77,20 @@ CFAlertControllerStyleActionSheet
 ```
 
 ##### Header / Footer
- You can add header and footer to the alert (as shown in the gif). Set properties `headerView` and `footerView` with custom views (subclass of UIView). You can pass nil to this properties to opt them out.  
+ You can add header and footer to the alert. Set properties `headerView` and `footerView` with custom views (subclass of UIView). You can pass nil to this properties to opt them out.  
  
- 1) Some examples where you can make the use of Header in alerts (the dollar image is in header)
+ 1) Some examples where you can make the use of header in alert (the dollar image is in header)
 <p>
     <img src="https://github.com/Codigami/CFAlertViewController/blob/develop/Images/Alert%20With%20Header.png" style="width: 100%" />
 </p>
 
-2) Some examples where you can make the use of Footer in alert
+2) Some examples where you can make the use of footer in alert
 <p>
     <img src="https://github.com/Codigami/CFAlertViewController/blob/develop/Images/Alert%20With%20Footer.png" style="width: 100%" />
 </p>
 
 ##### Callback
-A block (of type CFAlertViewControllerDismissBlock) gets called when the Alert / Action Sheet is dismissed. You can use it to handle call backs.
+A block (of type CFAlertViewControllerDismissBlock) gets called when the Alert / Action Sheet is dismissed. You can use it to handle call back.
 
 ### Actions
 ```
@@ -127,5 +121,7 @@ Configure the alignment of the action button added to the alert view. Set `align
 ```
 
 ##### Callback
-A block (of type CFAlertActionHandlerBlock) gets called when action is tapped. 
+A block (of type CFAlertActionHandlerBlock) gets invoked when action is tapped. 
 
+##### License
+This code is distributed under the terms and conditions of the MIT license.

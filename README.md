@@ -27,23 +27,29 @@ We assume that your Cocoapods is already configured. If you are new to Cocoapods
 </p>  
 The above shown alert and actionsheet can easily be implemented using the code snippet given below by some small tweaks
 ```
-    CFAlertViewController *alert = [CFAlertViewController alertControllerWithTitle:@"You've hit the limit!"
-                                                                           message:@"Looks like you've hit your daily follow/unfollow limit. Upgrade to our paid plan to be able to remove your limits."
-                                                                     textAlignment:NSTextAlignmentLeft
-                                                                    preferredStyle:CFAlertControllerStyleAlert
-                                                            didDismissAlertHandler:^{
-                                                                NSLog(@"Alert Dismissed");
-                                                            }];
-    CFAlertAction *actionDefault = [CFAlertAction actionWithTitle:@"UPGRADE"
-                                                            style:CFAlertActionStyleDefault
-                                                        alignment:CFAlertActionAlignmentRight
-                                                            color:[UIColor colorWithRed:46.0/255.0 green:204.0/255.0  blue:113.0/255.0 alpha:1]
-                                                          handler:^(CFAlertAction *action) {
-                                                              NSLog(@"Button with %@ title tapped",action.title);
-                                                          }];
-    [alert addAction:actionDefault];
-
-    [self presentViewController:alert animated:YES completion:nil];
+// Create Alert
+CFAlertViewController *alert = [CFAlertViewController alertControllerWithTitle:@"You've hit the limit!"
+                                                                       message:@"Looks like you've hit your daily follow/unfollow limit. Upgrade to our paid plan to be able to remove your limits."
+                                                                 textAlignment:NSTextAlignmentCenter
+                                                                preferredStyle:CFAlertControllerStyleAlert
+                                                        didDismissAlertHandler:^{
+                                                            NSLog(@"Alert Dismissed");
+                                                        }];
+    
+// Add Action Button
+CFAlertAction *actionDefault = [CFAlertAction actionWithTitle:@"UPGRADE"
+                                                        style:CFAlertActionStyleDefault
+                                                    alignment:CFAlertActionAlignmentJustified
+                                                        color:[UIColor colorWithRed:46.0/255.0 green:204.0/255.0 blue:113.0/255.0 alpha:1]
+                                                      handler: ^(CFAlertAction *action) {
+                                                          NSLog(@"Button with %@ title tapped",action.title);
+                                                       }];
+                                                       
+// Add Action Button Into Alert
+[alert addAction:actionDefault];
+    
+// Present Alert
+[self presentViewController:alert animated:YES completion:nil];
 ```
 
 ## Customisations :

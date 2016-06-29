@@ -50,6 +50,28 @@
 
 @implementation HomeTableViewController
 
+#pragma mark - View Life Cycle Methods
+
+- (void) viewWillAppear:(BOOL)animated  {
+    [super viewWillAppear:animated];
+    NSLog(@"View Will Appear");
+}
+
+- (void) viewDidAppear:(BOOL)animated  {
+    [super viewDidAppear:animated];
+    NSLog(@"View Did Appear");
+}
+
+- (void) viewWillDisappear:(BOOL)animated  {
+    [super viewWillDisappear:animated];
+    NSLog(@"View Will Disappear");
+}
+
+- (void) viewDidDisappear:(BOOL)animated  {
+    [super viewDidDisappear:animated];
+    NSLog(@"View Did Disappear");
+}
+
 #pragma mark - Button Click Events
 
 - (IBAction) showAlertButtonClicked:(id)sender {

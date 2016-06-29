@@ -69,6 +69,10 @@
     UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
+    // Call Will System Methods
+    [fromViewController beginAppearanceTransition:NO animated:YES];
+    [toViewController beginAppearanceTransition:YES animated:YES];
+    
     if (self.transitionType == CFAlertActionSheetTransitionTypePresent) {
         
         /** SHOW ANIMATION **/
@@ -103,6 +107,10 @@
             
         } completion:^(BOOL finished) {
             
+            // Call Did System Methods
+            [toViewController endAppearanceTransition];
+            [fromViewController endAppearanceTransition];
+            
             // Declare Animation Finished
             [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
         }];
@@ -125,6 +133,10 @@
             alertViewController.view.backgroundColor = [UIColor clearColor];
             
         } completion:^(BOOL finished) {
+            
+            // Call Did System Methods
+            [toViewController endAppearanceTransition];
+            [fromViewController endAppearanceTransition];
             
             // Declare Animation Finished
             [transitionContext completeTransition:![transitionContext transitionWasCancelled]];

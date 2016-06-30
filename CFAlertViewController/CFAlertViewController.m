@@ -357,6 +357,9 @@
                                  // Animate
                                  animate();
                                  
+                                 // Relayout
+                                 [self.view layoutIfNeeded];
+                                 
                              } completion:nil];
         }
         else    {
@@ -498,7 +501,7 @@
             if(indexPath.row == 0)  {
                 
                 if (self.titleString.length>0 || self.messageString.length>0) {
-                    actionCell.actionButtonTopMargin = 15.0;
+                    actionCell.actionButtonTopMargin = 20.0;
                 }
                 else    {
                     actionCell.actionButtonTopMargin = 20.0;

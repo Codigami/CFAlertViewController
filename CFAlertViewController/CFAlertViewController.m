@@ -88,10 +88,15 @@
                                        footerView:(nullable UIView *)footerView
                            didDismissAlertHandler:(nullable CFAlertViewControllerDismissBlock)dismiss
 {
-    NSString *currentClassName = NSStringFromClass([CFAlertViewController class]);
+    // Get Current Class Name
+    NSString *currentClassName = NSStringFromClass([self class]);
+    
+    // Get Current Bundle
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     
     // Create New Instance Of Alert Controller
-    CFAlertViewController *alert = [[CFAlertViewController alloc] initWithNibName:currentClassName bundle:nil];
+    CFAlertViewController *alert = [[CFAlertViewController alloc] initWithNibName:currentClassName
+                                                                           bundle:bundle];
     alert.titleString = title;
     alert.messageString = message;
     alert.textAlignment = textAlignment;

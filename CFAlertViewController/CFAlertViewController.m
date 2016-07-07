@@ -278,6 +278,10 @@
 
 #pragma mark - Helper Methods
 
+- (BOOL)prefersStatusBarHidden {
+    return [UIApplication sharedApplication].statusBarHidden;
+}
+
 - (void)addAction:(CFAlertAction *)action   {
     
     if (action) {

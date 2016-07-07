@@ -14,13 +14,18 @@
 
 @interface TweetToIncreaseLimitView ()
 
-@property (nonatomic, strong) IBOutlet UIView *contentView;
+@property (nonatomic, weak) IBOutlet UIView *contentView;
 
-@property (nonatomic, strong) IBOutlet UIView *orContainerView;
-@property (nonatomic, strong) IBOutlet UIView *tweetTextContainerView;
-@property (nonatomic, strong) IBOutlet UITextView *tweetTextView;
-@property (nonatomic, strong) IBOutlet UILabel *tweetCharacterCount;
-@property (nonatomic, strong) IBOutlet CRPushButton *tweetButton;
+@property (nonatomic, weak) IBOutlet UIView *orContainerView;
+@property (nonatomic, weak) IBOutlet UILabel *tweetViewTitleLabel;
+@property (nonatomic, weak) IBOutlet UIView *tweetTextContainerView;
+@property (nonatomic, weak) IBOutlet UITextView *tweetTextView;
+@property (nonatomic, weak) IBOutlet UILabel *tweetCharacterCountLabel;
+
+@property (nonatomic, weak) IBOutlet CRPushButton *tweetButton;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *tweetButtonTopConstraint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *tweetButtonLeadingConstraint;
+@property (nonatomic, assign) BOOL isExpanded;
 
 // Numbers
 @property (nonatomic, assign) NSInteger remainingBioCharacters;
@@ -95,7 +100,7 @@
     
     // Basic Initialisation
     [self basicInitialisation];
-    [self updateCaptionCharacterCountLabel];
+    
     return YES;
 }
 
@@ -108,6 +113,9 @@
     self.orContainerView.layer.cornerRadius = self.orContainerView.frame.size.height*0.5;
     self.orContainerView.layer.borderColor = [UIColor colorWithRed:243.0/255.0 green:244.0/255.0 blue:245.0/255.0 alpha:1].CGColor;
     self.orContainerView.layer.borderWidth = 2.0;
+    
+    // Set Tweet View Title
+    self.tweetViewTitleLabel.text = @"Tweet to increase limit";
     
     // Set Tweet Text Container Properties
     self.tweetTextContainerView.layer.cornerRadius = 8.0;
@@ -126,14 +134,18 @@
     self.tweetButton.layer.cornerRadius = 8.0;
     self.tweetButton.pushTransformScaleFactor = 0.9;
     
-    // Update Height
-    [self updateHeight];
-    
     // Set Tweet Character Limit
     self.characterLimit = 140;
+    [self updateCaptionCharacterCountLabel];
     
     // Initialize Bio Text
     self.bioText = @"I've been using Crowdfire to grow my network on Twitter, and I'm lovin' it. Anyone else tried it yet? http://www.crowdfireapp.com";
+    
+    // Update Height
+    self.isExpanded = NO;
+    
+    // Update Height
+    [self updateHeight];
 }
 
 #pragma mark - Layout Method
@@ -156,11 +168,61 @@
                             self.frame.origin.y,
                             self.frame.size.width,
                             contentViewSize.height);
+    
+    // Update Self View in Alert Controller
+    if (self.alertController.headerView == self) {
+        self.alertController.headerView = self;
+    }
+    else if (self.alertController.footerView == self)   {
+        self.alertController.footerView = self;
+    }
+}
+
+#pragma mark - Setter / Getter Methods
+
+- (void) setIsExpanded:(BOOL)isExpanded {
+    _isExpanded = isExpanded;
+    
+    [UIView animateWithDuration:0.4
+                          delay:0.0
+         usingSpringWithDamping:1.0
+          initialSpringVelocity:0.0
+                        options:UIViewAnimationOptionCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState
+                     animations:^{
+                         
+                         if (self.isExpanded) {
+                             
+                             // Expand View
+                             self.tweetButtonTopConstraint.active = NO;
+                             self.tweetButtonLeadingConstraint.active = NO;
+                             self.tweetViewTitleLabel.alpha = 1.0;
+                             self.tweetTextContainerView.alpha = 1.0;
+                             self.tweetCharacterCountLabel.alpha = 1.0;
+                             [self.tweetButton setTitle:@"TWEET"
+                                               forState:UIControlStateNormal];
+                         }
+                         else    {
+                             
+                             // Collapse View
+                             self.tweetButtonTopConstraint.active = YES;
+                             self.tweetButtonLeadingConstraint.active = YES;
+                             self.tweetViewTitleLabel.alpha = 0.0;
+                             self.tweetTextContainerView.alpha = 0.0;
+                             self.tweetCharacterCountLabel.alpha = 0.0;
+                             [self.tweetButton setTitle:@"TWEET TO INCREASE LIMIT"
+                                               forState:UIControlStateNormal];
+                         }
+                         
+                         // Update Height
+                         [self updateHeight];
+                         
+                     } completion:nil];
 }
 
 #pragma mark - UITextView Delegate
 
-- (void) textViewDidChange:(UITextView *)textView  {
+- (void) textViewDidChange:(UITextView *)textView    {
+    
     // Set Caption Text
     self.bioText = textView.text;
     [self updateCaptionCharacterCountLabel];
@@ -168,11 +230,12 @@
 
 #pragma mark - Tweet Limit Calculation
 
-- (void) updateCaptionCharacterCountLabel {
-    self.remainingBioCharacters = self.tweetTextView.text.length;
+- (void) updateCaptionCharacterCountLabel   {
+    
+    self.remainingBioCharacters = self.characterLimit - self.tweetTextView.text.length;
     
     // Update charecter Count Label
-    self.tweetCharacterCount.text = [NSString stringWithFormat:@"%ld", (long)self.remainingBioCharacters];
+    self.tweetCharacterCountLabel.text = [NSString stringWithFormat:@"%ld", (long)self.remainingBioCharacters];
     
     [self enableTweetButton];
 }
@@ -195,13 +258,7 @@
 #pragma mark - Actions
 
 - (IBAction)tweetButtonPressed:(id)sender{
-    if (self.bioText) {
-        [self tweetWithStatus:self.bioText];
-    }
-}
-
-- (void)tweetWithStatus:(NSString*)status {
-    
+    self.isExpanded = !self.isExpanded;
 }
 
 @end

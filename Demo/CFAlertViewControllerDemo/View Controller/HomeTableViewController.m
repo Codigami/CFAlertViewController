@@ -104,6 +104,11 @@
                                                                         footerView:footerView
                                                             didDismissAlertHandler:nil];
     
+    // Add Alert Reference Into Footer View
+    if (footerView && [footerView isKindOfClass:[TweetToIncreaseLimitView class]]) {
+        ((TweetToIncreaseLimitView *)footerView).alertController = alert;
+    }
+    
     // Set Should Dismiss Alert Controller On Dim Background Tap
     alert.shouldDismissOnBackgroundTap = self.settingCloseOnBackgroundTapSwitch.isOn;
     

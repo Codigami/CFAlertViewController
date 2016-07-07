@@ -11,7 +11,6 @@
 
 @interface TweetToIncreaseLimitView : UIView
 
-@property (nonatomic, strong) UIView *twitterChannel;
 @property (nonatomic, weak) CFAlertViewController *alertController;
 
 @end

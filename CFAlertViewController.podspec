@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "CFAlertViewController"
-  s.version      = "1.0.4"
+  s.version      = "1.0.6"
   s.summary      = "CFAlertViewController is a library that helps you display and customise alerts and action sheets on iPad and iPhone."
 
   # This description is used to generate tags and improve search results.
@@ -79,7 +79,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/Codigami/CFAlertViewController.git", :tag => "v1.0.4" }
+  s.source       = { :git => "https://github.com/Codigami/CFAlertViewController.git", :tag => "v1.0.6" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

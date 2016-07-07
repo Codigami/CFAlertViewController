@@ -59,7 +59,7 @@
 #pragma mark - Initialisation Methods
 
 + (NSString *) identifier   {
-    return NSStringFromClass([CFAlertActionTableViewCell class]);
+    return NSStringFromClass([self class]);
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -67,10 +67,14 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         
-        NSString *currentClassName = NSStringFromClass([CFAlertActionTableViewCell class]);
+        // Get Current Class Name
+        NSString *currentClassName = NSStringFromClass([self class]);
+        
+        // Get Current Bundle
+        NSBundle *bundle = [NSBundle bundleForClass:[self class]];
         
         // Initialization code
-        NSArray *arrayOfViews = [[NSBundle mainBundle] loadNibNamed:currentClassName owner:self options:nil];
+        NSArray *arrayOfViews = [bundle loadNibNamed:currentClassName owner:self options:nil];
         
         if ([arrayOfViews count] < 1) {
             return nil;

@@ -1,5 +1,5 @@
 //
-//  CRPushButton.h
+//  CFPushButton.h
 //  SampleButton
 //
 //  Created by Shardul Patel on 12/21/15.
@@ -39,12 +39,12 @@
 #define CR_PUSH_BUTTON_DEFAULT_TOUCH_UP_DAMPING     0.65
 #define CR_PUSH_BUTTON_DEFAULT_TOUCH_UP_VELOCITY    0.0
 
-@class CRPushButton;
-typedef void(^CRPushButtonTouchEventHandler)(CRPushButton *button);
+@class CFPushButton;
+typedef void(^CRPushButtonTouchEventHandler)(CFPushButton *button);
 
 
 
-@interface CRPushButton : UIButton
+@interface CFPushButton : UIButton
 
 // Set Original Transform Property
 @property (nonatomic) CGAffineTransform originalTransform;

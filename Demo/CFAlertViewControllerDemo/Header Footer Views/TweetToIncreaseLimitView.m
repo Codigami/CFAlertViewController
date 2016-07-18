@@ -7,7 +7,7 @@
 //
 
 #import "TweetToIncreaseLimitView.h"
-#import "CRPushButton.h"
+#import "CFPushButton.h"
 #import "CFAlertViewController.h"
 
 
@@ -22,7 +22,7 @@
 @property (nonatomic, weak) IBOutlet UITextView *tweetTextView;
 @property (nonatomic, weak) IBOutlet UILabel *tweetCharacterCountLabel;
 
-@property (nonatomic, weak) IBOutlet CRPushButton *tweetButton;
+@property (nonatomic, weak) IBOutlet CFPushButton *tweetButton;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *tweetButtonTopConstraint;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *tweetButtonLeadingConstraint;
 @property (nonatomic, assign) BOOL isExpanded;

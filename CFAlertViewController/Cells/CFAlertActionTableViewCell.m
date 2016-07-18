@@ -28,7 +28,7 @@
 
 
 #import "CFAlertActionTableViewCell.h"
-#import "CRPushButton.h"
+#import "CFPushButton.h"
 
 
 
@@ -40,7 +40,7 @@
 
 @interface CFAlertActionTableViewCell ()
 
-@property (nonatomic, strong) IBOutlet CRPushButton *actionButton;
+@property (nonatomic, strong) IBOutlet CFPushButton *actionButton;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *actionButtonTopConstraint;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *actionButtonLeadingConstraint;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *actionButtonCenterXConstraint;

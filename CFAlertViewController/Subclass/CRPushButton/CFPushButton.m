@@ -1,5 +1,5 @@
 //
-//  CRPushButton.m
+//  CFPushButton.m
 //  SampleButton
 //
 //  Created by Shardul Patel on 12/21/15.
@@ -27,11 +27,11 @@
 //  SOFTWARE.
 
 
-#import "CRPushButton.h"
+#import "CFPushButton.h"
 
 
 
-@interface CRPushButton ()
+@interface CFPushButton ()
 
 @property (nonatomic, strong) UIColor *normalStateBackgroundColor;
 
@@ -39,7 +39,7 @@
 
 
 
-@implementation CRPushButton
+@implementation CFPushButton
 
 #pragma mark - Initialisation Methods
 

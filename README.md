@@ -104,7 +104,7 @@ A block (of type CFAlertViewControllerDismissBlock) gets called when the Alert /
                                     style:(CFAlertActionStyle)style
                                 alignment:(CFAlertActionAlignment)alignment
                                     color:(nullable UIColor *)color
-                                  handler:(nullable CFAlertActionHandlerBlock)handler
+                                  handler:(nullable CFAlertActionHandlerBlock)handler;
 ```                           
 ##### Title
 You can set the title of action button to be added.  
@@ -123,7 +123,7 @@ Configure the alignment of the action button added to the alert view. Set `align
  CFAlertActionAlignmentJustified,   // Action Button occupies the full width
  CFAlertActionAlignmentRight,
  CFAlertActionAlignmentLeft,
- CFAlertActionAlignmentCenter,
+ CFAlertActionAlignmentCenter
 ```
 
 ##### Callback

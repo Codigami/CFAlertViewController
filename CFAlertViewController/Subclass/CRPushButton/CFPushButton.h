@@ -29,18 +29,18 @@
 
 #import <UIKit/UIKit.h>
 
-#define CR_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DURATION  0.22
-#define CR_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DELAY     0.0
-#define CR_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DAMPING   0.6
-#define CR_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_VELOCITY  0.0
+#define CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DURATION  0.22
+#define CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DELAY     0.0
+#define CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DAMPING   0.6
+#define CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_VELOCITY  0.0
 
-#define CR_PUSH_BUTTON_DEFAULT_TOUCH_UP_DURATION    0.7
-#define CR_PUSH_BUTTON_DEFAULT_TOUCH_UP_DELAY       0.0
-#define CR_PUSH_BUTTON_DEFAULT_TOUCH_UP_DAMPING     0.65
-#define CR_PUSH_BUTTON_DEFAULT_TOUCH_UP_VELOCITY    0.0
+#define CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_DURATION    0.7
+#define CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_DELAY       0.0
+#define CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_DAMPING     0.65
+#define CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_VELOCITY    0.0
 
 @class CFPushButton;
-typedef void(^CRPushButtonTouchEventHandler)(CFPushButton *button);
+typedef void(^CFPushButtonTouchEventHandler)(CFPushButton *button);
 
 
 
@@ -61,8 +61,8 @@ typedef void(^CRPushButtonTouchEventHandler)(CFPushButton *button);
          completion:(void (^)())completed;
 
 // Touch Handler Blocks
-@property (nonatomic, copy) CRPushButtonTouchEventHandler touchDownHandler;
-@property (nonatomic, copy) CRPushButtonTouchEventHandler touchUpHandler;
+@property (nonatomic, copy) CFPushButtonTouchEventHandler touchDownHandler;
+@property (nonatomic, copy) CFPushButtonTouchEventHandler touchUpHandler;
 
 // Push Transition Animation Properties
 @property (nonatomic, assign) CGFloat touchDownDuration;

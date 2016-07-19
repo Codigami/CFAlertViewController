@@ -70,15 +70,15 @@
     self.originalTransform = CGAffineTransformIdentity;
     
     // Set Default Animation Properties
-    self.touchDownDuration = CR_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DURATION;
-    self.touchDownDelay = CR_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DELAY;
-    self.touchDownDamping = CR_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DAMPING;
-    self.touchDownVelocity = CR_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_VELOCITY;
+    self.touchDownDuration = CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DURATION;
+    self.touchDownDelay = CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DELAY;
+    self.touchDownDamping = CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DAMPING;
+    self.touchDownVelocity = CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_VELOCITY;
     
-    self.touchUpDuration = CR_PUSH_BUTTON_DEFAULT_TOUCH_UP_DURATION;
-    self.touchUpDelay = CR_PUSH_BUTTON_DEFAULT_TOUCH_UP_DELAY;
-    self.touchUpDamping = CR_PUSH_BUTTON_DEFAULT_TOUCH_UP_DAMPING;
-    self.touchUpVelocity = CR_PUSH_BUTTON_DEFAULT_TOUCH_UP_VELOCITY;
+    self.touchUpDuration = CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_DURATION;
+    self.touchUpDelay = CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_DELAY;
+    self.touchUpDamping = CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_DAMPING;
+    self.touchUpVelocity = CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_VELOCITY;
 }
 
 #pragma mark - Setter Methods

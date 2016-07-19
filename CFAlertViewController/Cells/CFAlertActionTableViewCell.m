@@ -32,9 +32,9 @@
 
 
 
-#define CR_DEFAULT_ACTION_COLOR     [UIColor colorWithRed:41.0/255.0 green:198.0/255.0 blue:77.0/255.0 alpha:1.0]
-#define CR_CANCEL_ACTION_COLOR      [UIColor colorWithRed:103.0/255.0 green:104.0/255.0 blue:217.0/255.0 alpha:1.0]
-#define CR_DESTRUCTIVE_ACTION_COLOR [UIColor colorWithRed:255.0/255.0 green:75.0/255.0 blue:75.0/255.0 alpha:1.0]
+#define CF_DEFAULT_ACTION_COLOR     [UIColor colorWithRed:41.0/255.0 green:198.0/255.0 blue:77.0/255.0 alpha:1.0]
+#define CF_CANCEL_ACTION_COLOR      [UIColor colorWithRed:103.0/255.0 green:104.0/255.0 blue:217.0/255.0 alpha:1.0]
+#define CF_DESTRUCTIVE_ACTION_COLOR [UIColor colorWithRed:255.0/255.0 green:75.0/255.0 blue:75.0/255.0 alpha:1.0]
 
 
 
@@ -158,7 +158,7 @@
             
         case CFAlertActionStyleCancel:  {
             if (!actionColor) {
-                actionColor = CR_CANCEL_ACTION_COLOR;
+                actionColor = CF_CANCEL_ACTION_COLOR;
             }
             self.actionButton.backgroundColor = [UIColor clearColor];
             [self.actionButton setTitleColor:actionColor forState:UIControlStateNormal];
@@ -169,7 +169,7 @@
             
         case CFAlertActionStyleDestructive: {
             if (!actionColor) {
-                actionColor = CR_DESTRUCTIVE_ACTION_COLOR;
+                actionColor = CF_DESTRUCTIVE_ACTION_COLOR;
             }
             self.actionButton.backgroundColor = actionColor;
             [self.actionButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -180,7 +180,7 @@
             
         default:    {
             if (!actionColor) {
-                actionColor = CR_DEFAULT_ACTION_COLOR;
+                actionColor = CF_DEFAULT_ACTION_COLOR;
             }
             self.actionButton.backgroundColor = actionColor;
             [self.actionButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

@@ -224,11 +224,8 @@
 {
     _headerView = headerView;
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
-        // Set Into Table Header View
-        self.tableView.tableHeaderView = self.headerView;
-    });
+    // Set Into Table Header View
+    self.tableView.tableHeaderView = self.headerView;
     
     // Update Container View Frame If Requested
     if(shouldUpdateContainerFrame)  {
@@ -244,11 +241,8 @@
 {
     _footerView = footerView;
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
-        // Set Into Table Footer View
-        self.tableView.tableFooterView = self.footerView;
-    });
+    // Set Into Table Footer View
+    self.tableView.tableFooterView = self.footerView;
     
     // Update Container View Frame If Requested
     if(shouldUpdateContainerFrame)  {

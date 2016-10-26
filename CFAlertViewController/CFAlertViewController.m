@@ -278,7 +278,10 @@
 #pragma mark - Helper Methods
 
 - (BOOL)prefersStatusBarHidden {
+#if NS_EXTENSION_UNAVAILABLE_IOS
     return [UIApplication sharedApplication].statusBarHidden;
+#endif
+    return YES;
 }
 
 - (void)addAction:(CFAlertAction *)action   {

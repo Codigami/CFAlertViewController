@@ -1,6 +1,5 @@
 #CFAlertViewController
-`CFAlertViewController` is a library that helps you display and customise **alerts and action sheets** on iPad and iPhone. It offers screen rotation as well as an adaptive UI support. CFAlertViewController’s functionality is almost similar to the native UIAlertController. It can be used with Extensions also.
-
+`CFAlertViewController` is a library that helps you display and customise **alerts and action sheets** on iPad and iPhone. It offers screen rotation as well as an adaptive UI support. CFAlertViewController’s functionality is almost similar to the native UIAlertController.
 <GIF>
 
 ## Requirements :
@@ -51,6 +50,8 @@ CFAlertAction *actionDefault = [CFAlertAction actionWithTitle:@"UPGRADE"
 // Present Alert
 [self presentViewController:alert animated:YES completion:nil];
 ```
+##Usage with Extensions : 
+CFAlertController can be used with Extensions also. Just add `CF_ALERT_VIEW_EXTENSION` to Preprocess Macros in Build Settings of target other than Extensions.
 
 ## Customisations :
 

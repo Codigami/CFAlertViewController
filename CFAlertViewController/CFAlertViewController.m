@@ -278,7 +278,7 @@
 #pragma mark - Helper Methods
 
 - (BOOL)prefersStatusBarHidden {
-#if NS_EXTENSION_UNAVAILABLE_IOS
+#ifndef CF_ALERT_VIEW_EXTENSION
     return [UIApplication sharedApplication].statusBarHidden;
 #endif
     return YES;
@@ -398,7 +398,7 @@
     if ( CGRectContainsPoint(self.containerView.frame, loc) ) {
         
         // Close Keyboard
-        [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+        [self.view endEditing:YES];
     }
     else if (self.shouldDismissOnBackgroundTap)    {
         

@@ -277,12 +277,11 @@
 
 #pragma mark - Helper Methods
 
+#if NS_EXTENSION_UNAVAILABLE_IOS
 - (BOOL)prefersStatusBarHidden {
-#ifndef CF_ALERT_VIEW_EXTENSION
     return [UIApplication sharedApplication].statusBarHidden;
-#endif
-    return YES;
 }
+#endif
 
 - (void)addAction:(CFAlertAction *)action   {
     
@@ -395,7 +394,7 @@
 - (void) viewDidTap:(UITapGestureRecognizer *)gestureRecognizer {
     
     CGPoint loc = [gestureRecognizer locationInView:self.view];
-    if ( CGRectContainsPoint(self.containerView.frame, loc) ) {
+    if (CGRectContainsPoint(self.containerView.frame, loc)) {
         
         // Close Keyboard
         [self.view endEditing:YES];

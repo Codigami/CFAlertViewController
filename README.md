@@ -50,16 +50,6 @@ CFAlertAction *actionDefault = [CFAlertAction actionWithTitle:@"UPGRADE"
 // Present Alert
 [self presentViewController:alert animated:YES completion:nil];
 ```
-##Usage with Extensions : 
-CFAlertController can be used with Extensions. Follow this steps :
-
-1. Open `Build Settings` from the Extension's target.
-2. Search for `Preprocessor Macros`.
-3. Add macro `CF_ALERT_VIEW_EXTENSION` into it. (Check the below screenshot)
-<p>
-    <img src="https://github.com/Codigami/CFAlertViewController/blob/develop_extensions_fix/Images/BuildSettings.png" style="width: 100%" />
-</p>
-
 ## Customisations :
 
 ### Alerts

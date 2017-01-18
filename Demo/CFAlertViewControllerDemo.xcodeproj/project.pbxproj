@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F75A0DB1E2FAF89003414B8 /* CFAlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F75A0DA1E2FAF89003414B8 /* CFAlertAction.swift */; };
 		2F8E8FC01D181166004450F5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F8E8FBF1D181166004450F5 /* main.m */; };
 		2F8E8FC91D181166004450F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F8E8FC71D181166004450F5 /* Main.storyboard */; };
 		2F8E8FCB1D181166004450F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F8E8FCA1D181166004450F5 /* Assets.xcassets */; };
@@ -28,6 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F75A0D71E2FAE4A003414B8 /* CFAlertViewControllerDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CFAlertViewControllerDemo-Bridging-Header.h"; sourceTree = "<group>"; };
+		2F75A0DA1E2FAF89003414B8 /* CFAlertAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFAlertAction.swift; sourceTree = "<group>"; };
 		2F8E8FBB1D181166004450F5 /* CFAlertViewControllerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CFAlertViewControllerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F8E8FBF1D181166004450F5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2F8E8FC81D181166004450F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -97,6 +100,7 @@
 				2F8E8FC71D181166004450F5 /* Main.storyboard */,
 				2F8E8FCA1D181166004450F5 /* Assets.xcassets */,
 				2F8E8FCC1D181166004450F5 /* LaunchScreen.storyboard */,
+				2F75A0D71E2FAE4A003414B8 /* CFAlertViewControllerDemo-Bridging-Header.h */,
 				2F8E8FBE1D181166004450F5 /* Supporting Files */,
 			);
 			path = CFAlertViewControllerDemo;
@@ -172,6 +176,7 @@
 			children = (
 				2F8E90181D181F07004450F5 /* CFAlertAction.h */,
 				2F8E90191D181F07004450F5 /* CFAlertAction.m */,
+				2F75A0DA1E2FAF89003414B8 /* CFAlertAction.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -231,12 +236,13 @@
 		2F8E8FB31D181166004450F5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Codigami Inc";
 				TargetAttributes = {
 					2F8E8FBA1D181166004450F5 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = SXKNM4QXT9;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -285,6 +291,7 @@
 				2F8E90291D181F07004450F5 /* CFAlertAction.m in Sources */,
 				2F8E90271D181F07004450F5 /* CFAlertViewController.m in Sources */,
 				2F8E902B1D181F07004450F5 /* CFAlertViewControllerActionSheetTransition.m in Sources */,
+				2F75A0DB1E2FAF89003414B8 /* CFAlertAction.swift in Sources */,
 				2F8E8FC01D181166004450F5 /* main.m in Sources */,
 				2F8E90001D1811C7004450F5 /* AppDelegate.m in Sources */,
 				2F8E902C1D181F07004450F5 /* CFAlertViewControllerPopupTransition.m in Sources */,
@@ -331,8 +338,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -376,8 +385,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -396,6 +407,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -405,6 +417,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = SXKNM4QXT9;
 				INFOPLIST_FILE = CFAlertViewControllerDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -412,6 +425,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "072fed8d-4958-4129-a3f9-744b70633cda";
 				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Provisioning Profile";
+				SWIFT_OBJC_BRIDGING_HEADER = "CFAlertViewControllerDemo/CFAlertViewControllerDemo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -419,11 +435,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = CFAlertViewControllerDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codigami.CFAlertViewControllerDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CFAlertViewControllerDemo/CFAlertViewControllerDemo-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

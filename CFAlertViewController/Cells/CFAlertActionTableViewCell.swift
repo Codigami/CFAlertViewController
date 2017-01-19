@@ -30,12 +30,13 @@ import UIKit
     
     
     // MARK: Variables
-    var actionButtonTopMargin: CGFloat = 0.0 {
+    public var actionButtonTopMargin: CGFloat = 0.0 {
         didSet {
             setActionButtonTopMargin(actionButtonTopMargin: actionButtonTopMargin)
         }
     }
-    var action: CFAlertAction? {
+    
+    public var action: CFAlertAction? {
         didSet {
             
             if let action = self.action    {
@@ -43,12 +44,13 @@ import UIKit
             }
         }
     }
-    var actionButtonBottomMargin: CGFloat = 0.0 {
+    
+    public var actionButtonBottomMargin: CGFloat = 0.0 {
         didSet {
             setActionButtonTopMargin(actionButtonTopMargin: actionButtonBottomMargin)
         }
     }
-    var delegate: CFAlertActionTableViewCellDelegate?
+    public var delegate: CFAlertActionTableViewCellDelegate?
     
     
     // MARK: Initialization Methods
@@ -68,7 +70,7 @@ import UIKit
         super.init(coder: aDecoder)
     }
     
-    func basicInitialisation() {
+    private func basicInitialisation() {
         // Set Action Button Properties
         actionButton?.layer.cornerRadius = 6.0
         actionButton?.pushTransformScaleFactor = 0.9
@@ -84,18 +86,19 @@ import UIKit
     
     
     // MARK: Setter Methods
-    func setActionButtonTopMargin(actionButtonTopMargin: CGFloat) {
+    private func setActionButtonTopMargin(actionButtonTopMargin: CGFloat) {
         // Update Constraint
         self.actionButtonTopConstraint?.constant = actionButtonTopMargin - 8.0
         self.layoutIfNeeded()
     }
     
-    func setActionButtonBottomMargin(actionButtonBottomMargin: CGFloat) {
+    private func setActionButtonBottomMargin(actionButtonBottomMargin: CGFloat) {
         // Update Constraint
         self.actionButtonBottomConstraint?.constant = actionButtonBottomMargin - 8.0
         self.layoutIfNeeded()
     }
-    func setAction(action: CFAlertAction) {
+    
+    private func setAction(action: CFAlertAction) {
 
         // Set Action Style
         var actionColor: UIColor? = action.color
@@ -131,7 +134,7 @@ import UIKit
         }
         
         
-        //        // Set Alignment
+        // Set Alignment
         switch action.alignment {
             
         case .Right:

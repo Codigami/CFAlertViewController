@@ -15,17 +15,19 @@ import UIKit
     
     
     // MARK: Variables
-    var contentTopMargin: CGFloat = 0.0 {
+    public var contentTopMargin: CGFloat = 0.0 {
         didSet {
             setContentTopMargin(contentTopMargin: self.contentTopMargin)
         }
     }
-    var contentBottomMargin: CGFloat = 0.0 {
+    
+    public var contentBottomMargin: CGFloat = 0.0 {
         didSet {
             setContentBottomMargin(contentBottomMargin: self.contentBottomMargin)
         }
     }
-    var contentLeadingSpace: CGFloat = 0.0 {
+    
+    public var contentLeadingSpace: CGFloat = 0.0 {
         didSet {
             setContentLeadingSpace(contentLeadingSpace: self.contentLeadingSpace)
         }
@@ -60,7 +62,7 @@ import UIKit
         super.init(coder: aDecoder)
     }
     
-    func basicInitialisation() {
+    private func basicInitialisation() {
         // Reset Text
         setTitle(title: nil, subtitle: nil, alignment: .center)
         // Set Content Leading Space
@@ -76,21 +78,21 @@ import UIKit
     
     
     // MARK: Setter Methods
-    func setContentTopMargin(contentTopMargin: CGFloat) {
+    private func setContentTopMargin(contentTopMargin: CGFloat) {
         // Update Constraint
         self.titleLabelTopConstraint?.constant = self.contentTopMargin - 8.0
         self.subtitleLabelTopConstraint?.constant = (self.titleLabelTopConstraint?.constant)!
         self.layoutIfNeeded()
     }
     
-    func setContentBottomMargin(contentBottomMargin: CGFloat) {
+    private func setContentBottomMargin(contentBottomMargin: CGFloat) {
         // Update Constraint
         self.titleLabelBottomConstraint?.constant = self.contentBottomMargin - 8.0
         self.subtitleLabelBottomConstraint?.constant = (self.titleLabelBottomConstraint?.constant)!
         self.layoutIfNeeded()
     }
     
-    func setContentLeadingSpace(contentLeadingSpace: CGFloat) {
+    private func setContentLeadingSpace(contentLeadingSpace: CGFloat) {
         // Update Constraint Values
         self.titleLeadingSpaceConstraint?.constant = self.contentLeadingSpace - 8.0
         self.subtitleLeadingSpaceConstraint?.constant = (self.titleLeadingSpaceConstraint?.constant)!
@@ -99,7 +101,7 @@ import UIKit
     
     
     // MARK: Helper Methods
-    func setTitle(title: String?, subtitle: String?, alignment: NSTextAlignment) {
+    public func setTitle(title: String?, subtitle: String?, alignment: NSTextAlignment) {
         // Set Cell Text Fonts & Colors
         self.titleLabel?.text = title
         self.titleLabel?.textAlignment = alignment

@@ -114,31 +114,31 @@
     
     // Add Default Button Action
     if (self.actionDefaultSwitch.isOn) {
-        CFAlertAction *actionDefault = [CFAlertAction actionWithTitle:DEFAULT_BTN_TITLE
-                                                                style:CFAlertActionStyleDefault
-                                                            alignment:[self getActionsTextAlignment]
-                                                                color:DEFAULT_BTN_COLOR
-                                                              handler:nil];
+        CFAlertAction *actionDefault = [[CFAlertAction alloc] initWithTitle:DEFAULT_BTN_TITLE
+                                                                      style:CFAlertActionStyleDefault
+                                                                  alignment:[self getActionsTextAlignment]
+                                                                      color:DEFAULT_BTN_COLOR
+                                                                    handler:nil];
         [alert addAction:actionDefault];
     }
     
     // Add Destructive Button Action
     if (self.actionDestructiveSwitch.isOn) {
-        CFAlertAction *actionDestruct = [CFAlertAction actionWithTitle:DESTRUCTIVE_BTN_TITLE
-                                                                 style:CFAlertActionStyleDestructive
-                                                             alignment:[self getActionsTextAlignment]
-                                                                 color:DESTRUCTIVE_BTN_COLOR
-                                                               handler:nil];
+        CFAlertAction *actionDestruct = [[CFAlertAction alloc] initWithTitle:DESTRUCTIVE_BTN_TITLE
+                                                                       style:CFAlertActionStyleDestructive
+                                                                   alignment:[self getActionsTextAlignment]
+                                                                       color:DESTRUCTIVE_BTN_COLOR
+                                                                     handler:nil];
         [alert addAction:actionDestruct];
     }
     
     // Add Cancel Button Action
     if (self.actionCancelSwitch.isOn) {
-        CFAlertAction *actionCancel = [CFAlertAction actionWithTitle:CANCEL_BTN_TITLE
-                                                               style:CFAlertActionStyleCancel
-                                                           alignment:[self getActionsTextAlignment]
-                                                               color:CANCEL_BTN_COLOR
-                                                             handler:nil];
+        CFAlertAction *actionCancel = [[CFAlertAction alloc] initWithTitle:CANCEL_BTN_TITLE
+                                                                     style:CFAlertActionStyleCancel
+                                                                 alignment:[self getActionsTextAlignment]
+                                                                     color:CANCEL_BTN_COLOR
+                                                                   handler:nil];
         [alert addAction:actionCancel];
     }
     

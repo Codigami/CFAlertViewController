@@ -28,7 +28,7 @@
 
 
 #import <UIKit/UIKit.h>
-#import "CFAlertAction.h"
+#import "CFAlertViewControllerDemo-Swift.h"
 
 
 

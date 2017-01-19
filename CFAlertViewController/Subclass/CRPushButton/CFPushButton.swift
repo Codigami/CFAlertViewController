@@ -8,8 +8,10 @@
 
 import UIKit
 
+
 @objc class CFPushButton: UIButton {
 
+    //MARK: Declarations
     let CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DURATION: CGFloat = 0.22
     let CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DELAY: CGFloat = 0.0
     let CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DAMPING: CGFloat = 0.6
@@ -19,6 +21,9 @@ import UIKit
     let CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_DAMPING: CGFloat = 0.65
     let CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_VELOCITY: CGFloat = 0.0
     
+    
+    // MARK: Variables
+
     // Original Transform Property
     var originalTransform = CGAffineTransform()
     
@@ -46,7 +51,7 @@ import UIKit
     // Add Extra Parameters
     var extraParam: Any?
     
-    var normalStateBackgroundColor = UIColor()
+    var normalStateBackgroundColor: UIColor?
     
     
     //MARK: Initialization Methods
@@ -64,30 +69,29 @@ import UIKit
     func basicInitialisation() {
         
         // Default Transform Scale Factor Property
-        self.pushTransformScaleFactor = 0.8
+        pushTransformScaleFactor = 0.8
         
         // Set Default Original Transform
-        self.originalTransform = CGAffineTransform.identity
+        originalTransform = CGAffineTransform.identity
         
         // Set Default Animation Properties
-        self.touchDownDuration = CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DURATION
-        self.touchDownDelay = CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DELAY
-        self.touchDownDamping = CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DAMPING
-        self.touchDownVelocity = CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_VELOCITY
-        self.touchUpDuration = CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_DURATION
-        self.touchUpDelay = CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_DELAY
-        self.touchUpDamping = CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_DAMPING
-        self.touchUpVelocity = CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_VELOCITY
+        touchDownDuration = CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DURATION
+        touchDownDelay = CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DELAY
+        touchDownDamping = CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DAMPING
+        touchDownVelocity = CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_VELOCITY
+        touchUpDuration = CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_DURATION
+        touchUpDelay = CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_DELAY
+        touchUpDamping = CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_DAMPING
+        touchUpVelocity = CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_VELOCITY
     }
     
-    //MARK: Setter Methods
     
+    //MARK: Setter Methods
     func setBackgroundColor(backgroundColor: UIColor) {
-        
         normalStateBackgroundColor = backgroundColor
         
         // Store Normal State Background Color
-        self.setBackgroundColor(backgroundColor: backgroundColor)
+        self.backgroundColor = backgroundColor
     }
     
     func setOriginalTransform(originalTransform: CGAffineTransform) {
@@ -97,26 +101,25 @@ import UIKit
         self.transform = originalTransform
     }
     
-    //MARK: Touch Events
     
+    //MARK: Touch Events
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-        //pushButton(true, animated: true, completion: nil)
+        pushButton(pushButton: true, shouldAnimate: true, completion: nil)
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
-        //        pushButton(false, animated: true, completion: nil)
+        pushButton(pushButton: false, shouldAnimate: true, completion: nil)
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesCancelled(touches, with: event)
-        //        pushButton(false, animated: true, completion: nil)
+        pushButton(pushButton: false, shouldAnimate: true, completion: nil)
     }
     
     
     //MARK: Animation Method
-    
     func pushButton(pushButton: Bool, shouldAnimate: Bool, completion: (() -> Void)?) {
         // Call Touch Events
         if pushButton {

@@ -160,7 +160,7 @@
             if (!actionColor) {
                 actionColor = CF_CANCEL_ACTION_COLOR;
             }
-            self.actionButton.backgroundColor = [UIColor clearColor];
+            [self.actionButton setBackgroundColorWithBackgroundColor:[UIColor clearColor]];
             [self.actionButton setTitleColor:actionColor forState:UIControlStateNormal];
             self.actionButton.layer.borderColor = actionColor.CGColor;
             self.actionButton.layer.borderWidth = 1.0;
@@ -171,7 +171,7 @@
             if (!actionColor) {
                 actionColor = CF_DESTRUCTIVE_ACTION_COLOR;
             }
-            self.actionButton.backgroundColor = actionColor;
+            [self.actionButton setBackgroundColorWithBackgroundColor: actionColor];
             [self.actionButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             self.actionButton.layer.borderColor = nil;
             self.actionButton.layer.borderWidth = 0.0;
@@ -182,7 +182,7 @@
             if (!actionColor) {
                 actionColor = CF_DEFAULT_ACTION_COLOR;
             }
-            self.actionButton.backgroundColor = actionColor;
+            [self.actionButton setBackgroundColorWithBackgroundColor:actionColor];
             [self.actionButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             self.actionButton.layer.borderColor = nil;
             self.actionButton.layer.borderWidth = 0.0;

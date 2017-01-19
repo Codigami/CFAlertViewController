@@ -30,8 +30,7 @@
 #import "CFAlertViewController.h"
 #import "CFAlertViewControllerPopupTransition.h"
 #import "CFAlertViewControllerActionSheetTransition.h"
-#import "CFAlertTitleSubtitleTableViewCell.h"
-#import "CFAlertActionTableViewCell.h"
+#import "CFAlertViewControllerDemo-Swift.h"
 
 
 
@@ -153,6 +152,14 @@
                      forKeyPath:@"contentSize"
                         options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld | NSKeyValueObservingOptionPrior
                         context:NULL];
+    
+    // Register Nib
+    UINib *actionCellNib = [UINib nibWithNibName:CFAlertActionTableViewCell.identifier bundle:nil];
+    [self.tableView registerNib:actionCellNib forCellReuseIdentifier:CFAlertActionTableViewCell.identifier];
+    
+    UINib *titleSubtitleCellNib = [UINib nibWithNibName:CFAlertTitleSubtitleTableViewCell.identifier bundle:nil];
+    [self.tableView registerNib:titleSubtitleCellNib forCellReuseIdentifier:CFAlertTitleSubtitleTableViewCell.identifier];
+    
 }
 
 - (void)loadDisplayContent  {
@@ -452,10 +459,10 @@
     switch (indexPath.section) {
             
         case 0: {
-            cell = [tableView dequeueReusableCellWithIdentifier:[CFAlertTitleSubtitleTableViewCell identifier]];
+            cell = [tableView dequeueReusableCellWithIdentifier:CFAlertTitleSubtitleTableViewCell.identifier];
             if (!cell) {
                 cell = [[CFAlertTitleSubtitleTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
-                                                                reuseIdentifier:[CFAlertTitleSubtitleTableViewCell identifier]];
+                                                                reuseIdentifier:CFAlertTitleSubtitleTableViewCell.identifier];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
             }
             
@@ -463,9 +470,7 @@
             CFAlertTitleSubtitleTableViewCell *titleSubtitleCell = (CFAlertTitleSubtitleTableViewCell *) cell;
             
             // Set Content
-            [titleSubtitleCell setTitle:self.titleString
-                            andSubtitle:self.messageString
-                      withTextAlignment:self.textAlignment];
+            [titleSubtitleCell setTitleWithTitle:self.titleString subtitle:self.messageString alignment:self.textAlignment];
             
             // Set Content Margin
             titleSubtitleCell.contentTopMargin = 20.0;
@@ -481,12 +486,7 @@
             
         case 1: {
             
-            cell = [tableView dequeueReusableCellWithIdentifier:[CFAlertActionTableViewCell identifier]];
-            if (!cell) {
-                cell = [[CFAlertActionTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
-                                                                reuseIdentifier:[CFAlertActionTableViewCell identifier]];
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            }
+            cell = [tableView dequeueReusableCellWithIdentifier:CFAlertActionTableViewCell.identifier];
             
             // Title Subtitle Cell
             CFAlertActionTableViewCell *actionCell = (CFAlertActionTableViewCell *) cell;
@@ -540,7 +540,7 @@
 
 #pragma mark - CFAlertActionTableViewCellDelegate
 
-- (void) alertActionCell:(CFAlertActionTableViewCell *)cell didClickAction:(CFAlertAction *)action  {
+- (void) alertActionCellWithCell:(CFAlertActionTableViewCell *)cell action:(CFAlertAction *)action {
     
     // Dimiss Self
     [self dismissAlertWithAnimation:YES completion:^{

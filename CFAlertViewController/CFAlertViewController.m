@@ -540,7 +540,7 @@
 
 #pragma mark - CFAlertActionTableViewCellDelegate
 
-- (void) alertActionCellWithCell:(CFAlertActionTableViewCell *)cell action:(CFAlertAction *)action {
+- (void) alertActionCell:(CFAlertActionTableViewCell *)cell didClickAction:(CFAlertAction *)action  {
     
     // Dimiss Self
     [self dismissAlertWithAnimation:YES completion:^{

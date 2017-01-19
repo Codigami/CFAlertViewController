@@ -8,42 +8,51 @@
 
 import UIKit
 
-@objc class CFAlertTitleSubtitleTableViewCell: UITableViewCell {
 
-    //MARK: Declarations
+@objc(CFAlertTitleSubtitleTableViewCell)
+class CFAlertTitleSubtitleTableViewCell: UITableViewCell {
+
+    // MARK: - Declarations
+    
+    
+    // MARK: - Variables
+    // MARK: Public
     public static let identifier = String(describing: CFAlertTitleSubtitleTableViewCell.self)
-    
-    
-    // MARK: Variables
+    @IBOutlet public var titleLabel: UILabel?
+    @IBOutlet public var subtitleLabel: UILabel?
     public var contentTopMargin: CGFloat = 0.0 {
         didSet {
-            setContentTopMargin(contentTopMargin: self.contentTopMargin)
+            // Update Constraint
+            titleLabelTopConstraint?.constant = contentTopMargin - 8.0
+            subtitleLabelTopConstraint?.constant = (titleLabelTopConstraint?.constant)!
+            layoutIfNeeded()
         }
     }
-    
     public var contentBottomMargin: CGFloat = 0.0 {
         didSet {
-            setContentBottomMargin(contentBottomMargin: self.contentBottomMargin)
+            // Update Constraint
+            titleLabelBottomConstraint?.constant = contentBottomMargin - 8.0
+            subtitleLabelBottomConstraint?.constant = (titleLabelBottomConstraint?.constant)!
+            layoutIfNeeded()
         }
     }
-    
     public var contentLeadingSpace: CGFloat = 0.0 {
         didSet {
-            setContentLeadingSpace(contentLeadingSpace: self.contentLeadingSpace)
+            // Update Constraint Values
+            titleLeadingSpaceConstraint?.constant = contentLeadingSpace - 8.0
+            subtitleLeadingSpaceConstraint?.constant = (titleLeadingSpaceConstraint?.constant)!
+            layoutIfNeeded()
         }
     }
     
-    
-    // MARK: Outlets
-    @IBOutlet var titleLabel: UILabel?
-    @IBOutlet var subtitleLabel: UILabel?
-    @IBOutlet weak var titleLabelTopConstraint: NSLayoutConstraint?
-    @IBOutlet weak var titleLeadingSpaceConstraint: NSLayoutConstraint?
-    @IBOutlet weak var titleLabelBottomConstraint: NSLayoutConstraint?
-    @IBOutlet weak var titleSubtitleVerticalSpacingConstraint: NSLayoutConstraint?
-    @IBOutlet weak var subtitleLabelTopConstraint: NSLayoutConstraint?
-    @IBOutlet weak var subtitleLeadingSpaceConstraint: NSLayoutConstraint?
-    @IBOutlet weak var subtitleLabelBottomConstraint: NSLayoutConstraint?
+    // MARK: Private
+    @IBOutlet private weak var titleLabelTopConstraint: NSLayoutConstraint?
+    @IBOutlet private weak var titleLeadingSpaceConstraint: NSLayoutConstraint?
+    @IBOutlet private weak var titleLabelBottomConstraint: NSLayoutConstraint?
+    @IBOutlet private weak var titleSubtitleVerticalSpacingConstraint: NSLayoutConstraint?
+    @IBOutlet private weak var subtitleLabelTopConstraint: NSLayoutConstraint?
+    @IBOutlet private weak var subtitleLeadingSpaceConstraint: NSLayoutConstraint?
+    @IBOutlet private weak var subtitleLabelBottomConstraint: NSLayoutConstraint?
     
     
     // MARK: Initialization Methods
@@ -70,43 +79,22 @@ import UIKit
     }
 
     
-    // MARK: Layout Methods
+    // MARK: - Layout Methods
     override func layoutSubviews() {
-        self.contentView.setNeedsLayout()
-        self.contentView.layoutIfNeeded()
-    }
-    
-    
-    // MARK: Setter Methods
-    private func setContentTopMargin(contentTopMargin: CGFloat) {
-        // Update Constraint
-        self.titleLabelTopConstraint?.constant = self.contentTopMargin - 8.0
-        self.subtitleLabelTopConstraint?.constant = (self.titleLabelTopConstraint?.constant)!
-        self.layoutIfNeeded()
-    }
-    
-    private func setContentBottomMargin(contentBottomMargin: CGFloat) {
-        // Update Constraint
-        self.titleLabelBottomConstraint?.constant = self.contentBottomMargin - 8.0
-        self.subtitleLabelBottomConstraint?.constant = (self.titleLabelBottomConstraint?.constant)!
-        self.layoutIfNeeded()
-    }
-    
-    private func setContentLeadingSpace(contentLeadingSpace: CGFloat) {
-        // Update Constraint Values
-        self.titleLeadingSpaceConstraint?.constant = self.contentLeadingSpace - 8.0
-        self.subtitleLeadingSpaceConstraint?.constant = (self.titleLeadingSpaceConstraint?.constant)!
-        self.layoutIfNeeded()
+        contentView.setNeedsLayout()
+        contentView.layoutIfNeeded()
     }
     
     
     // MARK: Helper Methods
     public func setTitle(title: String?, subtitle: String?, alignment: NSTextAlignment) {
+        
         // Set Cell Text Fonts & Colors
-        self.titleLabel?.text = title
-        self.titleLabel?.textAlignment = alignment
+        titleLabel?.text = title
+        titleLabel?.textAlignment = alignment
         subtitleLabel?.text = subtitle
         subtitleLabel?.textAlignment = alignment
+        
         // Update Constraints
         if let titleChars = titleLabel?.text?.characters, let subtitleChars = subtitleLabel?.text?.characters {
             if (titleChars.count <= 0 && subtitleChars.count <= 0) || subtitleChars.count <= 0 {

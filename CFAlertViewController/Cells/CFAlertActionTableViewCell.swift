@@ -8,58 +8,148 @@
 
 import UIKit
 
-@objc protocol CFAlertActionTableViewCellDelegate {
-    func alertActionCell(cell: CFAlertActionTableViewCell, action: CFAlertAction);
+
+@objc(CFAlertActionTableViewCellDelegate)
+protocol CFAlertActionTableViewCellDelegate {
+    func alertActionCell(_ cell: CFAlertActionTableViewCell, didClickAction action: CFAlertAction?);
 }
 
 
-@objc class CFAlertActionTableViewCell: UITableViewCell {
+@objc(CFAlertActionTableViewCell)
+class CFAlertActionTableViewCell: UITableViewCell {
     
-    // MARK: Declarations
-    let CF_DEFAULT_ACTION_COLOR = UIColor(red: CGFloat(41.0 / 255.0), green: CGFloat(198.0 / 255.0), blue: CGFloat(77.0 / 255.0), alpha: CGFloat(1.0))
-    let CF_CANCEL_ACTION_COLOR = UIColor(red: CGFloat(103.0 / 255.0), green: CGFloat(104.0 / 255.0), blue: CGFloat(217.0 / 255.0), alpha: CGFloat(1.0))
-    let CF_DESTRUCTIVE_ACTION_COLOR = UIColor(red: CGFloat(255.0 / 255.0), green: CGFloat(75.0 / 255.0), blue: CGFloat(75.0 / 255.0), alpha: CGFloat(1.0))
-    public static let identifier = String(describing: CFAlertActionTableViewCell.self)
-    
-    @IBOutlet var actionButton: CFPushButton?
-    @IBOutlet weak var actionButtonTopConstraint: NSLayoutConstraint?
-    @IBOutlet weak var actionButtonLeadingConstraint: NSLayoutConstraint?
-    @IBOutlet weak var actionButtonCenterXConstraint: NSLayoutConstraint?
-    @IBOutlet weak var actionButtonTrailingConstraint: NSLayoutConstraint?
-    @IBOutlet weak var actionButtonBottomConstraint: NSLayoutConstraint?
-    
-    
-    // MARK: Variables
-    public var actionButtonTopMargin: CGFloat = 0.0 {
-        didSet {
-            setActionButtonTopMargin(actionButtonTopMargin: actionButtonTopMargin)
-        }
+    // MARK: - Declarations
+    public static func CF_DEFAULT_ACTION_COLOR() -> UIColor {
+        return UIColor(red: CGFloat(41.0 / 255.0), green: CGFloat(198.0 / 255.0), blue: CGFloat(77.0 / 255.0), alpha: CGFloat(1.0))
+    }
+    public static func CF_CANCEL_ACTION_COLOR() -> UIColor   {
+        return UIColor(red: CGFloat(103.0 / 255.0), green: CGFloat(104.0 / 255.0), blue: CGFloat(217.0 / 255.0), alpha: CGFloat(1.0))
+    }
+    public static func CF_DESTRUCTIVE_ACTION_COLOR() -> UIColor  {
+        return UIColor(red: CGFloat(255.0 / 255.0), green: CGFloat(75.0 / 255.0), blue: CGFloat(75.0 / 255.0), alpha: CGFloat(1.0))
     }
     
+    
+    // MARK: - Variables
+    // MARK: Public
+    public static func identifier() -> String    {
+        return String(describing: CFAlertActionTableViewCell.self)
+    }
+    public var delegate: CFAlertActionTableViewCellDelegate?
+    public var actionButtonTopMargin: CGFloat = 0.0 {
+        didSet {
+            // Update Constraint
+            actionButtonTopConstraint?.constant = actionButtonTopMargin - 8.0
+            layoutIfNeeded()
+        }
+    }
+    public var actionButtonBottomMargin: CGFloat = 0.0 {
+        didSet {
+            // Update Constraint
+            actionButtonBottomConstraint?.constant = actionButtonBottomMargin - 8.0
+            layoutIfNeeded()
+        }
+    }
     public var action: CFAlertAction? {
         didSet {
             
             if let action = self.action    {
-                setAction(action: action)
+                
+                // Set Action Style
+                var actionColor: UIColor? = action.color
+                
+                switch action.style {
+                    
+                case .Cancel:
+                    if actionColor == nil {
+                        actionColor = CFAlertActionTableViewCell.CF_CANCEL_ACTION_COLOR()
+                    }
+                    actionButton?.backgroundColor = UIColor.clear
+                    actionButton?.setTitleColor(actionColor, for: .normal)
+                    actionButton?.layer.borderColor = actionColor?.cgColor
+                    actionButton?.layer.borderWidth = 1.0
+                    
+                case .Destructive:
+                    if actionColor == nil {
+                        actionColor = CFAlertActionTableViewCell.CF_DESTRUCTIVE_ACTION_COLOR()
+                    }
+                    actionButton?.backgroundColor = actionColor
+                    actionButton?.setTitleColor(UIColor.white, for: .normal)
+                    actionButton?.layer.borderColor = nil
+                    actionButton?.layer.borderWidth = 0.0
+                    
+                default:
+                    if actionColor == nil {
+                        actionColor = CFAlertActionTableViewCell.CF_DEFAULT_ACTION_COLOR()
+                    }
+                    actionButton?.backgroundColor = actionColor
+                    actionButton?.setTitleColor(UIColor.white, for: .normal)
+                    actionButton?.layer.borderColor = nil
+                    actionButton?.layer.borderWidth = 0.0
+                }
+                
+                
+                // Set Alignment
+                switch action.alignment {
+                    
+                case .Right:
+                    // Right Align
+                    actionButtonLeadingConstraint?.priority = 749.0
+                    actionButtonCenterXConstraint?.isActive = false
+                    actionButtonTrailingConstraint?.priority = 751.0
+                    // Set Content Edge Inset
+                    actionButton?.contentEdgeInsets = UIEdgeInsetsMake(12.0, 20.0, 12.0, 20.0)
+                    
+                case .Left:
+                    // Left Align
+                    actionButtonLeadingConstraint?.priority = 751.0
+                    actionButtonCenterXConstraint?.isActive = false
+                    actionButtonTrailingConstraint?.priority = 749.0
+                    // Set Content Edge Inset
+                    actionButton?.contentEdgeInsets = UIEdgeInsetsMake(12.0, 20.0, 12.0, 20.0)
+                    
+                case .Center:
+                    // Center Align
+                    actionButtonLeadingConstraint?.priority = 750.0
+                    actionButtonCenterXConstraint?.isActive = true
+                    actionButtonTrailingConstraint?.priority = 750.0
+                    // Set Content Edge Inset
+                    actionButton?.contentEdgeInsets = UIEdgeInsetsMake(12.0, 20.0, 12.0, 20.0)
+                    
+                default:
+                    // Justified Align
+                    actionButtonLeadingConstraint?.priority = 751.0
+                    actionButtonCenterXConstraint?.isActive = false
+                    actionButtonTrailingConstraint?.priority = 751.0
+                    // Set Content Edge Inset
+                    actionButton?.contentEdgeInsets = UIEdgeInsetsMake(15.0, 20.0, 15.0, 20.0)
+                }
+                
+                // Set Title
+                actionButton?.setTitle(self.action?.title, for: .normal)
+            }
+            else    {
+                // Set Blank Title
+                actionButton?.setTitle(nil, for: .normal)
             }
         }
     }
     
-    public var actionButtonBottomMargin: CGFloat = 0.0 {
-        didSet {
-            setActionButtonTopMargin(actionButtonTopMargin: actionButtonBottomMargin)
-        }
-    }
-    public var delegate: CFAlertActionTableViewCellDelegate?
+    // MARK: Private
+    @IBOutlet private var actionButton: CFPushButton?
+    @IBOutlet private weak var actionButtonTopConstraint: NSLayoutConstraint?
+    @IBOutlet private weak var actionButtonLeadingConstraint: NSLayoutConstraint?
+    @IBOutlet private weak var actionButtonCenterXConstraint: NSLayoutConstraint?
+    @IBOutlet private weak var actionButtonTrailingConstraint: NSLayoutConstraint?
+    @IBOutlet private weak var actionButtonBottomConstraint: NSLayoutConstraint?
     
     
-    // MARK: Initialization Methods
+    // MARK: - Initialization Methods
     override func awakeFromNib() {
         super.awakeFromNib()
         basicInitialisation()
     }
     
-
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         // Initialization code
@@ -77,105 +167,17 @@ import UIKit
     }
     
     
-    // MARK: Layout Methods
-    
+    // MARK: - Layout Methods
     override func layoutSubviews() {
-        self.contentView.setNeedsLayout()
-        self.contentView.layoutIfNeeded()
+        contentView.setNeedsLayout()
+        contentView.layoutIfNeeded()
     }
     
     
-    // MARK: Setter Methods
-    private func setActionButtonTopMargin(actionButtonTopMargin: CGFloat) {
-        // Update Constraint
-        self.actionButtonTopConstraint?.constant = actionButtonTopMargin - 8.0
-        self.layoutIfNeeded()
-    }
-    
-    private func setActionButtonBottomMargin(actionButtonBottomMargin: CGFloat) {
-        // Update Constraint
-        self.actionButtonBottomConstraint?.constant = actionButtonBottomMargin - 8.0
-        self.layoutIfNeeded()
-    }
-    
-    private func setAction(action: CFAlertAction) {
-
-        // Set Action Style
-        var actionColor: UIColor? = action.color
-        
-        switch action.style {
-            
-        case .Cancel:
-            if actionColor == nil {
-                actionColor = CF_CANCEL_ACTION_COLOR
-            }
-            actionButton?.backgroundColor = UIColor.clear
-            actionButton?.setTitleColor(actionColor, for: .normal)
-            actionButton?.layer.borderColor = actionColor?.cgColor
-            actionButton?.layer.borderWidth = 1.0
-            
-        case .Destructive:
-            if actionColor == nil {
-                actionColor = CF_DESTRUCTIVE_ACTION_COLOR
-            }
-            actionButton?.backgroundColor = actionColor
-            actionButton?.setTitleColor(UIColor.white, for: .normal)
-            actionButton?.layer.borderColor = nil
-            actionButton?.layer.borderWidth = 0.0
-            
-        default:
-            if actionColor == nil {
-                actionColor = CF_DEFAULT_ACTION_COLOR
-            }
-            actionButton?.backgroundColor = actionColor
-            actionButton?.setTitleColor(UIColor.white, for: .normal)
-            actionButton?.layer.borderColor = nil
-            actionButton?.layer.borderWidth = 0.0
-        }
-        
-        
-        // Set Alignment
-        switch action.alignment {
-            
-        case .Right:
-        // Right Align
-        actionButtonLeadingConstraint?.priority = 749.0
-        actionButtonCenterXConstraint?.isActive = false
-        actionButtonTrailingConstraint?.priority = 751.0
-        // Set Content Edge Inset
-        actionButton?.contentEdgeInsets = UIEdgeInsetsMake(12.0, 20.0, 12.0, 20.0)
-        case .Left:
-        // Left Align
-        actionButtonLeadingConstraint?.priority = 751.0
-        actionButtonCenterXConstraint?.isActive = false
-        actionButtonTrailingConstraint?.priority = 749.0
-        // Set Content Edge Inset
-        actionButton?.contentEdgeInsets = UIEdgeInsetsMake(12.0, 20.0, 12.0, 20.0)
-        case .Center:
-        // Center Align
-        actionButtonLeadingConstraint?.priority = 750.0
-        actionButtonCenterXConstraint?.isActive = true
-        actionButtonTrailingConstraint?.priority = 750.0
-        // Set Content Edge Inset
-        actionButton?.contentEdgeInsets = UIEdgeInsetsMake(12.0, 20.0, 12.0, 20.0)
-        default:
-        // Justified Align
-        actionButtonLeadingConstraint?.priority = 751.0
-        actionButtonCenterXConstraint?.isActive = false
-        actionButtonTrailingConstraint?.priority = 751.0
-        // Set Content Edge Inset
-        actionButton?.contentEdgeInsets = UIEdgeInsetsMake(15.0, 20.0, 15.0, 20.0)
-        }
-        
-        // Set Title
-        actionButton?.setTitle(self.action?.title, for: .normal)
-    }
-    
-    // MARK: Button click events
-    
-    @IBAction func actionButtonClicked(_ sender: Any) {
-        if let delegate = self.delegate {
-            delegate.alertActionCell(cell: self, action: self.action!)
+    // MARK: - Button Click Events
+    @IBAction internal func actionButtonClicked(_ sender: Any) {
+        if let delegate = delegate {
+            delegate.alertActionCell(self, didClickAction: action)
         }
     }
     

@@ -157,8 +157,8 @@
 			children = (
 				4004556E1E30A29E0035A3D4 /* CFAlertActionTableViewCell.swift */,
 				2F8E90101D181F07004450F5 /* CFAlertActionTableViewCell.xib */,
-				2F8E90131D181F07004450F5 /* CFAlertTitleSubtitleTableViewCell.xib */,
 				40102FEE1E30EC4900B63602 /* CFAlertTitleSubtitleTableViewCell.swift */,
+				2F8E90131D181F07004450F5 /* CFAlertTitleSubtitleTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";

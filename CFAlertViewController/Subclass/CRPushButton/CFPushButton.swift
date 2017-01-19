@@ -11,54 +11,64 @@ import UIKit
 
 @objc class CFPushButton: UIButton {
 
-    //MARK: Declarations
-    let CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DURATION: CGFloat = 0.22
-    let CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DELAY: CGFloat = 0.0
-    let CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DAMPING: CGFloat = 0.6
-    let CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_VELOCITY: CGFloat = 0.0
-    let CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_DURATION: CGFloat = 0.7
-    let CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_DELAY: CGFloat = 0.0
-    let CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_DAMPING: CGFloat = 0.65
-    let CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_VELOCITY: CGFloat = 0.0
+    // MARK: - Declarations
+    public static let CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DURATION: CGFloat = 0.22
+    public static let CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DELAY: CGFloat = 0.0
+    public static let CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DAMPING: CGFloat = 0.6
+    public static let CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_VELOCITY: CGFloat = 0.0
+    public static let CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_DURATION: CGFloat = 0.7
+    public static let CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_DELAY: CGFloat = 0.0
+    public static let CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_DAMPING: CGFloat = 0.65
+    public static let CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_VELOCITY: CGFloat = 0.0
     
     
-    // MARK: Variables
+    // MARK: - Variables
 
     // Original Transform Property
-    var originalTransform = CGAffineTransform()
-    
-    // Push Transform Property
-    var pushTransformScaleFactor: CGFloat = 0.0
+    public var originalTransform = CGAffineTransform.identity {
+        didSet  {
+            // Update Button Transform
+            transform = originalTransform
+        }
+    }
     
     // Set Highlight Property
-    var highlightStateBackgroundColor: UIColor?
+    public var highlightStateBackgroundColor: UIColor?
+    
+    // Push Transform Property
+    public var pushTransformScaleFactor: CGFloat = 0.8
     
     // Touch Handler Blocks
-    var touchDownHandler: ((_ button: CFPushButton) -> Void)?
-    var touchUpHandler: ((_ button: CFPushButton) -> Void)?
+    public var touchDownHandler: ((_ button: CFPushButton) -> Void)?
+    public var touchUpHandler: ((_ button: CFPushButton) -> Void)?
     
     // Push Transition Animation Properties
-    var touchDownDuration: CGFloat = 0.0
-    var touchDownDelay: CGFloat = 0.0
-    var touchDownDamping: CGFloat = 0.0
-    var touchDownVelocity: CGFloat = 0.0
+    public var touchDownDuration: CGFloat = CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DURATION
+    public var touchDownDelay: CGFloat = CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DELAY
+    public var touchDownDamping: CGFloat = CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DAMPING
+    public var touchDownVelocity: CGFloat = CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_VELOCITY
     
-    var touchUpDuration: CGFloat = 0.0
-    var touchUpDelay: CGFloat = 0.0
-    var touchUpDamping: CGFloat = 0.0
-    var touchUpVelocity: CGFloat = 0.0
+    public var touchUpDuration: CGFloat = CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_DURATION
+    public var touchUpDelay: CGFloat = CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_DELAY
+    public var touchUpDamping: CGFloat = CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_DAMPING
+    public var touchUpVelocity: CGFloat = CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_VELOCITY
     
     // Add Extra Parameters
-    var extraParam: Any?
+    public var extraParam: Any?
     
-    var normalStateBackgroundColor: UIColor?
+    private var normalStateBackgroundColor: UIColor?
+    override public var backgroundColor: UIColor? {
+        didSet  {
+            // Store Normal State Background Color
+            normalStateBackgroundColor = backgroundColor
+        }
+    }
     
     
-    //MARK: Initialization Methods
+    // MARK: - Initialization Methods
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         basicInitialisation()
-        
     }
     
     override init(frame: CGRect) {
@@ -68,41 +78,12 @@ import UIKit
     
     func basicInitialisation() {
         
-        // Default Transform Scale Factor Property
-        pushTransformScaleFactor = 0.8
-        
         // Set Default Original Transform
         originalTransform = CGAffineTransform.identity
-        
-        // Set Default Animation Properties
-        touchDownDuration = CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DURATION
-        touchDownDelay = CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DELAY
-        touchDownDamping = CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DAMPING
-        touchDownVelocity = CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_VELOCITY
-        touchUpDuration = CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_DURATION
-        touchUpDelay = CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_DELAY
-        touchUpDamping = CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_DAMPING
-        touchUpVelocity = CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_VELOCITY
     }
     
     
-    //MARK: Setter Methods
-    func setBackgroundColor(backgroundColor: UIColor) {
-        normalStateBackgroundColor = backgroundColor
-        
-        // Store Normal State Background Color
-        self.backgroundColor = backgroundColor
-    }
-    
-    func setOriginalTransform(originalTransform: CGAffineTransform) {
-        self.originalTransform = originalTransform
-        
-        // Update Button Transform
-        self.transform = originalTransform
-    }
-    
-    
-    //MARK: Touch Events
+    // MARK: - Touch Events
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         pushButton(pushButton: true, shouldAnimate: true, completion: nil)
@@ -119,22 +100,26 @@ import UIKit
     }
     
     
-    //MARK: Animation Method
+    // MARK: - Animation Method
     func pushButton(pushButton: Bool, shouldAnimate: Bool, completion: (() -> Void)?) {
+        
         // Call Touch Events
         if pushButton {
             // Call Touch Down Handler
-            if (self.touchDownHandler != nil) {
-                self.touchDownHandler!(self)
+            if let touchDownHandler = touchDownHandler {
+                touchDownHandler(self)
             }
         }
         else {
             // Call Touch Up Handler
-            if (self.touchUpHandler != nil) {
-                self.touchUpHandler!(self)
+            if let touchUpHandler = touchUpHandler {
+                touchUpHandler(self)
             }
         }
+        
+        // Animation Block
         let animate: ((_: Void) -> Void)? = {() -> Void in
+            
             if pushButton {
                 // Set Transform
                 self.transform = self.originalTransform.scaledBy(x: self.pushTransformScaleFactor, y: self.pushTransformScaleFactor)
@@ -153,40 +138,44 @@ import UIKit
             self.setNeedsLayout()
             self.layoutIfNeeded()
         }
+        
         if shouldAnimate {
+            
             // Configure Animation Properties
             var duration: CGFloat
             var delay: CGFloat
             var damping: CGFloat
             var velocity: CGFloat
             if pushButton {
-                duration = self.touchDownDuration
-                delay = self.touchDownDelay
-                damping = self.touchDownDamping
-                velocity = self.touchDownVelocity
+                duration = touchDownDuration
+                delay = touchDownDelay
+                damping = touchDownDamping
+                velocity = touchDownVelocity
             }
             else {
-                duration = self.touchUpDuration
-                delay = self.touchUpDelay
-                damping = self.touchUpDamping
-                velocity = self.touchUpVelocity
+                duration = touchUpDuration
+                delay = touchUpDelay
+                damping = touchUpDamping
+                velocity = touchUpVelocity
             }
-            // Animate
+            
             DispatchQueue.main.async(execute: {() -> Void in
                 // Animate
                 UIView.animate(withDuration: TimeInterval(duration), delay: TimeInterval(delay), usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: [.curveEaseOut, .beginFromCurrentState, .allowUserInteraction], animations: {() -> Void in
                     animate!()
                 }, completion: {(_ finished: Bool) -> Void in
-                    if finished && completion != nil {
-                        completion!()
+                    if let completion = completion, finished {
+                        completion()
                     }
                 })
             })
         }
         else {
             animate!()
-            if completion != nil {
-                completion!()
+            
+            // Call Completion Block
+            if let completion = completion {
+                completion()
             }
         }
     }

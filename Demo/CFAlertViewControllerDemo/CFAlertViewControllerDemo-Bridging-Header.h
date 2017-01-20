@@ -4,4 +4,3 @@
 
 
 #import "CFAlertViewControllerActionSheetTransition.h"
-#import "CFAlertViewControllerPopupTransition.h"

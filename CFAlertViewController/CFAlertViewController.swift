@@ -23,8 +23,8 @@ class CFAlertViewController: UIViewController    {
     
     // MARK: - Variables
     // MARK: Public
-    public private(set) var textAlignment = NSTextAlignment(rawValue: 0)
-    public private(set) var preferredStyle = CFAlertControllerStyle(rawValue: 0)    {
+    public internal(set) var textAlignment = NSTextAlignment(rawValue: 0)
+    public internal(set) var preferredStyle = CFAlertControllerStyle(rawValue: 0)    {
         didSet  {
             DispatchQueue.main.async(execute: {() -> Void in
                 // Position Contraints for Container View
@@ -52,7 +52,7 @@ class CFAlertViewController: UIViewController    {
             return self.actionList
         }
     }
-    private var _headerView : UIView?
+    internal var _headerView : UIView?
     public var headerView: UIView?  {
         set {
             self.setHeaderView(newValue, shouldUpdateContainerFrame: true, withAnimation: true)
@@ -61,7 +61,7 @@ class CFAlertViewController: UIViewController    {
             return _headerView
         }
     }
-    private var _footerView : UIView?
+    internal var _footerView : UIView?
     public var footerView: UIView?  {
         set {
             self.setFooterView(newValue, shouldUpdateContainerFrame: true, withAnimation: true)
@@ -134,8 +134,8 @@ class CFAlertViewController: UIViewController    {
         self.messageString = message
         self.textAlignment = textAlignment
         self.preferredStyle = preferredStyle
-        setHeaderView(headerView, shouldUpdateContainerFrame: false, withAnimation: false)
-        setFooterView(footerView, shouldUpdateContainerFrame: false, withAnimation: false)
+        self.setHeaderView(headerView, shouldUpdateContainerFrame: false, withAnimation: false)
+        self.setFooterView(footerView, shouldUpdateContainerFrame: false, withAnimation: false)
         self.dismissHandler = dismiss
         
         // Custom Presentation

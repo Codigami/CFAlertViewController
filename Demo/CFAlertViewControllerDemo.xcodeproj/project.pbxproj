@@ -21,7 +21,6 @@
 		2F8E90261D181F07004450F5 /* CFAlertTitleSubtitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F8E90131D181F07004450F5 /* CFAlertTitleSubtitleTableViewCell.xib */; };
 		2F8E90281D181F07004450F5 /* CFAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F8E90161D181F07004450F5 /* CFAlertViewController.xib */; };
 		2F8E902B1D181F07004450F5 /* CFAlertViewControllerActionSheetTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F8E90201D181F07004450F5 /* CFAlertViewControllerActionSheetTransition.m */; };
-		2F8E902C1D181F07004450F5 /* CFAlertViewControllerPopupTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F8E90221D181F07004450F5 /* CFAlertViewControllerPopupTransition.m */; };
 		4004556F1E30A29E0035A3D4 /* CFAlertActionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4004556E1E30A29E0035A3D4 /* CFAlertActionTableViewCell.swift */; };
 		40102FEF1E30EC4900B63602 /* CFAlertTitleSubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40102FEE1E30EC4900B63602 /* CFAlertTitleSubtitleTableViewCell.swift */; };
 		403168EA1E31F70D00C29637 /* CFAlertViewControllerActionSheetTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403168E91E31F70D00C29637 /* CFAlertViewControllerActionSheetTransition.swift */; };
@@ -51,8 +50,6 @@
 		2F8E90161D181F07004450F5 /* CFAlertViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CFAlertViewController.xib; sourceTree = "<group>"; };
 		2F8E901F1D181F07004450F5 /* CFAlertViewControllerActionSheetTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFAlertViewControllerActionSheetTransition.h; sourceTree = "<group>"; };
 		2F8E90201D181F07004450F5 /* CFAlertViewControllerActionSheetTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFAlertViewControllerActionSheetTransition.m; sourceTree = "<group>"; };
-		2F8E90211D181F07004450F5 /* CFAlertViewControllerPopupTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFAlertViewControllerPopupTransition.h; sourceTree = "<group>"; };
-		2F8E90221D181F07004450F5 /* CFAlertViewControllerPopupTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFAlertViewControllerPopupTransition.m; sourceTree = "<group>"; };
 		4004556E1E30A29E0035A3D4 /* CFAlertActionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFAlertActionTableViewCell.swift; sourceTree = "<group>"; };
 		40102FEE1E30EC4900B63602 /* CFAlertTitleSubtitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFAlertTitleSubtitleTableViewCell.swift; sourceTree = "<group>"; };
 		403168E91E31F70D00C29637 /* CFAlertViewControllerActionSheetTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFAlertViewControllerActionSheetTransition.swift; sourceTree = "<group>"; };
@@ -195,8 +192,6 @@
 			children = (
 				2F8E901F1D181F07004450F5 /* CFAlertViewControllerActionSheetTransition.h */,
 				2F8E90201D181F07004450F5 /* CFAlertViewControllerActionSheetTransition.m */,
-				2F8E90211D181F07004450F5 /* CFAlertViewControllerPopupTransition.h */,
-				2F8E90221D181F07004450F5 /* CFAlertViewControllerPopupTransition.m */,
 				403168E91E31F70D00C29637 /* CFAlertViewControllerActionSheetTransition.swift */,
 				403168EB1E31F71800C29637 /* CFAlertViewControllerPopupTransition.swift */,
 			);
@@ -283,14 +278,13 @@
 				40CBEEE01E2FB11F000FBBF6 /* CFPushButton.swift in Sources */,
 				2F87DE1F1E30EC1300483008 /* CFAlertViewController.swift in Sources */,
 				403168EA1E31F70D00C29637 /* CFAlertViewControllerActionSheetTransition.swift in Sources */,
-                403168EC1E31F71800C29637 /* CFAlertViewControllerPopupTransition.swift in Sources */,
+				403168EC1E31F71800C29637 /* CFAlertViewControllerPopupTransition.swift in Sources */,
 				2F8E902B1D181F07004450F5 /* CFAlertViewControllerActionSheetTransition.m in Sources */,
 				40102FEF1E30EC4900B63602 /* CFAlertTitleSubtitleTableViewCell.swift in Sources */,
 				2F75A0DB1E2FAF89003414B8 /* CFAlertAction.swift in Sources */,
 				2F8E8FC01D181166004450F5 /* main.m in Sources */,
 				4004556F1E30A29E0035A3D4 /* CFAlertActionTableViewCell.swift in Sources */,
 				2F8E90001D1811C7004450F5 /* AppDelegate.m in Sources */,
-				2F8E902C1D181F07004450F5 /* CFAlertViewControllerPopupTransition.m in Sources */,
 				2F8E90011D1811C7004450F5 /* TweetToIncreaseLimitView.m in Sources */,
 				2F8E90031D1811C7004450F5 /* HomeTableViewController.m in Sources */,
 			);

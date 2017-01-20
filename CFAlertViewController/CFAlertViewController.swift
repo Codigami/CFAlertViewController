@@ -13,7 +13,7 @@ import UIKit
 class CFAlertViewController: UIViewController    {
 
     // MARK: - Declarations
-    public typealias CFAlertViewControllerDismissBlock = () -> ()
+    public typealias CFAlertViewControllerDismissBlock = (_ isBackgroundTapped: Bool) -> ()
     
     @objc public enum CFAlertControllerStyle : Int {
         case alert = 0
@@ -213,6 +213,10 @@ class CFAlertViewController: UIViewController    {
     }
     
     public func dismissAlert(withAnimation animate: Bool, completion: ((_: Void) -> Void)?) {
+        dismissAlert(withAnimation: animate, isBackgroundTapped: false, completion: completion)
+    }
+    
+    private func dismissAlert(withAnimation animate: Bool, isBackgroundTapped: Bool, completion: ((_: Void) -> Void)?) {
         
         // Dismiss Self
         self.dismiss(animated: animate, completion: {() -> Void in
@@ -222,7 +226,7 @@ class CFAlertViewController: UIViewController    {
             }
             // Call Dismiss Block
             if let dismissHandler = self.dismissHandler {
-                dismissHandler()
+                dismissHandler(isBackgroundTapped)
             }
         })
     }
@@ -310,9 +314,9 @@ class CFAlertViewController: UIViewController    {
             // Close Keyboard
             self.view.endEditing(true)
         }
-        else if self.shouldDismissOnBackgroundTap {
+        else if shouldDismissOnBackgroundTap {
             // Dismiss Alert
-            self.dismissAlert(withAnimation: true, completion: {() -> Void in
+            dismissAlert(withAnimation: true, isBackgroundTapped: true, completion: {() -> Void in
                 // Simulate Cancel Button
                 for existingAction: CFAlertAction in self.actionList {
                     if existingAction.style == .Cancel {

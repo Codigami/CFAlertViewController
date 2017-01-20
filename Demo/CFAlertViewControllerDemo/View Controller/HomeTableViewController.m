@@ -238,7 +238,7 @@
                                                                         message:@"Please set some properties of Alert view"
                                                                   textAlignment:NSTextAlignmentCenter
                                                                  preferredStyle:CFAlertControllerStyleAlert
-                                                         didDismissAlertHandler:^{
+                                                         didDismissAlertHandler:^(BOOL isBackgroundTapped) {
                                                              NSLog(@"Alert Dismissed");
                                                          }];
     

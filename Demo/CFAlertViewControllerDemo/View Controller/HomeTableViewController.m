@@ -14,12 +14,17 @@
 
 #define DEFAULT_BTN_TITLE       @"DEFAULT"
 #define DEFAULT_BTN_COLOR       [UIColor colorWithRed:41.0/255.0 green:198.0/255.0 blue:77.0/255.0 alpha:1.0]
+#define DEFAULT_BTN_TITLE_COLOR  [UIColor whiteColor]
 
 #define DESTRUCTIVE_BTN_TITLE   @"DESTRUCTIVE"
 #define DESTRUCTIVE_BTN_COLOR   [UIColor colorWithRed:255.0/255.0 green:75.0/255.0 blue:75.0/255.0 alpha:1.0]
+#define DESTRUCTIVE_BTN_TITLE_COLOR  [UIColor whiteColor]
 
 #define CANCEL_BTN_TITLE        @"CANCEL"
 #define CANCEL_BTN_COLOR        [UIColor grayColor]
+#define CANCEL_BTN_TITLE_COLOR  [UIColor grayColor]
+
+
 
 
 
@@ -117,7 +122,8 @@
         CFAlertAction *actionDefault = [[CFAlertAction alloc] initWithTitle:DEFAULT_BTN_TITLE
                                                                       style:CFAlertActionStyleDefault
                                                                   alignment:[self getActionsTextAlignment]
-                                                                      color:DEFAULT_BTN_COLOR
+                                                            backgroundColor:DEFAULT_BTN_COLOR
+                                                                  textColor:DEFAULT_BTN_TITLE_COLOR
                                                                     handler:nil];
         [alert addAction:actionDefault];
     }
@@ -127,7 +133,8 @@
         CFAlertAction *actionDestruct = [[CFAlertAction alloc] initWithTitle:DESTRUCTIVE_BTN_TITLE
                                                                        style:CFAlertActionStyleDestructive
                                                                    alignment:[self getActionsTextAlignment]
-                                                                       color:DESTRUCTIVE_BTN_COLOR
+                                                             backgroundColor:DESTRUCTIVE_BTN_COLOR
+                                                                   textColor:DESTRUCTIVE_BTN_TITLE_COLOR
                                                                      handler:nil];
         [alert addAction:actionDestruct];
     }
@@ -137,7 +144,8 @@
         CFAlertAction *actionCancel = [[CFAlertAction alloc] initWithTitle:CANCEL_BTN_TITLE
                                                                      style:CFAlertActionStyleCancel
                                                                  alignment:[self getActionsTextAlignment]
-                                                                     color:CANCEL_BTN_COLOR
+                                                           backgroundColor:CANCEL_BTN_COLOR
+                                                                 textColor:CANCEL_BTN_TITLE_COLOR
                                                                    handler:nil];
         [alert addAction:actionCancel];
     }

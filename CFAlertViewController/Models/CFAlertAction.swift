@@ -32,19 +32,21 @@ class CFAlertAction: NSObject, NSCopying {
     public var title: String?
     public var style: CFAlertActionStyle = .Default
     public var alignment: CFAlertActionAlignment = .justified
-    public var color: UIColor?
+    public var backgroundColor: UIColor?
+    public var textColor: UIColor?
     public var handler: CFAlertActionHandlerBlock?
     
     
     // MARK: - Initialisation Method
-    convenience init(title: String?, style: CFAlertActionStyle, alignment: CFAlertActionAlignment, color: UIColor?, handler: CFAlertActionHandlerBlock?) {
+    convenience init(title: String?, style: CFAlertActionStyle, alignment: CFAlertActionAlignment, backgroundColor: UIColor?, textColor: UIColor?, handler: CFAlertActionHandlerBlock?) {
         self.init()
         
         // Set Properties
         self.title = title
         self.style = style
         self.alignment = alignment
-        self.color = color
+        self.backgroundColor = backgroundColor
+        self.textColor = textColor
         self.handler = handler
     }
     
@@ -55,7 +57,8 @@ class CFAlertAction: NSObject, NSCopying {
         let copy : CFAlertAction = CFAlertAction(title: title,
                                                  style: style,
                                                  alignment: alignment,
-                                                 color: color,
+                                                 backgroundColor: backgroundColor,
+                                                 textColor: textColor,
                                                  handler: handler)
         return copy
     }

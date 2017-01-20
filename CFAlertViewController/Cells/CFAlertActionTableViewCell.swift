@@ -92,7 +92,7 @@ class CFAlertActionTableViewCell: UITableViewCell {
                 // Set Alignment
                 switch action.alignment {
                     
-                case .Right:
+                case .right:
                     // Right Align
                     actionButtonLeadingConstraint?.priority = 749.0
                     actionButtonCenterXConstraint?.isActive = false
@@ -100,7 +100,7 @@ class CFAlertActionTableViewCell: UITableViewCell {
                     // Set Content Edge Inset
                     actionButton?.contentEdgeInsets = UIEdgeInsetsMake(12.0, 20.0, 12.0, 20.0)
                     
-                case .Left:
+                case .left:
                     // Left Align
                     actionButtonLeadingConstraint?.priority = 751.0
                     actionButtonCenterXConstraint?.isActive = false
@@ -108,7 +108,7 @@ class CFAlertActionTableViewCell: UITableViewCell {
                     // Set Content Edge Inset
                     actionButton?.contentEdgeInsets = UIEdgeInsetsMake(12.0, 20.0, 12.0, 20.0)
                     
-                case .Center:
+                case .center:
                     // Center Align
                     actionButtonLeadingConstraint?.priority = 750.0
                     actionButtonCenterXConstraint?.isActive = true

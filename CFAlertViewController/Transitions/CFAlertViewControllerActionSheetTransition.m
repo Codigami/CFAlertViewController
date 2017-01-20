@@ -28,7 +28,7 @@
 
 
 #import "CFAlertViewControllerActionSheetTransition.h"
-#import "CFAlertViewController.h"
+#import "CFAlertViewControllerDemo-Swift.h"
 
 
 

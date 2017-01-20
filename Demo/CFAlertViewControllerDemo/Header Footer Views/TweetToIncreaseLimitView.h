@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CFAlertViewController.h"
+@class CFAlertViewController;
+
+
 
 @interface TweetToIncreaseLimitView : UIView
 

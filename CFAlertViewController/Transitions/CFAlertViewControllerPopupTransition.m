@@ -29,7 +29,7 @@
 
 
 #import "CFAlertViewControllerPopupTransition.h"
-#import "CFAlertViewController.h"
+#import "CFAlertViewControllerDemo-Swift.h"
 
 
 #define kCFAlertViewControllerPopupTransitionDuration 0.4f;

@@ -17,7 +17,9 @@ class CFAlertTitleSubtitleTableViewCell: UITableViewCell {
     
     // MARK: - Variables
     // MARK: Public
-    public static let identifier = String(describing: CFAlertTitleSubtitleTableViewCell.self)
+    public static func identifier() -> String    {
+        return String(describing: CFAlertTitleSubtitleTableViewCell.self)
+    }
     @IBOutlet public var titleLabel: UILabel?
     @IBOutlet public var subtitleLabel: UILabel?
     public var contentTopMargin: CGFloat = 0.0 {
@@ -73,7 +75,7 @@ class CFAlertTitleSubtitleTableViewCell: UITableViewCell {
     
     private func basicInitialisation() {
         // Reset Text
-        setTitle(title: nil, subtitle: nil, alignment: .center)
+        setTitle(nil, subtitle: nil, alignment: .center)
         // Set Content Leading Space
         contentLeadingSpace = 20.0;
     }
@@ -87,7 +89,7 @@ class CFAlertTitleSubtitleTableViewCell: UITableViewCell {
     
     
     // MARK: Helper Methods
-    public func setTitle(title: String?, subtitle: String?, alignment: NSTextAlignment) {
+    public func setTitle(_ title: String?, subtitle: String?, alignment: NSTextAlignment) {
         
         // Set Cell Text Fonts & Colors
         titleLabel?.text = title

@@ -15,24 +15,23 @@ class CFAlertAction: NSObject, NSCopying {
     // MARK: - Declarations
     public typealias CFAlertActionHandlerBlock = (_ action: CFAlertAction) -> ()
     
-    
-    // MARK: - Variables
-    public var style: CFAlertActionStyle = .Default
     @objc public enum CFAlertActionStyle: Int {
-        case Default
+        case Default = 0
         case Cancel
         case Destructive
     }
     
-    public var alignment: CFAlertActionAlignment = .Justified
     @objc public enum CFAlertActionAlignment: Int {
-        case Justified
-        case Right
-        case Left
-        case Center
+        case justified = 0
+        case right
+        case left
+        case center
     }
     
+    // MARK: - Variables
     public var title: String?
+    public var style: CFAlertActionStyle = .Default
+    public var alignment: CFAlertActionAlignment = .justified
     public var color: UIColor?
     public var handler: CFAlertActionHandlerBlock?
     
@@ -41,6 +40,7 @@ class CFAlertAction: NSObject, NSCopying {
     convenience init(title: String?, style: CFAlertActionStyle, alignment: CFAlertActionAlignment, color: UIColor?, handler: CFAlertActionHandlerBlock?) {
         self.init()
         
+        // Set Properties
         self.title = title
         self.style = style
         self.alignment = alignment

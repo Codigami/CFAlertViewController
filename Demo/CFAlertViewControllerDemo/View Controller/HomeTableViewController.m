@@ -7,7 +7,7 @@
 //
 
 #import "HomeTableViewController.h"
-#import "CFAlertViewController.h"
+#import "CFAlertViewControllerDemo-Swift.h"
 #import "TweetToIncreaseLimitView.h"
 
 
@@ -96,13 +96,13 @@
     }
     
     // Create Alert
-    CFAlertViewController *alert = [CFAlertViewController alertControllerWithTitle:titleText
-                                                                           message:descText
-                                                                     textAlignment:[self getTextAlignment]
-                                                                    preferredStyle:[self getAlertStyle]
-                                                                        headerView:headerView
-                                                                        footerView:footerView
-                                                            didDismissAlertHandler:nil];
+    CFAlertViewController *alert = [[CFAlertViewController alloc] initWithTitle:titleText
+                                                                        message:descText
+                                                                  textAlignment:[self getTextAlignment]
+                                                                 preferredStyle:[self getAlertStyle]
+                                                                     headerView:headerView
+                                                                     footerView:footerView
+                                                         didDismissAlertHandler:nil];
     
     // Add Alert Reference Into Footer View
     if (footerView && [footerView isKindOfClass:[TweetToIncreaseLimitView class]]) {
@@ -226,13 +226,13 @@
 
 - (void) showEmptyFieldsAlert   {
     
-    CFAlertViewController *alert = [CFAlertViewController alertControllerWithTitle:@"Oops!"
-                                                                           message:@"Please set some properties of Alert view"
-                                                                     textAlignment:NSTextAlignmentCenter
-                                                                    preferredStyle:CFAlertControllerStyleAlert
-                                                            didDismissAlertHandler:^{
-                                                                NSLog(@"Alert Dismissed");
-                                                            }];
+    CFAlertViewController *alert = [[CFAlertViewController alloc] initWithTitle:@"Oops!"
+                                                                        message:@"Please set some properties of Alert view"
+                                                                  textAlignment:NSTextAlignmentCenter
+                                                                 preferredStyle:CFAlertControllerStyleAlert
+                                                         didDismissAlertHandler:^{
+                                                             NSLog(@"Alert Dismissed");
+                                                         }];
     
     [self presentViewController:alert animated:YES completion:nil];
 }

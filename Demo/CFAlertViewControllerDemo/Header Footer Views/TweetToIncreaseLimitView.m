@@ -8,7 +8,6 @@
 
 #import "TweetToIncreaseLimitView.h"
 #import "CFAlertViewControllerDemo-Swift.h"
-#import "CFAlertViewController.h"
 
 
 
@@ -132,7 +131,7 @@
     self.tweetButton.layer.borderColor = buttonColor.CGColor;
     self.tweetButton.layer.borderWidth = 1.0;
     self.tweetButton.layer.cornerRadius = 8.0;
-    self.tweetButton.pushTransformScaleFactor = 0.9;
+    self.tweetButton.pushTransformScaleFactor = 0.92;
     
     // Set Tweet Character Limit
     self.characterLimit = 140;

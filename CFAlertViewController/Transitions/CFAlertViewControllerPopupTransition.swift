@@ -71,13 +71,24 @@ extension CFAlertViewControllerPopupTransition: UIViewControllerAnimatedTransiti
                         alertViewController.containerView?.transform = CGAffineTransform.identity
                         alertViewController.view?.alpha = 1.0
                     }, completion: {(_ finished: Bool) -> Void in
+                        
                         // Call Did System Methods
                         toViewController?.endAppearanceTransition()
                         fromViewController?.endAppearanceTransition()
+                        
                         // Declare Animation Finished
                         transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
                     })
                 })
+            }
+            else    {
+                
+                // Call Did System Methods
+                toViewController?.endAppearanceTransition()
+                fromViewController?.endAppearanceTransition()
+                
+                // Declare Animation Finished
+                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             }
         }
         else if self.transitionType == .dismiss {

@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 @objc(CFAlertViewControllerActionSheetTransition)
 class CFAlertViewControllerActionSheetTransition: NSObject {
     
@@ -54,7 +55,6 @@ extension CFAlertViewControllerActionSheetTransition: UIViewControllerAnimatedTr
         if self.transitionType == .present {
             
             /** SHOW ANIMATION **/
-            
             if let alertViewController = toViewController as? CFAlertViewController, let containerView = containerView   {
                 
                 alertViewController.view?.frame = containerView.frame
@@ -85,6 +85,15 @@ extension CFAlertViewControllerActionSheetTransition: UIViewControllerAnimatedTr
                     // Declare Animation Finished
                     transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
                 })
+            }
+            else    {
+                
+                // Call Did System Methods
+                toViewController?.endAppearanceTransition()
+                fromViewController?.endAppearanceTransition()
+                
+                // Declare Animation Finished
+                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             }
         }
         else if self.transitionType == .dismiss {

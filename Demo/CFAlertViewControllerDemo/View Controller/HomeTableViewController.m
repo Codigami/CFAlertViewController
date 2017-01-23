@@ -107,7 +107,13 @@
                                                                  preferredStyle:[self getAlertStyle]
                                                                      headerView:headerView
                                                                      footerView:footerView
-                                                         didDismissAlertHandler:nil];
+                                                         didDismissAlertHandler:^(BOOL isBackgroundTapped) {
+                                                             NSLog(@"Alert Dismissed");
+                                                             if (isBackgroundTapped) {
+                                                                 // Handle background tap here
+                                                                 NSLog(@"Alert background tapped");
+                                                             }
+                                                         }];
     
     // Add Alert Reference Into Footer View
     if (footerView && [footerView isKindOfClass:[TweetToIncreaseLimitView class]]) {

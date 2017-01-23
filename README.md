@@ -1,4 +1,8 @@
-#CFAlertViewController
+#CFAlertViewController 
+[![CocoaPods](https://img.shields.io/cocoapods/v/CFAlertViewController.svg)](https://cocoapods.org/pods/CFAlertViewController)
+[![CocoaPods](https://img.shields.io/cocoapods/dt/CFAlertViewController.svg)](https://cocoapods.org/pods/CFAlertViewController)
+[![license](https://img.shields.io/github/license/codigami/cfalertviewcontroller.svg)](https://github.com/Codigami/CFAlertViewController/blob/master/README.md)
+
 `CFAlertViewController` is a library that helps you display and customise **alerts and action sheets** on iPad and iPhone. It offers screen rotation as well as an adaptive UI support. CFAlertViewController’s functionality is almost similar to the native UIAlertController.
 <GIF>
 
@@ -14,70 +18,68 @@ We assume that your Cocoapods is already configured. If you are new to Cocoapods
 
 1. Add `pod 'CFAlertViewController'` to your Podfile.
 2. Install the pod(s) by running `pod install` in terminal (in folder where `Podfile` file is located).
-3. Include CFAlertViewController wherever you need it with `#import "CFAlertViewController.h"`.
 
 #### Install using Source file  
-1. Open the downloaded project in Xcode, then drag and drop folder named **CFAlertViewController** onto your project (use the "Product Navigator view"). Make sure to select Copy items when asked if you extracted the code archive outside of your project.
-2. Include CFAlertViewController wherever you need it with `#import "CFAlertViewController.h"`.
+Open the downloaded project in Xcode, then drag and drop folder named **CFAlertViewController** onto your project (use the "Product Navigator view"). Make sure to select Copy items when asked if you extracted the code archive outside of your project.
 
 ## Usage :  
 <p>
     <img src="https://github.com/Codigami/CFAlertViewController/blob/develop/Images/Alert%20%26%20Action%20sheet.png" style="width: 100%" />
 </p>  
 The above shown alert and actionsheet can easily be implemented using the code snippet given below by some small tweaks
-```objective-c
+```swift
 // Create Alert
-CFAlertViewController *alert = [CFAlertViewController alertControllerWithTitle:@"You've hit the limit!"
-                                                                       message:@"Looks like you've hit your daily follow/unfollow limit. Upgrade to our paid plan to be able to remove your limits."
-                                                                 textAlignment:NSTextAlignmentCenter
-                                                                preferredStyle:CFAlertControllerStyleAlert
-                                                        didDismissAlertHandler:^{
-                                                            NSLog(@"Alert Dismissed");
-                                                        }];
+var alertController: CFAlertViewController = CFAlertViewController(title: "You've hit the limit",
+                                                                   message: "Looks like you've hit your daily follow/unfollow limit. Upgrade to our paid plan to be able to remove your limits.", textAlignment: .center,
+                                                                   preferredStyle: .alert) { (didTapBackground) in
+                                                                    print("Alert Dismissed")
+                                                                    if (didTapBackground) {
+                                                                        // Handle background tap here
+                                                                    }
+}
+        
+var defaultAction = CFAlertAction(title: "UPGRADE",
+                                  style: .Default,
+                                  alignment: .justified,
+                                  backgroundColor: UIColor(red: CGFloat(46.0 / 255.0), green: CGFloat(204.0 / 255.0), blue: CGFloat(113.0 / 255.0), alpha: CGFloat(1)),
+                                  textColor: UIColor.white) { (action) in
+                                    print("Button with \(action.title) title tapped")
+}
     
-// Add Action Button
-CFAlertAction *actionDefault = [CFAlertAction actionWithTitle:@"UPGRADE"
-                                                        style:CFAlertActionStyleDefault
-                                                    alignment:CFAlertActionAlignmentJustified
-                                                        color:[UIColor colorWithRed:46.0/255.0 green:204.0/255.0 blue:113.0/255.0 alpha:1]
-                                                      handler: ^(CFAlertAction *action) {
-                                                          NSLog(@"Button with %@ title tapped",action.title);
-                                                       }];
-                                                       
 // Add Action Button Into Alert
-[alert addAction:actionDefault];
-    
-// Present Alert
-[self presentViewController:alert animated:YES completion:nil];
+alertController.addAction(defaultAction)
+        
+self.present(alertController, animated: true, completion: nil)
 ```
 ## Customisations :
 
 ### Alerts
-```objective-c
-+ (nonnull instancetype) alertControllerWithTitle:(nullable NSString *)title
-                                          message:(nullable NSString *)message
-                                    textAlignment:(NSTextAlignment)textAlignment
-                                   preferredStyle:(CFAlertControllerStyle)preferredStyle
-                                       headerView:(nullable UIView *)headerView
-                                       footerView:(nullable UIView *)footerView
-                           didDismissAlertHandler:(nullable CFAlertViewControllerDismissBlock)dismiss;
+```swift
+convenience init(title: String?,
+               message: String?,
+         textAlignment: NSTextAlignment,
+        preferredStyle: CFAlertControllerStyle,
+            headerView: UIView?,
+            footerView: UIView?,
+            didDismissAlertHandler dismiss: CFAlertViewControllerDismissBlock?)
 ```
+
 ##### Title and Message  
 You can set custom title and message of the alert (pass nil if you don’t need them).
 
 ##### Alignment  
 You can customise alignment of the title and message. Set the `textAlignment` property with one of the following values : 
-```objective-c
-NSTextAlignmentLeft,    
-NSTextAlignmentRight,    
-NSTextAlignmentCenter
+```swift
+NSTextAlignment.left,    
+NSTextAlignment.right,    
+NSTextAlignment.center
 ```
 
 ##### Alert Style  
 Presentation style of the alert can be customised as Alert or Action sheet. Just set the `preferredStyle` property with one of the following values :
-```objective-c
-CFAlertControllerStyleAlert,
-CFAlertControllerStyleActionSheet
+```swift
+CFAlertViewController.CFAlertControllerStyle.actionSheet,
+CFAlertViewController.CFAlertControllerStyle.alert
 ```
 
 ##### Header / Footer
@@ -97,31 +99,32 @@ CFAlertControllerStyleActionSheet
 A block (of type CFAlertViewControllerDismissBlock) gets called when the Alert / Action Sheet is dismissed. You can use it to handle call back.
 
 ### Actions
-```objective-c
-+ (nullable instancetype) actionWithTitle:(nonnull NSString *)title
-                                    style:(CFAlertActionStyle)style
-                                alignment:(CFAlertActionAlignment)alignment
-                                    color:(nullable UIColor *)color
-                                  handler:(nullable CFAlertActionHandlerBlock)handler;
+```swift
+convenience init(title: String?,
+                 style: CFAlertActionStyle,
+             alignment: CFAlertActionAlignment,
+       backgroundColor: UIColor?,
+             textColor: UIColor?,
+               handler: CFAlertActionHandlerBlock?)
 ```                           
 ##### Title
 You can set the title of action button to be added.  
 
 ##### Action Style
 Configure the style of the action button that is to be added to alert view. Set `style` property of the above method with one of the following Action style  
-```objective-c
- CFAlertActionStyleDefault,
- CFAlertActionStyleCancel,
- CFAlertActionStyleDestructive
+```swift
+ CFAlertActionStyle.Default,
+ CFAlertActionStyle.Cancel,
+ CFAlertActionStyle.Destructive
 ```
 
 ##### Actions Alignment
 Configure the alignment of the action button added to the alert view. Set `alignment` property of  CFAction constructor with one of the following action types
-```objective-c
- CFAlertActionAlignmentJustified,   // Action Button occupies the full width
- CFAlertActionAlignmentRight,
- CFAlertActionAlignmentLeft,
- CFAlertActionAlignmentCenter
+```swift
+ CFAlertActionAlignment.justified,   // Action Button occupies the full width
+ CFAlertActionAlignment.right,
+ CFAlertActionAlignment.left,
+ CFAlertActionAlignment.center
 ```
 
 ##### Callback

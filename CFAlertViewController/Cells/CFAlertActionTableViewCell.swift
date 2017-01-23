@@ -26,7 +26,7 @@ class CFAlertActionTableViewCell: UITableViewCell {
         return UIColor.white
     }
     public static func CF_CANCEL_ACTION_COLOR() -> UIColor   {
-        return UIColor(red: CGFloat(103.0 / 255.0), green: CGFloat(104.0 / 255.0), blue: CGFloat(217.0 / 255.0), alpha: CGFloat(1.0))
+        return UIColor.gray.withAlphaComponent(0.3)
     }
     public static func CF_CANCEL_ACTION_TEXT_COLOR() -> UIColor {
         return UIColor.gray

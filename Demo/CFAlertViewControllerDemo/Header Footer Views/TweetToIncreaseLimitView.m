@@ -257,7 +257,13 @@
 #pragma mark - Actions
 
 - (IBAction)tweetButtonPressed:(id)sender{
-    self.isExpanded = !self.isExpanded;
+    
+    if (!self.isExpanded) {
+        self.isExpanded = YES;
+    }
+    else    {
+        [self.alertController dismissAlertWithAnimation:YES completion:nil];
+    }
 }
 
 @end

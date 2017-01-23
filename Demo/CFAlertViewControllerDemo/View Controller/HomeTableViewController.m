@@ -12,17 +12,17 @@
 
 
 
-#define DEFAULT_BTN_TITLE       @"DEFAULT"
-#define DEFAULT_BTN_COLOR       [UIColor colorWithRed:41.0/255.0 green:198.0/255.0 blue:77.0/255.0 alpha:1.0]
-#define DEFAULT_BTN_TITLE_COLOR  [UIColor whiteColor]
+#define DEFAULT_BTN_TITLE           @"DEFAULT"
+#define DEFAULT_BTN_COLOR           [UIColor colorWithRed:41.0/255.0 green:198.0/255.0 blue:77.0/255.0 alpha:1.0]
+#define DEFAULT_BTN_TITLE_COLOR     [UIColor whiteColor]
 
-#define DESTRUCTIVE_BTN_TITLE   @"DESTRUCTIVE"
-#define DESTRUCTIVE_BTN_COLOR   [UIColor colorWithRed:255.0/255.0 green:75.0/255.0 blue:75.0/255.0 alpha:1.0]
-#define DESTRUCTIVE_BTN_TITLE_COLOR  [UIColor whiteColor]
+#define DESTRUCTIVE_BTN_TITLE       @"DESTRUCTIVE"
+#define DESTRUCTIVE_BTN_COLOR       [UIColor colorWithRed:255.0/255.0 green:75.0/255.0 blue:75.0/255.0 alpha:1.0]
+#define DESTRUCTIVE_BTN_TITLE_COLOR [UIColor whiteColor]
 
-#define CANCEL_BTN_TITLE        @"CANCEL"
-#define CANCEL_BTN_COLOR        [UIColor grayColor]
-#define CANCEL_BTN_TITLE_COLOR  [UIColor grayColor]
+#define CANCEL_BTN_TITLE            @"CANCEL"
+#define CANCEL_BTN_COLOR            [[UIColor grayColor] colorWithAlphaComponent:0.3]
+#define CANCEL_BTN_TITLE_COLOR      [UIColor grayColor]
 
 
 

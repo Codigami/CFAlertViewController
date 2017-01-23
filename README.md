@@ -18,11 +18,9 @@ We assume that your Cocoapods is already configured. If you are new to Cocoapods
 
 1. Add `pod 'CFAlertViewController'` to your Podfile.
 2. Install the pod(s) by running `pod install` in terminal (in folder where `Podfile` file is located).
-3. Include CFAlertViewController wherever you need it with `#import "CFAlertViewController.h"`.
 
 #### Install using Source file  
-1. Open the downloaded project in Xcode, then drag and drop folder named **CFAlertViewController** onto your project (use the "Product Navigator view"). Make sure to select Copy items when asked if you extracted the code archive outside of your project.
-2. Include CFAlertViewController wherever you need it with `#import "CFAlertViewController.h"`.
+Open the downloaded project in Xcode, then drag and drop folder named **CFAlertViewController** onto your project (use the "Product Navigator view"). Make sure to select Copy items when asked if you extracted the code archive outside of your project.
 
 ## Usage :  
 <p>

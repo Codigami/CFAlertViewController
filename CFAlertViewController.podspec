@@ -54,7 +54,7 @@ Pod::Spec.new do |s|
 
   # s.author             = { "Codigami Inc" => "email@address.com" }
   # Or just: s.author    = "Codigami Inc"
-  s.authors            = { "Shardul Patel" => "shardul@codigami.com", "Ram Suthar" => "reallyram@gmail.com", "Vinayak Parmar" => "vinayak@codigami.com" }
+  s.authors            = { "Shardul Patel" => "shardul@crowdfireapp.com", "Ram Suthar" => "ram@crowdfireapp.com", "Vinayak Parmar" => "vinayak@crowdfireapp.com", "Shivam Bhalla" => "shivam@crowdfireapp.com"}
   s.social_media_url   = "https://twitter.com/crowdfire"
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -90,11 +90,8 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "CFAlertViewController/*.{h,m}", "CFAlertViewController/**/*.{h,m}", "CFAlertViewController/Subclass/CRPushButton/*.{h,m}"
+  s.source_files  = "CFAlertViewController/*.swift", "CFAlertViewController/**/*.swift", "CFAlertViewController/Subclass/CFPushButton/*.swift"
   #  s.exclude_files = "Classes/Exclude"
-
-  s.public_header_files = "CFAlertViewController/*.h", "CFAlertViewController/**/*.h", "CFAlertViewController/Subclass/CRPushButton/*.h"
-
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #

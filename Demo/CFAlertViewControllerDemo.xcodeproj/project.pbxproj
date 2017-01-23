@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2F75A0DB1E2FAF89003414B8 /* CFAlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F75A0DA1E2FAF89003414B8 /* CFAlertAction.swift */; };
+		2F87B4911E36490D002317CC /* CFPushButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F87B4901E36490D002317CC /* CFPushButton.swift */; };
 		2F87DE1F1E30EC1300483008 /* CFAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F87DE1E1E30EC1300483008 /* CFAlertViewController.swift */; };
 		2F8E8FC01D181166004450F5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F8E8FBF1D181166004450F5 /* main.m */; };
 		2F8E8FC91D181166004450F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F8E8FC71D181166004450F5 /* Main.storyboard */; };
@@ -24,12 +25,12 @@
 		40102FEF1E30EC4900B63602 /* CFAlertTitleSubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40102FEE1E30EC4900B63602 /* CFAlertTitleSubtitleTableViewCell.swift */; };
 		403168EA1E31F70D00C29637 /* CFAlertViewControllerActionSheetTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403168E91E31F70D00C29637 /* CFAlertViewControllerActionSheetTransition.swift */; };
 		403168EC1E31F71800C29637 /* CFAlertViewControllerPopupTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403168EB1E31F71800C29637 /* CFAlertViewControllerPopupTransition.swift */; };
-		40CBEEE01E2FB11F000FBBF6 /* CFPushButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CBEEDF1E2FB11F000FBBF6 /* CFPushButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2F75A0D71E2FAE4A003414B8 /* CFAlertViewControllerDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CFAlertViewControllerDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		2F75A0DA1E2FAF89003414B8 /* CFAlertAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFAlertAction.swift; sourceTree = "<group>"; };
+		2F87B4901E36490D002317CC /* CFPushButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFPushButton.swift; sourceTree = "<group>"; };
 		2F87DE1E1E30EC1300483008 /* CFAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFAlertViewController.swift; sourceTree = "<group>"; };
 		2F8E8FBB1D181166004450F5 /* CFAlertViewControllerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CFAlertViewControllerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F8E8FBF1D181166004450F5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -51,7 +52,6 @@
 		40102FEE1E30EC4900B63602 /* CFAlertTitleSubtitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFAlertTitleSubtitleTableViewCell.swift; sourceTree = "<group>"; };
 		403168E91E31F70D00C29637 /* CFAlertViewControllerActionSheetTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFAlertViewControllerActionSheetTransition.swift; sourceTree = "<group>"; };
 		403168EB1E31F71800C29637 /* CFAlertViewControllerPopupTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFAlertViewControllerPopupTransition.swift; sourceTree = "<group>"; };
-		40CBEEDF1E2FB11F000FBBF6 /* CFPushButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFPushButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +65,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2F87B48F1E36490D002317CC /* CFPushButton */ = {
+			isa = PBXGroup;
+			children = (
+				2F87B4901E36490D002317CC /* CFPushButton.swift */,
+			);
+			path = CFPushButton;
+			sourceTree = "<group>";
+		};
 		2F8E8FB21D181166004450F5 = {
 			isa = PBXGroup;
 			children = (
@@ -170,18 +178,9 @@
 		2F8E901A1D181F07004450F5 /* Subclass */ = {
 			isa = PBXGroup;
 			children = (
-				2F8E901B1D181F07004450F5 /* CFPushButton */,
+				2F87B48F1E36490D002317CC /* CFPushButton */,
 			);
 			path = Subclass;
-			sourceTree = "<group>";
-		};
-		2F8E901B1D181F07004450F5 /* CFPushButton */ = {
-			isa = PBXGroup;
-			children = (
-				40CBEEDF1E2FB11F000FBBF6 /* CFPushButton.swift */,
-			);
-			name = CFPushButton;
-			path = CRPushButton;
 			sourceTree = "<group>";
 		};
 		2F8E901E1D181F07004450F5 /* Transitions */ = {
@@ -270,11 +269,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40CBEEE01E2FB11F000FBBF6 /* CFPushButton.swift in Sources */,
 				2F87DE1F1E30EC1300483008 /* CFAlertViewController.swift in Sources */,
 				403168EA1E31F70D00C29637 /* CFAlertViewControllerActionSheetTransition.swift in Sources */,
 				403168EC1E31F71800C29637 /* CFAlertViewControllerPopupTransition.swift in Sources */,
 				40102FEF1E30EC4900B63602 /* CFAlertTitleSubtitleTableViewCell.swift in Sources */,
+				2F87B4911E36490D002317CC /* CFPushButton.swift in Sources */,
 				2F75A0DB1E2FAF89003414B8 /* CFAlertAction.swift in Sources */,
 				2F8E8FC01D181166004450F5 /* main.m in Sources */,
 				4004556F1E30A29E0035A3D4 /* CFAlertActionTableViewCell.swift in Sources */,

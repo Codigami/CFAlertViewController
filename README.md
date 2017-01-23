@@ -55,13 +55,13 @@ self.present(alertController, animated: true, completion: nil)
 
 ### Alerts
 ```swift
-    convenience init(title: String?,
-                     message: String?,
-                     textAlignment: NSTextAlignment,
-                     preferredStyle: CFAlertControllerStyle,
-                     headerView: UIView?,
-                     footerView: UIView?,
-                     didDismissAlertHandler dismiss: CFAlertViewControllerDismissBlock?)
+convenience init(title: String?,
+               message: String?,
+         textAlignment: NSTextAlignment,
+        preferredStyle: CFAlertControllerStyle,
+            headerView: UIView?,
+            footerView: UIView?,
+            didDismissAlertHandler dismiss: CFAlertViewControllerDismissBlock?)
 ```
 
 ##### Title and Message  

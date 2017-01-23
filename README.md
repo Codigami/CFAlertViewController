@@ -71,16 +71,16 @@ You can set custom title and message of the alert (pass nil if you don’t need 
 ##### Alignment  
 You can customise alignment of the title and message. Set the `textAlignment` property with one of the following values : 
 ```objective-c
-NSTextAlignmentLeft,    
-NSTextAlignmentRight,    
-NSTextAlignmentCenter
+NSTextAlignment.left,    
+NSTextAlignment.right,    
+NSTextAlignment.center
 ```
 
 ##### Alert Style  
 Presentation style of the alert can be customised as Alert or Action sheet. Just set the `preferredStyle` property with one of the following values :
 ```objective-c
-CFAlertControllerStyleAlert,
-CFAlertControllerStyleActionSheet
+CFAlertViewController.CFAlertControllerStyle.actionSheet,
+CFAlertViewController.CFAlertControllerStyle.alert
 ```
 
 ##### Header / Footer
@@ -113,18 +113,18 @@ You can set the title of action button to be added.
 ##### Action Style
 Configure the style of the action button that is to be added to alert view. Set `style` property of the above method with one of the following Action style  
 ```objective-c
- CFAlertActionStyleDefault,
- CFAlertActionStyleCancel,
- CFAlertActionStyleDestructive
+ CFAlertActionStyle.Default,
+ CFAlertActionStyle.Cancel,
+ CFAlertActionStyle.Destructive
 ```
 
 ##### Actions Alignment
 Configure the alignment of the action button added to the alert view. Set `alignment` property of  CFAction constructor with one of the following action types
 ```objective-c
- CFAlertActionAlignmentJustified,   // Action Button occupies the full width
- CFAlertActionAlignmentRight,
- CFAlertActionAlignmentLeft,
- CFAlertActionAlignmentCenter
+ CFAlertActionAlignment.justified,   // Action Button occupies the full width
+ CFAlertActionAlignment.right,
+ CFAlertActionAlignment.left,
+ CFAlertActionAlignment.center
 ```
 
 ##### Callback

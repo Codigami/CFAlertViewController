@@ -66,7 +66,7 @@ class CFAlertActionTableViewCell: UITableViewCell {
                 
                 // Set Action Style
                 var actionBackgroundColor: UIColor? = action.backgroundColor
-                var actionFontColor: UIColor? = action.textColor
+                var actionTextColor: UIColor? = action.textColor
                 
                 switch action.style {
                     
@@ -74,11 +74,11 @@ class CFAlertActionTableViewCell: UITableViewCell {
                     if actionBackgroundColor == nil {
                         actionBackgroundColor = CFAlertActionTableViewCell.CF_CANCEL_ACTION_COLOR()
                     }
-                    if actionFontColor == nil {
-                        actionFontColor = CFAlertActionTableViewCell.CF_CANCEL_ACTION_TEXT_COLOR()
+                    if actionTextColor == nil {
+                        actionTextColor = CFAlertActionTableViewCell.CF_CANCEL_ACTION_TEXT_COLOR()
                     }
                     actionButton?.backgroundColor = UIColor.clear
-                    actionButton?.setTitleColor(actionFontColor, for: .normal)
+                    actionButton?.setTitleColor(actionTextColor, for: .normal)
                     actionButton?.layer.borderColor = actionBackgroundColor?.cgColor
                     actionButton?.layer.borderWidth = 1.0
                     
@@ -86,11 +86,11 @@ class CFAlertActionTableViewCell: UITableViewCell {
                     if actionBackgroundColor == nil {
                         actionBackgroundColor = CFAlertActionTableViewCell.CF_DESTRUCTIVE_ACTION_COLOR()
                     }
-                    if actionFontColor == nil {
-                        actionFontColor = CFAlertActionTableViewCell.CF_DESTRUCTIVE_ACTION_TEXT_COLOR()
+                    if actionTextColor == nil {
+                        actionTextColor = CFAlertActionTableViewCell.CF_DESTRUCTIVE_ACTION_TEXT_COLOR()
                     }
                     actionButton?.backgroundColor = actionBackgroundColor
-                    actionButton?.setTitleColor(actionFontColor, for: .normal)
+                    actionButton?.setTitleColor(actionTextColor, for: .normal)
                     actionButton?.layer.borderColor = nil
                     actionButton?.layer.borderWidth = 0.0
                     
@@ -98,11 +98,11 @@ class CFAlertActionTableViewCell: UITableViewCell {
                     if actionBackgroundColor == nil {
                         actionBackgroundColor = CFAlertActionTableViewCell.CF_DEFAULT_ACTION_COLOR()
                     }
-                    if actionFontColor == nil {
-                        actionFontColor = CFAlertActionTableViewCell.CF_DEFAULT_ACTION_TEXT_COLOR()
+                    if actionTextColor == nil {
+                        actionTextColor = CFAlertActionTableViewCell.CF_DEFAULT_ACTION_TEXT_COLOR()
                     }
                     actionButton?.backgroundColor = actionBackgroundColor
-                    actionButton?.setTitleColor(actionFontColor, for: .normal)
+                    actionButton?.setTitleColor(actionTextColor, for: .normal)
                     actionButton?.layer.borderColor = nil
                     actionButton?.layer.borderWidth = 0.0
                 }

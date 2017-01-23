@@ -56,15 +56,16 @@ self.present(alertController, animated: true, completion: nil)
 ## Customisations :
 
 ### Alerts
-```objective-c
-+ (nonnull instancetype) alertControllerWithTitle:(nullable NSString *)title
-                                          message:(nullable NSString *)message
-                                    textAlignment:(NSTextAlignment)textAlignment
-                                   preferredStyle:(CFAlertControllerStyle)preferredStyle
-                                       headerView:(nullable UIView *)headerView
-                                       footerView:(nullable UIView *)footerView
-                           didDismissAlertHandler:(nullable CFAlertViewControllerDismissBlock)dismiss;
+```swift
+    convenience init(title: String?,
+                     message: String?,
+                     textAlignment: NSTextAlignment,
+                     preferredStyle: CFAlertControllerStyle,
+                     headerView: UIView?,
+                     footerView: UIView?,
+                     didDismissAlertHandler dismiss: CFAlertViewControllerDismissBlock?)
 ```
+
 ##### Title and Message  
 You can set custom title and message of the alert (pass nil if you don’t need them).
 

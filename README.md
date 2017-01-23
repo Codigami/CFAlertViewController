@@ -29,7 +29,7 @@ We assume that your Cocoapods is already configured. If you are new to Cocoapods
     <img src="https://github.com/Codigami/CFAlertViewController/blob/develop/Images/Alert%20%26%20Action%20sheet.png" style="width: 100%" />
 </p>  
 The above shown alert and actionsheet can easily be implemented using the code snippet given below by some small tweaks
-```objective-c
+```swift
 // Create Alert
 var alertController: CFAlertViewController = CFAlertViewController(title: "You've hit the limit",
                                                                    message: "Looks like you've hit your daily follow/unfollow limit. Upgrade to our paid plan to be able to remove your limits.", textAlignment: .center,
@@ -70,7 +70,7 @@ You can set custom title and message of the alert (pass nil if you don’t need 
 
 ##### Alignment  
 You can customise alignment of the title and message. Set the `textAlignment` property with one of the following values : 
-```objective-c
+```swift
 NSTextAlignment.left,    
 NSTextAlignment.right,    
 NSTextAlignment.center
@@ -78,7 +78,7 @@ NSTextAlignment.center
 
 ##### Alert Style  
 Presentation style of the alert can be customised as Alert or Action sheet. Just set the `preferredStyle` property with one of the following values :
-```objective-c
+```swift
 CFAlertViewController.CFAlertControllerStyle.actionSheet,
 CFAlertViewController.CFAlertControllerStyle.alert
 ```
@@ -100,19 +100,20 @@ CFAlertViewController.CFAlertControllerStyle.alert
 A block (of type CFAlertViewControllerDismissBlock) gets called when the Alert / Action Sheet is dismissed. You can use it to handle call back.
 
 ### Actions
-```objective-c
-+ (nullable instancetype) actionWithTitle:(nonnull NSString *)title
-                                    style:(CFAlertActionStyle)style
-                                alignment:(CFAlertActionAlignment)alignment
-                                    color:(nullable UIColor *)color
-                                  handler:(nullable CFAlertActionHandlerBlock)handler;
+```swift
+convenience init(title: String?,
+                 style: CFAlertActionStyle,
+             alignment: CFAlertActionAlignment,
+       backgroundColor: UIColor?,
+             textColor: UIColor?,
+               handler: CFAlertActionHandlerBlock?)
 ```                           
 ##### Title
 You can set the title of action button to be added.  
 
 ##### Action Style
 Configure the style of the action button that is to be added to alert view. Set `style` property of the above method with one of the following Action style  
-```objective-c
+```swift
  CFAlertActionStyle.Default,
  CFAlertActionStyle.Cancel,
  CFAlertActionStyle.Destructive
@@ -120,7 +121,7 @@ Configure the style of the action button that is to be added to alert view. Set 
 
 ##### Actions Alignment
 Configure the alignment of the action button added to the alert view. Set `alignment` property of  CFAction constructor with one of the following action types
-```objective-c
+```swift
  CFAlertActionAlignment.justified,   // Action Button occupies the full width
  CFAlertActionAlignment.right,
  CFAlertActionAlignment.left,

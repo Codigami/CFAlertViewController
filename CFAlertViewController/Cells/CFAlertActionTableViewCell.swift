@@ -10,13 +10,13 @@ import UIKit
 
 
 @objc(CFAlertActionTableViewCellDelegate)
-protocol CFAlertActionTableViewCellDelegate {
+public protocol CFAlertActionTableViewCellDelegate {
     func alertActionCell(_ cell: CFAlertActionTableViewCell, didClickAction action: CFAlertAction?);
 }
 
 
 @objc(CFAlertActionTableViewCell)
-class CFAlertActionTableViewCell: UITableViewCell {
+public class CFAlertActionTableViewCell: UITableViewCell {
     
     // MARK: - Declarations
     public static func CF_DEFAULT_ACTION_COLOR() -> UIColor {
@@ -164,7 +164,7 @@ class CFAlertActionTableViewCell: UITableViewCell {
     
     
     // MARK: - Initialization Methods
-    override func awakeFromNib() {
+    override public func awakeFromNib() {
         super.awakeFromNib()
         basicInitialisation()
     }
@@ -175,7 +175,7 @@ class CFAlertActionTableViewCell: UITableViewCell {
         basicInitialisation()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -187,7 +187,7 @@ class CFAlertActionTableViewCell: UITableViewCell {
     
     
     // MARK: - Layout Methods
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         contentView.setNeedsLayout()
         contentView.layoutIfNeeded()
     }

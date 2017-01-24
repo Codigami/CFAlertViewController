@@ -10,7 +10,7 @@ import UIKit
 
 
 @objc(CFAlertViewController)
-class CFAlertViewController: UIViewController    {
+public class CFAlertViewController: UIViewController    {
 
     // MARK: - Declarations
     public typealias CFAlertViewControllerDismissBlock = (_ isBackgroundTapped: Bool) -> ()
@@ -172,7 +172,7 @@ class CFAlertViewController: UIViewController    {
         view.addGestureRecognizer(self.tapGesture)
     }
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         
         // Load Variables
@@ -182,7 +182,7 @@ class CFAlertViewController: UIViewController    {
         loadDisplayContent()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // Update UI
@@ -385,7 +385,7 @@ class CFAlertViewController: UIViewController    {
     
     
     // MARK: - View Rotation / Size Change Method
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+    override public func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         // Code here will execute before the rotation begins.
         // Equivalent to placing it in the deprecated method -[willRotateToInterfaceOrientation:duration:]
@@ -402,7 +402,7 @@ class CFAlertViewController: UIViewController    {
     
     
     // MARK: - Key Value Observers
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if (keyPath == "contentSize") {
             // Update Container View Frame Without Animation
             updateContainerViewFrame(withAnimation: false)
@@ -430,11 +430,11 @@ class CFAlertViewController: UIViewController    {
 extension CFAlertViewController: UITableViewDataSource, UITableViewDelegate, CFAlertActionTableViewCellDelegate {
     
     // MARK: - UITableViewDataSource
-    func numberOfSections(in tableView: UITableView) -> Int {
+    public func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         switch section {
             
@@ -456,7 +456,7 @@ extension CFAlertViewController: UITableViewDataSource, UITableViewDelegate, CFA
         return 0
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         var cell: UITableViewCell?
         
@@ -509,24 +509,24 @@ extension CFAlertViewController: UITableViewDataSource, UITableViewDelegate, CFA
         return cell!
     }
     
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+    public func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
     
     // MARK: UITableViewDelegate
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Deselect Table Cell
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
     
     // MARK: CFAlertActionTableViewCellDelegate
-    func alertActionCell(_ cell: CFAlertActionTableViewCell, didClickAction action: CFAlertAction?) {
+    public func alertActionCell(_ cell: CFAlertActionTableViewCell, didClickAction action: CFAlertAction?) {
         // Dimiss Self
         dismissAlert(withAnimation: true, completion: {() -> Void in
             // Call Action Handler If Set
@@ -541,7 +541,7 @@ extension CFAlertViewController: UITableViewDataSource, UITableViewDelegate, CFA
 extension CFAlertViewController: UIViewControllerTransitioningDelegate {
     
     // MARK: - Transitioning Delegate
-    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
         if (presented is CFAlertViewController) {
             if preferredStyle == .alert {
@@ -558,7 +558,7 @@ extension CFAlertViewController: UIViewControllerTransitioningDelegate {
         return nil
     }
     
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
         if (dismissed is CFAlertViewController) {
             if self.preferredStyle == .alert {

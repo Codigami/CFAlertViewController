@@ -10,7 +10,7 @@ import UIKit
 
 
 @objc(CFAlertViewControllerPopupTransition)
-class CFAlertViewControllerPopupTransition: NSObject {
+public class CFAlertViewControllerPopupTransition: NSObject {
 
     // MARK: - Declarations
     @objc public enum CFAlertPopupTransitionType : Int {
@@ -37,11 +37,11 @@ class CFAlertViewControllerPopupTransition: NSObject {
 // MARK: - UIViewControllerAnimatedTransitioning
 extension CFAlertViewControllerPopupTransition: UIViewControllerAnimatedTransitioning   {
     
-    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+    public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.4
     }
     
-    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+    public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         
         // Get context vars
         let duration: TimeInterval = self.transitionDuration(using: transitionContext)

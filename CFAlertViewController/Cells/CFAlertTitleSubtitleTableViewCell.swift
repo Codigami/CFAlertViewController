@@ -10,7 +10,7 @@ import UIKit
 
 
 @objc(CFAlertTitleSubtitleTableViewCell)
-class CFAlertTitleSubtitleTableViewCell: UITableViewCell {
+public class CFAlertTitleSubtitleTableViewCell: UITableViewCell {
 
     // MARK: - Declarations
     
@@ -58,7 +58,7 @@ class CFAlertTitleSubtitleTableViewCell: UITableViewCell {
     
     
     // MARK: Initialization Methods
-    override func awakeFromNib() {
+    override public func awakeFromNib() {
         super.awakeFromNib()
         basicInitialisation()
     }
@@ -69,7 +69,7 @@ class CFAlertTitleSubtitleTableViewCell: UITableViewCell {
         basicInitialisation()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -82,7 +82,7 @@ class CFAlertTitleSubtitleTableViewCell: UITableViewCell {
 
     
     // MARK: - Layout Methods
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         contentView.setNeedsLayout()
         contentView.layoutIfNeeded()
     }

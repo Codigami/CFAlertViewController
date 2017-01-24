@@ -10,7 +10,7 @@ import UIKit
 
 
 @objc(CFAlertAction)
-class CFAlertAction: NSObject, NSCopying {
+public class CFAlertAction: NSObject, NSCopying {
 
     // MARK: - Declarations
     public typealias CFAlertActionHandlerBlock = (_ action: CFAlertAction) -> ()
@@ -52,7 +52,7 @@ class CFAlertAction: NSObject, NSCopying {
     
     
     // MARK: - NSCopying
-    func copy(with zone: NSZone? = nil) -> Any {
+    public func copy(with zone: NSZone? = nil) -> Any {
         
         let copy : CFAlertAction = CFAlertAction(title: title,
                                                  style: style,

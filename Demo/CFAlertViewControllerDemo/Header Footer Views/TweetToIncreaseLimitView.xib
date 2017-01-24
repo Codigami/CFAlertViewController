@@ -64,7 +64,7 @@
                                 <constraint firstAttribute="trailing" secondItem="9Rl-s1-saP" secondAttribute="trailing" id="gKP-ye-qep"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XxY-Zb-ZKB" customClass="CFPushButton" customModule="CFAlertViewControllerDemo" customModuleProvider="target">
+                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XxY-Zb-ZKB" customClass="CFPushButton">
                             <rect key="frame" x="20" y="169" width="560" height="41"/>
                             <color key="backgroundColor" red="0.16078431372549018" green="0.77647058823529413" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>

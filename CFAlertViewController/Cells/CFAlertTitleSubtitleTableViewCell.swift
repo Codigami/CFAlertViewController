@@ -58,22 +58,22 @@ public class CFAlertTitleSubtitleTableViewCell: UITableViewCell {
     
     
     // MARK: Initialization Methods
-    override public func awakeFromNib() {
+    public override func awakeFromNib() {
         super.awakeFromNib()
         basicInitialisation()
     }
     
-    override public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    public override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         // Initialization code
         basicInitialisation()
     }
     
-    required public init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    private func basicInitialisation() {
+    internal func basicInitialisation() {
         // Reset Text
         setTitle(nil, subtitle: nil, alignment: .center)
         // Set Content Leading Space

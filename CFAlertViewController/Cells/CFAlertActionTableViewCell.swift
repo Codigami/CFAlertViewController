@@ -164,22 +164,22 @@ public class CFAlertActionTableViewCell: UITableViewCell {
     
     
     // MARK: - Initialization Methods
-    override public func awakeFromNib() {
+    public override func awakeFromNib() {
         super.awakeFromNib()
         basicInitialisation()
     }
     
-    override public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    public override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         // Initialization code
         basicInitialisation()
     }
     
-    required public init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    private func basicInitialisation() {
+    internal func basicInitialisation() {
         // Set Action Button Properties
         actionButton?.layer.cornerRadius = 6.0
         actionButton?.pushTransformScaleFactor = 0.9
@@ -187,7 +187,8 @@ public class CFAlertActionTableViewCell: UITableViewCell {
     
     
     // MARK: - Layout Methods
-    override public func layoutSubviews() {
+    public override func layoutSubviews() {
+        super.layoutIfNeeded()
         contentView.setNeedsLayout()
         contentView.layoutIfNeeded()
     }

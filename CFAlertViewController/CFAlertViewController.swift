@@ -11,7 +11,7 @@ import UIKit
 
 @objc(CFAlertViewController)
 public class CFAlertViewController: UIViewController    {
-
+    
     // MARK: - Declarations
     public typealias CFAlertViewControllerDismissBlock = (_ isBackgroundTapped: Bool) -> ()
     
@@ -78,7 +78,7 @@ public class CFAlertViewController: UIViewController    {
     internal var messageString: String?
     internal var actionList = [CFAlertAction]()
     internal var dismissHandler: CFAlertViewControllerDismissBlock?
-    private var keyboardHeight: CGFloat = 0.0   {
+    internal var keyboardHeight: CGFloat = 0.0   {
         
         didSet  {
             
@@ -90,57 +90,59 @@ public class CFAlertViewController: UIViewController    {
             }
         }
     }
-    private var tapGesture: UITapGestureRecognizer!
+    internal var tapGesture: UITapGestureRecognizer!
     
-    @IBOutlet private weak var mainViewBottomConstraint: NSLayoutConstraint?
-    @IBOutlet private weak var tableView: UITableView?
-    @IBOutlet private weak var containerViewCenterYConstraint: NSLayoutConstraint?
-    @IBOutlet private weak var containerViewBottomConstraint: NSLayoutConstraint?
-    @IBOutlet private weak var tableViewHeightConstraint: NSLayoutConstraint?
+    @IBOutlet internal weak var mainViewBottomConstraint: NSLayoutConstraint?
+    @IBOutlet internal weak var tableView: UITableView?
+    @IBOutlet internal weak var containerViewCenterYConstraint: NSLayoutConstraint?
+    @IBOutlet internal weak var containerViewBottomConstraint: NSLayoutConstraint?
+    @IBOutlet internal weak var tableViewHeightConstraint: NSLayoutConstraint?
     
     
     // MARK: - Initialisation Method
-    convenience public init(title: String?,
-                     message: String?,
-                     textAlignment: NSTextAlignment,
-                     preferredStyle: CFAlertControllerStyle,
-                     didDismissAlertHandler dismiss: CFAlertViewControllerDismissBlock?) {
+    public class func alert(title: String?,
+                            message: String?,
+                            textAlignment: NSTextAlignment,
+                            preferredStyle: CFAlertControllerStyle,
+                            didDismissAlertHandler dismiss: CFAlertViewControllerDismissBlock?) -> CFAlertViewController {
         
-        self.init(title: title,
-                  message: message,
-                  textAlignment: textAlignment,
-                  preferredStyle: preferredStyle,
-                  headerView: nil,
-                  footerView: nil,
-                  didDismissAlertHandler: dismiss)
+        return CFAlertViewController.alert(title: title,
+                                           message: message,
+                                           textAlignment: textAlignment,
+                                           preferredStyle: preferredStyle,
+                                           headerView: nil,
+                                           footerView: nil,
+                                           didDismissAlertHandler: dismiss)
     }
     
-    convenience public init(title: String?,
-                     message: String?,
-                     textAlignment: NSTextAlignment,
-                     preferredStyle: CFAlertControllerStyle,
-                     headerView: UIView?,
-                     footerView: UIView?,
-                     didDismissAlertHandler dismiss: CFAlertViewControllerDismissBlock?) {
+    public class func alert(title: String?,
+                            message: String?,
+                            textAlignment: NSTextAlignment,
+                            preferredStyle: CFAlertControllerStyle,
+                            headerView: UIView?,
+                            footerView: UIView?,
+                            didDismissAlertHandler dismiss: CFAlertViewControllerDismissBlock?) -> CFAlertViewController {
         
         // Get Current Bundle
         let bundle = Bundle(for: CFAlertViewController.self)
         
         // Create New Instance Of Alert Controller
-        self.init(nibName: "CFAlertViewController", bundle: bundle)
+        let alert = CFAlertViewController.init(nibName: "CFAlertViewController", bundle: bundle)
         
         // Assign Properties
-        self.titleString = title
-        self.messageString = message
-        self.textAlignment = textAlignment
-        self.preferredStyle = preferredStyle
-        self.setHeaderView(headerView, shouldUpdateContainerFrame: false, withAnimation: false)
-        self.setFooterView(footerView, shouldUpdateContainerFrame: false, withAnimation: false)
-        self.dismissHandler = dismiss
+        alert.titleString = title
+        alert.messageString = message
+        alert.textAlignment = textAlignment
+        alert.preferredStyle = preferredStyle
+        alert.setHeaderView(headerView, shouldUpdateContainerFrame: false, withAnimation: false)
+        alert.setFooterView(footerView, shouldUpdateContainerFrame: false, withAnimation: false)
+        alert.dismissHandler = dismiss
         
         // Custom Presentation
-        modalPresentationStyle = .custom
-        transitioningDelegate = self
+        alert.modalPresentationStyle = .custom
+        alert.transitioningDelegate = alert
+        
+        return alert
     }
     
     
@@ -172,7 +174,7 @@ public class CFAlertViewController: UIViewController    {
         view.addGestureRecognizer(self.tapGesture)
     }
     
-    override public func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         
         // Load Variables
@@ -182,7 +184,7 @@ public class CFAlertViewController: UIViewController    {
         loadDisplayContent()
     }
     
-    override public func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // Update UI
@@ -216,7 +218,7 @@ public class CFAlertViewController: UIViewController    {
         dismissAlert(withAnimation: animate, isBackgroundTapped: false, completion: completion)
     }
     
-    private func dismissAlert(withAnimation animate: Bool, isBackgroundTapped: Bool, completion: ((_: Void) -> Void)?) {
+    internal func dismissAlert(withAnimation animate: Bool, isBackgroundTapped: Bool, completion: ((_: Void) -> Void)?) {
         
         // Dismiss Self
         self.dismiss(animated: animate, completion: {() -> Void in
@@ -305,7 +307,7 @@ public class CFAlertViewController: UIViewController    {
     
     
     // MARK: - Handle Tap Events
-    @objc private func viewDidTap(_ gestureRecognizer: UITapGestureRecognizer) {
+    @objc internal func viewDidTap(_ gestureRecognizer: UITapGestureRecognizer) {
         
         // Get Tap Location
         let tapLocation: CGPoint = gestureRecognizer.location(in: self.view)
@@ -332,7 +334,7 @@ public class CFAlertViewController: UIViewController    {
     
     
     // MARK: - UIKeyboardWillShowNotification
-    @objc private func keyboardWillShow(_ notification: Notification) {
+    @objc internal func keyboardWillShow(_ notification: Notification) {
         
         let info: [AnyHashable: Any]? = notification.userInfo
         if let info = info  {
@@ -353,7 +355,7 @@ public class CFAlertViewController: UIViewController    {
     }
     
     // MARK: UIKeyboardWillHideNotification
-    @objc private func keyboardWillHide(_ notification: Notification) {
+    @objc internal func keyboardWillHide(_ notification: Notification) {
         
         UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.beginFromCurrentState, .curveEaseOut, .allowUserInteraction], animations: {() -> Void in
             // Update Keyboard Height
@@ -363,7 +365,7 @@ public class CFAlertViewController: UIViewController    {
     }
     
     // MARK: UITextViewTextDidBeginEditingNotification | UITextFieldTextDidBeginEditingNotification
-    @objc private func textViewOrTextFieldDidBeginEditing(_ notification: Notification) {
+    @objc internal func textViewOrTextFieldDidBeginEditing(_ notification: Notification) {
         
         if let notificationObject = notification.object, (notificationObject is UITextField || notificationObject is UITextView) {
             
@@ -385,7 +387,7 @@ public class CFAlertViewController: UIViewController    {
     
     
     // MARK: - View Rotation / Size Change Method
-    override public func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+    public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         // Code here will execute before the rotation begins.
         // Equivalent to placing it in the deprecated method -[willRotateToInterfaceOrientation:duration:]
@@ -402,7 +404,7 @@ public class CFAlertViewController: UIViewController    {
     
     
     // MARK: - Key Value Observers
-    override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if (keyPath == "contentSize") {
             // Update Container View Frame Without Animation
             updateContainerViewFrame(withAnimation: false)

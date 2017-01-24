@@ -38,28 +38,30 @@ public class CFAlertAction: NSObject, NSCopying {
     
     
     // MARK: - Initialisation Method
-    convenience public init(title: String?, style: CFAlertActionStyle, alignment: CFAlertActionAlignment, backgroundColor: UIColor?, textColor: UIColor?, handler: CFAlertActionHandlerBlock?) {
-        self.init()
+    public class func action(title: String?, style: CFAlertActionStyle, alignment: CFAlertActionAlignment, backgroundColor: UIColor?, textColor: UIColor?, handler: CFAlertActionHandlerBlock?) -> CFAlertAction {
         
-        // Set Properties
-        self.title = title
-        self.style = style
-        self.alignment = alignment
-        self.backgroundColor = backgroundColor
-        self.textColor = textColor
-        self.handler = handler
+        let action = CFAlertAction.init()
+        
+        // Set Alert Properties
+        action.title = title
+        action.style = style
+        action.alignment = alignment
+        action.backgroundColor = backgroundColor
+        action.textColor = textColor
+        action.handler = handler
+        
+        return action
     }
     
     
     // MARK: - NSCopying
     public func copy(with zone: NSZone? = nil) -> Any {
-        
-        let copy : CFAlertAction = CFAlertAction(title: title,
-                                                 style: style,
-                                                 alignment: alignment,
-                                                 backgroundColor: backgroundColor,
-                                                 textColor: textColor,
-                                                 handler: handler)
+        let copy = CFAlertAction.action(title: title,
+                                        style: style,
+                                        alignment: alignment,
+                                        backgroundColor: backgroundColor,
+                                        textColor: textColor,
+                                        handler: handler)
         return copy
     }
 }

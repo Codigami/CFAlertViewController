@@ -58,7 +58,7 @@ open class CFPushButton: UIButton {
     open var extraParam: Any?
     
     private var normalStateBackgroundColor: UIColor?
-    override open var backgroundColor: UIColor? {
+    open override var backgroundColor: UIColor? {
         didSet  {
             // Store Normal State Background Color
             normalStateBackgroundColor = backgroundColor
@@ -67,12 +67,12 @@ open class CFPushButton: UIButton {
     
     
     // MARK: - Initialization Methods
-    required public init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         super.init(coder: coder)
         basicInitialisation()
     }
     
-    override public init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         basicInitialisation()
     }
@@ -85,17 +85,17 @@ open class CFPushButton: UIButton {
     
     
     // MARK: - Touch Events
-    override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         pushButton(pushButton: true, shouldAnimate: true, completion: nil)
     }
     
-    override open func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    open override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
         pushButton(pushButton: false, shouldAnimate: true, completion: nil)
     }
     
-    override open func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+    open override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesCancelled(touches, with: event)
         pushButton(pushButton: false, shouldAnimate: true, completion: nil)
     }

@@ -25,7 +25,7 @@ public class CFAlertViewControllerActionSheetTransition: NSObject {
     
     
     // MARK: - Initialisation Methods
-    override public init() {
+    public override init() {
         super.init()
         
         // Default Transition Type

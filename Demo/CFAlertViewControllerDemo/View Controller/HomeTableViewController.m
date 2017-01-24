@@ -101,19 +101,19 @@
     }
     
     // Create Alert
-    CFAlertViewController *alert = [[CFAlertViewController alloc] initWithTitle:titleText
-                                                                        message:descText
-                                                                  textAlignment:[self getTextAlignment]
-                                                                 preferredStyle:[self getAlertStyle]
-                                                                     headerView:headerView
-                                                                     footerView:footerView
-                                                         didDismissAlertHandler:^(BOOL isBackgroundTapped) {
-                                                             NSLog(@"Alert Dismissed");
-                                                             if (isBackgroundTapped) {
-                                                                 // Handle background tap here
-                                                                 NSLog(@"Alert background tapped");
-                                                             }
-                                                         }];
+    CFAlertViewController *alert = [CFAlertViewController alertWithTitle:titleText
+                                                                 message:descText
+                                                           textAlignment:[self getTextAlignment]
+                                                          preferredStyle:[self getAlertStyle]
+                                                              headerView:headerView
+                                                              footerView:footerView
+                                                  didDismissAlertHandler:^(BOOL isBackgroundTapped) {
+                                                      NSLog(@"Alert Dismissed");
+                                                      if (isBackgroundTapped) {
+                                                          // Handle background tap here
+                                                          NSLog(@"Alert background tapped");
+                                                      }
+                                                  }];
     
     // Add Alert Reference Into Footer View
     if (footerView && [footerView isKindOfClass:[TweetToIncreaseLimitView class]]) {
@@ -125,34 +125,34 @@
     
     // Add Default Button Action
     if (self.actionDefaultSwitch.isOn) {
-        CFAlertAction *actionDefault = [[CFAlertAction alloc] initWithTitle:DEFAULT_BTN_TITLE
-                                                                      style:CFAlertActionStyleDefault
-                                                                  alignment:[self getActionsTextAlignment]
-                                                            backgroundColor:DEFAULT_BTN_COLOR
-                                                                  textColor:DEFAULT_BTN_TITLE_COLOR
-                                                                    handler:nil];
+        CFAlertAction *actionDefault = [CFAlertAction actionWithTitle:DEFAULT_BTN_TITLE
+                                                                style:CFAlertActionStyleDefault
+                                                            alignment:[self getActionsTextAlignment]
+                                                      backgroundColor:DEFAULT_BTN_COLOR
+                                                            textColor:DEFAULT_BTN_TITLE_COLOR
+                                                              handler:nil];
         [alert addAction:actionDefault];
     }
     
     // Add Destructive Button Action
     if (self.actionDestructiveSwitch.isOn) {
-        CFAlertAction *actionDestruct = [[CFAlertAction alloc] initWithTitle:DESTRUCTIVE_BTN_TITLE
-                                                                       style:CFAlertActionStyleDestructive
-                                                                   alignment:[self getActionsTextAlignment]
-                                                             backgroundColor:DESTRUCTIVE_BTN_COLOR
-                                                                   textColor:DESTRUCTIVE_BTN_TITLE_COLOR
-                                                                     handler:nil];
+        CFAlertAction *actionDestruct = [CFAlertAction actionWithTitle:DESTRUCTIVE_BTN_TITLE
+                                                                 style:CFAlertActionStyleDestructive
+                                                             alignment:[self getActionsTextAlignment]
+                                                       backgroundColor:DESTRUCTIVE_BTN_COLOR
+                                                             textColor:DESTRUCTIVE_BTN_TITLE_COLOR
+                                                               handler:nil];
         [alert addAction:actionDestruct];
     }
     
     // Add Cancel Button Action
     if (self.actionCancelSwitch.isOn) {
-        CFAlertAction *actionCancel = [[CFAlertAction alloc] initWithTitle:CANCEL_BTN_TITLE
-                                                                     style:CFAlertActionStyleCancel
-                                                                 alignment:[self getActionsTextAlignment]
-                                                           backgroundColor:CANCEL_BTN_COLOR
-                                                                 textColor:CANCEL_BTN_TITLE_COLOR
-                                                                   handler:nil];
+        CFAlertAction *actionCancel = [CFAlertAction actionWithTitle:CANCEL_BTN_TITLE
+                                                               style:CFAlertActionStyleCancel
+                                                           alignment:[self getActionsTextAlignment]
+                                                     backgroundColor:CANCEL_BTN_COLOR
+                                                           textColor:CANCEL_BTN_TITLE_COLOR
+                                                             handler:nil];
         [alert addAction:actionCancel];
     }
     
@@ -240,13 +240,13 @@
 
 - (void) showEmptyFieldsAlert   {
     
-    CFAlertViewController *alert = [[CFAlertViewController alloc] initWithTitle:@"Oops!"
-                                                                        message:@"Please set some properties of Alert view"
-                                                                  textAlignment:NSTextAlignmentCenter
-                                                                 preferredStyle:CFAlertControllerStyleAlert
-                                                         didDismissAlertHandler:^(BOOL isBackgroundTapped) {
-                                                             NSLog(@"Alert Dismissed");
-                                                         }];
+    CFAlertViewController *alert = [CFAlertViewController alertWithTitle:@"Oops!"
+                                                                 message:@"Please set some properties of Alert view"
+                                                           textAlignment:NSTextAlignmentCenter
+                                                          preferredStyle:CFAlertControllerStyleAlert
+                                                  didDismissAlertHandler:^(BOOL isBackgroundTapped) {
+                                                      NSLog(@"Alert Dismissed");
+                                                  }];
     
     [self presentViewController:alert animated:YES completion:nil];
 }

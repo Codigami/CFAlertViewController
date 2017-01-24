@@ -72,12 +72,12 @@ open class CFPushButton: UIButton {
         basicInitialisation()
     }
     
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         basicInitialisation()
     }
     
-    func basicInitialisation() {
+    open func basicInitialisation() {
         
         // Set Default Original Transform
         originalTransform = CGAffineTransform.identity

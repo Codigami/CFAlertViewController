@@ -38,7 +38,7 @@ public class CFAlertAction: NSObject, NSCopying {
     
     
     // MARK: - Initialisation Method
-    convenience init(title: String?, style: CFAlertActionStyle, alignment: CFAlertActionAlignment, backgroundColor: UIColor?, textColor: UIColor?, handler: CFAlertActionHandlerBlock?) {
+    convenience public init(title: String?, style: CFAlertActionStyle, alignment: CFAlertActionAlignment, backgroundColor: UIColor?, textColor: UIColor?, handler: CFAlertActionHandlerBlock?) {
         self.init()
         
         // Set Properties

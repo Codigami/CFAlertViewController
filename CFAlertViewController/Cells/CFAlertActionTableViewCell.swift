@@ -169,7 +169,7 @@ public class CFAlertActionTableViewCell: UITableViewCell {
         basicInitialisation()
     }
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         // Initialization code
         basicInitialisation()

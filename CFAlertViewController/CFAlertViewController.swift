@@ -100,7 +100,7 @@ public class CFAlertViewController: UIViewController    {
     
     
     // MARK: - Initialisation Method
-    convenience init(title: String?,
+    convenience public init(title: String?,
                      message: String?,
                      textAlignment: NSTextAlignment,
                      preferredStyle: CFAlertControllerStyle,
@@ -115,7 +115,7 @@ public class CFAlertViewController: UIViewController    {
                   didDismissAlertHandler: dismiss)
     }
     
-    convenience init(title: String?,
+    convenience public init(title: String?,
                      message: String?,
                      textAlignment: NSTextAlignment,
                      preferredStyle: CFAlertControllerStyle,

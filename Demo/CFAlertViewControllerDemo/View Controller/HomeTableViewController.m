@@ -101,19 +101,19 @@
     }
     
     // Create Alert
-    CFAlertViewController *alert = [CFAlertViewController alertWithTitle:titleText
-                                                                 message:descText
-                                                           textAlignment:[self getTextAlignment]
-                                                          preferredStyle:[self getAlertStyle]
-                                                              headerView:headerView
-                                                              footerView:footerView
-                                                  didDismissAlertHandler:^(BOOL isBackgroundTapped) {
-                                                      NSLog(@"Alert Dismissed");
-                                                      if (isBackgroundTapped) {
-                                                          // Handle background tap here
-                                                          NSLog(@"Alert background tapped");
-                                                      }
-                                                  }];
+    CFAlertViewController *alert = [CFAlertViewController alertControllerWithTitle:titleText
+                                                                           message:descText
+                                                                     textAlignment:[self getTextAlignment]
+                                                                    preferredStyle:[self getAlertStyle]
+                                                                        headerView:headerView
+                                                                        footerView:footerView
+                                                            didDismissAlertHandler:^(BOOL isBackgroundTapped) {
+                                                                NSLog(@"Alert Dismissed");
+                                                                if (isBackgroundTapped) {
+                                                                    // Handle background tap here
+                                                                    NSLog(@"Alert background tapped");
+                                                                }
+                                                            }];
     
     // Add Alert Reference Into Footer View
     if (footerView && [footerView isKindOfClass:[TweetToIncreaseLimitView class]]) {
@@ -240,13 +240,13 @@
 
 - (void) showEmptyFieldsAlert   {
     
-    CFAlertViewController *alert = [CFAlertViewController alertWithTitle:@"Oops!"
-                                                                 message:@"Please set some properties of Alert view"
-                                                           textAlignment:NSTextAlignmentCenter
-                                                          preferredStyle:CFAlertControllerStyleAlert
-                                                  didDismissAlertHandler:^(BOOL isBackgroundTapped) {
-                                                      NSLog(@"Alert Dismissed");
-                                                  }];
+    CFAlertViewController *alert = [CFAlertViewController alertControllerWithTitle:@"Oops!"
+                                                                           message:@"Please set some properties of Alert view"
+                                                                     textAlignment:NSTextAlignmentCenter
+                                                                    preferredStyle:CFAlertControllerStyleAlert
+                                                            didDismissAlertHandler:^(BOOL isBackgroundTapped) {
+                                                                NSLog(@"Alert Dismissed");
+                                                            }];
     
     [self presentViewController:alert animated:YES completion:nil];
 }

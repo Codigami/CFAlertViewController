@@ -100,28 +100,28 @@ public class CFAlertViewController: UIViewController    {
     
     
     // MARK: - Initialisation Method
-    public class func alert(title: String?,
-                            message: String?,
-                            textAlignment: NSTextAlignment,
-                            preferredStyle: CFAlertControllerStyle,
-                            didDismissAlertHandler dismiss: CFAlertViewControllerDismissBlock?) -> CFAlertViewController {
+    public class func alertController(title: String?,
+                                      message: String?,
+                                      textAlignment: NSTextAlignment,
+                                      preferredStyle: CFAlertControllerStyle,
+                                      didDismissAlertHandler dismiss: CFAlertViewControllerDismissBlock?) -> CFAlertViewController {
         
-        return CFAlertViewController.alert(title: title,
-                                           message: message,
-                                           textAlignment: textAlignment,
-                                           preferredStyle: preferredStyle,
-                                           headerView: nil,
-                                           footerView: nil,
-                                           didDismissAlertHandler: dismiss)
+        return CFAlertViewController.alertController(title: title,
+                                                     message: message,
+                                                     textAlignment: textAlignment,
+                                                     preferredStyle: preferredStyle,
+                                                     headerView: nil,
+                                                     footerView: nil,
+                                                     didDismissAlertHandler: dismiss)
     }
     
-    public class func alert(title: String?,
-                            message: String?,
-                            textAlignment: NSTextAlignment,
-                            preferredStyle: CFAlertControllerStyle,
-                            headerView: UIView?,
-                            footerView: UIView?,
-                            didDismissAlertHandler dismiss: CFAlertViewControllerDismissBlock?) -> CFAlertViewController {
+    public class func alertController(title: String?,
+                                      message: String?,
+                                      textAlignment: NSTextAlignment,
+                                      preferredStyle: CFAlertControllerStyle,
+                                      headerView: UIView?,
+                                      footerView: UIView?,
+                                      didDismissAlertHandler dismiss: CFAlertViewControllerDismissBlock?) -> CFAlertViewController {
         
         // Get Current Bundle
         let bundle = Bundle(for: CFAlertViewController.self)
@@ -415,7 +415,7 @@ public class CFAlertViewController: UIViewController    {
     // MARK: - StatusBar Update Methods
     #if NS_EXTENSION_UNAVAILABLE_IOS
     override func prefersStatusBarHidden() -> Bool {
-        return UIApplication.shared.statusBarHidden
+    return UIApplication.shared.statusBarHidden
     }
     #endif
     

@@ -63,17 +63,35 @@ extension CFAlertViewControllerPopupTransition: UIViewControllerAnimatedTransiti
                 alertViewController.view?.translatesAutoresizingMaskIntoConstraints = true
                 containerView.addSubview(alertViewController.view)
                 alertViewController.view?.layoutIfNeeded()
-                alertViewController.backgroundView?.alpha = 0.0
                 
-                // Remove Blur Effect
-                alertViewController.visualEffectView?.effect = nil
+                // Hide Container View
+                alertViewController.containerView?.alpha = 0.0
                 
-                DispatchQueue.main.async(execute: {() -> Void in
+                // Background
+                let backgroundColorRef: UIColor? = alertViewController.backgroundColor
+                alertViewController.backgroundColor = UIColor.clear
+                if alertViewController.backgroundStyle == .blur    {
+                    alertViewController.backgroundBlurView?.alpha = 0.0
+                }
+                
+                DispatchQueue.main.async(execute: { 
+                  
+                    UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.curveEaseIn, .allowUserInteraction, .beginFromCurrentState], animations: {() -> Void in
+                        
+                        // Background
+                        if alertViewController.backgroundStyle == .blur    {
+                            alertViewController.backgroundBlurView?.alpha = 1.0
+                        }
+                        alertViewController.backgroundColor = backgroundColorRef
+                        
+                    }, completion: nil)
                     
                     // Animate height changes
-                    UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 16.0, options: [.curveEaseIn, .allowUserInteraction], animations: {() -> Void in
+                    UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 14.0, options: [.curveEaseIn, .allowUserInteraction, .beginFromCurrentState], animations: {() -> Void in
+                        
                         alertViewController.containerView?.transform = CGAffineTransform.identity
-                        alertViewController.backgroundView?.alpha = 1.0
+                        alertViewController.containerView?.alpha = 1.0
+                        
                     }, completion: {(_ finished: Bool) -> Void in
                         
                         // Call Did System Methods
@@ -82,13 +100,6 @@ extension CFAlertViewControllerPopupTransition: UIViewControllerAnimatedTransiti
                         
                         // Declare Animation Finished
                         transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-                    })
-                    
-                    // Animate Blur Effect
-                    UIView.animate(withDuration: duration, animations: {
-                        
-                        // Add Blur Effect
-                        alertViewController.visualEffectView?.effect = UIBlurEffect(style: UIBlurEffectStyle.light)
                     })
                 })
             }
@@ -108,12 +119,17 @@ extension CFAlertViewControllerPopupTransition: UIViewControllerAnimatedTransiti
             let alertViewController: CFAlertViewController? = (fromViewController as? CFAlertViewController)
             
             // Animate height changes
-            UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: .curveEaseOut, animations: {() -> Void in
-                alertViewController?.containerView?.transform = CGAffineTransform(scaleX: 0.94, y: 0.94)
-                alertViewController?.backgroundView?.alpha = 0.0
+            UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.curveEaseOut, .beginFromCurrentState], animations: {() -> Void in
                 
-                // Remove Blur Effect
-                alertViewController?.visualEffectView?.effect = nil
+                alertViewController?.containerView?.transform = CGAffineTransform(scaleX: 0.94, y: 0.94)
+                alertViewController?.containerView?.alpha = 0.0
+                
+                // Background
+                if alertViewController?.backgroundStyle == .blur    {
+                    alertViewController?.backgroundBlurView?.alpha = 0.0
+                }
+                alertViewController?.view?.backgroundColor = UIColor.clear
+                
             }, completion: {(_ finished: Bool) -> Void in
                 // Call Did System Methods
                 toViewController?.endAppearanceTransition()

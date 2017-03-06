@@ -120,14 +120,10 @@
         ((TweetToIncreaseLimitView *)footerView).alertController = alert;
     }
     
-    // Set Should Dismiss Alert Controller On Dim Background Tap
+    // Configure Background
+    alert.backgroundStyle = CFAlertControllerBackgroundStyleBlur;
+    alert.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:0.2];
     alert.shouldDismissOnBackgroundTap = self.settingCloseOnBackgroundTapSwitch.isOn;
-    
-    // Set Background Color
-    alert.overlayColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
-    
-    // Enable Blur
-    alert.isTranslucentOverlay = YES;
     
     // Add Default Button Action
     if (self.actionDefaultSwitch.isOn) {

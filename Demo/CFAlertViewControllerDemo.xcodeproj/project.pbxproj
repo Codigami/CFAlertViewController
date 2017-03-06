@@ -186,8 +186,8 @@
 		2F8E901E1D181F07004450F5 /* Transitions */ = {
 			isa = PBXGroup;
 			children = (
-				403168E91E31F70D00C29637 /* CFAlertViewControllerActionSheetTransition.swift */,
 				403168EB1E31F71800C29637 /* CFAlertViewControllerPopupTransition.swift */,
+				403168E91E31F70D00C29637 /* CFAlertViewControllerActionSheetTransition.swift */,
 			);
 			path = Transitions;
 			sourceTree = "<group>";

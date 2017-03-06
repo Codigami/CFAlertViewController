@@ -20,6 +20,12 @@ public class CFAlertViewController: UIViewController    {
         case actionSheet
     }
     
+    @objc public enum CFAlertControllerBackgroundStyle : Int {
+        case plain = 0
+        case blur
+    }
+    public static let CF_ALERT_DEFAULT_BACKGROUND_COLOR: UIColor = UIColor(white: 0.0, alpha: 0.7)
+    
     
     // MARK: - Variables
     // MARK: Public
@@ -70,21 +76,30 @@ public class CFAlertViewController: UIViewController    {
             return _footerView
         }
     }
+    
+    // Background
+    public var backgroundStyle = CFAlertControllerBackgroundStyle.plain    {
+        didSet  {
+            // Set Background
+            if backgroundStyle == .blur {
+                // Set Blur Background
+                backgroundBlurView?.alpha = 1.0
+            }
+            else {
+                // Display Plain Background
+                backgroundBlurView?.alpha = 0.0
+            }
+        }
+    }
+    public var backgroundColor: UIColor?    {
+        didSet  {
+            self.view.backgroundColor = backgroundColor
+        }
+    }
+    @IBOutlet public weak var backgroundBlurView: UIVisualEffectView?
     public var shouldDismissOnBackgroundTap: Bool = true    // Default is True
-    public var overlayColor: UIColor = UIColor(white: 0.0, alpha: 0.7) {
-        didSet {
-            self.backgroundView?.backgroundColor = self.overlayColor
-        }
-    }
-    public var isTranslucentOverlay: Bool = false {
-        didSet {
-            self.visualEffectView?.isHidden = !self.isTranslucentOverlay
-        }
-    }
     
     @IBOutlet public weak var containerView: UIView?        // Reference Container View For Transition
-    @IBOutlet public weak var backgroundView: UIView?        // Reference Background View For Transition
-    @IBOutlet public weak var visualEffectView: UIVisualEffectView?        // Reference Container View For Transition
     
     // MARK: Private / Internal
     internal var titleString: String?
@@ -94,12 +109,11 @@ public class CFAlertViewController: UIViewController    {
     internal var keyboardHeight: CGFloat = 0.0   {
         
         didSet  {
-            
             // Check if keyboard Height Changed
-            if self.keyboardHeight != oldValue {
+            if keyboardHeight != oldValue {
                 
                 // Update Main View Bottom Constraint
-                self.mainViewBottomConstraint?.constant = self.keyboardHeight
+                mainViewBottomConstraint?.constant = keyboardHeight
             }
         }
     }
@@ -147,6 +161,8 @@ public class CFAlertViewController: UIViewController    {
         alert.messageString = message
         alert.textAlignment = textAlignment
         alert.preferredStyle = preferredStyle
+        alert.backgroundStyle = .plain
+        alert.backgroundColor = CF_ALERT_DEFAULT_BACKGROUND_COLOR
         alert.setHeaderView(headerView, shouldUpdateContainerFrame: false, withAnimation: false)
         alert.setFooterView(footerView, shouldUpdateContainerFrame: false, withAnimation: false)
         alert.dismissHandler = dismiss
@@ -185,12 +201,6 @@ public class CFAlertViewController: UIViewController    {
         // Add Tap Gesture Recognizer On View
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.viewDidTap))
         view.addGestureRecognizer(self.tapGesture)
-        
-        // Set Background Color
-        self.backgroundView?.backgroundColor = self.overlayColor
-        
-        // Set Blur
-        self.visualEffectView?.isHidden = !self.isTranslucentOverlay
     }
     
     public override func viewDidLoad() {
@@ -285,6 +295,8 @@ public class CFAlertViewController: UIViewController    {
         setFooterView(footerView, shouldUpdateContainerFrame: false, withAnimation: false)
         // Reload Table Content
         tableView?.reloadData()
+        // Update Background
+        backgroundStyle = (backgroundStyle)
         // Update Container View Frame
         updateContainerViewFrame(withAnimation: shouldAnimate)
     }

@@ -66,8 +66,11 @@ extension CFAlertViewControllerActionSheetTransition: UIViewControllerAnimatedTr
                 var frame: CGRect? = alertViewController.containerView?.frame
                 frame?.origin.y = containerView.frame.size.height
                 alertViewController.containerView?.frame = frame!
-                let backgroundColorRef: UIColor? = alertViewController.view?.backgroundColor
-                alertViewController.view?.backgroundColor = UIColor.clear
+                let backgroundColorRef: UIColor? = alertViewController.backgroundView?.backgroundColor
+                alertViewController.backgroundView?.backgroundColor = UIColor.clear
+                
+                // Remove Blur Effect
+                alertViewController.visualEffectView?.effect = nil
                 
                 // Animate height changes
                 UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: .curveEaseOut, animations: {() -> Void in
@@ -75,7 +78,7 @@ extension CFAlertViewControllerActionSheetTransition: UIViewControllerAnimatedTr
                     var frame: CGRect? = alertViewController.containerView?.frame
                     frame?.origin.y = (frame?.origin.y)! - (frame?.size.height)! - 10
                     alertViewController.containerView?.frame = frame!
-                    alertViewController.view?.backgroundColor = backgroundColorRef
+                    alertViewController.backgroundView?.backgroundColor = backgroundColorRef
                 }, completion: {(_ finished: Bool) -> Void in
                     
                     // Call Did System Methods
@@ -84,6 +87,13 @@ extension CFAlertViewControllerActionSheetTransition: UIViewControllerAnimatedTr
                     
                     // Declare Animation Finished
                     transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+                })
+                
+                // Animate Blur Effect
+                UIView.animate(withDuration: duration, animations: {
+                    
+                    // Add Blur Effect
+                    alertViewController.visualEffectView?.effect = UIBlurEffect(style: UIBlurEffectStyle.light)
                 })
             }
             else    {
@@ -107,7 +117,10 @@ extension CFAlertViewControllerActionSheetTransition: UIViewControllerAnimatedTr
                 var frame: CGRect? = alertViewController?.containerView?.frame
                 frame?.origin.y = (containerView?.frame.size.height)!
                 alertViewController?.containerView?.frame = frame!
-                alertViewController?.view?.backgroundColor = UIColor.clear
+                alertViewController?.backgroundView?.backgroundColor = UIColor.clear
+                
+                // Remove Blur Effect
+                alertViewController?.visualEffectView?.effect = nil
                 
             }, completion: {(_ finished: Bool) -> Void in
                 

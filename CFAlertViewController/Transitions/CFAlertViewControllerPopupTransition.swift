@@ -63,13 +63,17 @@ extension CFAlertViewControllerPopupTransition: UIViewControllerAnimatedTransiti
                 alertViewController.view?.translatesAutoresizingMaskIntoConstraints = true
                 containerView.addSubview(alertViewController.view)
                 alertViewController.view?.layoutIfNeeded()
-                alertViewController.view?.alpha = 0.0
+                alertViewController.backgroundView?.alpha = 0.0
+                
+                // Remove Blur Effect
+                alertViewController.visualEffectView?.effect = nil
+                
                 DispatchQueue.main.async(execute: {() -> Void in
                     
                     // Animate height changes
                     UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 16.0, options: [.curveEaseIn, .allowUserInteraction], animations: {() -> Void in
                         alertViewController.containerView?.transform = CGAffineTransform.identity
-                        alertViewController.view?.alpha = 1.0
+                        alertViewController.backgroundView?.alpha = 1.0
                     }, completion: {(_ finished: Bool) -> Void in
                         
                         // Call Did System Methods
@@ -78,6 +82,13 @@ extension CFAlertViewControllerPopupTransition: UIViewControllerAnimatedTransiti
                         
                         // Declare Animation Finished
                         transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+                    })
+                    
+                    // Animate Blur Effect
+                    UIView.animate(withDuration: duration, animations: {
+                        
+                        // Add Blur Effect
+                        alertViewController.visualEffectView?.effect = UIBlurEffect(style: UIBlurEffectStyle.light)
                     })
                 })
             }
@@ -99,7 +110,10 @@ extension CFAlertViewControllerPopupTransition: UIViewControllerAnimatedTransiti
             // Animate height changes
             UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: .curveEaseOut, animations: {() -> Void in
                 alertViewController?.containerView?.transform = CGAffineTransform(scaleX: 0.94, y: 0.94)
-                alertViewController?.view?.alpha = 0.0
+                alertViewController?.backgroundView?.alpha = 0.0
+                
+                // Remove Blur Effect
+                alertViewController?.visualEffectView?.effect = nil
             }, completion: {(_ finished: Bool) -> Void in
                 // Call Did System Methods
                 toViewController?.endAppearanceTransition()

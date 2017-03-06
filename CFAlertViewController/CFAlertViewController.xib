@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CFAlertViewController">
             <connections>
+                <outlet property="backgroundView" destination="i5M-Pr-FkT" id="GJd-S3-zfH"/>
                 <outlet property="containerView" destination="oE9-Fa-uD3" id="U7b-iR-Wvb"/>
                 <outlet property="containerViewBottomConstraint" destination="VQq-aN-B81" id="5Vk-q7-S71"/>
                 <outlet property="containerViewCenterYConstraint" destination="H8R-Gq-Eee" id="AJR-2d-FW9"/>
@@ -18,6 +19,7 @@
                 <outlet property="tableView" destination="bKB-GW-3Ko" id="hy8-Ui-XRf"/>
                 <outlet property="tableViewHeightConstraint" destination="mgv-7M-W5c" id="z4I-u7-gtf"/>
                 <outlet property="view" destination="ZTb-A8-9bZ" id="vIg-hL-ud7"/>
+                <outlet property="visualEffectView" destination="S2j-aa-3dE" id="nfc-aN-J89"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -25,6 +27,15 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S2j-aa-3dE">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="5jX-ZF-zMf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <blurEffect style="light"/>
+                </visualEffectView>
                 <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i5M-Pr-FkT">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
@@ -53,7 +64,7 @@
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
                     <gestureRecognizers/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="oE9-Fa-uD3" secondAttribute="trailing" priority="750" constant="10" id="AbK-jx-TFx"/>
@@ -71,11 +82,15 @@
                     </variation>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.70272909630000002" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="2uV-Tk-MV8"/>
+                <constraint firstAttribute="bottom" secondItem="S2j-aa-3dE" secondAttribute="bottom" id="8W4-LY-vEg"/>
                 <constraint firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="FgW-l0-cNW"/>
+                <constraint firstItem="S2j-aa-3dE" firstAttribute="top" secondItem="ZTb-A8-9bZ" secondAttribute="top" id="Si5-ff-XWt"/>
                 <constraint firstItem="i5M-Pr-FkT" firstAttribute="top" secondItem="ZTb-A8-9bZ" secondAttribute="top" id="Y3i-ZF-rc1"/>
+                <constraint firstItem="S2j-aa-3dE" firstAttribute="leading" secondItem="ZTb-A8-9bZ" secondAttribute="leading" id="kce-V2-ikp"/>
+                <constraint firstAttribute="trailing" secondItem="S2j-aa-3dE" secondAttribute="trailing" id="pNc-iH-VFQ"/>
                 <constraint firstItem="i5M-Pr-FkT" firstAttribute="leading" secondItem="ZTb-A8-9bZ" secondAttribute="leading" id="vrL-fC-WCF"/>
             </constraints>
             <point key="canvasLocation" x="348" y="982"/>

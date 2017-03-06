@@ -71,7 +71,20 @@ public class CFAlertViewController: UIViewController    {
         }
     }
     public var shouldDismissOnBackgroundTap: Bool = true    // Default is True
+    public var overlayColor: UIColor = UIColor(white: 0.0, alpha: 0.7) {
+        didSet {
+            self.backgroundView?.backgroundColor = self.overlayColor
+        }
+    }
+    public var isTranslucentOverlay: Bool = false {
+        didSet {
+            self.visualEffectView?.isHidden = !self.isTranslucentOverlay
+        }
+    }
+    
     @IBOutlet public weak var containerView: UIView?        // Reference Container View For Transition
+    @IBOutlet public weak var backgroundView: UIView?        // Reference Background View For Transition
+    @IBOutlet public weak var visualEffectView: UIVisualEffectView?        // Reference Container View For Transition
     
     // MARK: Private / Internal
     internal var titleString: String?
@@ -172,6 +185,12 @@ public class CFAlertViewController: UIViewController    {
         // Add Tap Gesture Recognizer On View
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.viewDidTap))
         view.addGestureRecognizer(self.tapGesture)
+        
+        // Set Background Color
+        self.backgroundView?.backgroundColor = self.overlayColor
+        
+        // Set Blur
+        self.visualEffectView?.isHidden = !self.isTranslucentOverlay
     }
     
     public override func viewDidLoad() {

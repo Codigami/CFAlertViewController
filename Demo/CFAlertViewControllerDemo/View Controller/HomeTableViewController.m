@@ -9,6 +9,7 @@
 #import "HomeTableViewController.h"
 #import "CFAlertViewControllerDemo-Swift.h"
 #import "CustomFooterView.h"
+#import "ColorPickerTableViewController.h"
 
 
 
@@ -26,9 +27,7 @@
 
 
 
-
-
-@interface HomeTableViewController ()
+@interface HomeTableViewController () <ColorPickerTableViewControllerDelegate>
 
 // Alert Type
 @property (weak, nonatomic) IBOutlet UISegmentedControl *alertTypeSegment;
@@ -44,6 +43,10 @@
 @property (weak, nonatomic) IBOutlet UISwitch *actionDestructiveSwitch;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *actionAlignmentSegment;
 
+// Background Overlay
+@property (weak, nonatomic) IBOutlet UISegmentedControl *backgroundTypeSegment;
+@property (weak, nonatomic) IBOutlet UIView *colorView;
+
 // Other
 @property (weak, nonatomic) IBOutlet UISwitch *settingCloseOnBackgroundTapSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *settingAddHeaderSwitch;
@@ -56,6 +59,13 @@
 @implementation HomeTableViewController
 
 #pragma mark - View Life Cycle Methods
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    // Set Default Background Color
+    self.colorView.backgroundColor = [CFAlertViewController CF_ALERT_DEFAULT_BACKGROUND_COLOR];
+}
 
 - (void) viewWillAppear:(BOOL)animated  {
     [super viewWillAppear:animated];
@@ -121,8 +131,14 @@
     }
     
     // Configure Background
-    alert.backgroundStyle = CFAlertControllerBackgroundStyleBlur;
-    alert.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:0.2];
+    if (self.backgroundTypeSegment.selectedSegmentIndex==1) {
+        alert.backgroundStyle = CFAlertControllerBackgroundStyleBlur;
+    }
+    else {
+        alert.backgroundStyle = CFAlertControllerBackgroundStylePlain;
+    }
+    
+    alert.backgroundColor = self.colorView.backgroundColor;
     alert.shouldDismissOnBackgroundTap = self.settingCloseOnBackgroundTapSwitch.isOn;
     
     // Add Default Button Action
@@ -251,6 +267,26 @@
                                                             }];
     
     [self presentViewController:alert animated:YES completion:nil];
+}
+
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    
+    if ([segue.identifier isEqualToString:@"ShowColorPicker"]) {
+        ColorPickerTableViewController *colorPickerVC = [segue destinationViewController];
+        colorPickerVC.delegate = self;
+        colorPickerVC.color = self.colorView.backgroundColor;
+    }
+}
+
+#pragma mark - ColorPickerTableViewControllerDelegate
+
+- (void)colorPicker:(ColorPickerTableViewController *)colorPicker didSelectColor:(UIColor *)color {
+    self.colorView.backgroundColor = color;
 }
 
 @end

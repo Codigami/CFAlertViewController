@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		217A00761E6D7B4800415DA7 /* ColorPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 217A00751E6D7B4800415DA7 /* ColorPickerTableViewController.m */; };
 		2F75A0DB1E2FAF89003414B8 /* CFAlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F75A0DA1E2FAF89003414B8 /* CFAlertAction.swift */; };
 		2F87B4911E36490D002317CC /* CFPushButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F87B4901E36490D002317CC /* CFPushButton.swift */; };
 		2F87DE1F1E30EC1300483008 /* CFAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F87DE1E1E30EC1300483008 /* CFAlertViewController.swift */; };
@@ -28,6 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		217A00741E6D7B4800415DA7 /* ColorPickerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPickerTableViewController.h; sourceTree = "<group>"; };
+		217A00751E6D7B4800415DA7 /* ColorPickerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorPickerTableViewController.m; sourceTree = "<group>"; };
 		2F75A0D71E2FAE4A003414B8 /* CFAlertViewControllerDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CFAlertViewControllerDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		2F75A0DA1E2FAF89003414B8 /* CFAlertAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFAlertAction.swift; sourceTree = "<group>"; };
 		2F87B4901E36490D002317CC /* CFPushButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFPushButton.swift; sourceTree = "<group>"; };
@@ -138,6 +141,8 @@
 			children = (
 				2F8E8FFE1D1811C7004450F5 /* HomeTableViewController.h */,
 				2F8E8FFF1D1811C7004450F5 /* HomeTableViewController.m */,
+				217A00741E6D7B4800415DA7 /* ColorPickerTableViewController.h */,
+				217A00751E6D7B4800415DA7 /* ColorPickerTableViewController.m */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -279,6 +284,7 @@
 				4004556F1E30A29E0035A3D4 /* CFAlertActionTableViewCell.swift in Sources */,
 				2F8E90001D1811C7004450F5 /* AppDelegate.m in Sources */,
 				2F8E90011D1811C7004450F5 /* CustomFooterView.m in Sources */,
+				217A00761E6D7B4800415DA7 /* ColorPickerTableViewController.m in Sources */,
 				2F8E90031D1811C7004450F5 /* HomeTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

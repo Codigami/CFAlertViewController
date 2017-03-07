@@ -15,8 +15,8 @@
 		2F8E8FCB1D181166004450F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F8E8FCA1D181166004450F5 /* Assets.xcassets */; };
 		2F8E8FCE1D181166004450F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F8E8FCC1D181166004450F5 /* LaunchScreen.storyboard */; };
 		2F8E90001D1811C7004450F5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F8E8FF81D1811C7004450F5 /* AppDelegate.m */; };
-		2F8E90011D1811C7004450F5 /* TweetToIncreaseLimitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F8E8FFB1D1811C7004450F5 /* TweetToIncreaseLimitView.m */; };
-		2F8E90021D1811C7004450F5 /* TweetToIncreaseLimitView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F8E8FFC1D1811C7004450F5 /* TweetToIncreaseLimitView.xib */; };
+		2F8E90011D1811C7004450F5 /* CustomFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F8E8FFB1D1811C7004450F5 /* CustomFooterView.m */; };
+		2F8E90021D1811C7004450F5 /* CustomFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F8E8FFC1D1811C7004450F5 /* CustomFooterView.xib */; };
 		2F8E90031D1811C7004450F5 /* HomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F8E8FFF1D1811C7004450F5 /* HomeTableViewController.m */; };
 		2F8E90241D181F07004450F5 /* CFAlertActionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F8E90101D181F07004450F5 /* CFAlertActionTableViewCell.xib */; };
 		2F8E90261D181F07004450F5 /* CFAlertTitleSubtitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F8E90131D181F07004450F5 /* CFAlertTitleSubtitleTableViewCell.xib */; };
@@ -40,9 +40,9 @@
 		2F8E8FCF1D181166004450F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F8E8FF71D1811C7004450F5 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2F8E8FF81D1811C7004450F5 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		2F8E8FFA1D1811C7004450F5 /* TweetToIncreaseLimitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = TweetToIncreaseLimitView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		2F8E8FFB1D1811C7004450F5 /* TweetToIncreaseLimitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TweetToIncreaseLimitView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		2F8E8FFC1D1811C7004450F5 /* TweetToIncreaseLimitView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetToIncreaseLimitView.xib; sourceTree = "<group>"; };
+		2F8E8FFA1D1811C7004450F5 /* CustomFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CustomFooterView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		2F8E8FFB1D1811C7004450F5 /* CustomFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CustomFooterView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		2F8E8FFC1D1811C7004450F5 /* CustomFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomFooterView.xib; sourceTree = "<group>"; };
 		2F8E8FFE1D1811C7004450F5 /* HomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTableViewController.h; sourceTree = "<group>"; };
 		2F8E8FFF1D1811C7004450F5 /* HomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTableViewController.m; sourceTree = "<group>"; };
 		2F8E90101D181F07004450F5 /* CFAlertActionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CFAlertActionTableViewCell.xib; sourceTree = "<group>"; };
@@ -126,9 +126,9 @@
 		2F8E8FF91D1811C7004450F5 /* Header Footer Views */ = {
 			isa = PBXGroup;
 			children = (
-				2F8E8FFA1D1811C7004450F5 /* TweetToIncreaseLimitView.h */,
-				2F8E8FFB1D1811C7004450F5 /* TweetToIncreaseLimitView.m */,
-				2F8E8FFC1D1811C7004450F5 /* TweetToIncreaseLimitView.xib */,
+				2F8E8FFA1D1811C7004450F5 /* CustomFooterView.h */,
+				2F8E8FFB1D1811C7004450F5 /* CustomFooterView.m */,
+				2F8E8FFC1D1811C7004450F5 /* CustomFooterView.xib */,
 			);
 			path = "Header Footer Views";
 			sourceTree = "<group>";
@@ -256,7 +256,7 @@
 				2F8E90241D181F07004450F5 /* CFAlertActionTableViewCell.xib in Resources */,
 				2F8E8FCE1D181166004450F5 /* LaunchScreen.storyboard in Resources */,
 				2F8E90261D181F07004450F5 /* CFAlertTitleSubtitleTableViewCell.xib in Resources */,
-				2F8E90021D1811C7004450F5 /* TweetToIncreaseLimitView.xib in Resources */,
+				2F8E90021D1811C7004450F5 /* CustomFooterView.xib in Resources */,
 				2F8E8FCB1D181166004450F5 /* Assets.xcassets in Resources */,
 				2F8E8FC91D181166004450F5 /* Main.storyboard in Resources */,
 			);
@@ -278,7 +278,7 @@
 				2F8E8FC01D181166004450F5 /* main.m in Sources */,
 				4004556F1E30A29E0035A3D4 /* CFAlertActionTableViewCell.swift in Sources */,
 				2F8E90001D1811C7004450F5 /* AppDelegate.m in Sources */,
-				2F8E90011D1811C7004450F5 /* TweetToIncreaseLimitView.m in Sources */,
+				2F8E90011D1811C7004450F5 /* CustomFooterView.m in Sources */,
 				2F8E90031D1811C7004450F5 /* HomeTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

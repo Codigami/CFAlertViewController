@@ -1,6 +1,6 @@
 //
 //  HomeTableViewController.h
-//  CFAlertController_Demo
+//  CFAlertViewControllerDemo
 //
 //  Created by Vinayak Parmar on 15/06/16.
 //  Copyright © 2016 Codigami Labs Inc. All rights reserved.

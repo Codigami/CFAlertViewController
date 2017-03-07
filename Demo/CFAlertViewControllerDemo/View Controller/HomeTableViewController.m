@@ -1,6 +1,6 @@
 //
 //  HomeTableViewController.m
-//  CFAlertController_Demo
+//  CFAlertViewControllerDemo
 //
 //  Created by Vinayak Parmar on 15/06/16.
 //  Copyright © 2016 Codigami Labs Inc. All rights reserved.
@@ -8,7 +8,7 @@
 
 #import "HomeTableViewController.h"
 #import "CFAlertViewControllerDemo-Swift.h"
-#import "TweetToIncreaseLimitView.h"
+#import "CustomFooterView.h"
 
 
 
@@ -97,7 +97,7 @@
     // Create Footer View
     UIView *footerView;
     if (self.settingAddFooterSwitch.isOn) {
-        footerView = [[TweetToIncreaseLimitView alloc] init];
+        footerView = [[CustomFooterView alloc] init];
     }
     
     // Create Alert
@@ -116,8 +116,8 @@
                                                             }];
     
     // Add Alert Reference Into Footer View
-    if (footerView && [footerView isKindOfClass:[TweetToIncreaseLimitView class]]) {
-        ((TweetToIncreaseLimitView *)footerView).alertController = alert;
+    if (footerView && [footerView isKindOfClass:[CustomFooterView class]]) {
+        ((CustomFooterView *)footerView).alertController = alert;
     }
     
     // Configure Background

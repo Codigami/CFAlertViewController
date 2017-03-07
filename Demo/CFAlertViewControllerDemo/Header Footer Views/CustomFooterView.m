@@ -1,17 +1,17 @@
 //
-//  TweetToIncreaseLimitView.m
-//  CFAlertViewController
+//  CustomFooterView.m
+//  CFAlertViewControllerDemo
 //
-//  Created by Shardul Patel on 09/06/16.
+//  Created by Shardul Patel on 03/07/17.
 //
 //
 
-#import "TweetToIncreaseLimitView.h"
+#import "CustomFooterView.h"
 #import "CFAlertViewControllerDemo-Swift.h"
 
 
 
-@interface TweetToIncreaseLimitView ()
+@interface CustomFooterView ()
 
 @property (nonatomic, weak) IBOutlet UIView *contentView;
 
@@ -36,7 +36,7 @@
 
 
 
-@implementation TweetToIncreaseLimitView
+@implementation CustomFooterView
 
 
 #pragma mark - Initialization Methods
@@ -77,7 +77,7 @@
 - (BOOL) viewSetup {
 
     // Initialization code
-    NSArray *arrayOfViews = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([TweetToIncreaseLimitView class])
+    NSArray *arrayOfViews = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([CustomFooterView class])
                                                           owner:self
                                                         options:nil];
     

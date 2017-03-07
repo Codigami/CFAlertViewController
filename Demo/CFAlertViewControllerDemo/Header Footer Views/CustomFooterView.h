@@ -1,8 +1,8 @@
 //
-//  TweetToIncreaseLimitView.h
-//  CFAlertViewController
+//  CustomFooterView.h
+//  CFAlertViewControllerDemo
 //
-//  Created by Shardul Patel on 09/06/16.
+//  Created by Shardul Patel on 03/07/17.
 //
 //
 
@@ -11,7 +11,7 @@
 
 
 
-@interface TweetToIncreaseLimitView : UIView
+@interface CustomFooterView : UIView
 
 @property (nonatomic, weak) CFAlertViewController *alertController;
 

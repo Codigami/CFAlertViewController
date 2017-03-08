@@ -63,6 +63,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Set Global Tint Color
+    self.navigationController.view.tintColor = [UIColor colorWithRed:29.0/255.0 green:161.0/255.0 blue:242.0/255.0 alpha:1];
+    
     // Set Default Background Color
     self.colorView.backgroundColor = [CFAlertViewController CF_ALERT_DEFAULT_BACKGROUND_COLOR];
 }
@@ -128,7 +131,6 @@
     // Add Alert Reference Into Footer View
     if (footerView && [footerView isKindOfClass:[CustomFooterView class]]) {
         ((CustomFooterView *)footerView).alertController = alert;
-        [(CustomFooterView *)footerView updateHeight];
     }
     
     // Configure Background

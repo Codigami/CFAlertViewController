@@ -31,10 +31,6 @@
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *expandButtonTextViewContainerVerticalConstraint;
 @property (nonatomic, assign) BOOL isExpanded;
 
-// Numbers
-@property (nonatomic, assign) NSInteger remainingBioCharacters;
-@property (nonatomic, assign) NSInteger characterLimit;
-
 @end
 
 
@@ -121,7 +117,7 @@
     self.backgroundColorButton.layer.cornerRadius = 5.0;
     
     // Set Add/Remove Header Button Properties
-    self.addRemoveHeaderButton.layer.cornerRadius = 8.0;
+    self.addRemoveHeaderButton.layer.cornerRadius = 5.0;
     
     // Set Text View Container Properties
     self.textViewContainer.layer.cornerRadius = 8.0;
@@ -129,10 +125,10 @@
     self.textViewContainer.layer.borderWidth = 1.0;
     
     // Set Text View Properties
-    self.textView.textContainerInset = UIEdgeInsetsMake(10, 10, 10, 10);
+    self.textView.textContainerInset = UIEdgeInsetsMake(10, 6, 10, 6);
     
     // Set Expand Button Properties
-    self.expandButton.layer.cornerRadius = 8.0;
+    self.expandButton.layer.cornerRadius = 5.0;
     self.expandButton.pushTransformScaleFactor = 0.92;
     
     // Set Default Expanded State
@@ -215,7 +211,7 @@
             
             // Update Add/Remove Header Button
             [self.addRemoveHeaderButton setTitle:@"Add Header" forState:UIControlStateNormal];
-            self.addRemoveHeaderButton.backgroundColor = [UIColor colorWithRed:41.0/255.0 green:198.0/255.0 blue:77.0/255.0 alpha:1];
+            self.addRemoveHeaderButton.backgroundColor = [UIColor colorWithRed:29.0/255.0 green:161.0/255.0 blue:242.0/255.0 alpha:1];
         }
     } completion:nil];
 }
@@ -254,11 +250,9 @@
                              // Configure Expand Button
                              [self.expandButton setTitle:@"Close"
                                                 forState:UIControlStateNormal];
-                             UIColor *greenColor = [UIColor colorWithRed:41.0/255.0 green:198.0/255.0 blue:77.0/255.0 alpha:1];
-                             self.expandButton.backgroundColor = [UIColor clearColor];
-                             [self.expandButton setTitleColor:greenColor forState:UIControlStateNormal];
-                             self.expandButton.layer.borderColor = greenColor.CGColor;
-                             self.expandButton.layer.borderWidth = 1.0;
+                             UIColor *grayColor = [UIColor grayColor];
+                             self.expandButton.backgroundColor = [grayColor colorWithAlphaComponent:0.15];
+                             [self.expandButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
                              
                              // Show All Subviews
                              for (UIView *childView in self.configurationUIContainer.subviews) {
@@ -274,11 +268,9 @@
                              // Configure Expand Button
                              [self.expandButton setTitle:@"Configurations"
                                                 forState:UIControlStateNormal];
-                             UIColor *greenColor = [UIColor colorWithRed:41.0/255.0 green:198.0/255.0 blue:77.0/255.0 alpha:1];
-                             self.expandButton.backgroundColor = greenColor;
+                             UIColor *blueColor = [UIColor colorWithRed:29.0/255.0 green:161.0/255.0 blue:242.0/255.0 alpha:1];
+                             self.expandButton.backgroundColor = blueColor;
                              [self.expandButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-                             self.expandButton.layer.borderColor = [UIColor clearColor].CGColor;
-                             self.expandButton.layer.borderWidth = 0.0;
                              
                              // Dismiss Keyboard
                              [self endEditing:YES];
@@ -294,7 +286,7 @@
 
 - (void) updateBackgroundStyle:(CFAlertControllerBackgroundStyle)style andBackgroundColor:(UIColor *)color  {
     
-    [UIView animateWithDuration:0.4 delay:0.0 usingSpringWithDamping:1.0 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState animations:^{
+    [UIView animateWithDuration:0.4 delay:0.0 usingSpringWithDamping:1.0 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction animations:^{
     
         // Update Background Style Segment
         switch (style) {

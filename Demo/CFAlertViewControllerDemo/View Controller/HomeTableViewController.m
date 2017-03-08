@@ -128,11 +128,6 @@
                                                                 }
                                                             }];
     
-    // Add Alert Reference Into Footer View
-    if (footerView && [footerView isKindOfClass:[CustomFooterView class]]) {
-        ((CustomFooterView *)footerView).alertController = alert;
-    }
-    
     // Configure Background
     if (self.backgroundTypeSegment.selectedSegmentIndex==1) {
         alert.backgroundStyle = CFAlertControllerBackgroundStyleBlur;
@@ -187,6 +182,12 @@
         [self showEmptyFieldsAlert];
     }
     else {
+        
+        // Add Alert Reference Into Footer View
+        if (footerView && [footerView isKindOfClass:[CustomFooterView class]]) {
+            ((CustomFooterView *)footerView).alertController = alert;
+        }
+        
         // Present Alert Controller
         [self presentViewController:alert animated:YES completion:nil];
     }

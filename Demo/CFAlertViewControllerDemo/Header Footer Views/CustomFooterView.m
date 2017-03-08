@@ -7,6 +7,7 @@
 //
 
 #import "CustomFooterView.h"
+#import "UIColor+Helper.h"
 #import "CFAlertViewControllerDemo-Swift.h"
 
 
@@ -14,23 +15,25 @@
 @interface CustomFooterView ()
 
 @property (nonatomic, weak) IBOutlet UIView *contentView;
-
 @property (nonatomic, weak) IBOutlet UIView *orContainerView;
-@property (nonatomic, weak) IBOutlet UILabel *tweetViewTitleLabel;
-@property (nonatomic, weak) IBOutlet UIView *tweetTextContainerView;
-@property (nonatomic, weak) IBOutlet UITextView *tweetTextView;
-@property (nonatomic, weak) IBOutlet UILabel *tweetCharacterCountLabel;
+@property (nonatomic, weak) IBOutlet UIView *configurationUIContainer;
 
-@property (nonatomic, weak) IBOutlet CFPushButton *tweetButton;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *tweetButtonTopConstraint;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *tweetButtonLeadingConstraint;
+@property (nonatomic, weak) IBOutlet UILabel *titleNoteLabel;
+@property (nonatomic, weak) IBOutlet UISegmentedControl *backgroundStyleSegment;
+@property (nonatomic, weak) IBOutlet UIButton *backgroundColorButton;
+@property (nonatomic, weak) IBOutlet UIButton *addRemoveHeaderButton;
+@property (nonatomic, assign) BOOL shouldDisplayHeader;
+@property (nonatomic, weak) IBOutlet UIView *textViewContainer;
+@property (nonatomic, weak) IBOutlet UITextView *textView;
+
+@property (nonatomic, weak) IBOutlet CFPushButton *expandButton;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *expandButtonLabelVerticalConstraint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *expandButtonTextViewContainerVerticalConstraint;
 @property (nonatomic, assign) BOOL isExpanded;
 
 // Numbers
 @property (nonatomic, assign) NSInteger remainingBioCharacters;
 @property (nonatomic, assign) NSInteger characterLimit;
-
-@property (nonatomic, strong) NSString *bioText;
 
 @end
 
@@ -41,7 +44,7 @@
 
 #pragma mark - Initialization Methods
 
-- (instancetype)init   {
+- (instancetype) init   {
     self = [super init];
     if (self){
         // Setup View
@@ -52,7 +55,7 @@
     return self;
 }
 
-- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+- (instancetype) initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self){
         // Setup View
@@ -63,7 +66,7 @@
     return self;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame {
+- (instancetype) initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         // Setup View
@@ -103,7 +106,7 @@
     return YES;
 }
 
-- (void)basicInitialisation {
+- (void) basicInitialisation {
     
     // Set Clips To Bound On
     self.clipsToBounds = YES;
@@ -113,38 +116,27 @@
     self.orContainerView.layer.borderColor = [UIColor colorWithRed:243.0/255.0 green:244.0/255.0 blue:245.0/255.0 alpha:1].CGColor;
     self.orContainerView.layer.borderWidth = 2.0;
     
-    // Set Tweet View Title
-    self.tweetViewTitleLabel.text = @"Tweet to increase limit";
+    // Set Expand Button Properties
+    self.backgroundColorButton.backgroundColor = self.alertController.backgroundColor;
+    self.backgroundColorButton.layer.cornerRadius = 5.0;
     
-    // Set Tweet Text Container Properties
-    self.tweetTextContainerView.layer.cornerRadius = 8.0;
-    self.tweetTextContainerView.layer.borderColor = [UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:1].CGColor;
-    self.tweetTextContainerView.layer.borderWidth = 1.0;
+    // Set Add/Remove Header Button Properties
+    self.addRemoveHeaderButton.layer.cornerRadius = 8.0;
     
-    // Set Tweet Text View Properties
-    self.tweetTextView.textContainerInset = UIEdgeInsetsMake(10, 10, 10, 10);
+    // Set Text View Container Properties
+    self.textViewContainer.layer.cornerRadius = 8.0;
+    self.textViewContainer.layer.borderColor = [UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:1].CGColor;
+    self.textViewContainer.layer.borderWidth = 1.0;
     
-    // Set Tweet Button Properties
-    UIColor *buttonColor = [UIColor colorWithRed:41.0/255.0 green:198.0/255.0 blue:77.0/255.0 alpha:1];
-    self.tweetButton.backgroundColor = [UIColor clearColor];
-    [self.tweetButton setTitleColor:buttonColor forState:UIControlStateNormal];
-    self.tweetButton.layer.borderColor = buttonColor.CGColor;
-    self.tweetButton.layer.borderWidth = 1.0;
-    self.tweetButton.layer.cornerRadius = 8.0;
-    self.tweetButton.pushTransformScaleFactor = 0.92;
+    // Set Text View Properties
+    self.textView.textContainerInset = UIEdgeInsetsMake(10, 10, 10, 10);
     
-    // Set Tweet Character Limit
-    self.characterLimit = 140;
-    [self updateCaptionCharacterCountLabel];
+    // Set Expand Button Properties
+    self.expandButton.layer.cornerRadius = 8.0;
+    self.expandButton.pushTransformScaleFactor = 0.92;
     
-    // Initialize Bio Text
-    self.bioText = @"I've been using Crowdfire to grow my network on Twitter, and I'm lovin' it. Anyone else tried it yet? http://www.crowdfireapp.com";
-    
-    // Update Height
+    // Set Default Expanded State
     self.isExpanded = NO;
-    
-    // Update Height
-    [self updateHeight];
 }
 
 #pragma mark - Layout Method
@@ -179,10 +171,74 @@
 
 #pragma mark - Setter / Getter Methods
 
+- (void) setAlertController:(CFAlertViewController *)alertController    {
+    _alertController = alertController;
+    
+    // Update Background Style and Color
+    [self updateBackgroundStyle:self.alertController.backgroundStyle
+             andBackgroundColor:self.alertController.backgroundColor];
+    
+    // Update Header Display State
+    self.shouldDisplayHeader = self.alertController.headerView;
+}
+
+- (void) setShouldDisplayHeader:(BOOL)shouldDisplayHeader   {
+    _shouldDisplayHeader = shouldDisplayHeader;
+    
+    UIImageView *headerView;
+    if (self.shouldDisplayHeader) {
+        
+        // Create Header View
+        headerView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"header_image"]];
+        headerView.contentMode = UIViewContentModeBottom;
+        headerView.clipsToBounds = YES;
+        headerView.frame = CGRectMake(0, 0, self.alertController.containerView.frame.size.width, 70.0);
+        headerView.alpha = 0.0;
+    }
+    
+    [UIView animateWithDuration:0.4 delay:0.0 usingSpringWithDamping:1.0 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState animations:^{
+        
+        if (self.shouldDisplayHeader) {
+            
+            // Set Alert Header
+            headerView.alpha = 1.0;
+            self.alertController.headerView = headerView;
+            
+            // Update Add/Remove Header Button
+            [self.addRemoveHeaderButton setTitle:@"Remove Header" forState:UIControlStateNormal];
+            self.addRemoveHeaderButton.backgroundColor = [UIColor colorWithRed:255.0/255.0 green:75.0/255.0 blue:75.0/255.0 alpha:1];
+        }
+        else    {
+            
+            // Remove Header
+            self.alertController.headerView = nil;
+            
+            // Update Add/Remove Header Button
+            [self.addRemoveHeaderButton setTitle:@"Add Header" forState:UIControlStateNormal];
+            self.addRemoveHeaderButton.backgroundColor = [UIColor colorWithRed:41.0/255.0 green:198.0/255.0 blue:77.0/255.0 alpha:1];
+        }
+    } completion:nil];
+}
+
 - (void) setIsExpanded:(BOOL)isExpanded {
     _isExpanded = isExpanded;
     
-    [UIView animateWithDuration:0.4
+    if (!self.isExpanded) {
+        
+        // Hide Subviews
+        for (UIView *childView in self.configurationUIContainer.subviews) {
+            if (childView == self.titleNoteLabel ||
+                childView == self.expandButton)
+            {
+                childView.alpha = 1.0;
+            }
+            else   {
+                childView.alpha = 0.0;
+            }
+        }
+    }
+    
+    [UIView animateWithDuration:0.3
                           delay:0.0
          usingSpringWithDamping:1.0
           initialSpringVelocity:0.0
@@ -192,24 +248,40 @@
                          if (self.isExpanded) {
                              
                              // Expand View
-                             self.tweetButtonTopConstraint.active = NO;
-                             self.tweetButtonLeadingConstraint.active = NO;
-                             self.tweetViewTitleLabel.alpha = 1.0;
-                             self.tweetTextContainerView.alpha = 1.0;
-                             self.tweetCharacterCountLabel.alpha = 1.0;
-                             [self.tweetButton setTitle:@"TWEET"
-                                               forState:UIControlStateNormal];
+                             self.expandButtonLabelVerticalConstraint.active = NO;
+                             self.expandButtonTextViewContainerVerticalConstraint.active = YES;
+                             
+                             // Configure Expand Button
+                             [self.expandButton setTitle:@"Close"
+                                                forState:UIControlStateNormal];
+                             UIColor *greenColor = [UIColor colorWithRed:41.0/255.0 green:198.0/255.0 blue:77.0/255.0 alpha:1];
+                             self.expandButton.backgroundColor = [UIColor clearColor];
+                             [self.expandButton setTitleColor:greenColor forState:UIControlStateNormal];
+                             self.expandButton.layer.borderColor = greenColor.CGColor;
+                             self.expandButton.layer.borderWidth = 1.0;
+                             
+                             // Show All Subviews
+                             for (UIView *childView in self.configurationUIContainer.subviews) {
+                                 childView.alpha = 1.0;
+                             }
                          }
                          else    {
                              
                              // Collapse View
-                             self.tweetButtonTopConstraint.active = YES;
-                             self.tweetButtonLeadingConstraint.active = YES;
-                             self.tweetViewTitleLabel.alpha = 0.0;
-                             self.tweetTextContainerView.alpha = 0.0;
-                             self.tweetCharacterCountLabel.alpha = 0.0;
-                             [self.tweetButton setTitle:@"TWEET TO INCREASE LIMIT"
-                                               forState:UIControlStateNormal];
+                             self.expandButtonTextViewContainerVerticalConstraint.active = NO;
+                             self.expandButtonLabelVerticalConstraint.active = YES;
+                             
+                             // Configure Expand Button
+                             [self.expandButton setTitle:@"Configurations"
+                                                forState:UIControlStateNormal];
+                             UIColor *greenColor = [UIColor colorWithRed:41.0/255.0 green:198.0/255.0 blue:77.0/255.0 alpha:1];
+                             self.expandButton.backgroundColor = greenColor;
+                             [self.expandButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                             self.expandButton.layer.borderColor = [UIColor clearColor].CGColor;
+                             self.expandButton.layer.borderWidth = 0.0;
+                             
+                             // Dismiss Keyboard
+                             [self endEditing:YES];
                          }
                          
                          // Update Height
@@ -218,52 +290,52 @@
                      } completion:nil];
 }
 
-#pragma mark - UITextView Delegate
+#pragma mark - Helper Methods
 
-- (void) textViewDidChange:(UITextView *)textView    {
+- (void) updateBackgroundStyle:(CFAlertControllerBackgroundStyle)style andBackgroundColor:(UIColor *)color  {
     
-    // Set Caption Text
-    self.bioText = textView.text;
-    [self updateCaptionCharacterCountLabel];
+    [UIView animateWithDuration:0.4 delay:0.0 usingSpringWithDamping:1.0 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState animations:^{
+    
+        // Update Background Style Segment
+        switch (style) {
+                
+            case CFAlertControllerBackgroundStylePlain:
+                self.backgroundStyleSegment.selectedSegmentIndex = 0;
+                break;
+                
+            case CFAlertControllerBackgroundStyleBlur:
+                self.backgroundStyleSegment.selectedSegmentIndex = 1;
+                break;
+        }
+        
+        // Update Background Color Button
+        self.backgroundColorButton.backgroundColor = color;
+        
+        // Update Alert View Controller Properties
+        self.alertController.backgroundStyle = style;
+        self.alertController.backgroundColor = color;
+        
+    } completion:nil];
 }
 
-#pragma mark - Tweet Limit Calculation
+#pragma mark - Button Click Actions
 
-- (void) updateCaptionCharacterCountLabel   {
-    
-    self.remainingBioCharacters = self.characterLimit - self.tweetTextView.text.length;
-    
-    // Update charecter Count Label
-    self.tweetCharacterCountLabel.text = [NSString stringWithFormat:@"%ld", (long)self.remainingBioCharacters];
-    
-    [self enableTweetButton];
+- (IBAction) expandButtonPressed:(id)sender {
+    self.isExpanded = !self.isExpanded;
 }
 
-- (void)enableTweetButton{
-    if (self.remainingBioCharacters < 0 || self.remainingBioCharacters == self.characterLimit) {
-        self.tweetButton.enabled = NO;
-        UIColor *buttonColor = [UIColor grayColor];
-        [self.tweetButton setTitleColor:buttonColor forState:UIControlStateNormal];
-        self.tweetButton.layer.borderColor = buttonColor.CGColor;
-    }
-    else {
-        self.tweetButton.enabled = YES;
-        UIColor *buttonColor = [UIColor colorWithRed:41.0/255.0 green:198.0/255.0 blue:77.0/255.0 alpha:1];
-        [self.tweetButton setTitleColor:buttonColor forState:UIControlStateNormal];
-        self.tweetButton.layer.borderColor = buttonColor.CGColor;
-    }
+- (IBAction) backgroundStyleSegmentValueChanged:(id)sender    {
+    [self updateBackgroundStyle:self.backgroundStyleSegment.selectedSegmentIndex
+             andBackgroundColor:self.backgroundColorButton.backgroundColor];
 }
 
-#pragma mark - Actions
+- (IBAction) addRemoveHeaderButtonPressed:(id)sender    {
+    self.shouldDisplayHeader = !self.shouldDisplayHeader;
+}
 
-- (IBAction)tweetButtonPressed:(id)sender{
-    
-    if (!self.isExpanded) {
-        self.isExpanded = YES;
-    }
-    else    {
-        [self.alertController dismissAlertWithAnimation:YES completion:nil];
-    }
+- (IBAction) backgroundColorButtonPressed:(id)sender    {
+    [self updateBackgroundStyle:self.alertController.backgroundStyle
+             andBackgroundColor:[UIColor randomColor]];
 }
 
 @end

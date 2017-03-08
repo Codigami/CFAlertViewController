@@ -13,6 +13,10 @@
 
 @interface CustomFooterView : UIView
 
+// Alert view controller reference
 @property (nonatomic, weak) CFAlertViewController *alertController;
+
+// This method will update height of this view
+- (void) updateHeight;
 
 @end

@@ -22,6 +22,7 @@
 		2F8E90241D181F07004450F5 /* CFAlertActionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F8E90101D181F07004450F5 /* CFAlertActionTableViewCell.xib */; };
 		2F8E90261D181F07004450F5 /* CFAlertTitleSubtitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F8E90131D181F07004450F5 /* CFAlertTitleSubtitleTableViewCell.xib */; };
 		2F8E90281D181F07004450F5 /* CFAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F8E90161D181F07004450F5 /* CFAlertViewController.xib */; };
+		2FD0E84D1E6FD8BD00F98307 /* UIColor+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FD0E84C1E6FD8BD00F98307 /* UIColor+Helper.m */; };
 		4004556F1E30A29E0035A3D4 /* CFAlertActionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4004556E1E30A29E0035A3D4 /* CFAlertActionTableViewCell.swift */; };
 		40102FEF1E30EC4900B63602 /* CFAlertTitleSubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40102FEE1E30EC4900B63602 /* CFAlertTitleSubtitleTableViewCell.swift */; };
 		403168EA1E31F70D00C29637 /* CFAlertViewControllerActionSheetTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403168E91E31F70D00C29637 /* CFAlertViewControllerActionSheetTransition.swift */; };
@@ -51,6 +52,8 @@
 		2F8E90101D181F07004450F5 /* CFAlertActionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CFAlertActionTableViewCell.xib; sourceTree = "<group>"; };
 		2F8E90131D181F07004450F5 /* CFAlertTitleSubtitleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CFAlertTitleSubtitleTableViewCell.xib; sourceTree = "<group>"; };
 		2F8E90161D181F07004450F5 /* CFAlertViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CFAlertViewController.xib; sourceTree = "<group>"; };
+		2FD0E84B1E6FD8BD00F98307 /* UIColor+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Helper.h"; sourceTree = "<group>"; };
+		2FD0E84C1E6FD8BD00F98307 /* UIColor+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Helper.m"; sourceTree = "<group>"; };
 		4004556E1E30A29E0035A3D4 /* CFAlertActionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFAlertActionTableViewCell.swift; sourceTree = "<group>"; };
 		40102FEE1E30EC4900B63602 /* CFAlertTitleSubtitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFAlertTitleSubtitleTableViewCell.swift; sourceTree = "<group>"; };
 		403168E91E31F70D00C29637 /* CFAlertViewControllerActionSheetTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFAlertViewControllerActionSheetTransition.swift; sourceTree = "<group>"; };
@@ -99,6 +102,7 @@
 				2F8E8FF61D1811C7004450F5 /* App Delegate */,
 				2F8E8FFD1D1811C7004450F5 /* View Controller */,
 				2F8E8FF91D1811C7004450F5 /* Header Footer Views */,
+				2FD0E84A1E6FD8A000F98307 /* Categories */,
 				2F8E8FC71D181166004450F5 /* Main.storyboard */,
 				2F8E8FCA1D181166004450F5 /* Assets.xcassets */,
 				2F8E8FCC1D181166004450F5 /* LaunchScreen.storyboard */,
@@ -197,6 +201,15 @@
 			path = Transitions;
 			sourceTree = "<group>";
 		};
+		2FD0E84A1E6FD8A000F98307 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				2FD0E84B1E6FD8BD00F98307 /* UIColor+Helper.h */,
+				2FD0E84C1E6FD8BD00F98307 /* UIColor+Helper.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -278,6 +291,7 @@
 				403168EA1E31F70D00C29637 /* CFAlertViewControllerActionSheetTransition.swift in Sources */,
 				403168EC1E31F71800C29637 /* CFAlertViewControllerPopupTransition.swift in Sources */,
 				40102FEF1E30EC4900B63602 /* CFAlertTitleSubtitleTableViewCell.swift in Sources */,
+				2FD0E84D1E6FD8BD00F98307 /* UIColor+Helper.m in Sources */,
 				2F87B4911E36490D002317CC /* CFPushButton.swift in Sources */,
 				2F75A0DB1E2FAF89003414B8 /* CFAlertAction.swift in Sources */,
 				2F8E8FC01D181166004450F5 /* main.m in Sources */,

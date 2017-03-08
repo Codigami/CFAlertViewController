@@ -128,6 +128,7 @@
     // Add Alert Reference Into Footer View
     if (footerView && [footerView isKindOfClass:[CustomFooterView class]]) {
         ((CustomFooterView *)footerView).alertController = alert;
+        [(CustomFooterView *)footerView updateHeight];
     }
     
     // Configure Background

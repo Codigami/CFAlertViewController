@@ -78,9 +78,23 @@ NSTextAlignment.center
 ##### Alert Style  
 Presentation style of the alert can be customised as Alert or Action sheet. Just set the `preferredStyle` property with one of the following values :
 ```swift
-CFAlertViewController.CFAlertControllerStyle.actionSheet,
-CFAlertViewController.CFAlertControllerStyle.alert
+CFAlertControllerStyle.actionSheet,
+CFAlertControllerStyle.alert
 ```
+
+##### Background style
+Background (overlay) of alert/action sheet can be blurred (Useful for security reasons in case the background needs to be hidden). Default value is `plain`. You can customize the blur style using `backgroundBlurView` property of type UIVisualEffectView. Update `backgroundStyle` property with one of the following enum values:
+
+```swift
+CFAlertControllerBackgroundStyle.plain,
+CFAlertControllerBackgroundStyle.blur
+```
+
+##### Background color
+You can change the background (overlay) color of the alert/actionsheet using the property `backgroundColor`.
+
+##### Dismiss on background tap
+By default, the alert gets dismissed after tapping on the background (overlay). Change `shouldDismissOnBackgroundTap` property to `false` to disable it.
 
 ##### Header / Footer
  You can add header and footer to the alert. Set properties `headerView` and `footerView` with custom views (subclass of UIView). You can pass nil to this properties to opt them out.  

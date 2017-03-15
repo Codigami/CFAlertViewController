@@ -67,7 +67,7 @@
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yla-dj-nKY">
                             <rect key="frame" x="20" y="285.5" width="560" height="70"/>
                             <subviews>
-                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="You can add text fields like this to header as well as to the footer." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9Rl-s1-saP">
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="You can add text views and text fields like this to header as well as to the footer." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9Rl-s1-saP">
                                     <rect key="frame" x="0.0" y="0.0" width="560" height="70"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

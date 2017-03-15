@@ -1,4 +1,4 @@
-#CFAlertViewController 
+# CFAlertViewController
 [![CocoaPods](https://img.shields.io/cocoapods/v/CFAlertViewController.svg)](https://cocoapods.org/pods/CFAlertViewController)
 [![CocoaPods](https://img.shields.io/cocoapods/dt/CFAlertViewController.svg)](https://cocoapods.org/pods/CFAlertViewController)
 [![license](https://img.shields.io/github/license/codigami/cfalertviewcontroller.svg)](https://github.com/Codigami/CFAlertViewController/blob/master/README.md)
@@ -25,7 +25,8 @@ Open the downloaded project in Xcode, then drag and drop folder named **CFAlertV
 ## Usage :  
 <p>
     <img src="https://github.com/Codigami/CFAlertViewController/blob/develop/Images/Alert%20%26%20Action%20sheet.png" style="width: 100%" />
-</p>  
+</p>
+
 The above shown alert and actionsheet can easily be implemented using the code snippet given below by some small tweaks
 ```swift
 // Create Alert
@@ -51,9 +52,11 @@ alertController.addAction(defaultAction)
         
 self.present(alertController, animated: true, completion: nil)
 ```
+
 ## Customisations :
 
 ### Alerts
+
 ```swift
 convenience init(title: String?,
                message: String?,
@@ -68,7 +71,9 @@ convenience init(title: String?,
 You can set custom title and message of the alert (pass nil if you don’t need them).
 
 ##### Alignment  
+
 You can customise alignment of the title and message. Set the `textAlignment` property with one of the following values : 
+
 ```swift
 NSTextAlignment.left,    
 NSTextAlignment.right,    
@@ -144,5 +149,5 @@ Configure the alignment of the action button added to the alert view. Set `align
 ##### Callback
 A block (of type CFAlertActionHandlerBlock) gets invoked when action is tapped. 
 
-##License
+## License
 This code is distributed under the terms and conditions of the MIT license.

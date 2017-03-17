@@ -24,15 +24,16 @@ public class CFAlertViewController: UIViewController    {
         case plain = 0
         case blur
     }
-    public static let CF_ALERT_DEFAULT_BACKGROUND_COLOR: UIColor = UIColor(white: 0.0, alpha: 0.7)
-    
+    public static func CF_ALERT_DEFAULT_BACKGROUND_COLOR() -> UIColor   {
+        return UIColor(white: 0.0, alpha: 0.7)
+    }
     
     // MARK: - Variables
     // MARK: Public
     public internal(set) var textAlignment = NSTextAlignment(rawValue: 0)
     public internal(set) var preferredStyle = CFAlertControllerStyle(rawValue: 0)    {
         didSet  {
-            DispatchQueue.main.async(execute: {() -> Void in
+            DispatchQueue.main.async(execute: {
                 // Position Contraints for Container View
                 if self.preferredStyle == .actionSheet {
                     // Set Corner Radius
@@ -80,20 +81,24 @@ public class CFAlertViewController: UIViewController    {
     // Background
     public var backgroundStyle = CFAlertControllerBackgroundStyle.plain    {
         didSet  {
-            // Set Background
-            if backgroundStyle == .blur {
-                // Set Blur Background
-                backgroundBlurView?.alpha = 1.0
-            }
-            else {
-                // Display Plain Background
-                backgroundBlurView?.alpha = 0.0
+            if isViewLoaded {
+                // Set Background
+                if backgroundStyle == .blur {
+                    // Set Blur Background
+                    backgroundBlurView?.alpha = 1.0
+                }
+                else {
+                    // Display Plain Background
+                    backgroundBlurView?.alpha = 0.0
+                }
             }
         }
     }
     public var backgroundColor: UIColor?    {
         didSet  {
-            self.view.backgroundColor = backgroundColor
+            if isViewLoaded {
+                view.backgroundColor = backgroundColor
+            }
         }
     }
     @IBOutlet public weak var backgroundBlurView: UIVisualEffectView?
@@ -157,12 +162,12 @@ public class CFAlertViewController: UIViewController    {
         let alert = CFAlertViewController.init(nibName: "CFAlertViewController", bundle: bundle)
         
         // Assign Properties
+        alert.preferredStyle = preferredStyle
+        alert.backgroundStyle = .plain
+        alert.backgroundColor = CF_ALERT_DEFAULT_BACKGROUND_COLOR()
         alert.titleString = title
         alert.messageString = message
         alert.textAlignment = textAlignment
-        alert.preferredStyle = preferredStyle
-        alert.backgroundStyle = .plain
-        alert.backgroundColor = CF_ALERT_DEFAULT_BACKGROUND_COLOR
         alert.setHeaderView(headerView, shouldUpdateContainerFrame: false, withAnimation: false)
         alert.setFooterView(footerView, shouldUpdateContainerFrame: false, withAnimation: false)
         alert.dismissHandler = dismiss

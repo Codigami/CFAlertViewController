@@ -74,33 +74,30 @@ extension CFAlertViewControllerPopupTransition: UIViewControllerAnimatedTransiti
                     alertViewController.backgroundBlurView?.alpha = 0.0
                 }
                 
-                DispatchQueue.main.async(execute: { 
-                  
-                    UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.curveEaseIn, .allowUserInteraction, .beginFromCurrentState], animations: {() -> Void in
-                        
-                        // Background
-                        if alertViewController.backgroundStyle == .blur    {
-                            alertViewController.backgroundBlurView?.alpha = 1.0
-                        }
-                        alertViewController.backgroundColor = backgroundColorRef
-                        
-                    }, completion: nil)
+                UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.curveEaseIn, .allowUserInteraction, .beginFromCurrentState], animations: {() -> Void in
                     
-                    // Animate height changes
-                    UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 14.0, options: [.curveEaseIn, .allowUserInteraction, .beginFromCurrentState], animations: {() -> Void in
-                        
-                        alertViewController.containerView?.transform = CGAffineTransform.identity
-                        alertViewController.containerView?.alpha = 1.0
-                        
-                    }, completion: {(_ finished: Bool) -> Void in
-                        
-                        // Call Did System Methods
-                        toViewController?.endAppearanceTransition()
-                        fromViewController?.endAppearanceTransition()
-                        
-                        // Declare Animation Finished
-                        transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-                    })
+                    // Background
+                    if alertViewController.backgroundStyle == .blur    {
+                        alertViewController.backgroundBlurView?.alpha = 1.0
+                    }
+                    alertViewController.backgroundColor = backgroundColorRef
+                    
+                }, completion: nil)
+                
+                // Animate height changes
+                UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 14.0, options: [.curveEaseIn, .allowUserInteraction, .beginFromCurrentState], animations: {() -> Void in
+                    
+                    alertViewController.containerView?.transform = CGAffineTransform.identity
+                    alertViewController.containerView?.alpha = 1.0
+                    
+                }, completion: {(_ finished: Bool) -> Void in
+                    
+                    // Call Did System Methods
+                    toViewController?.endAppearanceTransition()
+                    fromViewController?.endAppearanceTransition()
+                    
+                    // Declare Animation Finished
+                    transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
                 })
             }
             else    {

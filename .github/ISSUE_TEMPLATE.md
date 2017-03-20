@@ -1,6 +1,6 @@
 ### New Issue Checklist
 
-* [ ] I have read and understood the [CONTRIBUTING guide](https://github.com/rs/SDWebImage/blob/master/.github/CONTRIBUTING.md)
+* [ ] I have read and understood the [CONTRIBUTING guide](https://github.com/Codigami/CFAlertViewController/blob/develop/.github/CONTRIBUTING.md)
 * [ ] I have read the [Documentation](http://cocoadocs.org/docsets/CFAlertViewController/)
 * [ ] I have searched for a similar issue in the [project](https://github.com/Codigami/CFAlertViewController/issues) and found none
 

@@ -6,16 +6,16 @@
 
 ### Issue Info
 
- Info                    | Value                               |
--------------------------|-------------------------------------|
- Platform Name           | e.g. ios
- Platform Version        | e.g. 8.0
- SDWebImage Version      | e.g. 2.1.1
- Integration Method      | e.g. cocoapods / manually
- Xcode Version           | e.g. Xcode 8.0
- Repro rate              | e.g. all the time (100%) / sometimes x% / only once
- Repro with our demo prj | e.g. does it happen with our demo project?
- Demo project link       | e.g. link to a demo project that highlights the issue
+ Info                          | Value                               |
+-------------------------------|-------------------------------------|
+ Platform Name                 | e.g. ios
+ Platform Version              | e.g. 8.0
+ CFAlertViewController Version | e.g. 2.1.1
+ Integration Method            | e.g. cocoapods / manually
+ Xcode Version                 | e.g. Xcode 8.0
+ Repro rate                    | e.g. all the time (100%) / sometimes x% / only once
+ Repro with our demo prj       | e.g. does it happen with our demo project?
+ Demo project link             | e.g. link to a demo project that highlights the issue
 
 ### Issue Description and Steps
 

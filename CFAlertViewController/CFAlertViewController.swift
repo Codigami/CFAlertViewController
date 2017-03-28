@@ -293,7 +293,8 @@ public class CFAlertViewController: UIViewController    {
     
     internal func updateUI(withAnimation shouldAnimate: Bool) {
         // Refresh Preferred Style
-        preferredStyle = (preferredStyle)
+        let currentPreferredStyle = preferredStyle
+        preferredStyle = currentPreferredStyle
         // Update Table Header View
         setHeaderView(headerView, shouldUpdateContainerFrame: false, withAnimation: false)
         // Update Table Footer View
@@ -301,7 +302,8 @@ public class CFAlertViewController: UIViewController    {
         // Reload Table Content
         tableView?.reloadData()
         // Update Background
-        backgroundStyle = (backgroundStyle)
+        let currentBackgroundStyle = backgroundStyle
+        backgroundStyle = currentBackgroundStyle
         // Update Container View Frame
         updateContainerViewFrame(withAnimation: shouldAnimate)
     }

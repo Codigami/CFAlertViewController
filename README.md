@@ -32,26 +32,28 @@ Open the downloaded project in Xcode, then drag and drop folder named **CFAlertV
 The above shown alert and actionsheet can easily be implemented using the code snippet given below by some small tweaks
 ```swift
 // Create Alert
-var alertController: CFAlertViewController = CFAlertViewController(title: "You've hit the limit",
-                                                                   message: "Looks like you've hit your daily follow/unfollow limit. Upgrade to our paid plan to be able to remove your limits.", textAlignment: .center,
-                                                                   preferredStyle: .alert) { (didTapBackground) in
-                                                                    print("Alert Dismissed")
-                                                                    if (didTapBackground) {
-                                                                        // Handle background tap here
-                                                                    }
+var alertController: CFAlertViewController = CFAlertViewController.alertController(title: "You've hit the limit",
+                                                                                   message: "Looks like you've hit your daily follow/unfollow limit. Upgrade to our paid plan to be able to remove your limits.",
+                                                                                   textAlignment: .left,
+                                                                                   preferredStyle: .alert) { (didTapBackground) in
+                                                                                      if (didTapBackground) {
+                                                                                         // Handle background tap here
+                                                                                      }
 }
+
         
-var defaultAction = CFAlertAction(title: "UPGRADE",
-                                  style: .Default,
-                                  alignment: .justified,
-                                  backgroundColor: UIColor(red: CGFloat(46.0 / 255.0), green: CGFloat(204.0 / 255.0), blue: CGFloat(113.0 / 255.0), alpha: CGFloat(1)),
-                                  textColor: UIColor.white) { (action) in
-                                    print("Button with \(action.title) title tapped")
+var defaultAction = CFAlertAction.action(title: "UPGRADE",
+                                         style: .Default,
+                                         alignment: .justified,
+                                         backgroundColor: UIColor(red: CGFloat(46.0 / 255.0), green: CGFloat(204.0 / 255.0), blue: CGFloat(113.0 / 255.0), alpha: CGFloat(1)),
+                                         textColor: UIColor.white) { (action) in
+                                            print("Button with \(action.title) title tapped")
 }
     
 // Add Action Button Into Alert
 alertController.addAction(defaultAction)
-        
+
+// Present Alert View Controller
 self.present(alertController, animated: true, completion: nil)
 ```
 
@@ -60,20 +62,24 @@ self.present(alertController, animated: true, completion: nil)
 ### Alerts
 
 ```swift
-convenience init(title: String?,
-               message: String?,
-         textAlignment: NSTextAlignment,
-        preferredStyle: CFAlertControllerStyle,
-            headerView: UIView?,
-            footerView: UIView?,
-            didDismissAlertHandler dismiss: CFAlertViewControllerDismissBlock?)
+public class func alertController(title: String?,
+                                  titleColor: UIColor?,
+                                  message: String?,
+                                  messageColor: UIColor?,
+                                  textAlignment: NSTextAlignment,
+                                  preferredStyle: CFAlertControllerStyle,
+                                  headerView: UIView?,
+                                  footerView: UIView?,
+                                  didDismissAlertHandler dismiss: CFAlertViewControllerDismissBlock?) -> CFAlertViewController
 ```
 
-##### Title and Message  
-You can set custom title and message of the alert (pass nil if you don’t need them).
+##### Title and Message
+You can set a custom title and message text in the alert (pass `nil` if you don’t need them).
 
-##### Alignment  
+##### Title Color and Message Color
+You can set a custom title and message text color in the alert (pass `nil` if you want to use Default color values).
 
+##### Alignment
 You can customise alignment of the title and message. Set the `textAlignment` property with one of the following values : 
 
 ```swift
@@ -121,12 +127,12 @@ A block (of type CFAlertViewControllerDismissBlock) gets called when the Alert /
 
 ### Actions
 ```swift
-convenience init(title: String?,
-                 style: CFAlertActionStyle,
-             alignment: CFAlertActionAlignment,
-       backgroundColor: UIColor?,
-             textColor: UIColor?,
-               handler: CFAlertActionHandlerBlock?)
+public class func action(title: String?,
+                         style: CFAlertActionStyle,
+                         alignment: CFAlertActionAlignment,
+                         backgroundColor: UIColor?,
+                         textColor: UIColor?,
+                         handler: CFAlertActionHandlerBlock?) -> CFAlertAction
 ```                           
 ##### Title
 You can set the title of action button to be added.  
@@ -150,6 +156,9 @@ Configure the alignment of the action button added to the alert view. Set `align
 
 ##### Callback
 A block (of type CFAlertActionHandlerBlock) gets invoked when action is tapped. 
+
+### Container View
+You can also configure the background color or layer related properties (e.g. cornerRadius, borderColor, borderWidth) in the `containerView` property.
 
 ## License
 This code is distributed under the terms and conditions of the MIT license.

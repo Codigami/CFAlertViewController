@@ -27,6 +27,12 @@ public class CFAlertViewController: UIViewController    {
     public static func CF_ALERT_DEFAULT_BACKGROUND_COLOR() -> UIColor   {
         return UIColor(white: 0.0, alpha: 0.7)
     }
+    public static func CF_ALERT_DEFAULT_TITLE_COLOR() -> UIColor {
+        return UIColor.init(red: 1.0/255.0, green: 51.0/255.0, blue: 86.0/255.0, alpha: 1.0)
+    }
+    public static func CF_ALERT_DEFAULT_MESSAGE_COLOR() -> UIColor {
+        return UIColor.init(red: 1.0/255.0, green: 51.0/255.0, blue: 86.0/255.0, alpha: 1.0)
+    }
     
     // MARK: - Variables
     // MARK: Public
@@ -36,14 +42,10 @@ public class CFAlertViewController: UIViewController    {
             DispatchQueue.main.async(execute: {
                 // Position Contraints for Container View
                 if self.preferredStyle == .actionSheet {
-                    // Set Corner Radius
-                    self.containerView?.layer.cornerRadius = 6.0
                     self.containerViewCenterYConstraint?.isActive = false
                     self.containerViewBottomConstraint?.isActive = true
                 }
                 else {
-                    // Set Corner Radius
-                    self.containerView?.layer.cornerRadius = 8.0
                     self.containerViewBottomConstraint?.isActive = false
                     self.containerViewCenterYConstraint?.isActive = true
                 }
@@ -104,11 +106,15 @@ public class CFAlertViewController: UIViewController    {
     @IBOutlet public weak var backgroundBlurView: UIVisualEffectView?
     public var shouldDismissOnBackgroundTap: Bool = true    // Default is True
     
-    @IBOutlet public weak var containerView: UIView?        // Reference Container View For Transition
+    // The view which holds the popup UI
+    // You can change corner radius or background color of this view for additional customisation
+    @IBOutlet public weak var containerView: UIView?
     
     // MARK: Private / Internal
     internal var titleString: String?
+    internal var titleColor: UIColor = CFAlertViewController.CF_ALERT_DEFAULT_TITLE_COLOR()
     internal var messageString: String?
+    internal var messageColor: UIColor = CFAlertViewController.CF_ALERT_DEFAULT_MESSAGE_COLOR()
     internal var actionList = [CFAlertAction]()
     internal var dismissHandler: CFAlertViewControllerDismissBlock?
     internal var keyboardHeight: CGFloat = 0.0   {
@@ -131,7 +137,7 @@ public class CFAlertViewController: UIViewController    {
     @IBOutlet internal weak var tableViewHeightConstraint: NSLayoutConstraint?
     
     
-    // MARK: - Initialisation Method
+    // MARK: - Initialisation Methods
     public class func alertController(title: String?,
                                       message: String?,
                                       textAlignment: NSTextAlignment,
@@ -139,7 +145,9 @@ public class CFAlertViewController: UIViewController    {
                                       didDismissAlertHandler dismiss: CFAlertViewControllerDismissBlock?) -> CFAlertViewController {
         
         return CFAlertViewController.alertController(title: title,
+                                                     titleColor: nil,
                                                      message: message,
+                                                     messageColor: nil,
                                                      textAlignment: textAlignment,
                                                      preferredStyle: preferredStyle,
                                                      headerView: nil,
@@ -149,6 +157,27 @@ public class CFAlertViewController: UIViewController    {
     
     public class func alertController(title: String?,
                                       message: String?,
+                                      textAlignment: NSTextAlignment,
+                                      preferredStyle: CFAlertControllerStyle,
+                                      headerView: UIView?,
+                                      footerView: UIView?,
+                                      didDismissAlertHandler dismiss: CFAlertViewControllerDismissBlock?) -> CFAlertViewController {
+        
+        return CFAlertViewController.alertController(title: title,
+                                                     titleColor: nil,
+                                                     message: message,
+                                                     messageColor: nil,
+                                                     textAlignment: textAlignment,
+                                                     preferredStyle: preferredStyle,
+                                                     headerView: headerView,
+                                                     footerView: footerView,
+                                                     didDismissAlertHandler: dismiss)
+    }
+    
+    public class func alertController(title: String?,
+                                      titleColor: UIColor?,
+                                      message: String?,
+                                      messageColor: UIColor?,
                                       textAlignment: NSTextAlignment,
                                       preferredStyle: CFAlertControllerStyle,
                                       headerView: UIView?,
@@ -166,7 +195,15 @@ public class CFAlertViewController: UIViewController    {
         alert.backgroundStyle = .plain
         alert.backgroundColor = CF_ALERT_DEFAULT_BACKGROUND_COLOR()
         alert.titleString = title
+        if let titleColor = titleColor {
+            alert.titleColor = titleColor
+        }
+        
         alert.messageString = message
+        if let messageColor = messageColor {
+            alert.messageColor = messageColor
+        }
+        
         alert.textAlignment = textAlignment
         alert.setHeaderView(headerView, shouldUpdateContainerFrame: false, withAnimation: false)
         alert.setFooterView(footerView, shouldUpdateContainerFrame: false, withAnimation: false)
@@ -176,8 +213,16 @@ public class CFAlertViewController: UIViewController    {
         alert.modalPresentationStyle = .custom
         alert.transitioningDelegate = alert
         
+        // Preload View
+        if #available(iOS 9.0, *) {
+            alert.loadViewIfNeeded()
+        } else {
+            // Fallback on earlier versions
+        }
+        
         return alert
     }
+    
     
     
     // MARK: - View Life Cycle Methods
@@ -202,6 +247,17 @@ public class CFAlertViewController: UIViewController    {
     }
     
     internal func loadDisplayContent() {
+        
+        // Set Container View Default Background Color
+        containerView?.backgroundColor = UIColor.white
+        
+        // Set Container View Default Corner Radius
+        if preferredStyle == .actionSheet {
+            containerView?.layer.cornerRadius = 6.0
+        }
+        else {
+            containerView?.layer.cornerRadius = 8.0
+        }
         
         // Add Tap Gesture Recognizer On View
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.viewDidTap))
@@ -507,7 +563,7 @@ extension CFAlertViewController: UITableViewDataSource, UITableViewDelegate, CFA
             cell = tableView.dequeueReusableCell(withIdentifier: CFAlertTitleSubtitleTableViewCell.identifier())
             let titleSubtitleCell: CFAlertTitleSubtitleTableViewCell? = (cell as? CFAlertTitleSubtitleTableViewCell)
             // Set Content
-            titleSubtitleCell?.setTitle(titleString, subtitle: messageString, alignment: textAlignment!)
+            titleSubtitleCell?.setTitle(titleString, titleColor: titleColor, subtitle: messageString, subtitleColor: messageColor, alignment: textAlignment!)
             // Set Content Margin
             titleSubtitleCell?.contentTopMargin = 20.0
             if self.actionList.count <= 0 {

@@ -11,7 +11,7 @@ import UIKit
 
 @objc(CFAlertTitleSubtitleTableViewCell)
 public class CFAlertTitleSubtitleTableViewCell: UITableViewCell {
-
+    
     // MARK: - Declarations
     
     
@@ -60,11 +60,14 @@ public class CFAlertTitleSubtitleTableViewCell: UITableViewCell {
     // MARK: Initialization Methods
     public override func awakeFromNib() {
         super.awakeFromNib()
+        
+        // Initialization code
         basicInitialisation()
     }
     
     public override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
         // Initialization code
         basicInitialisation()
     }
@@ -74,12 +77,13 @@ public class CFAlertTitleSubtitleTableViewCell: UITableViewCell {
     }
     
     internal func basicInitialisation() {
-        // Reset Text
-        setTitle(nil, subtitle: nil, alignment: .center)
+        // Reset Text and Color
+        setTitle(nil, titleColor: nil, subtitle: nil, subtitleColor: nil, alignment: .center)
+        
         // Set Content Leading Space
         contentLeadingSpace = 20.0;
     }
-
+    
     
     // MARK: - Layout Methods
     override public func layoutSubviews() {
@@ -89,12 +93,14 @@ public class CFAlertTitleSubtitleTableViewCell: UITableViewCell {
     
     
     // MARK: Helper Methods
-    public func setTitle(_ title: String?, subtitle: String?, alignment: NSTextAlignment) {
+    public func setTitle(_ title: String?, titleColor: UIColor?, subtitle: String?, subtitleColor: UIColor?, alignment: NSTextAlignment) {
         
         // Set Cell Text Fonts & Colors
         titleLabel?.text = title
+        titleLabel?.textColor = titleColor
         titleLabel?.textAlignment = alignment
         subtitleLabel?.text = subtitle
+        subtitleLabel?.textColor = subtitleColor
         subtitleLabel?.textAlignment = alignment
         
         // Update Constraints
@@ -116,5 +122,4 @@ public class CFAlertTitleSubtitleTableViewCell: UITableViewCell {
             }
         }
     }
-
 }

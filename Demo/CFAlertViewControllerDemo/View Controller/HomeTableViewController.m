@@ -13,6 +13,9 @@
 
 
 
+#define DEFAULT_TITLE_COLOR         [UIColor colorWithRed:1.0/255.0 green:51.0/255.0 blue:86.0/255.0 alpha:1.0]
+#define DEFAULT_MESSAGE_COLOR       [UIColor colorWithRed:1.0/255.0 green:51.0/255.0 blue:86.0/255.0 alpha:1.0]
+
 #define DEFAULT_BTN_TITLE           @"DEFAULT"
 #define DEFAULT_BTN_COLOR           [UIColor colorWithRed:41.0/255.0 green:198.0/255.0 blue:77.0/255.0 alpha:1.0]
 #define DEFAULT_BTN_TITLE_COLOR     [UIColor whiteColor]
@@ -115,7 +118,9 @@
     
     // Create Alert
     CFAlertViewController *alert = [CFAlertViewController alertControllerWithTitle:titleText
+                                                                        titleColor:DEFAULT_TITLE_COLOR
                                                                            message:descText
+                                                                      messageColor:DEFAULT_MESSAGE_COLOR
                                                                      textAlignment:[self getTextAlignment]
                                                                     preferredStyle:[self getAlertStyle]
                                                                         headerView:headerView

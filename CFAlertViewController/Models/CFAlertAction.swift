@@ -10,7 +10,7 @@ import UIKit
 
 
 @objc(CFAlertAction)
-public class CFAlertAction: NSObject, NSCopying {
+open class CFAlertAction: NSObject, NSCopying {
 
     // MARK: - Declarations
     public typealias CFAlertActionHandlerBlock = (_ action: CFAlertAction) -> ()
@@ -38,30 +38,48 @@ public class CFAlertAction: NSObject, NSCopying {
     
     
     // MARK: - Initialisation Method
-    public class func action(title: String?, style: CFAlertActionStyle, alignment: CFAlertActionAlignment, backgroundColor: UIColor?, textColor: UIColor?, handler: CFAlertActionHandlerBlock?) -> CFAlertAction {
+    public class func action(title: String?,
+                             style: CFAlertActionStyle,
+                             alignment: CFAlertActionAlignment,
+                             backgroundColor: UIColor?,
+                             textColor: UIColor?,
+                             handler: CFAlertActionHandlerBlock?) -> CFAlertAction  {
         
-        let action = CFAlertAction.init()
+        return CFAlertAction.init(title: title,
+                                  style: style,
+                                  alignment: alignment,
+                                  backgroundColor: backgroundColor,
+                                  textColor: textColor,
+                                  handler: handler)
+    }
+    
+    public convenience init(title: String?,
+                            style: CFAlertActionStyle,
+                            alignment: CFAlertActionAlignment,
+                            backgroundColor: UIColor?,
+                            textColor: UIColor?,
+                            handler: CFAlertActionHandlerBlock?) {
+        
+        // Create New Instance Of Alert Controller
+        self.init()
         
         // Set Alert Properties
-        action.title = title
-        action.style = style
-        action.alignment = alignment
-        action.backgroundColor = backgroundColor
-        action.textColor = textColor
-        action.handler = handler
-        
-        return action
+        self.title = title
+        self.style = style
+        self.alignment = alignment
+        self.backgroundColor = backgroundColor
+        self.textColor = textColor
+        self.handler = handler
     }
     
     
     // MARK: - NSCopying
     public func copy(with zone: NSZone? = nil) -> Any {
-        let copy = CFAlertAction.action(title: title,
-                                        style: style,
-                                        alignment: alignment,
-                                        backgroundColor: backgroundColor,
-                                        textColor: textColor,
-                                        handler: handler)
-        return copy
+        return CFAlertAction.init(title: title,
+                                      style: style,
+                                      alignment: alignment,
+                                      backgroundColor: backgroundColor,
+                                      textColor: textColor,
+                                      handler: handler)
     }
 }

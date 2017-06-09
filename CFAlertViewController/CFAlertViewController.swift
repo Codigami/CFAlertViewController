@@ -10,7 +10,7 @@ import UIKit
 
 
 @objc(CFAlertViewController)
-public class CFAlertViewController: UIViewController    {
+open class CFAlertViewController: UIViewController    {
     
     // MARK: - Declarations
     public typealias CFAlertViewControllerDismissBlock = (_ isBackgroundTapped: Bool) -> ()
@@ -24,13 +24,13 @@ public class CFAlertViewController: UIViewController    {
         case plain = 0
         case blur
     }
-    public static func CF_ALERT_DEFAULT_BACKGROUND_COLOR() -> UIColor   {
+    open static func CF_ALERT_DEFAULT_BACKGROUND_COLOR() -> UIColor   {
         return UIColor(white: 0.0, alpha: 0.7)
     }
-    public static func CF_ALERT_DEFAULT_TITLE_COLOR() -> UIColor {
+    open static func CF_ALERT_DEFAULT_TITLE_COLOR() -> UIColor {
         return UIColor.init(red: 1.0/255.0, green: 51.0/255.0, blue: 86.0/255.0, alpha: 1.0)
     }
-    public static func CF_ALERT_DEFAULT_MESSAGE_COLOR() -> UIColor {
+    open static func CF_ALERT_DEFAULT_MESSAGE_COLOR() -> UIColor {
         return UIColor.init(red: 1.0/255.0, green: 51.0/255.0, blue: 86.0/255.0, alpha: 1.0)
     }
     
@@ -156,25 +156,6 @@ public class CFAlertViewController: UIViewController    {
     }
     
     public class func alertController(title: String?,
-                                      message: String?,
-                                      textAlignment: NSTextAlignment,
-                                      preferredStyle: CFAlertControllerStyle,
-                                      headerView: UIView?,
-                                      footerView: UIView?,
-                                      didDismissAlertHandler dismiss: CFAlertViewControllerDismissBlock?) -> CFAlertViewController {
-        
-        return CFAlertViewController.alertController(title: title,
-                                                     titleColor: nil,
-                                                     message: message,
-                                                     messageColor: nil,
-                                                     textAlignment: textAlignment,
-                                                     preferredStyle: preferredStyle,
-                                                     headerView: headerView,
-                                                     footerView: footerView,
-                                                     didDismissAlertHandler: dismiss)
-    }
-    
-    public class func alertController(title: String?,
                                       titleColor: UIColor?,
                                       message: String?,
                                       messageColor: UIColor?,
@@ -184,45 +165,82 @@ public class CFAlertViewController: UIViewController    {
                                       footerView: UIView?,
                                       didDismissAlertHandler dismiss: CFAlertViewControllerDismissBlock?) -> CFAlertViewController {
         
+        // Create New Instance Of Alert Controller
+        return CFAlertViewController.init(title: title,
+                                          titleColor: titleColor,
+                                          message: message,
+                                          messageColor: messageColor,
+                                          textAlignment: textAlignment,
+                                          preferredStyle: preferredStyle,
+                                          headerView: headerView,
+                                          footerView: footerView,
+                                          didDismissAlertHandler: dismiss)
+    }
+    
+    public convenience init(title: String?,
+                            message: String?,
+                            textAlignment: NSTextAlignment,
+                            preferredStyle: CFAlertControllerStyle,
+                            didDismissAlertHandler dismiss: CFAlertViewControllerDismissBlock?) {
+        
+        // Create New Instance Of Alert Controller
+        self.init(title: title,
+                  titleColor: nil,
+                  message: message,
+                  messageColor: nil,
+                  textAlignment: textAlignment,
+                  preferredStyle: preferredStyle,
+                  headerView: nil,
+                  footerView: nil,
+                  didDismissAlertHandler: dismiss)
+    }
+    
+    public convenience init(title: String?,
+                            titleColor: UIColor?,
+                            message: String?,
+                            messageColor: UIColor?,
+                            textAlignment: NSTextAlignment,
+                            preferredStyle: CFAlertControllerStyle,
+                            headerView: UIView?,
+                            footerView: UIView?,
+                            didDismissAlertHandler dismiss: CFAlertViewControllerDismissBlock?) {
+        
         // Get Current Bundle
         let bundle = Bundle(for: CFAlertViewController.self)
         
         // Create New Instance Of Alert Controller
-        let alert = CFAlertViewController.init(nibName: "CFAlertViewController", bundle: bundle)
+        self.init(nibName: "CFAlertViewController", bundle: bundle)
         
         // Assign Properties
-        alert.preferredStyle = preferredStyle
-        alert.backgroundStyle = .plain
-        alert.backgroundColor = CF_ALERT_DEFAULT_BACKGROUND_COLOR()
-        alert.titleString = title
+        self.preferredStyle = preferredStyle
+        backgroundStyle = .plain
+        backgroundColor = CFAlertViewController.CF_ALERT_DEFAULT_BACKGROUND_COLOR()
+        titleString = title
         if let titleColor = titleColor {
-            alert.titleColor = titleColor
+            self.titleColor = titleColor
         }
         
-        alert.messageString = message
+        messageString = message
         if let messageColor = messageColor {
-            alert.messageColor = messageColor
+            self.messageColor = messageColor
         }
         
-        alert.textAlignment = textAlignment
-        alert.setHeaderView(headerView, shouldUpdateContainerFrame: false, withAnimation: false)
-        alert.setFooterView(footerView, shouldUpdateContainerFrame: false, withAnimation: false)
-        alert.dismissHandler = dismiss
+        self.textAlignment = textAlignment
+        setHeaderView(headerView, shouldUpdateContainerFrame: false, withAnimation: false)
+        setFooterView(footerView, shouldUpdateContainerFrame: false, withAnimation: false)
+        dismissHandler = dismiss
         
         // Custom Presentation
-        alert.modalPresentationStyle = .custom
-        alert.transitioningDelegate = alert
+        modalPresentationStyle = .custom
+        transitioningDelegate = self
         
         // Preload View
         if #available(iOS 9.0, *) {
-            alert.loadViewIfNeeded()
+            loadViewIfNeeded()
         } else {
             // Fallback on earlier versions
         }
-        
-        return alert
     }
-    
     
     
     // MARK: - View Life Cycle Methods
@@ -264,7 +282,7 @@ public class CFAlertViewController: UIViewController    {
         view.addGestureRecognizer(self.tapGesture)
     }
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         
         // Load Variables
@@ -274,7 +292,7 @@ public class CFAlertViewController: UIViewController    {
         loadDisplayContent()
     }
     
-    public override func viewWillAppear(_ animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // Update UI
@@ -481,7 +499,7 @@ public class CFAlertViewController: UIViewController    {
     
     
     // MARK: - View Rotation / Size Change Method
-    public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+    open override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         // Code here will execute before the rotation begins.
         // Equivalent to placing it in the deprecated method -[willRotateToInterfaceOrientation:duration:]
@@ -498,7 +516,7 @@ public class CFAlertViewController: UIViewController    {
     
     
     // MARK: - Key Value Observers
-    public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if (keyPath == "contentSize") {
             // Update Container View Frame Without Animation
             updateContainerViewFrame(withAnimation: false)

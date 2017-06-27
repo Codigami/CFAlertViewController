@@ -9,7 +9,6 @@
 import UIKit
 
 
-@objc(CFAlertViewController)
 open class CFAlertViewController: UIViewController    {
     
     // MARK: - Declarations
@@ -24,13 +23,13 @@ open class CFAlertViewController: UIViewController    {
         case plain = 0
         case blur
     }
-    open static func CF_ALERT_DEFAULT_BACKGROUND_COLOR() -> UIColor   {
+    @objc open static func CF_ALERT_DEFAULT_BACKGROUND_COLOR() -> UIColor   {
         return UIColor(white: 0.0, alpha: 0.7)
     }
-    open static func CF_ALERT_DEFAULT_TITLE_COLOR() -> UIColor {
+    @objc open static func CF_ALERT_DEFAULT_TITLE_COLOR() -> UIColor {
         return UIColor.init(red: 1.0/255.0, green: 51.0/255.0, blue: 86.0/255.0, alpha: 1.0)
     }
-    open static func CF_ALERT_DEFAULT_MESSAGE_COLOR() -> UIColor {
+    @objc open static func CF_ALERT_DEFAULT_MESSAGE_COLOR() -> UIColor {
         return UIColor.init(red: 1.0/255.0, green: 51.0/255.0, blue: 86.0/255.0, alpha: 1.0)
     }
     
@@ -53,7 +52,7 @@ open class CFAlertViewController: UIViewController    {
             })
         }
     }
-    public private(set) var actions: [CFAlertAction]?   {
+    @objc public private(set) var actions: [CFAlertAction]?   {
         set {
             // Dont Do Anything
         }
@@ -62,7 +61,7 @@ open class CFAlertViewController: UIViewController    {
         }
     }
     internal var _headerView : UIView?
-    public var headerView: UIView?  {
+    @objc public var headerView: UIView?  {
         set {
             self.setHeaderView(newValue, shouldUpdateContainerFrame: true, withAnimation: true)
         }
@@ -71,7 +70,7 @@ open class CFAlertViewController: UIViewController    {
         }
     }
     internal var _footerView : UIView?
-    public var footerView: UIView?  {
+    @objc public var footerView: UIView?  {
         set {
             self.setFooterView(newValue, shouldUpdateContainerFrame: true, withAnimation: true)
         }
@@ -81,7 +80,7 @@ open class CFAlertViewController: UIViewController    {
     }
     
     // Background
-    public var backgroundStyle = CFAlertControllerBackgroundStyle.plain    {
+    @objc public var backgroundStyle = CFAlertControllerBackgroundStyle.plain    {
         didSet  {
             if isViewLoaded {
                 // Set Background
@@ -96,19 +95,19 @@ open class CFAlertViewController: UIViewController    {
             }
         }
     }
-    public var backgroundColor: UIColor?    {
+    @objc public var backgroundColor: UIColor?    {
         didSet  {
             if isViewLoaded {
                 view.backgroundColor = backgroundColor
             }
         }
     }
-    @IBOutlet public weak var backgroundBlurView: UIVisualEffectView?
-    public var shouldDismissOnBackgroundTap: Bool = true    // Default is True
+    @objc @IBOutlet public weak var backgroundBlurView: UIVisualEffectView?
+    @objc public var shouldDismissOnBackgroundTap: Bool = true    // Default is True
     
     // The view which holds the popup UI
     // You can change corner radius or background color of this view for additional customisation
-    @IBOutlet public weak var containerView: UIView?
+    @objc @IBOutlet public weak var containerView: UIView?
     
     // MARK: Private / Internal
     internal var titleString: String?
@@ -138,11 +137,11 @@ open class CFAlertViewController: UIViewController    {
     
     
     // MARK: - Initialisation Methods
-    public class func alertController(title: String?,
-                                      message: String?,
-                                      textAlignment: NSTextAlignment,
-                                      preferredStyle: CFAlertControllerStyle,
-                                      didDismissAlertHandler dismiss: CFAlertViewControllerDismissBlock?) -> CFAlertViewController {
+    @objc public class func alertController(title: String?,
+                                            message: String?,
+                                            textAlignment: NSTextAlignment,
+                                            preferredStyle: CFAlertControllerStyle,
+                                            didDismissAlertHandler dismiss: CFAlertViewControllerDismissBlock?) -> CFAlertViewController {
         
         return CFAlertViewController.alertController(title: title,
                                                      titleColor: nil,
@@ -155,15 +154,15 @@ open class CFAlertViewController: UIViewController    {
                                                      didDismissAlertHandler: dismiss)
     }
     
-    public class func alertController(title: String?,
-                                      titleColor: UIColor?,
-                                      message: String?,
-                                      messageColor: UIColor?,
-                                      textAlignment: NSTextAlignment,
-                                      preferredStyle: CFAlertControllerStyle,
-                                      headerView: UIView?,
-                                      footerView: UIView?,
-                                      didDismissAlertHandler dismiss: CFAlertViewControllerDismissBlock?) -> CFAlertViewController {
+    @objc public class func alertController(title: String?,
+                                            titleColor: UIColor?,
+                                            message: String?,
+                                            messageColor: UIColor?,
+                                            textAlignment: NSTextAlignment,
+                                            preferredStyle: CFAlertControllerStyle,
+                                            headerView: UIView?,
+                                            footerView: UIView?,
+                                            didDismissAlertHandler dismiss: CFAlertViewControllerDismissBlock?) -> CFAlertViewController {
         
         // Create New Instance Of Alert Controller
         return CFAlertViewController.init(title: title,
@@ -177,11 +176,11 @@ open class CFAlertViewController: UIViewController    {
                                           didDismissAlertHandler: dismiss)
     }
     
-    public convenience init(title: String?,
-                            message: String?,
-                            textAlignment: NSTextAlignment,
-                            preferredStyle: CFAlertControllerStyle,
-                            didDismissAlertHandler dismiss: CFAlertViewControllerDismissBlock?) {
+    @objc public convenience init(title: String?,
+                                  message: String?,
+                                  textAlignment: NSTextAlignment,
+                                  preferredStyle: CFAlertControllerStyle,
+                                  didDismissAlertHandler dismiss: CFAlertViewControllerDismissBlock?) {
         
         // Create New Instance Of Alert Controller
         self.init(title: title,
@@ -195,15 +194,15 @@ open class CFAlertViewController: UIViewController    {
                   didDismissAlertHandler: dismiss)
     }
     
-    public convenience init(title: String?,
-                            titleColor: UIColor?,
-                            message: String?,
-                            messageColor: UIColor?,
-                            textAlignment: NSTextAlignment,
-                            preferredStyle: CFAlertControllerStyle,
-                            headerView: UIView?,
-                            footerView: UIView?,
-                            didDismissAlertHandler dismiss: CFAlertViewControllerDismissBlock?) {
+    @objc public convenience init(title: String?,
+                                  titleColor: UIColor?,
+                                  message: String?,
+                                  messageColor: UIColor?,
+                                  textAlignment: NSTextAlignment,
+                                  preferredStyle: CFAlertControllerStyle,
+                                  headerView: UIView?,
+                                  footerView: UIView?,
+                                  didDismissAlertHandler dismiss: CFAlertViewControllerDismissBlock?) {
         
         // Get Current Bundle
         let bundle = Bundle(for: CFAlertViewController.self)
@@ -301,7 +300,7 @@ open class CFAlertViewController: UIViewController    {
     
     
     // MARK: - Helper Methods
-    public func addAction(_ action: CFAlertAction?) {
+    @objc public func addAction(_ action: CFAlertAction?) {
         
         if let action = action {
             
@@ -322,11 +321,11 @@ open class CFAlertViewController: UIViewController    {
         }
     }
     
-    public func dismissAlert(withAnimation animate: Bool, completion: ((_: Void) -> Void)?) {
+    @objc public func dismissAlert(withAnimation animate: Bool, completion: (() -> Void)?) {
         dismissAlert(withAnimation: animate, isBackgroundTapped: false, completion: completion)
     }
     
-    internal func dismissAlert(withAnimation animate: Bool, isBackgroundTapped: Bool, completion: ((_: Void) -> Void)?) {
+    internal func dismissAlert(withAnimation animate: Bool, isBackgroundTapped: Bool, completion: (() -> Void)?) {
         
         // Dismiss Self
         self.dismiss(animated: animate, completion: {() -> Void in
@@ -384,7 +383,7 @@ open class CFAlertViewController: UIViewController    {
     
     internal func updateContainerViewFrame(withAnimation shouldAnimate: Bool) {
         
-        let animate: ((_: Void) -> Void)? = {() -> Void in
+        let animate: (() -> Void)? = {() -> Void in
             
             if let tableView = self.tableView   {
                 
@@ -527,15 +526,20 @@ open class CFAlertViewController: UIViewController    {
     // MARK: - StatusBar Update Methods
     #if NS_EXTENSION_UNAVAILABLE_IOS
     override func prefersStatusBarHidden() -> Bool {
-    return UIApplication.shared.statusBarHidden
+        return UIApplication.shared.statusBarHidden
     }
     #endif
     
     
     // MARK: - Dealloc
     deinit {
+        
         // Remove KVO
         tableView?.removeObserver(self, forKeyPath: "contentSize")
+        
+        // Remove Dismiss Handler
+        dismissHandler = nil
+        
         print("Popup Dealloc")
     }
 }

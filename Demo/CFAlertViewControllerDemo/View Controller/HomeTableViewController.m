@@ -151,7 +151,9 @@
                                                                   alignment:[self getActionsTextAlignment]
                                                             backgroundColor:DEFAULT_BTN_COLOR
                                                                   textColor:DEFAULT_BTN_TITLE_COLOR
-                                                                    handler:nil];
+                                                                    handler:^(CFAlertAction * _Nonnull action) {
+                                                                        NSLog(@"Action Button Clicked [%@]", action.title);
+                                                                    }];
         [alert addAction:actionDefault];
     }
     
@@ -162,7 +164,9 @@
                                                                    alignment:[self getActionsTextAlignment]
                                                              backgroundColor:DESTRUCTIVE_BTN_COLOR
                                                                    textColor:DESTRUCTIVE_BTN_TITLE_COLOR
-                                                                     handler:nil];
+                                                                     handler:^(CFAlertAction * _Nonnull action) {
+                                                                         NSLog(@"Action Button Clicked [%@]", action.title);
+                                                                     }];
         [alert addAction:actionDestruct];
     }
     
@@ -173,7 +177,9 @@
                                                                  alignment:[self getActionsTextAlignment]
                                                            backgroundColor:CANCEL_BTN_COLOR
                                                                  textColor:CANCEL_BTN_TITLE_COLOR
-                                                                   handler:nil];
+                                                                   handler:^(CFAlertAction * _Nonnull action) {
+                                                                       NSLog(@"Action Button Clicked [%@]", action.title);
+                                                                   }];
         [alert addAction:actionCancel];
     }
     

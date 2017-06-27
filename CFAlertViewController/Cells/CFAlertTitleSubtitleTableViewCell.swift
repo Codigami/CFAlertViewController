@@ -9,7 +9,6 @@
 import UIKit
 
 
-@objc(CFAlertTitleSubtitleTableViewCell)
 public class CFAlertTitleSubtitleTableViewCell: UITableViewCell {
     
     // MARK: - Declarations

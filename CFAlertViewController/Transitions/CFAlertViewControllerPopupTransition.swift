@@ -9,7 +9,6 @@
 import UIKit
 
 
-@objc(CFAlertViewControllerPopupTransition)
 public class CFAlertViewControllerPopupTransition: NSObject {
 
     // MARK: - Declarations

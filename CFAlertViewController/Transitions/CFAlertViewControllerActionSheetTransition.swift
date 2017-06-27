@@ -9,7 +9,6 @@
 import UIKit
 
 
-@objc(CFAlertViewControllerActionSheetTransition)
 public class CFAlertViewControllerActionSheetTransition: NSObject {
     
     // MARK: - Declarations
@@ -88,9 +87,10 @@ extension CFAlertViewControllerActionSheetTransition: UIViewControllerAnimatedTr
                 UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.curveEaseIn, .beginFromCurrentState], animations: {() -> Void in
                     
                     alertViewController.view?.layoutIfNeeded()
-                    var frame: CGRect? = alertViewController.containerView?.frame
-                    frame?.origin.y = (frame?.origin.y)! - (frame?.size.height)! - 10
-                    alertViewController.containerView?.frame = frame!
+                    if var frame = alertViewController.containerView?.frame    {
+                        frame.origin.y = frame.origin.y - frame.size.height - 10
+                        alertViewController.containerView?.frame = frame
+                    }
                     
                 }, completion: {(_ finished: Bool) -> Void in
                     

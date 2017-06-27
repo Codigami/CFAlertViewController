@@ -9,9 +9,8 @@
 import UIKit
 
 
-@objc(CFAlertAction)
 open class CFAlertAction: NSObject, NSCopying {
-
+    
     // MARK: - Declarations
     public typealias CFAlertActionHandlerBlock = (_ action: CFAlertAction) -> ()
     
@@ -29,21 +28,21 @@ open class CFAlertAction: NSObject, NSCopying {
     }
     
     // MARK: - Variables
-    public var title: String?
-    public var style: CFAlertActionStyle = .Default
-    public var alignment: CFAlertActionAlignment = .justified
-    public var backgroundColor: UIColor?
-    public var textColor: UIColor?
-    public var handler: CFAlertActionHandlerBlock?
+    @objc public var title: String?
+    @objc public var style: CFAlertActionStyle = .Default
+    @objc public var alignment: CFAlertActionAlignment = .justified
+    @objc public var backgroundColor: UIColor?
+    @objc public var textColor: UIColor?
+    @objc public var handler: CFAlertActionHandlerBlock?
     
     
     // MARK: - Initialisation Method
-    public class func action(title: String?,
-                             style: CFAlertActionStyle,
-                             alignment: CFAlertActionAlignment,
-                             backgroundColor: UIColor?,
-                             textColor: UIColor?,
-                             handler: CFAlertActionHandlerBlock?) -> CFAlertAction  {
+    @objc public class func action(title: String?,
+                                   style: CFAlertActionStyle,
+                                   alignment: CFAlertActionAlignment,
+                                   backgroundColor: UIColor?,
+                                   textColor: UIColor?,
+                                   handler: CFAlertActionHandlerBlock?) -> CFAlertAction  {
         
         return CFAlertAction.init(title: title,
                                   style: style,
@@ -53,12 +52,12 @@ open class CFAlertAction: NSObject, NSCopying {
                                   handler: handler)
     }
     
-    public convenience init(title: String?,
-                            style: CFAlertActionStyle,
-                            alignment: CFAlertActionAlignment,
-                            backgroundColor: UIColor?,
-                            textColor: UIColor?,
-                            handler: CFAlertActionHandlerBlock?) {
+    @objc public convenience init(title: String?,
+                                  style: CFAlertActionStyle,
+                                  alignment: CFAlertActionAlignment,
+                                  backgroundColor: UIColor?,
+                                  textColor: UIColor?,
+                                  handler: CFAlertActionHandlerBlock?) {
         
         // Create New Instance Of Alert Controller
         self.init()
@@ -76,10 +75,17 @@ open class CFAlertAction: NSObject, NSCopying {
     // MARK: - NSCopying
     public func copy(with zone: NSZone? = nil) -> Any {
         return CFAlertAction.init(title: title,
-                                      style: style,
-                                      alignment: alignment,
-                                      backgroundColor: backgroundColor,
-                                      textColor: textColor,
-                                      handler: handler)
+                                  style: style,
+                                  alignment: alignment,
+                                  backgroundColor: backgroundColor,
+                                  textColor: textColor,
+                                  handler: handler)
+    }
+    
+    // MARK: - Dealloc
+    deinit {
+        
+        // Remove Action Handler
+        handler = nil
     }
 }

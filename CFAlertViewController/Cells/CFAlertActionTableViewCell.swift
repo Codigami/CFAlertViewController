@@ -9,13 +9,11 @@
 import UIKit
 
 
-@objc(CFAlertActionTableViewCellDelegate)
 public protocol CFAlertActionTableViewCellDelegate {
     func alertActionCell(_ cell: CFAlertActionTableViewCell, didClickAction action: CFAlertAction?);
 }
 
 
-@objc(CFAlertActionTableViewCell)
 public class CFAlertActionTableViewCell: UITableViewCell {
     
     // MARK: - Declarations
@@ -113,33 +111,33 @@ public class CFAlertActionTableViewCell: UITableViewCell {
                     
                 case .right:
                     // Right Align
-                    actionButtonLeadingConstraint?.priority = 749.0
+                    actionButtonLeadingConstraint?.priority = UILayoutPriority(rawValue: 749.0)
                     actionButtonCenterXConstraint?.isActive = false
-                    actionButtonTrailingConstraint?.priority = 751.0
+                    actionButtonTrailingConstraint?.priority = UILayoutPriority(rawValue: 751.0)
                     // Set Content Edge Inset
                     actionButton?.contentEdgeInsets = UIEdgeInsetsMake(12.0, 20.0, 12.0, 20.0)
                     
                 case .left:
                     // Left Align
-                    actionButtonLeadingConstraint?.priority = 751.0
+                    actionButtonLeadingConstraint?.priority = UILayoutPriority(rawValue: 751.0)
                     actionButtonCenterXConstraint?.isActive = false
-                    actionButtonTrailingConstraint?.priority = 749.0
+                    actionButtonTrailingConstraint?.priority = UILayoutPriority(rawValue: 749.0)
                     // Set Content Edge Inset
                     actionButton?.contentEdgeInsets = UIEdgeInsetsMake(12.0, 20.0, 12.0, 20.0)
                     
                 case .center:
                     // Center Align
-                    actionButtonLeadingConstraint?.priority = 750.0
+                    actionButtonLeadingConstraint?.priority = UILayoutPriority(rawValue: 750.0)
                     actionButtonCenterXConstraint?.isActive = true
-                    actionButtonTrailingConstraint?.priority = 750.0
+                    actionButtonTrailingConstraint?.priority = UILayoutPriority(rawValue: 750.0)
                     // Set Content Edge Inset
                     actionButton?.contentEdgeInsets = UIEdgeInsetsMake(12.0, 20.0, 12.0, 20.0)
                     
                 default:
                     // Justified Align
-                    actionButtonLeadingConstraint?.priority = 751.0
+                    actionButtonLeadingConstraint?.priority = UILayoutPriority(rawValue: 751.0)
                     actionButtonCenterXConstraint?.isActive = false
-                    actionButtonTrailingConstraint?.priority = 751.0
+                    actionButtonTrailingConstraint?.priority = UILayoutPriority(rawValue: 751.0)
                     // Set Content Edge Inset
                     actionButton?.contentEdgeInsets = UIEdgeInsetsMake(15.0, 20.0, 15.0, 20.0)
                 }

@@ -9,24 +9,23 @@
 import UIKit
 
 
-@objc(CFPushButton)
 open class CFPushButton: UIButton {
-
+    
     // MARK: - Declarations
-    public static let CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DURATION: CGFloat = 0.22
-    public static let CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DELAY: CGFloat = 0.0
-    public static let CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DAMPING: CGFloat = 0.6
-    public static let CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_VELOCITY: CGFloat = 0.0
-    public static let CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_DURATION: CGFloat = 0.7
-    public static let CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_DELAY: CGFloat = 0.0
-    public static let CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_DAMPING: CGFloat = 0.65
-    public static let CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_VELOCITY: CGFloat = 0.0
+    @objc public static let CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DURATION: CGFloat = 0.22
+    @objc public static let CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DELAY: CGFloat = 0.0
+    @objc public static let CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DAMPING: CGFloat = 0.6
+    @objc public static let CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_VELOCITY: CGFloat = 0.0
+    @objc public static let CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_DURATION: CGFloat = 0.7
+    @objc public static let CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_DELAY: CGFloat = 0.0
+    @objc public static let CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_DAMPING: CGFloat = 0.65
+    @objc public static let CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_VELOCITY: CGFloat = 0.0
     
     
     // MARK: - Variables
-
+    
     // Original Transform Property
-    open var originalTransform = CGAffineTransform.identity {
+    @objc open var originalTransform = CGAffineTransform.identity {
         didSet  {
             // Update Button Transform
             transform = originalTransform
@@ -34,31 +33,31 @@ open class CFPushButton: UIButton {
     }
     
     // Set Highlight Property
-    open var highlightStateBackgroundColor: UIColor?
+    @objc open var highlightStateBackgroundColor: UIColor?
     
     // Push Transform Property
-    open var pushTransformScaleFactor: CGFloat = 0.8
+    @objc open var pushTransformScaleFactor: CGFloat = 0.8
     
     // Touch Handler Blocks
-    open var touchDownHandler: ((_ button: CFPushButton) -> Void)?
-    open var touchUpHandler: ((_ button: CFPushButton) -> Void)?
+    @objc open var touchDownHandler: ((_ button: CFPushButton) -> Void)?
+    @objc open var touchUpHandler: ((_ button: CFPushButton) -> Void)?
     
     // Push Transition Animation Properties
-    open var touchDownDuration: CGFloat = CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DURATION
-    open var touchDownDelay: CGFloat = CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DELAY
-    open var touchDownDamping: CGFloat = CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DAMPING
-    open var touchDownVelocity: CGFloat = CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_VELOCITY
+    @objc open var touchDownDuration: CGFloat = CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DURATION
+    @objc open var touchDownDelay: CGFloat = CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DELAY
+    @objc open var touchDownDamping: CGFloat = CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_DAMPING
+    @objc open var touchDownVelocity: CGFloat = CF_PUSH_BUTTON_DEFAULT_TOUCH_DOWN_VELOCITY
     
-    open var touchUpDuration: CGFloat = CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_DURATION
-    open var touchUpDelay: CGFloat = CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_DELAY
-    open var touchUpDamping: CGFloat = CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_DAMPING
-    open var touchUpVelocity: CGFloat = CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_VELOCITY
+    @objc open var touchUpDuration: CGFloat = CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_DURATION
+    @objc open var touchUpDelay: CGFloat = CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_DELAY
+    @objc open var touchUpDamping: CGFloat = CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_DAMPING
+    @objc open var touchUpVelocity: CGFloat = CF_PUSH_BUTTON_DEFAULT_TOUCH_UP_VELOCITY
     
     // Add Extra Parameters
-    open var extraParam: Any?
+    @objc open var extraParam: Any?
     
     private var normalStateBackgroundColor: UIColor?
-    open override var backgroundColor: UIColor? {
+    @objc open override var backgroundColor: UIColor? {
         didSet  {
             // Store Normal State Background Color
             normalStateBackgroundColor = backgroundColor
@@ -102,7 +101,7 @@ open class CFPushButton: UIButton {
     
     
     // MARK: - Animation Method
-    open func pushButton(pushButton: Bool, shouldAnimate: Bool, completion: (() -> Void)?) {
+    @objc open func pushButton(pushButton: Bool, shouldAnimate: Bool, completion: (() -> Void)?) {
         
         // Call Touch Events
         if pushButton {
@@ -119,7 +118,7 @@ open class CFPushButton: UIButton {
         }
         
         // Animation Block
-        let animate: ((_: Void) -> Void)? = {() -> Void in
+        let animate: (() -> Void)? = {() -> Void in
             
             if pushButton {
                 // Set Transform
@@ -179,5 +178,13 @@ open class CFPushButton: UIButton {
                 completion()
             }
         }
+    }
+    
+    // MARK: - Dealloc
+    deinit {
+        
+        // Remove Touch Handlers
+        touchDownHandler = nil
+        touchUpHandler = nil
     }
 }

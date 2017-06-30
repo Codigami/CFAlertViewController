@@ -29,6 +29,26 @@
       language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2FFE3C281F053DA800CB815A"
+               BuildableName = "CFAlertViewControllerDemoTests.xctest"
+               BlueprintName = "CFAlertViewControllerDemoTests"
+               ReferencedContainer = "container:CFAlertViewControllerDemo.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2FFE3C361F053DC200CB815A"
+               BuildableName = "CFAlertViewControllerDemoUITests.xctest"
+               BlueprintName = "CFAlertViewControllerDemoUITests"
+               ReferencedContainer = "container:CFAlertViewControllerDemo.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

@@ -86,6 +86,7 @@ public class CFAlertTitleSubtitleTableViewCell: UITableViewCell {
     
     // MARK: - Layout Methods
     override public func layoutSubviews() {
+        super.layoutIfNeeded()
         contentView.setNeedsLayout()
         contentView.layoutIfNeeded()
     }

@@ -44,7 +44,7 @@ public class CFAlertActionTableViewCell: UITableViewCell {
     public static func identifier() -> String    {
         return String(describing: CFAlertActionTableViewCell.self)
     }
-    public var delegate: CFAlertActionTableViewCellDelegate?
+    public weak var delegate: CFAlertActionTableViewCellDelegate?
     public var actionButtonTopMargin: CGFloat = 0.0 {
         didSet {
             // Update Constraint

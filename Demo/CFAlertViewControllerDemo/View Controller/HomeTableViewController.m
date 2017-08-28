@@ -199,8 +199,10 @@
             ((CustomFooterView *)footerView).alertController = alert;
         }
         
-        // Present Alert Controller
-        [self presentViewController:alert animated:YES completion:nil];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // Present Alert Controller
+            [self presentViewController:alert animated:YES completion:nil];
+        });
     }
 }
 

@@ -9,7 +9,7 @@
 import UIKit
 
 
-public protocol CFAlertActionTableViewCellDelegate {
+public protocol CFAlertActionTableViewCellDelegate: class {
     func alertActionCell(_ cell: CFAlertActionTableViewCell, didClickAction action: CFAlertAction?);
 }
 

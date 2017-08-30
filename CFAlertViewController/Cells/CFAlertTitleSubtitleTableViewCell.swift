@@ -24,7 +24,7 @@ public class CFAlertTitleSubtitleTableViewCell: UITableViewCell {
     public var contentTopMargin: CGFloat = 0.0 {
         didSet {
             // Update Constraint
-            titleLabelTopConstraint?.constant = contentTopMargin - 8.0
+            titleLabelTopConstraint?.constant = contentTopMargin
             subtitleLabelTopConstraint?.constant = (titleLabelTopConstraint?.constant)!
             layoutIfNeeded()
         }
@@ -32,7 +32,7 @@ public class CFAlertTitleSubtitleTableViewCell: UITableViewCell {
     public var contentBottomMargin: CGFloat = 0.0 {
         didSet {
             // Update Constraint
-            titleLabelBottomConstraint?.constant = contentBottomMargin - 8.0
+            titleLabelBottomConstraint?.constant = contentBottomMargin
             subtitleLabelBottomConstraint?.constant = (titleLabelBottomConstraint?.constant)!
             layoutIfNeeded()
         }
@@ -40,7 +40,7 @@ public class CFAlertTitleSubtitleTableViewCell: UITableViewCell {
     public var contentLeadingSpace: CGFloat = 0.0 {
         didSet {
             // Update Constraint Values
-            titleLeadingSpaceConstraint?.constant = contentLeadingSpace - 8.0
+            titleLeadingSpaceConstraint?.constant = contentLeadingSpace
             subtitleLeadingSpaceConstraint?.constant = (titleLeadingSpaceConstraint?.constant)!
             layoutIfNeeded()
         }
@@ -76,6 +76,7 @@ public class CFAlertTitleSubtitleTableViewCell: UITableViewCell {
     }
     
     internal func basicInitialisation() {
+        
         // Reset Text and Color
         setTitle(nil, titleColor: nil, subtitle: nil, subtitleColor: nil, alignment: .center)
         
@@ -104,22 +105,29 @@ public class CFAlertTitleSubtitleTableViewCell: UITableViewCell {
         subtitleLabel?.textAlignment = alignment
         
         // Update Constraints
-        if let titleChars = titleLabel?.text?.characters, let subtitleChars = subtitleLabel?.text?.characters {
-            if (titleChars.count <= 0 && subtitleChars.count <= 0) || subtitleChars.count <= 0 {
-                titleLabelBottomConstraint?.isActive = true
-                subtitleLabelTopConstraint?.isActive = false
-                titleSubtitleVerticalSpacingConstraint?.constant = 0.0
-            }
-            else if titleChars.count <= 0 {
-                titleLabelBottomConstraint?.isActive = false
-                subtitleLabelTopConstraint?.isActive = true
-                titleSubtitleVerticalSpacingConstraint?.constant = 0.0
-            }
-            else {
-                titleLabelBottomConstraint?.isActive = false
-                subtitleLabelTopConstraint?.isActive = false
-                titleSubtitleVerticalSpacingConstraint?.constant = 5.0
-            }
+        var titleCharCount = 0
+        if let count = titleLabel?.text?.count  {
+            titleCharCount = count
+        }
+        var subtitleCharCount = 0
+        if let count = subtitleLabel?.text?.count  {
+            subtitleCharCount = count
+        }
+        
+        if (titleCharCount <= 0 && subtitleCharCount <= 0) || subtitleCharCount <= 0 {
+            titleLabelBottomConstraint?.isActive = true
+            subtitleLabelTopConstraint?.isActive = false
+            titleSubtitleVerticalSpacingConstraint?.constant = 0.0
+        }
+        else if titleCharCount <= 0 {
+            titleLabelBottomConstraint?.isActive = false
+            subtitleLabelTopConstraint?.isActive = true
+            titleSubtitleVerticalSpacingConstraint?.constant = 0.0
+        }
+        else {
+            titleLabelBottomConstraint?.isActive = false
+            subtitleLabelTopConstraint?.isActive = false
+            titleSubtitleVerticalSpacingConstraint?.constant = 5.0
         }
     }
 }

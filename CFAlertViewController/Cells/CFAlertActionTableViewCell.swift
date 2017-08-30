@@ -46,14 +46,14 @@ public class CFAlertActionTableViewCell: UITableViewCell {
     public var actionButtonTopMargin: CGFloat = 0.0 {
         didSet {
             // Update Constraint
-            actionButtonTopConstraint?.constant = actionButtonTopMargin - 8.0
+            actionButtonTopConstraint?.constant = actionButtonTopMargin
             layoutIfNeeded()
         }
     }
     public var actionButtonBottomMargin: CGFloat = 0.0 {
         didSet {
             // Update Constraint
-            actionButtonBottomConstraint?.constant = actionButtonBottomMargin - 8.0
+            actionButtonBottomConstraint?.constant = actionButtonBottomMargin
             layoutIfNeeded()
         }
     }

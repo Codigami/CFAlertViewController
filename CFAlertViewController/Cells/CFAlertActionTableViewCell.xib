@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13122.19" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.16"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RuE-Ia-gYW" customClass="CFPushButton" customModule="CFAlertViewControllerDemo" customModuleProvider="target">
-                        <rect key="frame" x="20" y="0.0" width="280" height="50"/>
+                        <rect key="frame" x="20" y="0.0" width="280" height="49.5"/>
                         <color key="backgroundColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                         <state key="normal" title="Button">
@@ -33,21 +32,21 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstAttribute="bottomMargin" secondItem="RuE-Ia-gYW" secondAttribute="bottom" constant="-8" id="AN7-ji-oSQ"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="RuE-Ia-gYW" secondAttribute="trailing" priority="751" constant="12" id="Jjk-kp-Fb0"/>
                     <constraint firstItem="RuE-Ia-gYW" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="OrY-pD-TgD"/>
-                    <constraint firstItem="RuE-Ia-gYW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="eAF-Tm-YK2"/>
-                    <constraint firstItem="RuE-Ia-gYW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" priority="751" constant="12" id="kDS-GO-jrN"/>
+                    <constraint firstItem="RuE-Ia-gYW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Qan-YM-QCf"/>
+                    <constraint firstItem="RuE-Ia-gYW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" priority="751" constant="20" id="kDS-GO-jrN"/>
+                    <constraint firstAttribute="trailing" secondItem="RuE-Ia-gYW" secondAttribute="trailing" priority="751" constant="20" id="n6w-uE-JF0"/>
+                    <constraint firstAttribute="bottom" secondItem="RuE-Ia-gYW" secondAttribute="bottom" id="y6a-0p-aeA"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="actionButton" destination="RuE-Ia-gYW" id="vvx-z6-Nfn"/>
-                <outlet property="actionButtonBottomConstraint" destination="AN7-ji-oSQ" id="0fZ-Bt-Hpf"/>
+                <outlet property="actionButtonBottomConstraint" destination="y6a-0p-aeA" id="UZK-S0-1HH"/>
                 <outlet property="actionButtonCenterXConstraint" destination="OrY-pD-TgD" id="IK5-3B-wSX"/>
                 <outlet property="actionButtonLeadingConstraint" destination="kDS-GO-jrN" id="I4B-Ij-Zy3"/>
-                <outlet property="actionButtonTopConstraint" destination="eAF-Tm-YK2" id="n28-Wg-jOU"/>
-                <outlet property="actionButtonTrailingConstraint" destination="Jjk-kp-Fb0" id="fYN-im-Zxr"/>
+                <outlet property="actionButtonTopConstraint" destination="Qan-YM-QCf" id="i72-L8-Fdo"/>
+                <outlet property="actionButtonTrailingConstraint" destination="n6w-uE-JF0" id="vuP-wG-pft"/>
             </connections>
             <point key="canvasLocation" x="247" y="97"/>
         </tableViewCell>

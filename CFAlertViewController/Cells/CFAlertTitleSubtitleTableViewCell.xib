@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13122.19" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.16"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="66" id="dGl-Zt-7oP" customClass="CFAlertTitleSubtitleTableViewCell" customModule="CFAlertViewControllerDemo" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="87"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dGl-Zt-7oP" id="7TX-v0-D43">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="84.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="86.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c2H-hb-4JF">
@@ -37,18 +36,18 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="7tN-9S-3pI" secondAttribute="trailing" constant="20" id="6Xi-pn-I9O"/>
-                    <constraint firstItem="7tN-9S-3pI" firstAttribute="leading" secondItem="7TX-v0-D43" secondAttribute="leadingMargin" constant="12" id="Iv8-RH-bpk"/>
+                    <constraint firstAttribute="bottom" secondItem="c2H-hb-4JF" secondAttribute="bottom" constant="20" id="9jZ-k1-eW5"/>
+                    <constraint firstItem="7tN-9S-3pI" firstAttribute="leading" secondItem="7TX-v0-D43" secondAttribute="leading" constant="20" id="Iv8-RH-bpk"/>
                     <constraint firstItem="7tN-9S-3pI" firstAttribute="top" secondItem="c2H-hb-4JF" secondAttribute="bottom" priority="900" constant="5" id="M4O-kK-wiQ"/>
-                    <constraint firstItem="7tN-9S-3pI" firstAttribute="top" secondItem="7TX-v0-D43" secondAttribute="topMargin" constant="20" id="N7e-Ej-j3L"/>
+                    <constraint firstItem="7tN-9S-3pI" firstAttribute="top" secondItem="7TX-v0-D43" secondAttribute="top" constant="20" id="N7e-Ej-j3L"/>
                     <constraint firstAttribute="trailing" secondItem="c2H-hb-4JF" secondAttribute="trailing" constant="20" id="Re3-Qa-vge"/>
-                    <constraint firstItem="c2H-hb-4JF" firstAttribute="top" secondItem="7TX-v0-D43" secondAttribute="topMargin" constant="12" id="lLx-fy-yUC"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="7tN-9S-3pI" secondAttribute="bottom" constant="10" id="oBK-u9-eX6"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="c2H-hb-4JF" secondAttribute="bottom" constant="10" id="psl-WT-k1P"/>
-                    <constraint firstItem="c2H-hb-4JF" firstAttribute="leading" secondItem="7TX-v0-D43" secondAttribute="leadingMargin" constant="12" id="xSR-q6-tNK"/>
+                    <constraint firstAttribute="bottom" secondItem="7tN-9S-3pI" secondAttribute="bottom" constant="20" id="bcr-vb-hGq"/>
+                    <constraint firstItem="c2H-hb-4JF" firstAttribute="top" secondItem="7TX-v0-D43" secondAttribute="top" constant="20" id="lLx-fy-yUC"/>
+                    <constraint firstItem="c2H-hb-4JF" firstAttribute="leading" secondItem="7TX-v0-D43" secondAttribute="leading" constant="20" id="xSR-q6-tNK"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
-                        <exclude reference="psl-WT-k1P"/>
+                        <exclude reference="9jZ-k1-eW5"/>
                         <exclude reference="N7e-Ej-j3L"/>
                     </mask>
                 </variation>
@@ -57,11 +56,11 @@
             <inset key="separatorInset" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
                 <outlet property="subtitleLabel" destination="7tN-9S-3pI" id="JFB-mJ-rIm"/>
-                <outlet property="subtitleLabelBottomConstraint" destination="oBK-u9-eX6" id="UEj-oV-dUX"/>
+                <outlet property="subtitleLabelBottomConstraint" destination="bcr-vb-hGq" id="2QU-Sy-vdq"/>
                 <outlet property="subtitleLabelTopConstraint" destination="N7e-Ej-j3L" id="vS8-dY-4SO"/>
                 <outlet property="subtitleLeadingSpaceConstraint" destination="Iv8-RH-bpk" id="C00-1x-Gwy"/>
                 <outlet property="titleLabel" destination="c2H-hb-4JF" id="dDG-zS-56M"/>
-                <outlet property="titleLabelBottomConstraint" destination="psl-WT-k1P" id="RFV-uA-XPv"/>
+                <outlet property="titleLabelBottomConstraint" destination="9jZ-k1-eW5" id="SXr-V3-ZVH"/>
                 <outlet property="titleLabelTopConstraint" destination="lLx-fy-yUC" id="OYd-1I-C7o"/>
                 <outlet property="titleLeadingSpaceConstraint" destination="xSR-q6-tNK" id="k9j-MS-ZMd"/>
                 <outlet property="titleSubtitleVerticalSpacingConstraint" destination="M4O-kK-wiQ" id="tcJ-za-XGD"/>

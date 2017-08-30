@@ -40,17 +40,6 @@
 
 #pragma mark - Initialization Methods
 
-- (instancetype) init   {
-    self = [super init];
-    if (self){
-        // Setup View
-        if (![self viewSetup]) {
-            return nil;
-        }
-    }
-    return self;
-}
-
 - (instancetype) initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self){

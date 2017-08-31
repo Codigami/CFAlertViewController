@@ -57,13 +57,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Title of the message" placeholder="Title" minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="KFV-aS-6dI">
-                                                    <rect key="frame" x="18" y="5" width="342" height="33.5"/>
+                                                    <rect key="frame" x="18" y="5" width="347" height="33.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="KFV-aS-6dI" secondAttribute="trailing" constant="15" id="dt6-H8-ICT"/>
+                                                <constraint firstAttribute="trailing" secondItem="KFV-aS-6dI" secondAttribute="trailing" constant="10" id="dt6-H8-ICT"/>
                                                 <constraint firstAttribute="bottom" secondItem="KFV-aS-6dI" secondAttribute="bottom" constant="5" id="nr2-4J-BOG"/>
                                                 <constraint firstItem="KFV-aS-6dI" firstAttribute="leading" secondItem="bC5-xS-6ET" secondAttribute="leading" constant="18" id="peW-Iu-hG8"/>
                                                 <constraint firstItem="KFV-aS-6dI" firstAttribute="top" secondItem="bC5-xS-6ET" secondAttribute="top" constant="5" id="tuh-rj-BYO"/>
@@ -78,7 +78,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Add message body here. If the text exceeds a certain limit then the alert will automatically become scrollable." placeholder="Description" minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8vM-Tq-ndQ">
-                                                    <rect key="frame" x="18" y="5" width="342" height="33.5"/>
+                                                    <rect key="frame" x="18" y="5" width="347" height="33.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -87,7 +87,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="8vM-Tq-ndQ" secondAttribute="bottom" constant="5" id="CQt-eg-awJ"/>
                                                 <constraint firstItem="8vM-Tq-ndQ" firstAttribute="top" secondItem="7x4-nN-S5b" secondAttribute="top" constant="5" id="fAB-C7-E5y"/>
                                                 <constraint firstItem="8vM-Tq-ndQ" firstAttribute="leading" secondItem="7x4-nN-S5b" secondAttribute="leading" constant="18" id="qVK-xT-SQD"/>
-                                                <constraint firstAttribute="trailing" secondItem="8vM-Tq-ndQ" secondAttribute="trailing" constant="15" id="wcH-74-MPH"/>
+                                                <constraint firstAttribute="trailing" secondItem="8vM-Tq-ndQ" secondAttribute="trailing" constant="10" id="wcH-74-MPH"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

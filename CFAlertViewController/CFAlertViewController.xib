@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13122.19" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.16"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,6 +15,7 @@
                 <outlet property="containerView" destination="oE9-Fa-uD3" id="U7b-iR-Wvb"/>
                 <outlet property="containerViewBottomConstraint" destination="VQq-aN-B81" id="5Vk-q7-S71"/>
                 <outlet property="containerViewCenterYConstraint" destination="H8R-Gq-Eee" id="AJR-2d-FW9"/>
+                <outlet property="containerViewTopConstraint" destination="tXT-oY-4wV" id="Obi-Aw-byB"/>
                 <outlet property="mainViewBottomConstraint" destination="2uV-Tk-MV8" id="Dhk-hF-sdT"/>
                 <outlet property="tableView" destination="bKB-GW-3Ko" id="hy8-Ui-XRf"/>
                 <outlet property="tableViewHeightConstraint" destination="mgv-7M-W5c" id="z4I-u7-gtf"/>
@@ -67,15 +68,17 @@
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="oE9-Fa-uD3" secondAttribute="trailing" priority="750" constant="10" id="AbK-jx-TFx"/>
                         <constraint firstItem="oE9-Fa-uD3" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="H8R-Gq-Eee"/>
-                        <constraint firstItem="oE9-Fa-uD3" firstAttribute="top" relation="greaterThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="QMk-0Z-hhJ"/>
+                        <constraint firstItem="oE9-Fa-uD3" firstAttribute="top" relation="greaterThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="top" priority="991" constant="20" id="QMk-0Z-hhJ"/>
                         <constraint firstAttribute="bottom" secondItem="oE9-Fa-uD3" secondAttribute="bottom" constant="10" id="VQq-aN-B81"/>
                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="oE9-Fa-uD3" secondAttribute="bottom" priority="990" constant="20" id="WSN-es-JQA"/>
                         <constraint firstItem="oE9-Fa-uD3" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="eKC-zE-i5f"/>
                         <constraint firstItem="oE9-Fa-uD3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" priority="750" constant="10" id="lA4-Nq-cdD"/>
+                        <constraint firstItem="oE9-Fa-uD3" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="tXT-oY-4wV"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="VQq-aN-B81"/>
+                            <exclude reference="tXT-oY-4wV"/>
                         </mask>
                     </variation>
                 </view>

@@ -41,13 +41,20 @@ open class CFAlertViewController: UIViewController    {
         didSet  {
             DispatchQueue.main.async {
                 // Position Contraints for Container View
-                if self.preferredStyle == .actionSheet {
+                if self.preferredStyle == .notification {
+                    self.containerViewTopConstraint?.isActive = true
+                    self.containerViewCenterYConstraint?.isActive = false
+                    self.containerViewBottomConstraint?.isActive = false
+                }
+                else if self.preferredStyle == .alert   {
+                    self.containerViewTopConstraint?.isActive = false
+                    self.containerViewCenterYConstraint?.isActive = true
+                    self.containerViewBottomConstraint?.isActive = false
+                }
+                else if self.preferredStyle == .actionSheet {
+                    self.containerViewTopConstraint?.isActive = false
                     self.containerViewCenterYConstraint?.isActive = false
                     self.containerViewBottomConstraint?.isActive = true
-                }
-                else {
-                    self.containerViewBottomConstraint?.isActive = false
-                    self.containerViewCenterYConstraint?.isActive = true
                 }
                 self.view.layoutIfNeeded()
             }
@@ -132,6 +139,7 @@ open class CFAlertViewController: UIViewController    {
     
     @IBOutlet internal weak var mainViewBottomConstraint: NSLayoutConstraint?
     @IBOutlet internal weak var tableView: UITableView?
+    @IBOutlet internal weak var containerViewTopConstraint: NSLayoutConstraint?
     @IBOutlet internal weak var containerViewCenterYConstraint: NSLayoutConstraint?
     @IBOutlet internal weak var containerViewBottomConstraint: NSLayoutConstraint?
     @IBOutlet internal weak var tableViewHeightConstraint: NSLayoutConstraint?
@@ -669,12 +677,17 @@ extension CFAlertViewController: UIViewControllerTransitioningDelegate {
     public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
         if (presented is CFAlertViewController) {
-            if preferredStyle == .alert {
+            if self.preferredStyle == .notification {
+                let transition = CFAlertViewControllerNotificationTransition()
+                transition.transitionType = .present
+                return transition
+            }
+            else if preferredStyle == .alert {
                 let transition = CFAlertViewControllerPopupTransition()
                 transition.transitionType = .present
                 return transition
             }
-            else {
+            else if preferredStyle == .actionSheet {
                 let transition = CFAlertViewControllerActionSheetTransition()
                 transition.transitionType = .present
                 return transition
@@ -686,12 +699,17 @@ extension CFAlertViewController: UIViewControllerTransitioningDelegate {
     public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
         if (dismissed is CFAlertViewController) {
-            if self.preferredStyle == .alert {
+            if self.preferredStyle == .notification {
+                let transition = CFAlertViewControllerNotificationTransition()
+                transition.transitionType = .dismiss
+                return transition
+            }
+            else if self.preferredStyle == .alert {
                 let transition = CFAlertViewControllerPopupTransition()
                 transition.transitionType = .dismiss
                 return transition
             }
-            else {
+            else if self.preferredStyle == .actionSheet {
                 let transition = CFAlertViewControllerActionSheetTransition()
                 transition.transitionType = .dismiss
                 return transition

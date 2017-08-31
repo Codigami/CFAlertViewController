@@ -265,6 +265,10 @@
             return CFAlertControllerStyleActionSheet;
             break;
             
+        case 2:
+            return CFAlertControllerStyleNotification;
+            break;
+            
         default:
             break;
     }

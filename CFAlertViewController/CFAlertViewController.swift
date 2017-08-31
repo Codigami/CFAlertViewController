@@ -17,6 +17,7 @@ open class CFAlertViewController: UIViewController    {
     @objc public enum CFAlertControllerStyle : Int {
         case alert = 0
         case actionSheet
+        case notification
     }
     
     @objc public enum CFAlertControllerBackgroundStyle : Int {

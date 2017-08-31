@@ -33,6 +33,7 @@
                                                     <segments>
                                                         <segment title="Alert"/>
                                                         <segment title="Action Sheet"/>
+                                                        <segment title="Notification"/>
                                                     </segments>
                                                 </segmentedControl>
                                             </subviews>

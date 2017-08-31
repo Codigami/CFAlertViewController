@@ -69,7 +69,7 @@
                                                           owner:self
                                                         options:nil];
     
-    if ([arrayOfViews count] < 1) {
+    if (arrayOfViews.count < 1) {
         return NO;
     }
     
@@ -161,7 +161,8 @@
     
     // Update Background Style and Color
     [self updateBackgroundStyle:self.alertController.backgroundStyle
-             andBackgroundColor:self.alertController.backgroundColor];
+             andBackgroundColor:self.alertController.backgroundColor
+                  withAnimation:NO];
     
     // Update Header Display State
     self.shouldDisplayHeader = self.alertController.headerView;
@@ -273,30 +274,43 @@
 
 #pragma mark - Helper Methods
 
+- (void) updateBackgroundStyle:(CFAlertControllerBackgroundStyle)style
+            andBackgroundColor:(UIColor *)color
+                 withAnimation:(BOOL)shouldAnimate
+{
+    if (shouldAnimate) {
+        
+        [UIView animateWithDuration:0.4 delay:0.0 usingSpringWithDamping:1.0 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction animations:^{
+            
+            [self updateBackgroundStyle:style andBackgroundColor:color];
+            
+        } completion:nil];
+    }
+    else    {
+        [self updateBackgroundStyle:style andBackgroundColor:color];
+    }
+}
+
 - (void) updateBackgroundStyle:(CFAlertControllerBackgroundStyle)style andBackgroundColor:(UIColor *)color  {
     
-    [UIView animateWithDuration:0.4 delay:0.0 usingSpringWithDamping:1.0 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction animations:^{
+    // Update Background Style Segment
+    switch (style) {
+            
+        case CFAlertControllerBackgroundStylePlain:
+            self.backgroundStyleSegment.selectedSegmentIndex = 0;
+            break;
+            
+        case CFAlertControllerBackgroundStyleBlur:
+            self.backgroundStyleSegment.selectedSegmentIndex = 1;
+            break;
+    }
     
-        // Update Background Style Segment
-        switch (style) {
-                
-            case CFAlertControllerBackgroundStylePlain:
-                self.backgroundStyleSegment.selectedSegmentIndex = 0;
-                break;
-                
-            case CFAlertControllerBackgroundStyleBlur:
-                self.backgroundStyleSegment.selectedSegmentIndex = 1;
-                break;
-        }
-        
-        // Update Background Color Button
-        self.backgroundColorButton.backgroundColor = color;
-        
-        // Update Alert View Controller Properties
-        self.alertController.backgroundStyle = style;
-        self.alertController.backgroundColor = color;
-        
-    } completion:nil];
+    // Update Background Color Button
+    self.backgroundColorButton.backgroundColor = color;
+    
+    // Update Alert View Controller Properties
+    self.alertController.backgroundStyle = style;
+    self.alertController.backgroundColor = color;
 }
 
 #pragma mark - Button Click Actions
@@ -307,7 +321,8 @@
 
 - (IBAction) backgroundStyleSegmentValueChanged:(id)sender    {
     [self updateBackgroundStyle:self.backgroundStyleSegment.selectedSegmentIndex
-             andBackgroundColor:self.backgroundColorButton.backgroundColor];
+             andBackgroundColor:self.backgroundColorButton.backgroundColor
+                  withAnimation:YES];
 }
 
 - (IBAction) addRemoveHeaderButtonPressed:(id)sender    {
@@ -316,7 +331,8 @@
 
 - (IBAction) backgroundColorButtonPressed:(id)sender    {
     [self updateBackgroundStyle:self.alertController.backgroundStyle
-             andBackgroundColor:[UIColor randomColor]];
+             andBackgroundColor:[UIColor randomColor]
+                  withAnimation:YES];
 }
 
 @end

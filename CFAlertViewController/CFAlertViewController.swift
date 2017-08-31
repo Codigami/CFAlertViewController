@@ -38,7 +38,7 @@ open class CFAlertViewController: UIViewController    {
     public internal(set) var textAlignment = NSTextAlignment(rawValue: 0)
     public internal(set) var preferredStyle = CFAlertControllerStyle(rawValue: 0)    {
         didSet  {
-            DispatchQueue.main.async(execute: {
+            DispatchQueue.main.async    {
                 // Position Contraints for Container View
                 if self.preferredStyle == .actionSheet {
                     self.containerViewCenterYConstraint?.isActive = false
@@ -49,7 +49,7 @@ open class CFAlertViewController: UIViewController    {
                     self.containerViewCenterYConstraint?.isActive = true
                 }
                 self.view.layoutIfNeeded()
-            })
+            }
         }
     }
     @objc public private(set) var actions: [CFAlertAction]?   {
@@ -400,7 +400,7 @@ open class CFAlertViewController: UIViewController    {
             }
         }
         
-        DispatchQueue.main.async(execute: {() -> Void in
+        DispatchQueue.main.async    {
             if shouldAnimate {
                 // Animate height changes
                 UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.curveEaseOut, .beginFromCurrentState, .allowUserInteraction], animations: {() -> Void in
@@ -413,7 +413,7 @@ open class CFAlertViewController: UIViewController    {
             else {
                 animate!()
             }
-        })
+        }
     }
     
     
@@ -480,7 +480,7 @@ open class CFAlertViewController: UIViewController    {
         
         if let notificationObject = notification.object, (notificationObject is UITextField || notificationObject is UITextView) {
             
-            DispatchQueue.main.async(execute: {() -> Void in
+            DispatchQueue.main.async    {
                 let view: UIView? = (notificationObject as? UIView)
                 if let view = view  {
                     
@@ -492,7 +492,7 @@ open class CFAlertViewController: UIViewController    {
                         self.tableView?.scrollRectToVisible(visibleRect!, animated: false)
                     }, completion: { _ in })
                 }
-            })
+            }
         }
     }
     

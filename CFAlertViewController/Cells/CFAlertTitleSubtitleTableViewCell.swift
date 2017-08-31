@@ -78,7 +78,8 @@ public class CFAlertTitleSubtitleTableViewCell: UITableViewCell {
     internal func basicInitialisation() {
         
         // Reset Text and Color
-        setTitle(nil, titleColor: nil, subtitle: nil, subtitleColor: nil, alignment: .center)
+        titleLabel?.text = nil
+        subtitleLabel?.text = nil
         
         // Set Content Leading Space
         contentLeadingSpace = 20.0;

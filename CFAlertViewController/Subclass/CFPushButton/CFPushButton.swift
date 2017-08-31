@@ -159,7 +159,7 @@ open class CFPushButton: UIButton {
                 velocity = touchUpVelocity
             }
             
-            DispatchQueue.main.async(execute: {() -> Void in
+            DispatchQueue.main.async    {
                 // Animate
                 UIView.animate(withDuration: TimeInterval(duration), delay: TimeInterval(delay), usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: [.curveEaseOut, .beginFromCurrentState, .allowUserInteraction], animations: {() -> Void in
                     animate!()
@@ -168,7 +168,7 @@ open class CFPushButton: UIButton {
                         completion()
                     }
                 })
-            })
+            }
         }
         else {
             animate!()

@@ -39,7 +39,7 @@ open class CFAlertViewController: UIViewController    {
     public internal(set) var textAlignment = NSTextAlignment(rawValue: 0)
     public internal(set) var preferredStyle = CFAlertControllerStyle(rawValue: 0)    {
         didSet  {
-            DispatchQueue.main.async    {
+            NSObject.runSynchronouslyOnMainQueueWithoutDeadlocking    {
                 // Position Contraints for Container View
                 if self.preferredStyle == .actionSheet {
                     self.containerViewCenterYConstraint?.isActive = false
@@ -384,35 +384,41 @@ open class CFAlertViewController: UIViewController    {
     
     internal func updateContainerViewFrame(withAnimation shouldAnimate: Bool) {
         
-        let animate: (() -> Void)? = {() -> Void in
-            
-            if let tableView = self.tableView   {
-                
-                // Update Content Size
-                self.tableViewHeightConstraint?.constant = tableView.contentSize.height
-                
-                // Enable / Disable Bounce Effect
-                if let containerView = self.containerView, tableView.contentSize.height <= containerView.frame.size.height {
-                    tableView.bounces = false
-                }
-                else {
-                    tableView.bounces = true
-                }
-            }
-        }
-        
-        DispatchQueue.main.async    {
+        NSObject.runSynchronouslyOnMainQueueWithoutDeadlocking {
+
             if shouldAnimate {
                 // Animate height changes
                 UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.curveEaseOut, .beginFromCurrentState, .allowUserInteraction], animations: {() -> Void in
-                    // Animate
-                    animate!()
+
+                    // Update Container View Frame
+                    self.updateContainerViewFrame()
+
                     // Relayout
                     self.view.layoutIfNeeded()
+
                 }, completion: { _ in })
             }
             else {
-                animate!()
+        
+                // Update Container View Frame
+                self.updateContainerViewFrame()
+            }
+        }
+    }
+    
+    internal func updateContainerViewFrame() {
+        
+        if let tableView = self.tableView   {
+            
+            // Update Content Size
+            self.tableViewHeightConstraint?.constant = tableView.contentSize.height
+            
+            // Enable / Disable Bounce Effect
+            if let containerView = self.containerView, tableView.contentSize.height <= containerView.frame.size.height {
+                tableView.bounces = false
+            }
+            else {
+                tableView.bounces = true
             }
         }
     }
@@ -694,4 +700,19 @@ extension CFAlertViewController: UIViewControllerTransitioningDelegate {
         return nil
     }
 }
+
+
+extension NSObject  {
+    
+    internal class func runSynchronouslyOnMainQueueWithoutDeadlocking(completion: () -> Swift.Void) {
+        
+        if Thread.isMainThread {
+            completion()
+        }
+        else    {
+            DispatchQueue.main.sync(execute: completion)
+        }
+    }
+}
+
 

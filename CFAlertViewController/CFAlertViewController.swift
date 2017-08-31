@@ -38,7 +38,7 @@ open class CFAlertViewController: UIViewController    {
     public internal(set) var textAlignment = NSTextAlignment(rawValue: 0)
     public internal(set) var preferredStyle = CFAlertControllerStyle(rawValue: 0)    {
         didSet  {
-            NSObject.runSynchronouslyOnMainQueueWithoutDeadlocking    {
+            DispatchQueue.main.async {
                 // Position Contraints for Container View
                 if self.preferredStyle == .actionSheet {
                     self.containerViewCenterYConstraint?.isActive = false

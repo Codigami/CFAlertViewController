@@ -53,6 +53,16 @@ open class CFAlertViewController: UIViewController    {
                     self.tableViewWidthConstraint?.constant = max(500, min(width, 620))
                     self.tableViewLeadingConstraint?.priority = UILayoutPriority(rawValue: 749)
                     self.tableViewTrailingConstraint?.priority = UILayoutPriority(rawValue: 749)
+                    
+                    if ProcessInfo.processInfo.operatingSystemVersion.majorVersion < 11 {
+                        
+                        // For iOS version 8, 9 & 10, add table view top inset to leave space for status bar
+                        if let tableView = self.tableView   {
+                            let statusbarHeight = UIApplication.shared.statusBarFrame.size.height
+                            tableView.contentInset = UIEdgeInsetsMake(statusbarHeight, tableView.contentInset.left, tableView.contentInset.bottom, tableView.contentInset.right)
+                            tableView.scrollIndicatorInsets = tableView.contentInset
+                        }
+                    }
                 }
                 else if self.preferredStyle == .alert   {
                     
@@ -450,11 +460,15 @@ open class CFAlertViewController: UIViewController    {
         
         if let tableView = self.tableView   {
             
-            // Update Content Size
-            self.tableViewHeightConstraint?.constant = tableView.contentSize.height
+            // Update Table View Height
+            var tableContentHeight = tableView.contentInset.top + tableView.contentSize.height + tableView.contentInset.bottom
+            if #available(iOS 11.0, *), preferredStyle == .notification {
+                tableContentHeight = view.safeAreaInsets.top + tableContentHeight
+            }
+            tableViewHeightConstraint?.constant = tableContentHeight
             
             // Enable / Disable Bounce Effect
-            if let containerView = self.containerView, tableView.contentSize.height <= containerView.frame.size.height {
+            if let containerView = containerView, tableView.contentSize.height <= containerView.frame.size.height {
                 tableView.bounces = false
             }
             else {

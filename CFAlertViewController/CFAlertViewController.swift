@@ -42,20 +42,44 @@ open class CFAlertViewController: UIViewController    {
             DispatchQueue.main.async {
                 // Position Contraints for Container View
                 if self.preferredStyle == .notification {
+                    
                     self.containerViewTopConstraint?.isActive = true
+                    self.containerViewLeadingConstraint?.constant = 0
                     self.containerViewCenterYConstraint?.isActive = false
                     self.containerViewBottomConstraint?.isActive = false
+                    self.containerViewTrailingConstraint?.constant = 0
+                    
+                    let width = (self.view.frame.size.width * 60) / 100   // 60% of the full width
+                    self.tableViewWidthConstraint?.constant = max(500, min(width, 620))
+                    self.tableViewLeadingConstraint?.priority = UILayoutPriority(rawValue: 749)
+                    self.tableViewTrailingConstraint?.priority = UILayoutPriority(rawValue: 749)
                 }
                 else if self.preferredStyle == .alert   {
+                    
                     self.containerViewTopConstraint?.isActive = false
+                    self.containerViewLeadingConstraint?.constant = 10
                     self.containerViewCenterYConstraint?.isActive = true
                     self.containerViewBottomConstraint?.isActive = false
+                    self.containerViewTrailingConstraint?.constant = 10
+                    
+                    self.tableViewWidthConstraint?.constant = 500
+                    self.tableViewLeadingConstraint?.priority = UILayoutPriority(rawValue: 751)
+                    self.tableViewTrailingConstraint?.priority = UILayoutPriority(rawValue: 751)
                 }
                 else if self.preferredStyle == .actionSheet {
+                    
                     self.containerViewTopConstraint?.isActive = false
+                    self.containerViewLeadingConstraint?.constant = 10
                     self.containerViewCenterYConstraint?.isActive = false
                     self.containerViewBottomConstraint?.isActive = true
+                    self.containerViewTrailingConstraint?.constant = 10
+                    
+                    self.tableViewWidthConstraint?.constant = 500
+                    self.tableViewLeadingConstraint?.priority = UILayoutPriority(rawValue: 751)
+                    self.tableViewTrailingConstraint?.priority = UILayoutPriority(rawValue: 751)
                 }
+                
+                // Layout Full View
                 self.view.layoutIfNeeded()
             }
         }
@@ -140,9 +164,14 @@ open class CFAlertViewController: UIViewController    {
     @IBOutlet internal weak var mainViewBottomConstraint: NSLayoutConstraint?
     @IBOutlet internal weak var tableView: UITableView?
     @IBOutlet internal weak var containerViewTopConstraint: NSLayoutConstraint?
+    @IBOutlet internal weak var containerViewLeadingConstraint: NSLayoutConstraint?
     @IBOutlet internal weak var containerViewCenterYConstraint: NSLayoutConstraint?
     @IBOutlet internal weak var containerViewBottomConstraint: NSLayoutConstraint?
+    @IBOutlet internal weak var containerViewTrailingConstraint: NSLayoutConstraint?
+    @IBOutlet internal weak var tableViewLeadingConstraint: NSLayoutConstraint?
     @IBOutlet internal weak var tableViewHeightConstraint: NSLayoutConstraint?
+    @IBOutlet internal weak var tableViewWidthConstraint: NSLayoutConstraint?
+    @IBOutlet internal weak var tableViewTrailingConstraint: NSLayoutConstraint?
     
     
     // MARK: - Initialisation Methods
@@ -277,12 +306,15 @@ open class CFAlertViewController: UIViewController    {
         // Set Container View Default Background Color
         containerView?.backgroundColor = UIColor.white
         
-        // Set Container View Default Corner Radius
-        if preferredStyle == .actionSheet {
-            containerView?.layer.cornerRadius = 6.0
+        // Update Container View Properties
+        if preferredStyle == .notification   {
+            containerView?.layer.cornerRadius = 0.0
         }
-        else {
+        else if preferredStyle == .alert    {
             containerView?.layer.cornerRadius = 8.0
+        }
+        else if preferredStyle == .actionSheet   {
+            containerView?.layer.cornerRadius = 6.0
         }
         
         // Add Tap Gesture Recognizer On View

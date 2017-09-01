@@ -15,10 +15,15 @@
                 <outlet property="containerView" destination="oE9-Fa-uD3" id="U7b-iR-Wvb"/>
                 <outlet property="containerViewBottomConstraint" destination="VQq-aN-B81" id="5Vk-q7-S71"/>
                 <outlet property="containerViewCenterYConstraint" destination="H8R-Gq-Eee" id="AJR-2d-FW9"/>
+                <outlet property="containerViewLeadingConstraint" destination="lA4-Nq-cdD" id="z0p-uj-M0F"/>
                 <outlet property="containerViewTopConstraint" destination="tXT-oY-4wV" id="Obi-Aw-byB"/>
+                <outlet property="containerViewTrailingConstraint" destination="AbK-jx-TFx" id="viK-Nw-52j"/>
                 <outlet property="mainViewBottomConstraint" destination="2uV-Tk-MV8" id="Dhk-hF-sdT"/>
                 <outlet property="tableView" destination="bKB-GW-3Ko" id="hy8-Ui-XRf"/>
                 <outlet property="tableViewHeightConstraint" destination="mgv-7M-W5c" id="z4I-u7-gtf"/>
+                <outlet property="tableViewLeadingConstraint" destination="kLO-AL-TvV" id="o1W-7k-xGK"/>
+                <outlet property="tableViewTrailingConstraint" destination="Qye-xz-rK3" id="6Cv-fF-g1m"/>
+                <outlet property="tableViewWidthConstraint" destination="g1a-ZP-m4a" id="rqr-Oi-EO5"/>
                 <outlet property="view" destination="ZTb-A8-9bZ" id="vIg-hL-ud7"/>
             </connections>
         </placeholder>
@@ -45,6 +50,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="355" height="200"/>
                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
+                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="500" id="g1a-ZP-m4a"/>
                                         <constraint firstAttribute="height" priority="900" constant="200" id="mgv-7M-W5c"/>
                                     </constraints>
                                     <connections>
@@ -55,11 +61,11 @@
                             </subviews>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
+                                <constraint firstItem="bKB-GW-3Ko" firstAttribute="centerX" secondItem="oE9-Fa-uD3" secondAttribute="centerX" id="EmZ-wI-13C"/>
                                 <constraint firstItem="bKB-GW-3Ko" firstAttribute="top" secondItem="oE9-Fa-uD3" secondAttribute="top" id="Ol2-pp-MKV"/>
-                                <constraint firstAttribute="trailing" secondItem="bKB-GW-3Ko" secondAttribute="trailing" id="Qye-xz-rK3"/>
-                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="420" id="UUs-YE-wor"/>
+                                <constraint firstAttribute="trailing" secondItem="bKB-GW-3Ko" secondAttribute="trailing" priority="751" id="Qye-xz-rK3"/>
                                 <constraint firstAttribute="bottom" secondItem="bKB-GW-3Ko" secondAttribute="bottom" id="dIY-S9-Ylm"/>
-                                <constraint firstItem="bKB-GW-3Ko" firstAttribute="leading" secondItem="oE9-Fa-uD3" secondAttribute="leading" id="kLO-AL-TvV"/>
+                                <constraint firstItem="bKB-GW-3Ko" firstAttribute="leading" secondItem="oE9-Fa-uD3" secondAttribute="leading" priority="751" id="kLO-AL-TvV"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -68,9 +74,9 @@
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="oE9-Fa-uD3" secondAttribute="trailing" priority="750" constant="10" id="AbK-jx-TFx"/>
                         <constraint firstItem="oE9-Fa-uD3" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="H8R-Gq-Eee"/>
-                        <constraint firstItem="oE9-Fa-uD3" firstAttribute="top" relation="greaterThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="top" priority="991" constant="20" id="QMk-0Z-hhJ"/>
+                        <constraint firstItem="oE9-Fa-uD3" firstAttribute="top" relation="greaterThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="top" priority="991" constant="30" id="QMk-0Z-hhJ"/>
                         <constraint firstAttribute="bottom" secondItem="oE9-Fa-uD3" secondAttribute="bottom" constant="10" id="VQq-aN-B81"/>
-                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="oE9-Fa-uD3" secondAttribute="bottom" priority="990" constant="20" id="WSN-es-JQA"/>
+                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="oE9-Fa-uD3" secondAttribute="bottom" priority="990" constant="30" id="WSN-es-JQA"/>
                         <constraint firstItem="oE9-Fa-uD3" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="eKC-zE-i5f"/>
                         <constraint firstItem="oE9-Fa-uD3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" priority="750" constant="10" id="lA4-Nq-cdD"/>
                         <constraint firstItem="oE9-Fa-uD3" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="tXT-oY-4wV"/>

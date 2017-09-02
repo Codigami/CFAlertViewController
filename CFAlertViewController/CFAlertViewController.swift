@@ -27,6 +27,9 @@ open class CFAlertViewController: UIViewController    {
     @objc open static func CF_ALERT_DEFAULT_BACKGROUND_COLOR() -> UIColor   {
         return UIColor(white: 0.0, alpha: 0.7)
     }
+    @objc open static func CF_ALERT_DEFAULT_CONTAINER_VIEW_BACKGROUND_COLOR() -> UIColor   {
+        return UIColor.white
+    }
     @objc open static func CF_ALERT_DEFAULT_TITLE_COLOR() -> UIColor {
         return UIColor.init(red: 1.0/255.0, green: 51.0/255.0, blue: 86.0/255.0, alpha: 1.0)
     }
@@ -284,8 +287,6 @@ open class CFAlertViewController: UIViewController    {
         // Preload View
         if #available(iOS 9.0, *) {
             loadViewIfNeeded()
-        } else {
-            // Fallback on earlier versions
         }
     }
     
@@ -314,7 +315,7 @@ open class CFAlertViewController: UIViewController    {
     internal func loadDisplayContent() {
         
         // Set Container View Default Background Color
-        containerView?.backgroundColor = UIColor.white
+        containerView?.backgroundColor = CFAlertViewController.CF_ALERT_DEFAULT_CONTAINER_VIEW_BACKGROUND_COLOR()
         
         // Update Container View Properties
         if preferredStyle == .notification   {
@@ -358,8 +359,6 @@ open class CFAlertViewController: UIViewController    {
             // Check For Cancel Action. Every Alert must have maximum 1 Cancel Action.
             if action.style == .Cancel {
                 for existingAction: CFAlertAction in actionList {
-                    // This line of code added to just supress the warning (Unused Variable) at build time
-                    //unused(existingAction)
                     // It means this alert already contains a Cancel action. Throw an Assert so developer understands the reason.
                     assert(existingAction.style != .Cancel, "ERROR : CFAlertViewController can only have one action with a style of CFAlertActionStyle.Cancel")
                 }

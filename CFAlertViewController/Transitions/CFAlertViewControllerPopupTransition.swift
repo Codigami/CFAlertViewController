@@ -33,6 +33,21 @@ public class CFAlertViewControllerPopupTransition: NSObject {
 }
 
 
+// MARK: - UIViewControllerTransitioningDelegate
+extension CFAlertViewControllerPopupTransition: UIViewControllerTransitioningDelegate {
+    
+    public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning?    {
+        transitionType = .present
+        return self
+    }
+    
+    public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning?    {
+        transitionType = .dismiss
+        return self
+    }
+}
+
+
 // MARK: - UIViewControllerAnimatedTransitioning
 extension CFAlertViewControllerPopupTransition: UIViewControllerAnimatedTransitioning   {
     
@@ -134,6 +149,5 @@ extension CFAlertViewControllerPopupTransition: UIViewControllerAnimatedTransiti
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             })
         }
-        
     }
 }

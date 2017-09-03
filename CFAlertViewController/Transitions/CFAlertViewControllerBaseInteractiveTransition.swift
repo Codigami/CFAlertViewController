@@ -1,5 +1,5 @@
 //
-//  CFAlertViewControllerBaseTransition.swift
+//  CFAlertViewControllerBaseInteractiveTransition.swift
 //  CFAlertViewControllerDemo
 //
 //  Created by Shardul Patel on 02/09/17.
@@ -10,19 +10,19 @@ import UIKit
 import UIKit.UIGestureRecognizerSubclass
 
 
-@objc protocol CFAlertViewControllerTransitionDelegate: class {
-    @objc optional func alertViewControllerTransitionWillBegin(_ transition: CFAlertViewControllerBaseTransition)
-    @objc optional func alertViewControllerTransitionWillFinish(_ transition: CFAlertViewControllerBaseTransition)
-    @objc optional func alertViewControllerTransitionDidFinish(_ transition: CFAlertViewControllerBaseTransition)
-    @objc optional func alertViewControllerTransitionWillCancel(_ transition: CFAlertViewControllerBaseTransition)
-    @objc optional func alertViewControllerTransitionDidCancel(_ transition: CFAlertViewControllerBaseTransition)
+@objc protocol CFAlertViewControllerInteractiveTransition: class {
+    @objc optional func alertViewControllerTransitionWillBegin(_ transition: CFAlertViewControllerBaseInteractiveTransition)
+    @objc optional func alertViewControllerTransitionWillFinish(_ transition: CFAlertViewControllerBaseInteractiveTransition)
+    @objc optional func alertViewControllerTransitionDidFinish(_ transition: CFAlertViewControllerBaseInteractiveTransition)
+    @objc optional func alertViewControllerTransitionWillCancel(_ transition: CFAlertViewControllerBaseInteractiveTransition)
+    @objc optional func alertViewControllerTransitionDidCancel(_ transition: CFAlertViewControllerBaseInteractiveTransition)
 }
 
 
-class CFAlertViewControllerBaseTransition: UIPercentDrivenInteractiveTransition {
+class CFAlertViewControllerBaseInteractiveTransition: UIPercentDrivenInteractiveTransition {
     
     // MARK: - Declarations
-    @objc public enum CFAlertViewControllerTransitionMode : Int {
+    @objc public enum CFAlertViewControllerTransitionType : Int {
         case present = 0
         case dismiss
     }
@@ -30,9 +30,9 @@ class CFAlertViewControllerBaseTransition: UIPercentDrivenInteractiveTransition 
     
     // MARK: - Variables
     // MARK: Public
-    public weak var delegate : CFAlertViewControllerTransitionDelegate?
+    public weak var delegate : CFAlertViewControllerInteractiveTransition?
     public weak var modalViewController : UIViewController?
-    public var transitionMode : CFAlertViewControllerTransitionMode = .present
+    public var transitionType : CFAlertViewControllerTransitionType = .present
     public var transitionDuration : TimeInterval = 0.4
     public var enableInteractiveTransition : Bool  {
         didSet {
@@ -126,7 +126,7 @@ class CFAlertViewControllerBaseTransition: UIPercentDrivenInteractiveTransition 
     // MARK: - Override Methods
     public func updateUIState(transitionContext: UIViewControllerContextTransitioning,
                               percentComplete: CGFloat,
-                              transitionMode: CFAlertViewControllerTransitionMode)
+                              transitionType: CFAlertViewControllerTransitionType)
     {
         // Override this method in child class to get desired output
     }
@@ -139,7 +139,7 @@ class CFAlertViewControllerBaseTransition: UIPercentDrivenInteractiveTransition 
 }
 
 // MARK: - UIGestureRecognizerDelegate
-extension CFAlertViewControllerBaseTransition: UIGestureRecognizerDelegate  {
+extension CFAlertViewControllerBaseInteractiveTransition: UIGestureRecognizerDelegate  {
     
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
@@ -202,7 +202,7 @@ extension CFAlertViewControllerBaseTransition: UIGestureRecognizerDelegate  {
 
 
 // MARK: - UIPercentDrivenInteractiveTransition
-extension CFAlertViewControllerBaseTransition {
+extension CFAlertViewControllerBaseInteractiveTransition {
     
     public override func startInteractiveTransition(_ transitionContext: UIViewControllerContextTransitioning) {
         
@@ -218,8 +218,8 @@ extension CFAlertViewControllerBaseTransition {
         // Update UI
         if let transitionContext = transitionContext {
             updateUIState(transitionContext: transitionContext,
-                          percentComplete: 1.0-percentComplete,
-                          transitionMode: transitionMode)
+                          percentComplete: percentComplete,
+                          transitionType: transitionType)
         }
     }
     
@@ -254,7 +254,7 @@ extension CFAlertViewControllerBaseTransition {
                         if let transitionContext = self.transitionContext {
                             self.updateUIState(transitionContext: transitionContext,
                                           percentComplete: 0.0,
-                                          transitionMode: self.transitionMode)
+                                          transitionType: self.transitionType)
                         }
                         
         }) { (finished) in
@@ -301,7 +301,7 @@ extension CFAlertViewControllerBaseTransition {
                         if let transitionContext = self.transitionContext {
                             self.updateUIState(transitionContext: transitionContext,
                                                percentComplete: 1.0,
-                                               transitionMode: self.transitionMode)
+                                               transitionType: self.transitionType)
                         }
                         
         }) { (finished) in
@@ -315,156 +315,6 @@ extension CFAlertViewControllerBaseTransition {
     }
 }
 
-
-
-// MARK: - UIViewControllerTransitioningDelegate
-extension CFAlertViewControllerBaseTransition: UIViewControllerTransitioningDelegate {
-    
-    public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning?    {
-        transitionMode = .present
-        return self;
-    }
-    
-    public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning?    {
-        transitionMode = .dismiss
-        return self;
-    }
-    
-    public func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning?   {
-        return nil
-    }
-    
-    public func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning?  {
-        // Return nil if we are not interacting
-        if enableInteractiveTransition && isInteracting {
-            transitionMode = .dismiss
-            return self
-        }
-        return nil
-    }
-}
-
-
-// MARK: - UIViewControllerAnimatedTransitioning
-extension CFAlertViewControllerBaseTransition: UIViewControllerAnimatedTransitioning {
-    
-    public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return transitionDuration
-    }
-    
-    public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        
-        // Get context vars
-        let duration: TimeInterval = self.transitionDuration(using: transitionContext)
-        let containerView: UIView? = transitionContext.containerView
-        let fromViewController: UIViewController? = transitionContext.viewController(forKey: .from)
-        let toViewController: UIViewController? = transitionContext.viewController(forKey: .to)
-        
-        // Call Will System Methods
-        fromViewController?.beginAppearanceTransition(false, animated: true)
-        toViewController?.beginAppearanceTransition(true, animated: true)
-        if self.transitionMode == .present {
-            
-            /** SHOW ANIMATION **/
-            if let alertViewController = toViewController as? CFAlertViewController, let containerView = containerView   {
-                
-                alertViewController.view?.frame = containerView.frame
-                alertViewController.view?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-                alertViewController.view?.translatesAutoresizingMaskIntoConstraints = true
-                containerView.addSubview(alertViewController.view)
-                alertViewController.view?.layoutIfNeeded()
-                
-                var frame: CGRect = alertViewController.view.frame
-                frame.origin.y = containerView.frame.size.height
-                alertViewController.view.frame = frame
-                
-                // Background
-                let backgroundColorRef: UIColor? = alertViewController.backgroundColor
-                alertViewController.backgroundColor = UIColor.clear
-                if alertViewController.backgroundStyle == .blur    {
-                    alertViewController.backgroundBlurView?.alpha = 0.0
-                }
-                
-                UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.curveEaseIn, .beginFromCurrentState], animations: {() -> Void in
-                    
-                    // Background
-                    if alertViewController.backgroundStyle == .blur    {
-                        alertViewController.backgroundBlurView?.alpha = 1.0
-                    }
-                    alertViewController.backgroundColor = backgroundColorRef
-                    
-                }, completion: nil)
-                
-                // Animate height changes
-                UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.curveEaseIn, .beginFromCurrentState], animations: {() -> Void in
-                    
-                    alertViewController.view?.layoutIfNeeded()
-                    frame.origin.y = 0
-                    alertViewController.view.frame = frame
-                    
-                }, completion: {(_ finished: Bool) -> Void in
-                    
-                    // Call Did System Methods
-                    toViewController?.endAppearanceTransition()
-                    fromViewController?.endAppearanceTransition()
-                    
-                    // Declare Animation Finished
-                    transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-                })
-            }
-            else    {
-                
-                // Call Did System Methods
-                toViewController?.endAppearanceTransition()
-                fromViewController?.endAppearanceTransition()
-                
-                // Declare Animation Finished
-                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-            }
-        }
-        else if self.transitionMode == .dismiss {
-            
-            /** HIDE ANIMATION **/
-            
-            // Animate height changes
-            UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.curveEaseIn, .beginFromCurrentState], animations: {() -> Void in
-                
-                if let fromViewController = fromViewController  {
-                    
-                    fromViewController.view.layoutIfNeeded()
-                    var frame: CGRect = fromViewController.view.frame
-                    frame.origin.y = frame.size.height
-                    fromViewController.view.frame = frame
-                }
-                
-                if let alertViewController = fromViewController as? CFAlertViewController   {
-                    
-                    // Background
-                    if alertViewController.backgroundStyle == .blur    {
-                        alertViewController.backgroundBlurView?.alpha = 0.0
-                    }
-                    alertViewController.view.backgroundColor = UIColor.clear
-                }
-                
-            }, completion: {(_ finished: Bool) -> Void in
-                
-                // Call Did System Methods
-                toViewController?.endAppearanceTransition()
-                fromViewController?.endAppearanceTransition()
-                
-                // Declare Animation Finished
-                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-            })
-        }
-    }
-    
-    public func animationEnded(_ transitionCompleted: Bool) {
-        
-        // Cleanup on Animation Completion
-        isInteracting = false
-        transitionContext = nil
-    }
-}
 
 class CFAlertViewControllerTransitionGestureRecognizer: UIPanGestureRecognizer  {
     

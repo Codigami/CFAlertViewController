@@ -33,6 +33,21 @@ public class CFAlertViewControllerNotificationTransition: NSObject {
 }
 
 
+// MARK: - UIViewControllerTransitioningDelegate
+extension CFAlertViewControllerNotificationTransition: UIViewControllerTransitioningDelegate {
+    
+    public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning?    {
+        transitionType = .present
+        return self
+    }
+    
+    public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning?    {
+        transitionType = .dismiss
+        return self
+    }
+}
+
+
 // MARK: - UIViewControllerAnimatedTransitioning
 extension CFAlertViewControllerNotificationTransition: UIViewControllerAnimatedTransitioning {
     

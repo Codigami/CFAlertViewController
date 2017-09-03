@@ -173,6 +173,7 @@ open class CFAlertViewController: UIViewController    {
         }
     }
     internal var tapGesture: UITapGestureRecognizer!
+    internal var transitioningDelegateObj: CFAlertViewControllerBaseTransition?
     
     @IBOutlet internal weak var mainViewBottomConstraint: NSLayoutConstraint?
     @IBOutlet internal weak var tableView: UITableView?
@@ -280,14 +281,16 @@ open class CFAlertViewController: UIViewController    {
         setFooterView(footerView, shouldUpdateContainerFrame: false, withAnimation: false)
         dismissHandler = dismiss
         
-        // Custom Presentation
-        modalPresentationStyle = .custom
-        transitioningDelegate = self
-        
         // Preload View
         if #available(iOS 9.0, *) {
             loadViewIfNeeded()
         }
+        
+        // Custom Presentation
+        modalPresentationStyle = .custom
+        
+        transitioningDelegateObj = CFAlertViewControllerNotificationInteractiveTransition(modalViewController: self, swipeGestureView: containerView, contentScrollView: tableView)
+        transitioningDelegate = transitioningDelegateObj
     }
     
     
@@ -345,6 +348,9 @@ open class CFAlertViewController: UIViewController    {
     
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // Update Content ScrollView To Transitioning Delegate For Interactive Transition
+        transitioningDelegateObj?.contentScrollView = tableView
         
         // Update UI
         updateUI(withAnimation: false)
@@ -712,55 +718,6 @@ extension CFAlertViewController: UITableViewDataSource, UITableViewDelegate, CFA
                 actionHandler(action)
             }
         })
-    }
-}
-
-
-extension CFAlertViewController: UIViewControllerTransitioningDelegate {
-    
-    // MARK: - Transitioning Delegate
-    public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        
-        if (presented is CFAlertViewController) {
-            if self.preferredStyle == .notification {
-                let transition = CFAlertViewControllerNotificationTransition()
-                transition.transitionType = .present
-                return transition
-            }
-            else if preferredStyle == .alert {
-                let transition = CFAlertViewControllerPopupTransition()
-                transition.transitionType = .present
-                return transition
-            }
-            else if preferredStyle == .actionSheet {
-                let transition = CFAlertViewControllerActionSheetTransition()
-                transition.transitionType = .present
-                return transition
-            }
-        }
-        return nil
-    }
-    
-    public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        
-        if (dismissed is CFAlertViewController) {
-            if self.preferredStyle == .notification {
-                let transition = CFAlertViewControllerNotificationTransition()
-                transition.transitionType = .dismiss
-                return transition
-            }
-            else if self.preferredStyle == .alert {
-                let transition = CFAlertViewControllerPopupTransition()
-                transition.transitionType = .dismiss
-                return transition
-            }
-            else if self.preferredStyle == .actionSheet {
-                let transition = CFAlertViewControllerActionSheetTransition()
-                transition.transitionType = .dismiss
-                return transition
-            }
-        }
-        return nil
     }
 }
 

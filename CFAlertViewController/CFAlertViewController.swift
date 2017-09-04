@@ -143,10 +143,11 @@ open class CFAlertViewController: UIViewController    {
     @objc public var backgroundColor: UIColor?    {
         didSet  {
             if isViewLoaded {
-                view.backgroundColor = backgroundColor
+                backgroundColorView?.backgroundColor = backgroundColor
             }
         }
     }
+    @objc @IBOutlet public weak var backgroundColorView: UIView?
     @objc @IBOutlet public weak var backgroundBlurView: UIVisualEffectView?
     @objc public var shouldDismissOnBackgroundTap: Bool = true    // Default is True
     

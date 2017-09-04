@@ -59,22 +59,67 @@ class CFAlertViewControllerNotificationInteractiveTransition: CFAlertViewControl
             
             if let alertContainerView = alertViewController.containerView   {
                 
-                // Slide View
-                let currentTopOffset = CFAlertViewControllerBaseInteractiveTransition.valueBetween(start: 0.0,
-                                                                                                   andEnd: -alertContainerView.frame.size.height,
+                // Slide Container View
+                let currentTopOffset = CFAlertViewControllerBaseInteractiveTransition.valueBetween(start: -alertContainerView.frame.size.height,
+                                                                                                   andEnd: 0.0,
                                                                                                    forProgress: currentPercentage)
-                print(currentPercentage)
                 alertContainerView.frame = CGRect(x: alertContainerView.frame.origin.x,
                                                   y: currentTopOffset,
                                                   width: alertContainerView.frame.size.width,
                                                   height: alertContainerView.frame.size.height)
                 
-                // Update Background Color
+                // Fade background View
                 if alertViewController.backgroundStyle == .blur    {
-                //    alertViewController.backgroundBlurView?.alpha = currentPercentage
+                    alertViewController.backgroundBlurView?.alpha = currentPercentage
                 }
-                alertViewController.view.backgroundColor = alertViewController.backgroundColor?.withAlphaComponent(1-currentPercentage)
+                alertViewController.backgroundColorView?.alpha = currentPercentage
             }
+        }
+    }
+}
+
+extension CFAlertViewControllerNotificationInteractiveTransition  {
+    
+    // MARK: Pan Gesture Handle Methods
+    @objc override public func handlePan(_ recognizer: UIPanGestureRecognizer)  {
+        
+        // Location reference
+        var location = recognizer.location(in: swipeGestureView?.window)
+        if let recognizerView = recognizer.view {
+            location = location.applying(recognizerView.transform.inverted())
+        }
+        
+        // Velocity reference
+        var velocity = recognizer.velocity(in: swipeGestureView?.window)
+        if let recognizerView = recognizer.view {
+            velocity = velocity.applying(recognizerView.transform.inverted())
+        }
+        
+        if recognizer.state == .began {
+            
+            isInteracting = true
+            panStartLocation = location
+            modalViewController?.dismiss(animated: true, completion: nil)
+        }
+        else if recognizer.state == .changed {
+            
+            if let alertViewController = modalViewController as? CFAlertViewController,
+                let alertContainerView = alertViewController.containerView,
+                let panStartLocation = panStartLocation
+            {
+                let animationRatio = (panStartLocation.y - location.y) / alertContainerView.bounds.height
+                update(animationRatio)
+            }
+        }
+        else if recognizer.state == .ended {
+            
+            if velocity.y < -100.0 {
+                finish()
+            }
+            else {
+                cancel()
+            }
+            isInteracting = false
         }
     }
 }
@@ -139,11 +184,10 @@ extension CFAlertViewControllerNotificationInteractiveTransition: UIViewControll
                 alertViewController.containerView?.frame = frame!
                 
                 // Background
-                let backgroundColorRef: UIColor? = alertViewController.backgroundColor
-                alertViewController.backgroundColor = UIColor.clear
                 if alertViewController.backgroundStyle == .blur    {
                     alertViewController.backgroundBlurView?.alpha = 0.0
                 }
+                alertViewController.backgroundColorView?.alpha = 0.0
                 
                 UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.curveEaseIn, .beginFromCurrentState], animations: {() -> Void in
                     
@@ -151,7 +195,7 @@ extension CFAlertViewControllerNotificationInteractiveTransition: UIViewControll
                     if alertViewController.backgroundStyle == .blur    {
                         alertViewController.backgroundBlurView?.alpha = 1.0
                     }
-                    alertViewController.backgroundColor = backgroundColorRef
+                    alertViewController.backgroundColorView?.alpha = 1.0
                     
                 }, completion: nil)
                 
@@ -202,7 +246,7 @@ extension CFAlertViewControllerNotificationInteractiveTransition: UIViewControll
                 if alertViewController?.backgroundStyle == .blur    {
                     alertViewController?.backgroundBlurView?.alpha = 0.0
                 }
-                alertViewController?.view?.backgroundColor = UIColor.clear
+                alertViewController?.backgroundColorView?.alpha = 0.0
                 
             }, completion: {(_ finished: Bool) -> Void in
                 

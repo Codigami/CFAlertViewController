@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CFAlertViewController" customModule="CFAlertViewControllerDemo" customModuleProvider="target">
             <connections>
                 <outlet property="backgroundBlurView" destination="S2j-aa-3dE" id="0RR-wy-JuL"/>
+                <outlet property="backgroundColorView" destination="Rhh-QO-kOQ" id="Vzw-t2-yUl"/>
                 <outlet property="containerView" destination="oE9-Fa-uD3" id="U7b-iR-Wvb"/>
                 <outlet property="containerViewBottomConstraint" destination="VQq-aN-B81" id="5Vk-q7-S71"/>
                 <outlet property="containerViewCenterYConstraint" destination="H8R-Gq-Eee" id="AJR-2d-FW9"/>
@@ -32,6 +33,10 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rhh-QO-kOQ">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
                 <visualEffectView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S2j-aa-3dE">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="5jX-ZF-zMf">
@@ -92,10 +97,14 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="2uV-Tk-MV8"/>
+                <constraint firstItem="Rhh-QO-kOQ" firstAttribute="top" secondItem="ZTb-A8-9bZ" secondAttribute="top" id="6q8-AX-N41"/>
                 <constraint firstAttribute="bottom" secondItem="S2j-aa-3dE" secondAttribute="bottom" id="8W4-LY-vEg"/>
+                <constraint firstAttribute="bottom" secondItem="Rhh-QO-kOQ" secondAttribute="bottom" id="BA8-jm-Xyf"/>
                 <constraint firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="FgW-l0-cNW"/>
                 <constraint firstItem="S2j-aa-3dE" firstAttribute="top" secondItem="ZTb-A8-9bZ" secondAttribute="top" id="Si5-ff-XWt"/>
                 <constraint firstItem="i5M-Pr-FkT" firstAttribute="top" secondItem="ZTb-A8-9bZ" secondAttribute="top" id="Y3i-ZF-rc1"/>
+                <constraint firstAttribute="trailing" secondItem="Rhh-QO-kOQ" secondAttribute="trailing" id="aez-h1-tha"/>
+                <constraint firstItem="Rhh-QO-kOQ" firstAttribute="leading" secondItem="ZTb-A8-9bZ" secondAttribute="leading" id="cIP-y1-fOU"/>
                 <constraint firstItem="S2j-aa-3dE" firstAttribute="leading" secondItem="ZTb-A8-9bZ" secondAttribute="leading" id="kce-V2-ikp"/>
                 <constraint firstAttribute="trailing" secondItem="S2j-aa-3dE" secondAttribute="trailing" id="pNc-iH-VFQ"/>
                 <constraint firstItem="i5M-Pr-FkT" firstAttribute="leading" secondItem="ZTb-A8-9bZ" secondAttribute="leading" id="vrL-fC-WCF"/>

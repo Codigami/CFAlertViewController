@@ -82,11 +82,10 @@ extension CFAlertViewControllerPopupTransition: UIViewControllerAnimatedTransiti
                 alertViewController.containerView?.alpha = 0.0
                 
                 // Background
-                let backgroundColorRef: UIColor? = alertViewController.backgroundColor
-                alertViewController.backgroundColor = UIColor.clear
                 if alertViewController.backgroundStyle == .blur    {
                     alertViewController.backgroundBlurView?.alpha = 0.0
                 }
+                alertViewController.backgroundColorView?.alpha = 0.0
                 
                 UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.curveEaseIn, .allowUserInteraction, .beginFromCurrentState], animations: {() -> Void in
                     
@@ -94,7 +93,7 @@ extension CFAlertViewControllerPopupTransition: UIViewControllerAnimatedTransiti
                     if alertViewController.backgroundStyle == .blur    {
                         alertViewController.backgroundBlurView?.alpha = 1.0
                     }
-                    alertViewController.backgroundColor = backgroundColorRef
+                    alertViewController.backgroundColorView?.alpha = 1.0
                     
                 }, completion: nil)
                 
@@ -139,7 +138,7 @@ extension CFAlertViewControllerPopupTransition: UIViewControllerAnimatedTransiti
                 if alertViewController?.backgroundStyle == .blur    {
                     alertViewController?.backgroundBlurView?.alpha = 0.0
                 }
-                alertViewController?.view?.backgroundColor = UIColor.clear
+                alertViewController?.backgroundColorView?.alpha = 0.0
                 
             }, completion: {(_ finished: Bool) -> Void in
                 // Call Did System Methods

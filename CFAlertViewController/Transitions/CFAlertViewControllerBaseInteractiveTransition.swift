@@ -22,7 +22,7 @@ import UIKit.UIGestureRecognizerSubclass
 class CFAlertViewControllerBaseInteractiveTransition: UIPercentDrivenInteractiveTransition {
     
     // MARK: - Declarations
-    @objc public enum CFAlertViewControllerTransitionType : Int {
+    public enum CFAlertViewControllerTransitionType : Int {
         case present = 0
         case dismiss
     }
@@ -68,13 +68,13 @@ class CFAlertViewControllerBaseInteractiveTransition: UIPercentDrivenInteractive
             return gesture?.scrollView
         }
     }
-    public private(set) var isInteracting : Bool = false
+    public var isInteracting : Bool = false
     public var gestureRecognizerToFailPan : UIGestureRecognizer?
     public var transitionContext : UIViewControllerContextTransitioning?
     
     // MARK: Private
     private var gesture : CFAlertViewControllerTransitionGestureRecognizer?
-    private var panStartLocation : CGPoint?
+    public var panStartLocation : CGPoint?
     
     
     // MARK: - Initialisation Methods
@@ -160,43 +160,8 @@ extension CFAlertViewControllerBaseInteractiveTransition: UIGestureRecognizerDel
     }
     
     // MARK: Pan Gesture Handle Methods
-    @objc private func handlePan(_ recognizer: UIPanGestureRecognizer)  {
+    @objc public func handlePan(_ recognizer: UIPanGestureRecognizer)  {
         
-        // Location reference
-        var location = recognizer.location(in: swipeGestureView?.window)
-        if let recognizerView = recognizer.view {
-            location = location.applying(recognizerView.transform.inverted())
-        }
-        
-        // Velocity reference
-        var velocity = recognizer.velocity(in: swipeGestureView?.window)
-        if let recognizerView = recognizer.view {
-            velocity = velocity.applying(recognizerView.transform.inverted())
-        }
-        
-        if recognizer.state == .began {
-            
-            isInteracting = true
-            panStartLocation = location
-            modalViewController?.dismiss(animated: true, completion: nil)
-        }
-        else if recognizer.state == .changed {
-            
-            if let modalControllerView = modalViewController?.view, let panStartLocation = panStartLocation    {
-                let animationRatio = (location.y - panStartLocation.y) / modalControllerView.bounds.height
-                update(animationRatio)
-            }
-        }
-        else if recognizer.state == .ended {
-            
-            if velocity.y > 100.0 {
-                finish()
-            }
-            else {
-                cancel()
-            }
-            isInteracting = false
-        }
     }
 }
 
@@ -218,7 +183,7 @@ extension CFAlertViewControllerBaseInteractiveTransition {
         // Update UI
         if let transitionContext = transitionContext {
             updateUIState(transitionContext: transitionContext,
-                          percentComplete: percentComplete,
+                          percentComplete: 1.0 - percentComplete,
                           transitionType: transitionType)
         }
     }
@@ -335,30 +300,30 @@ class CFAlertViewControllerTransitionGestureRecognizer: UIPanGestureRecognizer  
     override public func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent) {
 
         super.touchesMoved(touches, with: event)
-
+        
+        // Validations
         guard let scrollView = scrollView else  {
-            return;
+            return
         }
 
         if self.state == .failed    {
             return
         }
 
-        let velocity = self.velocity(in: view)
-        let nowPoint = touches.first?.location(in: view) ?? CGPoint.zero
-        let prevPoint = touches.first?.previousLocation(in: view) ?? CGPoint.zero
-
         if let isFail = isFail {
             if isFail.boolValue {
                 state = .failed
             }
-            return;
+            return
         }
 
+        let velocity = self.velocity(in: view)
+        let nowPoint = touches.first?.location(in: view) ?? CGPoint.zero
+        let prevPoint = touches.first?.previousLocation(in: view) ?? CGPoint.zero
+        
         let topVerticalOffset = -(scrollView.contentInset.top)
-
         if ((fabs(velocity.x) < fabs(velocity.y)) &&
-            (nowPoint.y > prevPoint.y) &&
+            (nowPoint.y < prevPoint.y) &&
             (scrollView.contentOffset.y <= topVerticalOffset))
         {
             isFail = NSNumber.init(value: false)

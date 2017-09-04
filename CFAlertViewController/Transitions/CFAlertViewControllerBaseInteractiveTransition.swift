@@ -321,19 +321,17 @@ class CFAlertViewControllerTransitionGestureRecognizer: UIPanGestureRecognizer  
         let nowPoint = touches.first?.location(in: view) ?? CGPoint.zero
         let prevPoint = touches.first?.previousLocation(in: view) ?? CGPoint.zero
         
-        let topVerticalOffset = -(scrollView.contentInset.top)
         if ((fabs(velocity.x) < fabs(velocity.y)) &&
             (nowPoint.y < prevPoint.y) &&
-            (scrollView.contentOffset.y <= topVerticalOffset))
+            (scrollView.contentOffset.y >= (scrollView.contentSize.height-scrollView.frame.size.height)))
         {
+            // Apply Gesture
             isFail = NSNumber.init(value: false)
-        }
-        else if (scrollView.contentOffset.y >= topVerticalOffset) {
-            state = .failed
-            isFail = NSNumber.init(value: true)
         }
         else {
-            isFail = NSNumber.init(value: false)
+            // Allow Scroll View To Scroll
+            state = .failed
+            isFail = NSNumber.init(value: true)
         }
     }
 }

@@ -379,6 +379,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="CFAlertController" id="KBl-r1-YdK">
+                        <barButtonItem key="leftBarButtonItem" title="Examples" id="UHh-dr-iSw">
+                            <connections>
+                                <segue destination="dXA-0U-Cku" kind="show" identifier="showExamplesScreen" id="gT0-9b-0JY"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Show" style="done" id="cAk-By-Ka7">
                             <connections>
                                 <action selector="showAlertButtonClicked:" destination="7MK-XY-ihQ" id="XRP-UF-YwV"/>
@@ -404,6 +409,55 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gM1-z3-DfD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1098" y="92"/>
+        </scene>
+        <!--Examples Table View Controller-->
+        <scene sceneID="fR3-CP-KFW">
+            <objects>
+                <viewController id="dXA-0U-Cku" customClass="ExamplesTableViewController" customModule="CFAlertViewControllerDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Kdz-cd-Cbt"/>
+                        <viewControllerLayoutGuide type="bottom" id="KYO-IT-DQU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fYl-Zd-D1x">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="JnR-NK-e8F">
+                                <rect key="frame" x="12" y="76" width="351" height="29"/>
+                                <segments>
+                                    <segment title="Alert"/>
+                                    <segment title="Action Sheet"/>
+                                    <segment title="Notification"/>
+                                </segments>
+                            </segmentedControl>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="OR5-ed-pvY">
+                                <rect key="frame" x="0.0" y="116" width="375" height="551"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="dXA-0U-Cku" id="ewo-sW-SUA"/>
+                                    <outlet property="delegate" destination="dXA-0U-Cku" id="kBJ-f9-d28"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="OR5-ed-pvY" firstAttribute="leading" secondItem="fYl-Zd-D1x" secondAttribute="leading" id="3u3-nd-Xnq"/>
+                            <constraint firstItem="JnR-NK-e8F" firstAttribute="top" secondItem="Kdz-cd-Cbt" secondAttribute="bottom" constant="12" id="916-9E-INO"/>
+                            <constraint firstAttribute="trailing" secondItem="JnR-NK-e8F" secondAttribute="trailing" constant="12" id="Rt6-5x-ilY"/>
+                            <constraint firstAttribute="trailing" secondItem="OR5-ed-pvY" secondAttribute="trailing" id="Ube-ej-eKd"/>
+                            <constraint firstItem="KYO-IT-DQU" firstAttribute="top" secondItem="OR5-ed-pvY" secondAttribute="bottom" id="cgn-hd-gj3"/>
+                            <constraint firstItem="OR5-ed-pvY" firstAttribute="top" secondItem="JnR-NK-e8F" secondAttribute="bottom" constant="12" id="tek-B1-OwD"/>
+                            <constraint firstItem="JnR-NK-e8F" firstAttribute="leading" secondItem="fYl-Zd-D1x" secondAttribute="leading" constant="12" id="tqQ-h7-fkJ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="segmentedControl" destination="JnR-NK-e8F" id="SZb-lo-bU0"/>
+                        <outlet property="tableView" destination="OR5-ed-pvY" id="ZLi-rg-aVf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S2B-ce-kzo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2032" y="258"/>
         </scene>
         <!--Color Picker Table View Controller-->
         <scene sceneID="dHX-cp-P2p">
@@ -585,7 +639,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9gT-2N-eVZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1906" y="116"/>
+            <point key="canvasLocation" x="2038" y="-433"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="S38-L3-d9k">

@@ -29,6 +29,10 @@
 		40102FEF1E30EC4900B63602 /* CFAlertTitleSubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40102FEE1E30EC4900B63602 /* CFAlertTitleSubtitleTableViewCell.swift */; };
 		403168EA1E31F70D00C29637 /* CFAlertViewControllerActionSheetTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403168E91E31F70D00C29637 /* CFAlertViewControllerActionSheetTransition.swift */; };
 		403168EC1E31F71800C29637 /* CFAlertViewControllerPopupTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403168EB1E31F71800C29637 /* CFAlertViewControllerPopupTransition.swift */; };
+		4072C25A1F584414002D82BC /* ExamplesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4072C2591F584414002D82BC /* ExamplesTableViewController.swift */; };
+		4099584C1F5D4BB70086BB8F /* JFRatePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4099584B1F5D4BB70086BB8F /* JFRatePanel.m */; };
+		40F4AFC01F59320700593D5F /* ExampleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F4AFBE1F59320700593D5F /* ExampleTableViewCell.swift */; };
+		40F4AFC11F59320700593D5F /* ExampleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40F4AFBF1F59320700593D5F /* ExampleTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +80,11 @@
 		40102FEE1E30EC4900B63602 /* CFAlertTitleSubtitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFAlertTitleSubtitleTableViewCell.swift; sourceTree = "<group>"; };
 		403168E91E31F70D00C29637 /* CFAlertViewControllerActionSheetTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFAlertViewControllerActionSheetTransition.swift; sourceTree = "<group>"; };
 		403168EB1E31F71800C29637 /* CFAlertViewControllerPopupTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFAlertViewControllerPopupTransition.swift; sourceTree = "<group>"; };
+		4072C2591F584414002D82BC /* ExamplesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplesTableViewController.swift; sourceTree = "<group>"; };
+		4099584A1F5D4BB60086BB8F /* JFRatePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFRatePanel.h; sourceTree = "<group>"; };
+		4099584B1F5D4BB70086BB8F /* JFRatePanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFRatePanel.m; sourceTree = "<group>"; };
+		40F4AFBE1F59320700593D5F /* ExampleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTableViewCell.swift; sourceTree = "<group>"; };
+		40F4AFBF1F59320700593D5F /* ExampleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExampleTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +136,7 @@
 		2F8E8FBD1D181166004450F5 /* CFAlertViewControllerDemo */ = {
 			isa = PBXGroup;
 			children = (
+				40F4AFBD1F5931D900593D5F /* Table View Cells */,
 				2F8E8FF61D1811C7004450F5 /* App Delegate */,
 				2F8E8FFD1D1811C7004450F5 /* View Controller */,
 				2F8E8FF91D1811C7004450F5 /* Header Footer Views */,
@@ -161,6 +171,8 @@
 		2F8E8FF91D1811C7004450F5 /* Header Footer Views */ = {
 			isa = PBXGroup;
 			children = (
+				4099584A1F5D4BB60086BB8F /* JFRatePanel.h */,
+				4099584B1F5D4BB70086BB8F /* JFRatePanel.m */,
 				2F8E8FFA1D1811C7004450F5 /* CustomFooterView.h */,
 				2F8E8FFB1D1811C7004450F5 /* CustomFooterView.m */,
 				2F8E8FFC1D1811C7004450F5 /* CustomFooterView.xib */,
@@ -175,6 +187,7 @@
 				2F8E8FFF1D1811C7004450F5 /* HomeTableViewController.m */,
 				217A00741E6D7B4800415DA7 /* ColorPickerTableViewController.h */,
 				217A00751E6D7B4800415DA7 /* ColorPickerTableViewController.m */,
+				4072C2591F584414002D82BC /* ExamplesTableViewController.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -255,6 +268,15 @@
 				2FFE3C3B1F053DC200CB815A /* Info.plist */,
 			);
 			path = CFAlertViewControllerDemoUITests;
+			sourceTree = "<group>";
+		};
+		40F4AFBD1F5931D900593D5F /* Table View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				40F4AFBE1F59320700593D5F /* ExampleTableViewCell.swift */,
+				40F4AFBF1F59320700593D5F /* ExampleTableViewCell.xib */,
+			);
+			path = "Table View Cells";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -342,6 +364,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40F4AFC11F59320700593D5F /* ExampleTableViewCell.xib in Resources */,
 				2F8E90281D181F07004450F5 /* CFAlertViewController.xib in Resources */,
 				2F8E90241D181F07004450F5 /* CFAlertActionTableViewCell.xib in Resources */,
 				2F8E8FCE1D181166004450F5 /* LaunchScreen.storyboard in Resources */,
@@ -368,6 +391,7 @@
 			files = (
 				2F87DE1F1E30EC1300483008 /* CFAlertViewController.swift in Sources */,
 				403168EA1E31F70D00C29637 /* CFAlertViewControllerActionSheetTransition.swift in Sources */,
+				4099584C1F5D4BB70086BB8F /* JFRatePanel.m in Sources */,
 				2FC83E171F584E7600C4BAD7 /* CFAlertViewControllerNotificationTransition.swift in Sources */,
 				403168EC1E31F71800C29637 /* CFAlertViewControllerPopupTransition.swift in Sources */,
 				40102FEF1E30EC4900B63602 /* CFAlertTitleSubtitleTableViewCell.swift in Sources */,
@@ -377,6 +401,8 @@
 				2F8E8FC01D181166004450F5 /* main.m in Sources */,
 				4004556F1E30A29E0035A3D4 /* CFAlertActionTableViewCell.swift in Sources */,
 				2F8E90001D1811C7004450F5 /* AppDelegate.m in Sources */,
+				4072C25A1F584414002D82BC /* ExamplesTableViewController.swift in Sources */,
+				40F4AFC01F59320700593D5F /* ExampleTableViewCell.swift in Sources */,
 				2F8E90011D1811C7004450F5 /* CustomFooterView.m in Sources */,
 				217A00761E6D7B4800415DA7 /* ColorPickerTableViewController.m in Sources */,
 				2F8E90031D1811C7004450F5 /* HomeTableViewController.m in Sources */,

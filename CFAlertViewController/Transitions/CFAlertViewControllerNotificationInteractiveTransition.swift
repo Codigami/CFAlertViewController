@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CFAlertViewControllerNotificationInteractiveTransition: CFAlertViewControllerBaseInteractiveTransition {
+class CFAlertViewControllerNotificationInteractiveTransition: CFAlertBaseInteractiveTransition {
 
     // MARK: - Initialisation Methods
     public override init(modalViewController: UIViewController,
@@ -60,9 +60,9 @@ class CFAlertViewControllerNotificationInteractiveTransition: CFAlertViewControl
             if let alertContainerView = alertViewController.containerView   {
                 
                 // Slide Container View
-                let currentTopOffset = CFAlertViewControllerBaseInteractiveTransition.valueBetween(start: -alertContainerView.frame.size.height,
-                                                                                                   andEnd: 0.0,
-                                                                                                   forProgress: currentPercentage)
+                let currentTopOffset = CFAlertBaseInteractiveTransition.valueBetween(start: -alertContainerView.frame.size.height,
+                                                                                     andEnd: 0.0,
+                                                                                     forProgress: currentPercentage)
                 alertContainerView.frame = CGRect(x: alertContainerView.frame.origin.x,
                                                   y: currentTopOffset,
                                                   width: alertContainerView.frame.size.width,

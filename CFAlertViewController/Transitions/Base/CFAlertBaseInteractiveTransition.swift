@@ -1,5 +1,5 @@
 //
-//  CFAlertViewControllerBaseInteractiveTransition.swift
+//  CFAlertBaseInteractiveTransition.swift
 //  CFAlertViewControllerDemo
 //
 //  Created by Shardul Patel on 02/09/17.
@@ -10,16 +10,16 @@ import UIKit
 import UIKit.UIGestureRecognizerSubclass
 
 
-@objc protocol CFAlertViewControllerInteractiveTransition: class {
-    @objc optional func alertViewControllerTransitionWillBegin(_ transition: CFAlertViewControllerBaseInteractiveTransition)
-    @objc optional func alertViewControllerTransitionWillFinish(_ transition: CFAlertViewControllerBaseInteractiveTransition)
-    @objc optional func alertViewControllerTransitionDidFinish(_ transition: CFAlertViewControllerBaseInteractiveTransition)
-    @objc optional func alertViewControllerTransitionWillCancel(_ transition: CFAlertViewControllerBaseInteractiveTransition)
-    @objc optional func alertViewControllerTransitionDidCancel(_ transition: CFAlertViewControllerBaseInteractiveTransition)
+@objc protocol CFAlertInteractiveTransition: class {
+    @objc optional func alertViewControllerTransitionWillBegin(_ transition: CFAlertBaseInteractiveTransition)
+    @objc optional func alertViewControllerTransitionWillFinish(_ transition: CFAlertBaseInteractiveTransition)
+    @objc optional func alertViewControllerTransitionDidFinish(_ transition: CFAlertBaseInteractiveTransition)
+    @objc optional func alertViewControllerTransitionWillCancel(_ transition: CFAlertBaseInteractiveTransition)
+    @objc optional func alertViewControllerTransitionDidCancel(_ transition: CFAlertBaseInteractiveTransition)
 }
 
 
-class CFAlertViewControllerBaseInteractiveTransition: UIPercentDrivenInteractiveTransition {
+class CFAlertBaseInteractiveTransition: UIPercentDrivenInteractiveTransition {
     
     // MARK: - Declarations
     public enum CFAlertViewControllerTransitionType : Int {
@@ -30,7 +30,7 @@ class CFAlertViewControllerBaseInteractiveTransition: UIPercentDrivenInteractive
     
     // MARK: - Variables
     // MARK: Public
-    public weak var delegate : CFAlertViewControllerInteractiveTransition?
+    public weak var delegate : CFAlertInteractiveTransition?
     public weak var modalViewController : UIViewController?
     public var transitionType : CFAlertViewControllerTransitionType = .present
     public var transitionDuration : TimeInterval = 0.4
@@ -43,7 +43,7 @@ class CFAlertViewControllerBaseInteractiveTransition: UIPercentDrivenInteractive
             if enableInteractiveTransition && (swipeGestureView != nil) {
                 
                 // Add New Gesture Recognizer
-                gesture = CFAlertViewControllerTransitionGestureRecognizer(target: self, action: #selector(handlePan(_:)))
+                gesture = CFAlertBaseTransitionGestureRecognizer(target: self, action: #selector(handlePan(_:)))
                 if let gesture = gesture    {
                     gesture.delegate = self
                     gesture.cancelsTouchesInView = false
@@ -73,7 +73,7 @@ class CFAlertViewControllerBaseInteractiveTransition: UIPercentDrivenInteractive
     public var transitionContext : UIViewControllerContextTransitioning?
     
     // MARK: Private
-    private var gesture : CFAlertViewControllerTransitionGestureRecognizer?
+    private var gesture : CFAlertBaseTransitionGestureRecognizer?
     public var panStartLocation : CGPoint?
     
     
@@ -139,7 +139,7 @@ class CFAlertViewControllerBaseInteractiveTransition: UIPercentDrivenInteractive
 }
 
 // MARK: - UIGestureRecognizerDelegate
-extension CFAlertViewControllerBaseInteractiveTransition: UIGestureRecognizerDelegate  {
+extension CFAlertBaseInteractiveTransition: UIGestureRecognizerDelegate  {
     
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
@@ -167,7 +167,7 @@ extension CFAlertViewControllerBaseInteractiveTransition: UIGestureRecognizerDel
 
 
 // MARK: - UIPercentDrivenInteractiveTransition
-extension CFAlertViewControllerBaseInteractiveTransition {
+extension CFAlertBaseInteractiveTransition {
     
     public override func startInteractiveTransition(_ transitionContext: UIViewControllerContextTransitioning) {
         
@@ -276,62 +276,6 @@ extension CFAlertViewControllerBaseInteractiveTransition {
             
             // Complete Transition
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-        }
-    }
-}
-
-
-class CFAlertViewControllerTransitionGestureRecognizer: UIPanGestureRecognizer  {
-    
-    // MARK: - Variables
-    // MARK: Public
-    public weak var scrollView : UIScrollView?
-    
-    // MARK: Private
-    private var isFail : NSNumber?
-    
-    
-    // MARK: - Override Methods
-    override public func reset()    {
-        super.reset()
-        isFail = nil
-    }
-
-    override public func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent) {
-
-        super.touchesMoved(touches, with: event)
-        
-        // Validations
-        guard let scrollView = scrollView else  {
-            return
-        }
-
-        if self.state == .failed    {
-            return
-        }
-
-        if let isFail = isFail {
-            if isFail.boolValue {
-                state = .failed
-            }
-            return
-        }
-
-        let velocity = self.velocity(in: view)
-        let nowPoint = touches.first?.location(in: view) ?? CGPoint.zero
-        let prevPoint = touches.first?.previousLocation(in: view) ?? CGPoint.zero
-        
-        if ((fabs(velocity.x) < fabs(velocity.y)) &&
-            (nowPoint.y < prevPoint.y) &&
-            (scrollView.contentOffset.y >= (scrollView.contentSize.height-scrollView.frame.size.height)))
-        {
-            // Apply Gesture
-            isFail = NSNumber.init(value: false)
-        }
-        else {
-            // Allow Scroll View To Scroll
-            state = .failed
-            isFail = NSNumber.init(value: true)
         }
     }
 }

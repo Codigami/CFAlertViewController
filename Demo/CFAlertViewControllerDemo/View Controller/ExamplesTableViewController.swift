@@ -36,6 +36,9 @@ class ExamplesTableViewController: UIViewController {
     let defaultActionTitle = "Action #1"
     let defaultActionTitle2 = "Action #2"
     
+    let defaultActionColor = UIColor.init(red: 41.0/255.0, green: 198.0/255.0, blue: 77.0/255.0, alpha: 1.0)
+    let destructiveActionColor = UIColor.init(red: 255.0/255.0, green: 75.0/255.0, blue: 75.0/255.0, alpha: 1.0)
+    
     
     
     override func viewDidLoad() {
@@ -153,7 +156,7 @@ extension ExamplesTableViewController {
         case .advancedExample2:
             return "Airpods Action Sheet"
         case .advancedExample3:
-            return "Error Notification"
+            return "Sucess Notification"
         case .advancedExample4:
             return "App Rating Alert"
         case .advancedExample5:
@@ -172,15 +175,15 @@ extension ExamplesTableViewController {
         // Single Action
         case .simpleExample1:
             let alert = CFAlertViewController.alertController(title: alertTitle, titleColor: .black, message: alertBodyText, messageColor: .black, textAlignment: .left, preferredStyle: styleForSelectedIndex(index: selectedControlIndex), headerView: nil, footerView: nil, didDismissAlertHandler: nil)
-            let defaultAction = CFAlertAction.action(title: defaultActionTitle, style: .Default, alignment: .right, backgroundColor: .green, textColor: .white, handler: nil)
+            let defaultAction = CFAlertAction.action(title: defaultActionTitle, style: .Default, alignment: .right, backgroundColor: defaultActionColor, textColor: .white, handler: nil)
             alert.addAction(defaultAction)
             self.present(alert, animated: true, completion: nil)
             
         // Multiple Actions
         case .simpleExample2:
             let alert = CFAlertViewController.alertController(title: alertTitle, titleColor: .black, message: alertBodyText, messageColor: .black, textAlignment: .left, preferredStyle: styleForSelectedIndex(index: selectedControlIndex), headerView: nil, footerView: nil, didDismissAlertHandler: nil)
-            let defaultAction = CFAlertAction.action(title: defaultActionTitle, style: .Default, alignment: .right, backgroundColor: .green, textColor: .white, handler: nil)
-            let destructiveAction = CFAlertAction.action(title: defaultActionTitle, style: .Default, alignment: .right, backgroundColor: .red, textColor: .white, handler: nil)
+            let defaultAction = CFAlertAction.action(title: defaultActionTitle, style: .Default, alignment: .right, backgroundColor: defaultActionColor, textColor: .white, handler: nil)
+            let destructiveAction = CFAlertAction.action(title: defaultActionTitle, style: .Default, alignment: .right, backgroundColor: destructiveActionColor, textColor: .white, handler: nil)
             alert.addAction(defaultAction)
             alert.addAction(destructiveAction)
             self.present(alert, animated: true, completion: nil)
@@ -209,7 +212,7 @@ extension ExamplesTableViewController {
         
         switch exampleType {
         
-        // Custom Alert background
+        // Custom background style
         case .advancedExample1:
             let alert = CFAlertViewController.alertController(title: alertTitle, titleColor: .black, message: alertBodyText, messageColor: .black, textAlignment: .center, preferredStyle: .alert, headerView: nil, footerView: nil, didDismissAlertHandler: nil)
             alert.backgroundStyle = .blur
@@ -223,14 +226,35 @@ extension ExamplesTableViewController {
             headerView.frame = CGRect.init(x: 0, y: 0, width: 0, height: 260)
             headerView.contentMode = .bottom
             headerView.clipsToBounds = true
-            let alert = CFAlertViewController.alertController(title: "Airpods", titleColor: .black, message: nil, messageColor: .black, textAlignment: .center, preferredStyle: .actionSheet, headerView: headerView, footerView: nil, didDismissAlertHandler: nil)
-            let connectAction = CFAlertAction.action(title: "Connect", style: .Default, alignment: .center, backgroundColor: UIColor.black.withAlphaComponent(0.14), textColor: .black, handler: nil)
+            let alert = CFAlertViewController.alertController(title: nil, titleColor: .black, message: "Airpods", messageColor: .black, textAlignment: .center, preferredStyle: .actionSheet, headerView: headerView, footerView: nil, didDismissAlertHandler: nil)
+            let connectAction = CFAlertAction.action(title: "Connect", style: .Default, alignment: .justified, backgroundColor: UIColor.black.withAlphaComponent(0.14), textColor: .black, handler: nil)
             alert.addAction(connectAction)
             self.present(alert, animated: true, completion: nil)
             
+        // Success Notification Style
+        case .advancedExample3:
+            let alert = CFAlertViewController.alertController(title: "Congratulations!", titleColor: .white, message: "You are now a premium user", messageColor: .white, textAlignment: .left, preferredStyle: .notification, headerView: nil, footerView: nil, didDismissAlertHandler: nil)
+            alert.containerView?.backgroundColor = defaultActionColor
+            alert.backgroundStyle = .blur
+            self.present(alert, animated: true, completion: nil)
+          
+        // App Rate Popup Style
         case .advancedExample4:
-            break
-
+            let headerView = CFRatePanel.init(frame: CGRect.init(x: 0, y: 10, width: 155, height: 80), fullStar: UIImage.init(named: "star_selected"), emptyStar: UIImage.init(named: "star_deselected"))
+            headerView?.flashAllStars()
+            headerView?.contentMode = .bottom
+            headerView?.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin]
+            headerView?.translatesAutoresizingMaskIntoConstraints = true
+            headerView?.clipsToBounds = true
+            
+            let headerContainerView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 80))
+            headerContainerView.addSubview(headerView!)
+            let alert = CFAlertViewController.alertController(title: "Rate Us", titleColor: nil, message: "If you enjoyed the app, it would be great if you could rate us and write a review.", messageColor: nil, textAlignment: .center, preferredStyle: .alert, headerView: headerContainerView, footerView: nil, didDismissAlertHandler: nil)
+            let action = CFAlertAction.action(title: "Submit", style: .Default, alignment: .center, backgroundColor: defaultActionColor, textColor: .white, handler: nil)
+            alert.addAction(action)
+            alert.backgroundStyle = .blur
+            self.present(alert, animated: true, completion: nil)
+            
         default:
             break
         }

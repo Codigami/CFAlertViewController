@@ -1,5 +1,5 @@
 //
-//  JFRatePanel.h
+//  CFRatePanel.h
 //  CrowdFire
 //
 //  Created by Shardul Patel on 24/02/14.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol JFRatePanelDelegate;
+@protocol CFRatePanelDelegate;
 
 typedef enum {
     RateViewAlignmentLeft,
@@ -17,7 +17,7 @@ typedef enum {
 } RatePanelAlignment;
 
 
-@interface JFRatePanel : UIView {
+@interface CFRatePanel : UIView {
     UIImage *_fullStarImage;
     UIImage *_emptyStarImage;
     CGPoint _origin;
@@ -30,10 +30,10 @@ typedef enum {
 @property(nonatomic, assign) BOOL editable;
 @property(nonatomic, retain) UIImage *fullStarImage;
 @property(nonatomic, retain) UIImage *emptyStarImage;
-@property(nonatomic, assign) NSObject<JFRatePanelDelegate> *delegate;
+@property(nonatomic, assign) NSObject<CFRatePanelDelegate> *delegate;
 
-- (JFRatePanel *)initWithFrame:(CGRect)frame;
-- (JFRatePanel *)initWithFrame:(CGRect)rect fullStar:(UIImage *)fullStarImage emptyStar:(UIImage *)emptyStarImage;
+- (CFRatePanel *)initWithFrame:(CGRect)frame;
+- (CFRatePanel *)initWithFrame:(CGRect)rect fullStar:(UIImage *)fullStarImage emptyStar:(UIImage *)emptyStarImage;
 
 - (void) setRate:(NSInteger)rate animate:(BOOL)animate;
 
@@ -43,8 +43,8 @@ typedef enum {
 @end
 
 
-@protocol JFRatePanelDelegate
+@protocol CFRatePanelDelegate
 
-- (void)rateView:(JFRatePanel *)rateView changedToNewRate:(NSInteger)rate;
+- (void)rateView:(CFRatePanel *)rateView changedToNewRate:(NSInteger)rate;
 
 @end

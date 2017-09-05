@@ -1,17 +1,17 @@
 //
-//  JFRatePanel.m
+//  CFRatePanel.m
 //  CrowdFire
 //
 //  Created by Shardul Patel on 24/02/14.
 //
 //
 
-#import "JFRatePanel.h"
+#import "CFRatePanel.h"
 
 static NSString *DefaultFullStarImageFilename = @"Star_Yellow";
 static NSString *DefaultEmptyStarImageFilename = @"Star_DarkGray";
 
-@interface JFRatePanel () <UIGestureRecognizerDelegate>
+@interface CFRatePanel () <UIGestureRecognizerDelegate>
 
 @property (nonatomic, retain) NSMutableArray *starImageViewList;
 
@@ -22,7 +22,7 @@ static NSString *DefaultEmptyStarImageFilename = @"Star_DarkGray";
 @end
 
 
-@implementation JFRatePanel
+@implementation CFRatePanel
 
 #pragma mark - Synthesized Objects
 
@@ -37,11 +37,11 @@ static NSString *DefaultEmptyStarImageFilename = @"Star_DarkGray";
 
 #pragma mark - Initialisation Methods
 
-- (JFRatePanel *)initWithFrame:(CGRect)frame {
+- (CFRatePanel *)initWithFrame:(CGRect)frame {
     return [self initWithFrame:frame fullStar:[UIImage imageNamed:DefaultFullStarImageFilename] emptyStar:[UIImage imageNamed:DefaultEmptyStarImageFilename]];
 }
 
-- (JFRatePanel *)initWithFrame:(CGRect)frame fullStar:(UIImage *)fullStarImage emptyStar:(UIImage *)emptyStarImage {
+- (CFRatePanel *)initWithFrame:(CGRect)frame fullStar:(UIImage *)fullStarImage emptyStar:(UIImage *)emptyStarImage {
     self = [super initWithFrame:frame];
     if (self) {
         self.opaque = NO;

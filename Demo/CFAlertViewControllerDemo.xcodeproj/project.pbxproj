@@ -27,10 +27,10 @@
 		2FFE3C2C1F053DA800CB815A /* CFAlertViewControllerDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFE3C2B1F053DA800CB815A /* CFAlertViewControllerDemoTests.swift */; };
 		4004556F1E30A29E0035A3D4 /* CFAlertActionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4004556E1E30A29E0035A3D4 /* CFAlertActionTableViewCell.swift */; };
 		40102FEF1E30EC4900B63602 /* CFAlertTitleSubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40102FEE1E30EC4900B63602 /* CFAlertTitleSubtitleTableViewCell.swift */; };
+		4019782B1F5E738A001866FE /* CFRatePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 401978281F5E738A001866FE /* CFRatePanel.m */; };
 		403168EA1E31F70D00C29637 /* CFAlertViewControllerActionSheetTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403168E91E31F70D00C29637 /* CFAlertViewControllerActionSheetTransition.swift */; };
 		403168EC1E31F71800C29637 /* CFAlertViewControllerPopupTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403168EB1E31F71800C29637 /* CFAlertViewControllerPopupTransition.swift */; };
 		4072C25A1F584414002D82BC /* ExamplesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4072C2591F584414002D82BC /* ExamplesTableViewController.swift */; };
-		4099584C1F5D4BB70086BB8F /* JFRatePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4099584B1F5D4BB70086BB8F /* JFRatePanel.m */; };
 		40F4AFC01F59320700593D5F /* ExampleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F4AFBE1F59320700593D5F /* ExampleTableViewCell.swift */; };
 		40F4AFC11F59320700593D5F /* ExampleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40F4AFBF1F59320700593D5F /* ExampleTableViewCell.xib */; };
 /* End PBXBuildFile section */
@@ -78,11 +78,11 @@
 		2FFE3C3B1F053DC200CB815A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4004556E1E30A29E0035A3D4 /* CFAlertActionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFAlertActionTableViewCell.swift; sourceTree = "<group>"; };
 		40102FEE1E30EC4900B63602 /* CFAlertTitleSubtitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFAlertTitleSubtitleTableViewCell.swift; sourceTree = "<group>"; };
+		401978271F5E738A001866FE /* CFRatePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFRatePanel.h; sourceTree = "<group>"; };
+		401978281F5E738A001866FE /* CFRatePanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFRatePanel.m; sourceTree = "<group>"; };
 		403168E91E31F70D00C29637 /* CFAlertViewControllerActionSheetTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFAlertViewControllerActionSheetTransition.swift; sourceTree = "<group>"; };
 		403168EB1E31F71800C29637 /* CFAlertViewControllerPopupTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFAlertViewControllerPopupTransition.swift; sourceTree = "<group>"; };
 		4072C2591F584414002D82BC /* ExamplesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplesTableViewController.swift; sourceTree = "<group>"; };
-		4099584A1F5D4BB60086BB8F /* JFRatePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFRatePanel.h; sourceTree = "<group>"; };
-		4099584B1F5D4BB70086BB8F /* JFRatePanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFRatePanel.m; sourceTree = "<group>"; };
 		40F4AFBE1F59320700593D5F /* ExampleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTableViewCell.swift; sourceTree = "<group>"; };
 		40F4AFBF1F59320700593D5F /* ExampleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExampleTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -136,6 +136,7 @@
 		2F8E8FBD1D181166004450F5 /* CFAlertViewControllerDemo */ = {
 			isa = PBXGroup;
 			children = (
+				401978231F5E738A001866FE /* Examples */,
 				40F4AFBD1F5931D900593D5F /* Table View Cells */,
 				2F8E8FF61D1811C7004450F5 /* App Delegate */,
 				2F8E8FFD1D1811C7004450F5 /* View Controller */,
@@ -171,8 +172,6 @@
 		2F8E8FF91D1811C7004450F5 /* Header Footer Views */ = {
 			isa = PBXGroup;
 			children = (
-				4099584A1F5D4BB60086BB8F /* JFRatePanel.h */,
-				4099584B1F5D4BB70086BB8F /* JFRatePanel.m */,
 				2F8E8FFA1D1811C7004450F5 /* CustomFooterView.h */,
 				2F8E8FFB1D1811C7004450F5 /* CustomFooterView.m */,
 				2F8E8FFC1D1811C7004450F5 /* CustomFooterView.xib */,
@@ -268,6 +267,31 @@
 				2FFE3C3B1F053DC200CB815A /* Info.plist */,
 			);
 			path = CFAlertViewControllerDemoUITests;
+			sourceTree = "<group>";
+		};
+		401362561F5E8952003A4B3D /* Password Popup */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Password Popup";
+			sourceTree = "<group>";
+		};
+		401978231F5E738A001866FE /* Examples */ = {
+			isa = PBXGroup;
+			children = (
+				401362561F5E8952003A4B3D /* Password Popup */,
+				401978241F5E738A001866FE /* App Rate */,
+			);
+			path = Examples;
+			sourceTree = "<group>";
+		};
+		401978241F5E738A001866FE /* App Rate */ = {
+			isa = PBXGroup;
+			children = (
+				401978271F5E738A001866FE /* CFRatePanel.h */,
+				401978281F5E738A001866FE /* CFRatePanel.m */,
+			);
+			path = "App Rate";
 			sourceTree = "<group>";
 		};
 		40F4AFBD1F5931D900593D5F /* Table View Cells */ = {
@@ -391,9 +415,9 @@
 			files = (
 				2F87DE1F1E30EC1300483008 /* CFAlertViewController.swift in Sources */,
 				403168EA1E31F70D00C29637 /* CFAlertViewControllerActionSheetTransition.swift in Sources */,
-				4099584C1F5D4BB70086BB8F /* JFRatePanel.m in Sources */,
 				2FC83E171F584E7600C4BAD7 /* CFAlertViewControllerNotificationTransition.swift in Sources */,
 				403168EC1E31F71800C29637 /* CFAlertViewControllerPopupTransition.swift in Sources */,
+				4019782B1F5E738A001866FE /* CFRatePanel.m in Sources */,
 				40102FEF1E30EC4900B63602 /* CFAlertTitleSubtitleTableViewCell.swift in Sources */,
 				2FD0E84D1E6FD8BD00F98307 /* UIColor+Helper.m in Sources */,
 				2F87B4911E36490D002317CC /* CFPushButton.swift in Sources */,

@@ -12,14 +12,19 @@ import UIKit
 open class CFAlertViewController: UIViewController    {
     
     // MARK: - Declarations
-    public typealias CFAlertViewControllerDismissBlock = (_ isBackgroundTapped: Bool) -> ()
+    public typealias CFAlertViewControllerDismissBlock = (_ dismissReason: CFAlertControllerDismissReason) -> ()
+    @objc public enum CFAlertControllerDismissReason : Int {
+        case none = 0
+        case onActionTap
+        case onBackgroundTap
+        case onInteractiveTransition
+    }
     
     @objc public enum CFAlertControllerStyle : Int {
         case alert = 0
         case actionSheet
         case notification
     }
-    
     @objc public enum CFAlertControllerBackgroundStyle : Int {
         case plain = 0
         case blur
@@ -407,13 +412,13 @@ open class CFAlertViewController: UIViewController    {
     }
     
     @objc public func dismissAlert(withAnimation animate: Bool, completion: (() -> Void)?) {
-        dismissAlert(withAnimation: animate, isBackgroundTapped: false, completion: completion)
+        dismissAlert(withAnimation: animate, dismissReason: .none, completion: completion)
     }
     
-    internal func dismissAlertOnBackgroundTap(withAnimation animate: Bool, completion: (() -> Void)?) {
+    internal func dismissAlertOnBackgroundTap(withAnimation animate: Bool, dismissReason: CFAlertControllerDismissReason, completion: (() -> Void)?) {
         
         // Dismiss Alert
-        dismissAlert(withAnimation: animate, isBackgroundTapped: true, completion: {() -> Void in
+        dismissAlert(withAnimation: animate, dismissReason: dismissReason, completion: {() -> Void in
             // Simulate Cancel Button
             for existingAction: CFAlertAction in self.actionList {
                 if existingAction.style == .Cancel {
@@ -428,19 +433,32 @@ open class CFAlertViewController: UIViewController    {
         })
     }
     
-    internal func dismissAlert(withAnimation animate: Bool, isBackgroundTapped: Bool, completion: (() -> Void)?) {
-        
-        // Dismiss Self
-        self.dismiss(animated: animate, completion: {() -> Void in
+    internal func dismissAlert(withAnimation animate: Bool,
+                               dismissReason: CFAlertControllerDismissReason,
+                               completion: (() -> Void)?)
+    {
+        // Animation Block
+        let afterDismiss = {
             // Call Completion Block
             if let completion = completion {
                 completion()
             }
             // Call Dismiss Block
             if let dismissHandler = self.dismissHandler {
-                dismissHandler(isBackgroundTapped)
+                dismissHandler(dismissReason)
             }
-        })
+        }
+        
+        if dismissReason != .onInteractiveTransition  {
+            // Dismiss Self
+            self.dismiss(animated: animate, completion: {() -> Void in
+                afterDismiss()
+            })
+        }
+        else    {
+            // No need to dismiss aft
+            afterDismiss()
+        }
     }
     
     internal func setHeaderView(_ headerView: UIView?, shouldUpdateContainerFrame: Bool, withAnimation animate: Bool) {
@@ -542,7 +560,7 @@ open class CFAlertViewController: UIViewController    {
         }
         else if shouldDismissOnBackgroundTap {
             // Dismiss Alert
-            dismissAlertOnBackgroundTap(withAnimation: true, completion: nil)
+            dismissAlertOnBackgroundTap(withAnimation: true, dismissReason: .onBackgroundTap, completion: nil)
         }
     }
     
@@ -557,10 +575,10 @@ open class CFAlertViewController: UIViewController    {
                     let intersectRect: CGRect = kbRect.intersection(viewRect)
                     if intersectRect.size.height > 0.0 {
                         
-                        UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.beginFromCurrentState, .curveEaseOut, .allowUserInteraction], animations: {() -> Void in
+                        UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.beginFromCurrentState, .curveEaseOut, .allowUserInteraction], animations: { [weak self] in
                             // Update Keyboard Height
-                            self.keyboardHeight = intersectRect.size.height
-                            self.view.layoutIfNeeded()
+                            self?.keyboardHeight = intersectRect.size.height
+                            self?.view.layoutIfNeeded()
                         }, completion: { _ in })
                     }
                 }
@@ -749,7 +767,7 @@ extension CFAlertViewController: UITableViewDataSource, UITableViewDelegate, CFA
     // MARK: CFAlertActionTableViewCellDelegate
     public func alertActionCell(_ cell: CFAlertActionTableViewCell, didClickAction action: CFAlertAction?) {
         // Dimiss Self
-        dismissAlert(withAnimation: true, completion: {() -> Void in
+        dismissAlert(withAnimation: true, dismissReason: .onActionTap, completion: {() -> Void in
             // Call Action Handler If Set
             if let action = action, let actionHandler = action.handler {
                 actionHandler(action)
@@ -763,8 +781,13 @@ extension CFAlertViewController: UITableViewDataSource, UITableViewDelegate, CFA
 extension CFAlertViewController: CFAlertInteractiveTransitionDelegate  {
     
     public func alertViewControllerTransitionDidFinish(_ transition: CFAlertBaseInteractiveTransition) {
+        
         // Simulate Background Tap
-        dismissAlertOnBackgroundTap(withAnimation: true, completion: nil)
+        dismissAlertOnBackgroundTap(withAnimation: true, dismissReason: .onInteractiveTransition, completion: { [weak self] in
+            
+            // Release Interactive Transitioning Delegate
+            self?.interactiveTransitionDelegate = nil
+        })
     }
 }
 

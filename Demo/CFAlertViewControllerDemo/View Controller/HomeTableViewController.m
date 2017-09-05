@@ -125,11 +125,23 @@
                                                                  preferredStyle:[self getAlertStyle]
                                                                      headerView:headerView
                                                                      footerView:footerView
-                                                         didDismissAlertHandler:^(BOOL isBackgroundTapped) {
+                                                         didDismissAlertHandler:^(CFAlertControllerDismissReason dismissReason) {
                                                              NSLog(@"Alert Dismissed");
-                                                             if (isBackgroundTapped) {
-                                                                 // Handle background tap here
-                                                                 NSLog(@"Alert background tapped");
+                                                             switch (dismissReason) {
+                                                                 case CFAlertControllerDismissReasonOnActionTap:
+                                                                     NSLog(@"Dismiss Reason : On Action Tap");
+                                                                     break;
+                                                                     
+                                                                 case CFAlertControllerDismissReasonOnBackgroundTap:
+                                                                     NSLog(@"Dismiss Reason : On Background Tap");
+                                                                     break;
+                                                                     
+                                                                 case CFAlertControllerDismissReasonOnInteractiveTransition:
+                                                                     NSLog(@"Dismiss Reason : On Interactive Transition");
+                                                                     break;
+                                                                     
+                                                                 default:
+                                                                     break;
                                                              }
                                                          }];
     
@@ -283,7 +295,7 @@
                                                                            message:@"Please set some properties of Alert view"
                                                                      textAlignment:NSTextAlignmentCenter
                                                                     preferredStyle:CFAlertControllerStyleAlert
-                                                            didDismissAlertHandler:^(BOOL isBackgroundTapped) {
+                                                            didDismissAlertHandler:^(CFAlertControllerDismissReason dismissReason) {
                                                                 NSLog(@"Alert Dismissed");
                                                             }];
     

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import UIKit.UIGestureRecognizerSubclass
 
 
 @objc protocol CFAlertInteractiveTransition: class {
@@ -22,7 +21,7 @@ import UIKit.UIGestureRecognizerSubclass
 class CFAlertBaseInteractiveTransition: UIPercentDrivenInteractiveTransition {
     
     // MARK: - Declarations
-    public enum CFAlertViewControllerTransitionType : Int {
+    public enum CFAlertTransitionType : Int {
         case present = 0
         case dismiss
     }
@@ -32,8 +31,9 @@ class CFAlertBaseInteractiveTransition: UIPercentDrivenInteractiveTransition {
     // MARK: Public
     public weak var delegate : CFAlertInteractiveTransition?
     public weak var modalViewController : UIViewController?
-    public var transitionType : CFAlertViewControllerTransitionType = .present
+    public var transitionType : CFAlertTransitionType = .present
     public var transitionDuration : TimeInterval = 0.4
+    public var gesture : CFAlertBaseTransitionGestureRecognizer?
     public var enableInteractiveTransition : Bool  {
         didSet {
             
@@ -43,10 +43,10 @@ class CFAlertBaseInteractiveTransition: UIPercentDrivenInteractiveTransition {
             if enableInteractiveTransition && (swipeGestureView != nil) {
                 
                 // Add New Gesture Recognizer
-                gesture = CFAlertBaseTransitionGestureRecognizer(target: self, action: #selector(handlePan(_:)))
+                let gestureRecognizerClass = classForGestureRecognizer() as CFAlertBaseTransitionGestureRecognizer.Type
+                gesture = gestureRecognizerClass.init(target: self, action: #selector(handlePan(_:)))
                 if let gesture = gesture    {
                     gesture.delegate = self
-                    gesture.cancelsTouchesInView = false
                     swipeGestureView?.addGestureRecognizer(gesture)
                 }
             }
@@ -69,12 +69,9 @@ class CFAlertBaseInteractiveTransition: UIPercentDrivenInteractiveTransition {
         }
     }
     public var isInteracting : Bool = false
+    public var panStartLocation : CGPoint?
     public var gestureRecognizerToFailPan : UIGestureRecognizer?
     public var transitionContext : UIViewControllerContextTransitioning?
-    
-    // MARK: Private
-    private var gesture : CFAlertBaseTransitionGestureRecognizer?
-    public var panStartLocation : CGPoint?
     
     
     // MARK: - Initialisation Methods
@@ -124,9 +121,13 @@ class CFAlertBaseInteractiveTransition: UIPercentDrivenInteractiveTransition {
     
     
     // MARK: - Override Methods
+    public func classForGestureRecognizer() -> CFAlertBaseTransitionGestureRecognizer.Type {
+        return CFAlertBaseTransitionGestureRecognizer.self
+    }
+    
     public func updateUIState(transitionContext: UIViewControllerContextTransitioning,
                               percentComplete: CGFloat,
-                              transitionType: CFAlertViewControllerTransitionType)
+                              transitionType: CFAlertTransitionType)
     {
         // Override this method in child class to get desired output
     }

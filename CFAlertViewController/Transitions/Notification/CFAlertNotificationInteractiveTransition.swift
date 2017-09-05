@@ -20,9 +20,15 @@ class CFAlertNotificationInteractiveTransition: CFAlertBaseInteractiveTransition
                    contentScrollView: contentScrollView)
     }
     
+    
+    // MARK: - Override Methods
+    public override func classForGestureRecognizer() -> CFAlertBaseTransitionGestureRecognizer.Type {
+        return CFAlertNotificationTransitionGestureRecognizer.self
+    }
+    
     public override func updateUIState(transitionContext: UIViewControllerContextTransitioning,
                                        percentComplete: CGFloat,
-                                       transitionType: CFAlertViewControllerTransitionType)
+                                       transitionType: CFAlertTransitionType)
     {
         // Call Super Methods
         super.updateUIState(transitionContext: transitionContext,

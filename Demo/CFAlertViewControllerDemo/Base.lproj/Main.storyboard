@@ -423,7 +423,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="JnR-NK-e8F">
-                                <rect key="frame" x="12" y="76" width="351" height="29"/>
+                                <rect key="frame" x="12" y="88" width="351" height="29"/>
                                 <segments>
                                     <segment title="Alert"/>
                                     <segment title="Action Sheet"/>
@@ -431,7 +431,7 @@
                                 </segments>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="OR5-ed-pvY">
-                                <rect key="frame" x="0.0" y="116" width="375" height="551"/>
+                                <rect key="frame" x="0.0" y="128" width="375" height="539"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="dXA-0U-Cku" id="ewo-sW-SUA"/>
@@ -442,7 +442,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="OR5-ed-pvY" firstAttribute="leading" secondItem="fYl-Zd-D1x" secondAttribute="leading" id="3u3-nd-Xnq"/>
-                            <constraint firstItem="JnR-NK-e8F" firstAttribute="top" secondItem="Kdz-cd-Cbt" secondAttribute="bottom" constant="12" id="916-9E-INO"/>
+                            <constraint firstItem="JnR-NK-e8F" firstAttribute="top" secondItem="Kdz-cd-Cbt" secondAttribute="bottom" constant="24" id="916-9E-INO"/>
                             <constraint firstAttribute="trailing" secondItem="JnR-NK-e8F" secondAttribute="trailing" constant="12" id="Rt6-5x-ilY"/>
                             <constraint firstAttribute="trailing" secondItem="OR5-ed-pvY" secondAttribute="trailing" id="Ube-ej-eKd"/>
                             <constraint firstItem="KYO-IT-DQU" firstAttribute="top" secondItem="OR5-ed-pvY" secondAttribute="bottom" id="cgn-hd-gj3"/>

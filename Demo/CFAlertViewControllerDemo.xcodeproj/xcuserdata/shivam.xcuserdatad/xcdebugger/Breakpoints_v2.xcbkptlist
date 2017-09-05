@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CFAlertViewControllerDemo/View Controller/ExamplesTableViewController.swift"
-            timestampString = "526288985.267976"
+            filePath = "../CFAlertViewController/CFAlertViewController.swift"
+            timestampString = "526312889.410071"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
-            landmarkName = "tableView(_:titleForHeaderInSection:)"
+            startingLineNumber = "376"
+            endingLineNumber = "376"
+            landmarkName = "dismissAlert(withAnimation:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,14 +25,46 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CFAlertViewControllerDemo/View Controller/ExamplesTableViewController.swift"
-            timestampString = "526288985.268568"
+            filePath = "../CFAlertViewController/CFAlertViewController.swift"
+            timestampString = "526312889.410798"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
-            landmarkName = "tableView(_:titleForHeaderInSection:)"
+            startingLineNumber = "382"
+            endingLineNumber = "382"
+            landmarkName = "dismissAlert(withAnimation:isBackgroundTapped:completion:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CFAlertViewControllerDemo.CFAlertViewController.dismissAlert(withAnimation: Swift.Bool, isBackgroundTapped: Swift.Bool, completion: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; ()"
+                  moduleName = "CFAlertViewControllerDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shivam/Documents/iOS%20Projects/cfalert/CFAlertViewController/CFAlertViewController.swift"
+                  timestampString = "526305333.101132"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "382"
+                  endingLineNumber = "382"
+                  offsetFromSymbolStart = "51">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in CFAlertViewControllerDemo.CFAlertViewController.dismissAlert(withAnimation: Swift.Bool, isBackgroundTapped: Swift.Bool, completion: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; ()"
+                  moduleName = "CFAlertViewControllerDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shivam/Documents/iOS%20Projects/cfalert/CFAlertViewController/CFAlertViewController.swift"
+                  timestampString = "526305333.104215"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "384"
+                  endingLineNumber = "384"
+                  offsetFromSymbolStart = "38">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -41,62 +73,46 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CFAlertViewControllerDemo/View Controller/ExamplesTableViewController.swift"
-            timestampString = "526288985.269028"
+            filePath = "../CFAlertViewController/CFAlertViewController.swift"
+            timestampString = "526312889.411258"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "numberOfSections(in:)"
+            startingLineNumber = "724"
+            endingLineNumber = "724"
+            landmarkName = "alertActionCell(_:didClickAction:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CFAlertViewControllerDemo/View Controller/ExamplesTableViewController.swift"
-            timestampString = "526288985.269454"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CFAlertViewControllerDemo/View Controller/ExamplesTableViewController.swift"
-            timestampString = "526288985.269886"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CFAlertViewControllerDemo/View Controller/ExamplesTableViewController.swift"
-            timestampString = "526288985.270339"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
-            landmarkName = "tableView(_:didSelectRowAt:)"
-            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CFAlertViewControllerDemo.CFAlertViewController.alertActionCell(CFAlertViewControllerDemo.CFAlertActionTableViewCell, didClickAction: Swift.Optional&lt;CFAlertViewControllerDemo.CFAlertAction&gt;) -&gt; ()"
+                  moduleName = "CFAlertViewControllerDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shivam/Documents/iOS%20Projects/cfalert/CFAlertViewController/CFAlertViewController.swift"
+                  timestampString = "526306877.304301"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "710"
+                  endingLineNumber = "710"
+                  offsetFromSymbolStart = "22">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in CFAlertViewControllerDemo.CFAlertViewController.alertActionCell(CFAlertViewControllerDemo.CFAlertActionTableViewCell, didClickAction: Swift.Optional&lt;CFAlertViewControllerDemo.CFAlertAction&gt;) -&gt; ()"
+                  moduleName = "CFAlertViewControllerDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shivam/Documents/iOS%20Projects/cfalert/CFAlertViewController/CFAlertViewController.swift"
+                  timestampString = "526306877.305955"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "712"
+                  endingLineNumber = "712"
+                  offsetFromSymbolStart = "14">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

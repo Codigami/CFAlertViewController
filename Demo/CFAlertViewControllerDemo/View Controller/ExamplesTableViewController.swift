@@ -57,13 +57,6 @@ class ExamplesTableViewController: UIViewController {
             navigationController?.navigationBar.prefersLargeTitles = true
         }
     }
-    
-    deinit {
-        if #available(iOS 11.0, *) {
-            navigationController?.navigationBar.prefersLargeTitles = false
-        }
-    }
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -238,7 +231,7 @@ extension ExamplesTableViewController {
             alert.backgroundStyle = .blur
             self.present(alert, animated: true, completion: nil)
           
-        // App Rate Popup Style
+        // App Rate Alert Style
         case .advancedExample4:
             let headerView = CFRatePanel.init(frame: CGRect.init(x: 0, y: 10, width: 155, height: 80), fullStar: UIImage.init(named: "star_selected"), emptyStar: UIImage.init(named: "star_deselected"))
             headerView?.flashAllStars()
@@ -255,6 +248,26 @@ extension ExamplesTableViewController {
             alert.backgroundStyle = .blur
             self.present(alert, animated: true, completion: nil)
             
+        // Enter Password Style
+        case .advancedExample6:
+            let headerView = InputPasswordHeaderView.init(frame: CGRect.init(x: 0, y: 0, width: 0, height: 100))
+            
+            let alert = CFAlertViewController.alertController(title: nil, titleColor: nil, message: nil, messageColor: nil, textAlignment: .center, preferredStyle: .alert, headerView: headerView, footerView: nil, didDismissAlertHandler: nil)
+            let action = CFAlertAction.action(title: "Sign In", style: .Default, alignment: .center, backgroundColor: defaultActionColor, textColor: .white, shouldDismissAlertOnTap: false, handler: { (alertAction) in
+                if headerView.textField.text == "" {
+                    alert.backgroundColor = UIColor.red.withAlphaComponent(0.5)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+                        alert.backgroundColor = nil
+                    })
+                }
+                else {
+                    alert.dismiss(animated: true, completion: nil)
+                }
+            })
+            alert.shouldDismissOnBackgroundTap = false
+            alert.addAction(action)
+            alert.backgroundStyle = .blur
+            self.present(alert, animated: true, completion: nil)
         default:
             break
         }

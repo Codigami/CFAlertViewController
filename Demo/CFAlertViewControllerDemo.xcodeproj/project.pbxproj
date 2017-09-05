@@ -30,6 +30,8 @@
 		4019782B1F5E738A001866FE /* CFRatePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 401978281F5E738A001866FE /* CFRatePanel.m */; };
 		403168EA1E31F70D00C29637 /* CFAlertViewControllerActionSheetTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403168E91E31F70D00C29637 /* CFAlertViewControllerActionSheetTransition.swift */; };
 		403168EC1E31F71800C29637 /* CFAlertViewControllerPopupTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403168EB1E31F71800C29637 /* CFAlertViewControllerPopupTransition.swift */; };
+		405ED4831F5EB3EF0045C3E2 /* InputPasswordHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405ED4821F5EB3EF0045C3E2 /* InputPasswordHeaderView.swift */; };
+		405ED4851F5EB4EC0045C3E2 /* InputPasswordHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 405ED4841F5EB4EC0045C3E2 /* InputPasswordHeaderView.xib */; };
 		4072C25A1F584414002D82BC /* ExamplesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4072C2591F584414002D82BC /* ExamplesTableViewController.swift */; };
 		40F4AFC01F59320700593D5F /* ExampleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F4AFBE1F59320700593D5F /* ExampleTableViewCell.swift */; };
 		40F4AFC11F59320700593D5F /* ExampleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40F4AFBF1F59320700593D5F /* ExampleTableViewCell.xib */; };
@@ -82,6 +84,8 @@
 		401978281F5E738A001866FE /* CFRatePanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFRatePanel.m; sourceTree = "<group>"; };
 		403168E91E31F70D00C29637 /* CFAlertViewControllerActionSheetTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFAlertViewControllerActionSheetTransition.swift; sourceTree = "<group>"; };
 		403168EB1E31F71800C29637 /* CFAlertViewControllerPopupTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFAlertViewControllerPopupTransition.swift; sourceTree = "<group>"; };
+		405ED4821F5EB3EF0045C3E2 /* InputPasswordHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputPasswordHeaderView.swift; sourceTree = "<group>"; };
+		405ED4841F5EB4EC0045C3E2 /* InputPasswordHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InputPasswordHeaderView.xib; sourceTree = "<group>"; };
 		4072C2591F584414002D82BC /* ExamplesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplesTableViewController.swift; sourceTree = "<group>"; };
 		40F4AFBE1F59320700593D5F /* ExampleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTableViewCell.swift; sourceTree = "<group>"; };
 		40F4AFBF1F59320700593D5F /* ExampleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExampleTableViewCell.xib; sourceTree = "<group>"; };
@@ -272,6 +276,8 @@
 		401362561F5E8952003A4B3D /* Password Popup */ = {
 			isa = PBXGroup;
 			children = (
+				405ED4821F5EB3EF0045C3E2 /* InputPasswordHeaderView.swift */,
+				405ED4841F5EB4EC0045C3E2 /* InputPasswordHeaderView.xib */,
 			);
 			path = "Password Popup";
 			sourceTree = "<group>";
@@ -393,6 +399,7 @@
 				2F8E90241D181F07004450F5 /* CFAlertActionTableViewCell.xib in Resources */,
 				2F8E8FCE1D181166004450F5 /* LaunchScreen.storyboard in Resources */,
 				2F8E90261D181F07004450F5 /* CFAlertTitleSubtitleTableViewCell.xib in Resources */,
+				405ED4851F5EB4EC0045C3E2 /* InputPasswordHeaderView.xib in Resources */,
 				2F8E90021D1811C7004450F5 /* CustomFooterView.xib in Resources */,
 				2F8E8FCB1D181166004450F5 /* Assets.xcassets in Resources */,
 				2F8E8FC91D181166004450F5 /* Main.storyboard in Resources */,
@@ -426,6 +433,7 @@
 				4004556F1E30A29E0035A3D4 /* CFAlertActionTableViewCell.swift in Sources */,
 				2F8E90001D1811C7004450F5 /* AppDelegate.m in Sources */,
 				4072C25A1F584414002D82BC /* ExamplesTableViewController.swift in Sources */,
+				405ED4831F5EB3EF0045C3E2 /* InputPasswordHeaderView.swift in Sources */,
 				40F4AFC01F59320700593D5F /* ExampleTableViewCell.swift in Sources */,
 				2F8E90011D1811C7004450F5 /* CustomFooterView.m in Sources */,
 				217A00761E6D7B4800415DA7 /* ColorPickerTableViewController.m in Sources */,

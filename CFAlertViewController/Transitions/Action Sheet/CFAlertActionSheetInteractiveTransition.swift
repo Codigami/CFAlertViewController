@@ -140,7 +140,7 @@ extension CFAlertActionSheetInteractiveTransition   {
     public override func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         
         // Get context vars
-        let duration: TimeInterval = self.transitionDuration(using: transitionContext)
+        let duration: TimeInterval = transitionDuration(using: transitionContext)
         let containerView: UIView? = transitionContext.containerView
         let fromViewController: UIViewController? = transitionContext.viewController(forKey: .from)
         let toViewController: UIViewController? = transitionContext.viewController(forKey: .to)
@@ -148,7 +148,7 @@ extension CFAlertActionSheetInteractiveTransition   {
         // Call Will System Methods
         fromViewController?.beginAppearanceTransition(false, animated: true)
         toViewController?.beginAppearanceTransition(true, animated: true)
-        if self.transitionType == .present {
+        if transitionType == .present {
             
             /** SHOW ANIMATION **/
             if let alertViewController = toViewController as? CFAlertViewController, let containerView = containerView   {
@@ -208,7 +208,7 @@ extension CFAlertActionSheetInteractiveTransition   {
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             }
         }
-        else if self.transitionType == .dismiss {
+        else if transitionType == .dismiss {
             
             /** HIDE ANIMATION **/
             let alertViewController: CFAlertViewController? = (fromViewController as? CFAlertViewController)

@@ -315,6 +315,7 @@ open class CFAlertViewController: UIViewController    {
                                                                                      contentScrollView: tableView)
             transitioningDelegate = interactiveTransitionDelegate
         }
+        interactiveTransitionDelegate?.delegate = self
         
         // Update Background Tap
         let shouldDismissOnBackgroundTapValue = shouldDismissOnBackgroundTap
@@ -407,6 +408,24 @@ open class CFAlertViewController: UIViewController    {
     
     @objc public func dismissAlert(withAnimation animate: Bool, completion: (() -> Void)?) {
         dismissAlert(withAnimation: animate, isBackgroundTapped: false, completion: completion)
+    }
+    
+    internal func dismissAlertOnBackgroundTap(withAnimation animate: Bool, completion: (() -> Void)?) {
+        
+        // Dismiss Alert
+        dismissAlert(withAnimation: animate, isBackgroundTapped: true, completion: {() -> Void in
+            // Simulate Cancel Button
+            for existingAction: CFAlertAction in self.actionList {
+                if existingAction.style == .Cancel {
+                    // Call Action Handler
+                    if let actionHandler = existingAction.handler {
+                        actionHandler(existingAction)
+                    }
+                }
+            }
+            // Call Completion
+            completion?()
+        })
     }
     
     internal func dismissAlert(withAnimation animate: Bool, isBackgroundTapped: Bool, completion: (() -> Void)?) {
@@ -523,17 +542,7 @@ open class CFAlertViewController: UIViewController    {
         }
         else if shouldDismissOnBackgroundTap {
             // Dismiss Alert
-            dismissAlert(withAnimation: true, isBackgroundTapped: true, completion: {() -> Void in
-                // Simulate Cancel Button
-                for existingAction: CFAlertAction in self.actionList {
-                    if existingAction.style == .Cancel {
-                        // Call Action Handler
-                        if let actionHandler = existingAction.handler {
-                            actionHandler(existingAction)
-                        }
-                    }
-                }
-            })
+            dismissAlertOnBackgroundTap(withAnimation: true, completion: nil)
         }
     }
     
@@ -750,6 +759,17 @@ extension CFAlertViewController: UITableViewDataSource, UITableViewDelegate, CFA
 }
 
 
+// MARK: - CFAlertInteractiveTransitionDelegate
+extension CFAlertViewController: CFAlertInteractiveTransitionDelegate  {
+    
+    public func alertViewControllerTransitionDidFinish(_ transition: CFAlertBaseInteractiveTransition) {
+        // Simulate Background Tap
+        dismissAlertOnBackgroundTap(withAnimation: true, completion: nil)
+    }
+}
+
+
+// MARK: - Main Queue Run Helper
 extension NSObject  {
     
     internal class func runSynchronouslyOnMainQueueWithoutDeadlocking(completion: () -> Swift.Void) {

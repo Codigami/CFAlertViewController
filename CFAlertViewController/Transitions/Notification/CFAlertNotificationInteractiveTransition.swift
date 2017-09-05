@@ -138,7 +138,7 @@ extension CFAlertNotificationInteractiveTransition  {
     public override func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         
         // Get context vars
-        let duration: TimeInterval = self.transitionDuration(using: transitionContext)
+        let duration: TimeInterval = transitionDuration(using: transitionContext)
         let containerView: UIView? = transitionContext.containerView
         let fromViewController: UIViewController? = transitionContext.viewController(forKey: .from)
         let toViewController: UIViewController? = transitionContext.viewController(forKey: .to)

@@ -9,7 +9,7 @@
 import UIKit
 
 
-@objc public protocol CFAlertInteractiveTransition: class {
+@objc public protocol CFAlertInteractiveTransitionDelegate: class {
     @objc optional func alertViewControllerTransitionWillBegin(_ transition: CFAlertBaseInteractiveTransition)
     @objc optional func alertViewControllerTransitionWillFinish(_ transition: CFAlertBaseInteractiveTransition)
     @objc optional func alertViewControllerTransitionDidFinish(_ transition: CFAlertBaseInteractiveTransition)
@@ -29,7 +29,7 @@ open class CFAlertBaseInteractiveTransition: UIPercentDrivenInteractiveTransitio
     
     // MARK: - Variables
     // MARK: Public
-    public weak var delegate : CFAlertInteractiveTransition?
+    public weak var delegate : CFAlertInteractiveTransitionDelegate?
     public weak var modalViewController : UIViewController?
     public var transitionType : CFAlertTransitionType = .present
     public var transitionDuration : TimeInterval = 0.4
@@ -136,6 +136,7 @@ open class CFAlertBaseInteractiveTransition: UIPercentDrivenInteractiveTransitio
     // MARK: - Memory Management
     deinit {
         NotificationCenter.default.removeObserver(self)
+        transitionContext = nil
     }
 }
 
@@ -202,7 +203,7 @@ extension CFAlertBaseInteractiveTransition: UIGestureRecognizerDelegate  {
     
     // MARK: Pan Gesture Handle Methods
     @objc public func handlePan(_ recognizer: UIPanGestureRecognizer)  {
-        
+         // Override this method in child class to get desired output
     }
 }
 
@@ -254,26 +255,28 @@ extension CFAlertBaseInteractiveTransition {
                        usingSpringWithDamping: 1.0,
                        initialSpringVelocity: 0.0,
                        options: [.curveEaseOut, .beginFromCurrentState],
-                       animations: {
+                       animations: { [weak self] in
                         
                         // Update UI
-                        if let transitionContext = self.transitionContext {
-                            self.updateUIState(transitionContext: transitionContext,
-                                          percentComplete: 0.0,
-                                          transitionType: self.transitionType)
+                        if let weakSelf = self, let transitionContext = weakSelf.transitionContext {
+                            weakSelf.updateUIState(transitionContext: transitionContext,
+                                                   percentComplete: 0.0,
+                                                   transitionType: weakSelf.transitionType)
                         }
                         
-        }) { (finished) in
+        }) { [weak self] (finished) in
             
             // Call Did System Methods
             toViewController?.endAppearanceTransition()
             fromViewController?.endAppearanceTransition()
             
-            // Call Transition Did Finish Delegate
-            self.delegate?.alertViewControllerTransitionDidFinish?(self)
-            
             // Complete Transition
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+            
+            // Call Transition Did Finish Delegate
+            if let weakSelf = self  {
+                weakSelf.delegate?.alertViewControllerTransitionDidFinish?(weakSelf)
+            }
         }
     }
     
@@ -301,22 +304,24 @@ extension CFAlertBaseInteractiveTransition {
                        usingSpringWithDamping: 1.0,
                        initialSpringVelocity: 0.0,
                        options: [.curveEaseOut, .beginFromCurrentState],
-                       animations: {
+                       animations: { [weak self] in
                         
                         // Update UI
-                        if let transitionContext = self.transitionContext {
-                            self.updateUIState(transitionContext: transitionContext,
-                                               percentComplete: 1.0,
-                                               transitionType: self.transitionType)
+                        if let weakSelf = self, let transitionContext = weakSelf.transitionContext {
+                            weakSelf.updateUIState(transitionContext: transitionContext,
+                                                   percentComplete: 1.0,
+                                                   transitionType: weakSelf.transitionType)
                         }
                         
-        }) { (finished) in
-            
-            // Call Transition Did Cancel Delegate
-            self.delegate?.alertViewControllerTransitionDidCancel?(self)
+        }) { [weak self] (finished) in
             
             // Complete Transition
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+            
+            // Call Transition Did Cancel Delegate
+            if let weakSelf = self  {
+                weakSelf.delegate?.alertViewControllerTransitionDidCancel?(weakSelf)
+            }
         }
     }
 }

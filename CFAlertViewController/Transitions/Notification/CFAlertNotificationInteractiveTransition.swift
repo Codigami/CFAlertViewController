@@ -127,39 +127,15 @@ extension CFAlertNotificationInteractiveTransition  {
     }
 }
 
-extension CFAlertNotificationInteractiveTransition: UIViewControllerTransitioningDelegate {
-    
-    public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning?    {
-        transitionType = .present
-        return self
-    }
-    
-    public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning?    {
-        transitionType = .dismiss
-        return self
-    }
-    
-    public func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning?   {
-        return nil
-    }
-    
-    public func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning?  {
-        // Return nil if we are not interacting
-        if enableInteractiveTransition && isInteracting {
-            transitionType = .dismiss
-            return self
-        }
-        return nil
-    }
-}
 
-extension CFAlertNotificationInteractiveTransition: UIViewControllerAnimatedTransitioning {
+// MARK: - UIViewControllerAnimatedTransitioning
+extension CFAlertNotificationInteractiveTransition  {
     
-    public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+    public override func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return transitionDuration
     }
     
-    public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+    public override func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         
         // Get context vars
         let duration: TimeInterval = self.transitionDuration(using: transitionContext)

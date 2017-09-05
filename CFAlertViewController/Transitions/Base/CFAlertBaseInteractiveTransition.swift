@@ -9,7 +9,7 @@
 import UIKit
 
 
-@objc protocol CFAlertInteractiveTransition: class {
+@objc public protocol CFAlertInteractiveTransition: class {
     @objc optional func alertViewControllerTransitionWillBegin(_ transition: CFAlertBaseInteractiveTransition)
     @objc optional func alertViewControllerTransitionWillFinish(_ transition: CFAlertBaseInteractiveTransition)
     @objc optional func alertViewControllerTransitionDidFinish(_ transition: CFAlertBaseInteractiveTransition)
@@ -18,7 +18,7 @@ import UIKit
 }
 
 
-class CFAlertBaseInteractiveTransition: UIPercentDrivenInteractiveTransition {
+open class CFAlertBaseInteractiveTransition: UIPercentDrivenInteractiveTransition {
     
     // MARK: - Declarations
     public enum CFAlertTransitionType : Int {
@@ -139,6 +139,46 @@ class CFAlertBaseInteractiveTransition: UIPercentDrivenInteractiveTransition {
     }
 }
 
+
+// MARK: - UIViewControllerTransitioningDelegate
+extension CFAlertBaseInteractiveTransition: UIViewControllerTransitioningDelegate {
+    
+    public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning?    {
+        transitionType = .present
+        return self
+    }
+    
+    public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning?    {
+        transitionType = .dismiss
+        return self
+    }
+    
+    public func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning?   {
+        return nil
+    }
+    
+    public func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning?  {
+        // Return nil if we are not interacting
+        if enableInteractiveTransition && isInteracting {
+            transitionType = .dismiss
+            return self
+        }
+        return nil
+    }
+}
+
+extension CFAlertBaseInteractiveTransition: UIViewControllerAnimatedTransitioning {
+    
+    public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+        return transitionDuration
+    }
+    
+    public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        // Override this method in child class to get desired output
+    }
+}
+
+
 // MARK: - UIGestureRecognizerDelegate
 extension CFAlertBaseInteractiveTransition: UIGestureRecognizerDelegate  {
     
@@ -170,7 +210,7 @@ extension CFAlertBaseInteractiveTransition: UIGestureRecognizerDelegate  {
 // MARK: - UIPercentDrivenInteractiveTransition
 extension CFAlertBaseInteractiveTransition {
     
-    public override func startInteractiveTransition(_ transitionContext: UIViewControllerContextTransitioning) {
+    open override func startInteractiveTransition(_ transitionContext: UIViewControllerContextTransitioning) {
         
         // Update Transitioning Context
         self.transitionContext = transitionContext
@@ -179,7 +219,7 @@ extension CFAlertBaseInteractiveTransition {
         delegate?.alertViewControllerTransitionWillBegin?(self)
     }
     
-    public override func update(_ percentComplete: CGFloat) {
+    open override func update(_ percentComplete: CGFloat) {
         
         // Update UI
         if let transitionContext = transitionContext {
@@ -189,7 +229,7 @@ extension CFAlertBaseInteractiveTransition {
         }
     }
     
-    public override func finish() {
+    open override func finish() {
         
         // Validation
         guard let transitionContext = transitionContext else    {
@@ -237,7 +277,7 @@ extension CFAlertBaseInteractiveTransition {
         }
     }
     
-    public override func cancel() {
+    open override func cancel() {
         
         // Validation
         guard let transitionContext = transitionContext else    {

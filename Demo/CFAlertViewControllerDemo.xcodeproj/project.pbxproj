@@ -14,9 +14,10 @@
 		2F87B4911E36490D002317CC /* CFPushButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F87B4901E36490D002317CC /* CFPushButton.swift */; };
 		2F87DE1F1E30EC1300483008 /* CFAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F87DE1E1E30EC1300483008 /* CFAlertViewController.swift */; };
 		2F88C57B1F5E68BC006F054A /* CFAlertNotificationInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F88C5791F5E6883006F054A /* CFAlertNotificationInteractiveTransition.swift */; };
-		2F88C5831F5E6A04006F054A /* CFAlertActionSheetTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F88C5821F5E6A04006F054A /* CFAlertActionSheetTransition.swift */; };
+		2F88C5831F5E6A04006F054A /* CFAlertActionSheetInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F88C5821F5E6A04006F054A /* CFAlertActionSheetInteractiveTransition.swift */; };
 		2F88C5841F5E6A17006F054A /* CFAlertPopupTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F88C5811F5E69F2006F054A /* CFAlertPopupTransition.swift */; };
 		2F88C5861F5E6C24006F054A /* CFAlertNotificationTransitionGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F88C5851F5E6C24006F054A /* CFAlertNotificationTransitionGestureRecognizer.swift */; };
+		2F88C5881F5E978A006F054A /* CFAlertActionSheetTransitionGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F88C5871F5E978A006F054A /* CFAlertActionSheetTransitionGestureRecognizer.swift */; };
 		2F8E8FC01D181166004450F5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F8E8FBF1D181166004450F5 /* main.m */; };
 		2F8E8FC91D181166004450F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F8E8FC71D181166004450F5 /* Main.storyboard */; };
 		2F8E8FCB1D181166004450F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F8E8FCA1D181166004450F5 /* Assets.xcassets */; };
@@ -55,8 +56,9 @@
 		2F87DE1E1E30EC1300483008 /* CFAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFAlertViewController.swift; sourceTree = "<group>"; };
 		2F88C5791F5E6883006F054A /* CFAlertNotificationInteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFAlertNotificationInteractiveTransition.swift; sourceTree = "<group>"; };
 		2F88C5811F5E69F2006F054A /* CFAlertPopupTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFAlertPopupTransition.swift; sourceTree = "<group>"; };
-		2F88C5821F5E6A04006F054A /* CFAlertActionSheetTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFAlertActionSheetTransition.swift; sourceTree = "<group>"; };
+		2F88C5821F5E6A04006F054A /* CFAlertActionSheetInteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFAlertActionSheetInteractiveTransition.swift; sourceTree = "<group>"; };
 		2F88C5851F5E6C24006F054A /* CFAlertNotificationTransitionGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFAlertNotificationTransitionGestureRecognizer.swift; sourceTree = "<group>"; };
+		2F88C5871F5E978A006F054A /* CFAlertActionSheetTransitionGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFAlertActionSheetTransitionGestureRecognizer.swift; sourceTree = "<group>"; };
 		2F8E8FBB1D181166004450F5 /* CFAlertViewControllerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CFAlertViewControllerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F8E8FBF1D181166004450F5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2F8E8FC81D181166004450F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -122,7 +124,8 @@
 		2F88C5741F5E6882006F054A /* Action Sheet */ = {
 			isa = PBXGroup;
 			children = (
-				2F88C5821F5E6A04006F054A /* CFAlertActionSheetTransition.swift */,
+				2F88C5871F5E978A006F054A /* CFAlertActionSheetTransitionGestureRecognizer.swift */,
+				2F88C5821F5E6A04006F054A /* CFAlertActionSheetInteractiveTransition.swift */,
 			);
 			path = "Action Sheet";
 			sourceTree = "<group>";
@@ -408,13 +411,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F88C5861F5E6C24006F054A /* CFAlertNotificationTransitionGestureRecognizer.swift in Sources */,
-				2F88C5831F5E6A04006F054A /* CFAlertActionSheetTransition.swift in Sources */,
+				2F88C5831F5E6A04006F054A /* CFAlertActionSheetInteractiveTransition.swift in Sources */,
 				2F87DE1F1E30EC1300483008 /* CFAlertViewController.swift in Sources */,
 				2F88C57B1F5E68BC006F054A /* CFAlertNotificationInteractiveTransition.swift in Sources */,
 				2F75E4B61F5D8A22006AE03E /* CFAlertBaseInteractiveTransition.swift in Sources */,
 				2F75E4BA1F5D8A6B006AE03E /* CFAlertBaseTransitionGestureRecognizer.swift in Sources */,
 				40102FEF1E30EC4900B63602 /* CFAlertTitleSubtitleTableViewCell.swift in Sources */,
 				2FD0E84D1E6FD8BD00F98307 /* UIColor+Helper.m in Sources */,
+				2F88C5881F5E978A006F054A /* CFAlertActionSheetTransitionGestureRecognizer.swift in Sources */,
 				2F88C5841F5E6A17006F054A /* CFAlertPopupTransition.swift in Sources */,
 				2F87B4911E36490D002317CC /* CFPushButton.swift in Sources */,
 				2F75A0DB1E2FAF89003414B8 /* CFAlertAction.swift in Sources */,

@@ -9,7 +9,7 @@
 import UIKit
 import UIKit.UIGestureRecognizerSubclass
 
-class CFAlertBaseTransitionGestureRecognizer: UIPanGestureRecognizer {
+open class CFAlertBaseTransitionGestureRecognizer: UIPanGestureRecognizer {
     
     // MARK: - Variables
     public weak var scrollView : UIScrollView?
@@ -17,7 +17,7 @@ class CFAlertBaseTransitionGestureRecognizer: UIPanGestureRecognizer {
     
     
     // MARK: - Initialisation Method
-    required override init(target: Any?, action: Selector?) {
+    required override public init(target: Any?, action: Selector?) {
         super.init(target: target, action: action)
         
         // Default Cancel Touches In View
@@ -26,7 +26,7 @@ class CFAlertBaseTransitionGestureRecognizer: UIPanGestureRecognizer {
     
     
     // MARK: - Override Methods
-    override public func reset()    {
+    override open func reset()    {
         super.reset()
         isFail = nil
     }

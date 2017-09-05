@@ -175,9 +175,9 @@ open class CFAlertViewController: UIViewController    {
     }
     internal var tapGesture: UITapGestureRecognizer!
     
-    internal var notificationTransitioningDelegate : CFAlertNotificationInteractiveTransition?
-    internal var popupTransitioningDelegate : CFAlertPopupTransition?
-    internal var actionSheetTransitioningDelegate: CFAlertActionSheetTransition?
+    // View Controller Interactive Transitioning Delegate
+    internal var transitionDelegate : UIViewControllerTransitioningDelegate?
+    internal var interactiveTransitionDelegate : CFAlertBaseInteractiveTransition?
     
     @IBOutlet internal weak var mainViewBottomConstraint: NSLayoutConstraint?
     @IBOutlet internal weak var tableView: UITableView?
@@ -296,18 +296,20 @@ open class CFAlertViewController: UIViewController    {
         // Custom Presentation
         modalPresentationStyle = .custom
         if self.preferredStyle == .notification {
-            notificationTransitioningDelegate = CFAlertNotificationInteractiveTransition(modalViewController: self,
-                                                                                      swipeGestureView: containerView,
-                                                                                      contentScrollView: tableView)
-            transitioningDelegate = notificationTransitioningDelegate
+            interactiveTransitionDelegate = CFAlertNotificationInteractiveTransition(modalViewController: self,
+                                                                                     swipeGestureView: containerView,
+                                                                                     contentScrollView: tableView)
+            transitioningDelegate = interactiveTransitionDelegate
         }
         else if self.preferredStyle == .alert   {
-            popupTransitioningDelegate = CFAlertPopupTransition()
-            transitioningDelegate = popupTransitioningDelegate
+            transitionDelegate = CFAlertPopupTransition()
+            transitioningDelegate = transitionDelegate
         }
         else if self.preferredStyle == .actionSheet {
-            actionSheetTransitioningDelegate = CFAlertActionSheetTransition()
-            transitioningDelegate = actionSheetTransitioningDelegate
+            interactiveTransitionDelegate =  CFAlertActionSheetInteractiveTransition(modalViewController: self,
+                                                                                     swipeGestureView: containerView,
+                                                                                     contentScrollView: tableView)
+            transitioningDelegate = interactiveTransitionDelegate
         }
     }
     
@@ -368,7 +370,7 @@ open class CFAlertViewController: UIViewController    {
         super.viewWillAppear(animated)
         
         // Update Content ScrollView To Transitioning Delegate For Interactive Transition
-        notificationTransitioningDelegate?.contentScrollView = tableView
+        interactiveTransitionDelegate?.contentScrollView = tableView
         
         // Update UI
         updateUI(withAnimation: false)

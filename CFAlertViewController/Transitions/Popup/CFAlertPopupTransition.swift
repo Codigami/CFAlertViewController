@@ -9,7 +9,7 @@
 import UIKit
 
 
-public class CFAlertPopupTransition: NSObject {
+class CFAlertPopupTransition: NSObject {
 
     // MARK: - Declarations
     @objc public enum CFAlertPopupTransitionType : Int {

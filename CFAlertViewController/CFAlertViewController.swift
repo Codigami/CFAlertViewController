@@ -149,7 +149,11 @@ open class CFAlertViewController: UIViewController    {
     }
     @objc @IBOutlet public weak var backgroundColorView: UIView?
     @objc @IBOutlet public weak var backgroundBlurView: UIVisualEffectView?
-    @objc public var shouldDismissOnBackgroundTap: Bool = true    // Default is True
+    @objc public var shouldDismissOnBackgroundTap: Bool = true  {   // Default is True
+        didSet  {
+            interactiveTransitionDelegate?.enableInteractiveTransition = shouldDismissOnBackgroundTap
+        }
+    }
     
     // The view which holds the popup UI
     // You can change corner radius or background color of this view for additional customisation
@@ -311,6 +315,10 @@ open class CFAlertViewController: UIViewController    {
                                                                                      contentScrollView: tableView)
             transitioningDelegate = interactiveTransitionDelegate
         }
+        
+        // Update Background Tap
+        let shouldDismissOnBackgroundTapValue = shouldDismissOnBackgroundTap
+        shouldDismissOnBackgroundTap = shouldDismissOnBackgroundTapValue
     }
     
     

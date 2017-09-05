@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class CFAlertActionSheetInteractiveTransition: CFAlertBaseInteractiveTransition {
     
     // MARK: - Initialisation Methods

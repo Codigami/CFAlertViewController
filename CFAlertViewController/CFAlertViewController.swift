@@ -706,13 +706,22 @@ extension CFAlertViewController: UITableViewDataSource, UITableViewDelegate, CFA
     
     // MARK: CFAlertActionTableViewCellDelegate
     public func alertActionCell(_ cell: CFAlertActionTableViewCell, didClickAction action: CFAlertAction?) {
-        // Dimiss Self
-        dismissAlert(withAnimation: true, completion: {() -> Void in
-            // Call Action Handler If Set
+        
+        // Action Handling Block
+        let actionHandlerBlock = {
             if let action = action, let actionHandler = action.handler {
                 actionHandler(action)
             }
-        })
+        }
+        
+        if (action?.shouldDismissAlertOnTap)! {
+            dismissAlert(withAnimation: true, completion: {
+                actionHandlerBlock()
+            })
+        }
+        else {
+            actionHandlerBlock()
+        }
     }
 }
 

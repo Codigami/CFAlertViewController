@@ -34,6 +34,7 @@ open class CFAlertAction: NSObject, NSCopying {
     @objc public var backgroundColor: UIColor?
     @objc public var textColor: UIColor?
     @objc public var handler: CFAlertActionHandlerBlock?
+    @objc public var shouldDismissAlertOnTap: Bool = true
     
     
     // MARK: - Initialisation Method
@@ -50,6 +51,24 @@ open class CFAlertAction: NSObject, NSCopying {
                                   backgroundColor: backgroundColor,
                                   textColor: textColor,
                                   handler: handler)
+    }
+    
+    @objc public class func action(title: String?,
+                                   style: CFAlertActionStyle,
+                                   alignment: CFAlertActionAlignment,
+                                   backgroundColor: UIColor?,
+                                   textColor: UIColor?,
+                                   shouldDismissAlertOnTap: Bool,
+                                   handler: CFAlertActionHandlerBlock?) -> CFAlertAction  {
+        
+        let action = CFAlertAction.init(title: title,
+                                        style: style,
+                                        alignment: alignment,
+                                        backgroundColor: backgroundColor,
+                                        textColor: textColor,
+                                        handler: handler)
+        action.shouldDismissAlertOnTap = shouldDismissAlertOnTap
+        return action
     }
     
     @objc public convenience init(title: String?,

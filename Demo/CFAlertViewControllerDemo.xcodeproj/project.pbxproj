@@ -9,11 +9,13 @@
 /* Begin PBXBuildFile section */
 		217A00761E6D7B4800415DA7 /* ColorPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 217A00751E6D7B4800415DA7 /* ColorPickerTableViewController.m */; };
 		2F75A0DB1E2FAF89003414B8 /* CFAlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F75A0DA1E2FAF89003414B8 /* CFAlertAction.swift */; };
-		2F75E4B21F5D890F006AE03E /* CFAlertViewControllerActionSheetTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F75E4B11F5D890F006AE03E /* CFAlertViewControllerActionSheetTransition.swift */; };
 		2F75E4B61F5D8A22006AE03E /* CFAlertBaseInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F75E4B51F5D89B6006AE03E /* CFAlertBaseInteractiveTransition.swift */; };
 		2F75E4BA1F5D8A6B006AE03E /* CFAlertBaseTransitionGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F75E4B91F5D8A6B006AE03E /* CFAlertBaseTransitionGestureRecognizer.swift */; };
 		2F87B4911E36490D002317CC /* CFPushButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F87B4901E36490D002317CC /* CFPushButton.swift */; };
 		2F87DE1F1E30EC1300483008 /* CFAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F87DE1E1E30EC1300483008 /* CFAlertViewController.swift */; };
+		2F88C57B1F5E68BC006F054A /* CFAlertNotificationInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F88C5791F5E6883006F054A /* CFAlertNotificationInteractiveTransition.swift */; };
+		2F88C5831F5E6A04006F054A /* CFAlertActionSheetTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F88C5821F5E6A04006F054A /* CFAlertActionSheetTransition.swift */; };
+		2F88C5841F5E6A17006F054A /* CFAlertPopupTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F88C5811F5E69F2006F054A /* CFAlertPopupTransition.swift */; };
 		2F8E8FC01D181166004450F5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F8E8FBF1D181166004450F5 /* main.m */; };
 		2F8E8FC91D181166004450F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F8E8FC71D181166004450F5 /* Main.storyboard */; };
 		2F8E8FCB1D181166004450F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F8E8FCA1D181166004450F5 /* Assets.xcassets */; };
@@ -25,13 +27,10 @@
 		2F8E90241D181F07004450F5 /* CFAlertActionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F8E90101D181F07004450F5 /* CFAlertActionTableViewCell.xib */; };
 		2F8E90261D181F07004450F5 /* CFAlertTitleSubtitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F8E90131D181F07004450F5 /* CFAlertTitleSubtitleTableViewCell.xib */; };
 		2F8E90281D181F07004450F5 /* CFAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F8E90161D181F07004450F5 /* CFAlertViewController.xib */; };
-		2FC83E171F584E7600C4BAD7 /* CFAlertViewControllerNotificationTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC83E161F584E7600C4BAD7 /* CFAlertViewControllerNotificationTransition.swift */; };
 		2FD0E84D1E6FD8BD00F98307 /* UIColor+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FD0E84C1E6FD8BD00F98307 /* UIColor+Helper.m */; };
-		2FF92DE91F5A84370039312C /* CFAlertViewControllerNotificationInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF92DE81F5A84370039312C /* CFAlertViewControllerNotificationInteractiveTransition.swift */; };
 		2FFE3C2C1F053DA800CB815A /* CFAlertViewControllerDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFE3C2B1F053DA800CB815A /* CFAlertViewControllerDemoTests.swift */; };
 		4004556F1E30A29E0035A3D4 /* CFAlertActionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4004556E1E30A29E0035A3D4 /* CFAlertActionTableViewCell.swift */; };
 		40102FEF1E30EC4900B63602 /* CFAlertTitleSubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40102FEE1E30EC4900B63602 /* CFAlertTitleSubtitleTableViewCell.swift */; };
-		403168EC1E31F71800C29637 /* CFAlertViewControllerPopupTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403168EB1E31F71800C29637 /* CFAlertViewControllerPopupTransition.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,11 +48,13 @@
 		217A00751E6D7B4800415DA7 /* ColorPickerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorPickerTableViewController.m; sourceTree = "<group>"; };
 		2F75A0D71E2FAE4A003414B8 /* CFAlertViewControllerDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CFAlertViewControllerDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		2F75A0DA1E2FAF89003414B8 /* CFAlertAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFAlertAction.swift; sourceTree = "<group>"; };
-		2F75E4B11F5D890F006AE03E /* CFAlertViewControllerActionSheetTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFAlertViewControllerActionSheetTransition.swift; sourceTree = "<group>"; };
 		2F75E4B51F5D89B6006AE03E /* CFAlertBaseInteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFAlertBaseInteractiveTransition.swift; sourceTree = "<group>"; };
 		2F75E4B91F5D8A6B006AE03E /* CFAlertBaseTransitionGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFAlertBaseTransitionGestureRecognizer.swift; sourceTree = "<group>"; };
 		2F87B4901E36490D002317CC /* CFPushButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFPushButton.swift; sourceTree = "<group>"; };
 		2F87DE1E1E30EC1300483008 /* CFAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFAlertViewController.swift; sourceTree = "<group>"; };
+		2F88C5791F5E6883006F054A /* CFAlertNotificationInteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFAlertNotificationInteractiveTransition.swift; sourceTree = "<group>"; };
+		2F88C5811F5E69F2006F054A /* CFAlertPopupTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFAlertPopupTransition.swift; sourceTree = "<group>"; };
+		2F88C5821F5E6A04006F054A /* CFAlertActionSheetTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFAlertActionSheetTransition.swift; sourceTree = "<group>"; };
 		2F8E8FBB1D181166004450F5 /* CFAlertViewControllerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CFAlertViewControllerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F8E8FBF1D181166004450F5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2F8E8FC81D181166004450F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -70,10 +71,8 @@
 		2F8E90101D181F07004450F5 /* CFAlertActionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CFAlertActionTableViewCell.xib; sourceTree = "<group>"; };
 		2F8E90131D181F07004450F5 /* CFAlertTitleSubtitleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CFAlertTitleSubtitleTableViewCell.xib; sourceTree = "<group>"; };
 		2F8E90161D181F07004450F5 /* CFAlertViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CFAlertViewController.xib; sourceTree = "<group>"; };
-		2FC83E161F584E7600C4BAD7 /* CFAlertViewControllerNotificationTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFAlertViewControllerNotificationTransition.swift; sourceTree = "<group>"; };
 		2FD0E84B1E6FD8BD00F98307 /* UIColor+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Helper.h"; sourceTree = "<group>"; };
 		2FD0E84C1E6FD8BD00F98307 /* UIColor+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Helper.m"; sourceTree = "<group>"; };
-		2FF92DE81F5A84370039312C /* CFAlertViewControllerNotificationInteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFAlertViewControllerNotificationInteractiveTransition.swift; sourceTree = "<group>"; };
 		2FFE3C291F053DA800CB815A /* CFAlertViewControllerDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CFAlertViewControllerDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FFE3C2B1F053DA800CB815A /* CFAlertViewControllerDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFAlertViewControllerDemoTests.swift; sourceTree = "<group>"; };
 		2FFE3C2D1F053DA800CB815A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -81,7 +80,6 @@
 		2FFE3C3B1F053DC200CB815A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4004556E1E30A29E0035A3D4 /* CFAlertActionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFAlertActionTableViewCell.swift; sourceTree = "<group>"; };
 		40102FEE1E30EC4900B63602 /* CFAlertTitleSubtitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFAlertTitleSubtitleTableViewCell.swift; sourceTree = "<group>"; };
-		403168EB1E31F71800C29637 /* CFAlertViewControllerPopupTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFAlertViewControllerPopupTransition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +115,30 @@
 				2F87B4901E36490D002317CC /* CFPushButton.swift */,
 			);
 			path = CFPushButton;
+			sourceTree = "<group>";
+		};
+		2F88C5741F5E6882006F054A /* Action Sheet */ = {
+			isa = PBXGroup;
+			children = (
+				2F88C5821F5E6A04006F054A /* CFAlertActionSheetTransition.swift */,
+			);
+			path = "Action Sheet";
+			sourceTree = "<group>";
+		};
+		2F88C5781F5E6883006F054A /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				2F88C5791F5E6883006F054A /* CFAlertNotificationInteractiveTransition.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		2F88C57F1F5E69DE006F054A /* Popup */ = {
+			isa = PBXGroup;
+			children = (
+				2F88C5811F5E69F2006F054A /* CFAlertPopupTransition.swift */,
+			);
+			path = Popup;
 			sourceTree = "<group>";
 		};
 		2F8E8FB21D181166004450F5 = {
@@ -239,10 +261,9 @@
 			isa = PBXGroup;
 			children = (
 				2F75E4B41F5D89B6006AE03E /* Base */,
-				2FF92DE81F5A84370039312C /* CFAlertViewControllerNotificationInteractiveTransition.swift */,
-				2FC83E161F584E7600C4BAD7 /* CFAlertViewControllerNotificationTransition.swift */,
-				403168EB1E31F71800C29637 /* CFAlertViewControllerPopupTransition.swift */,
-				2F75E4B11F5D890F006AE03E /* CFAlertViewControllerActionSheetTransition.swift */,
+				2F88C5781F5E6883006F054A /* Notification */,
+				2F88C57F1F5E69DE006F054A /* Popup */,
+				2F88C5741F5E6882006F054A /* Action Sheet */,
 			);
 			path = Transitions;
 			sourceTree = "<group>";
@@ -383,21 +404,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F88C5831F5E6A04006F054A /* CFAlertActionSheetTransition.swift in Sources */,
 				2F87DE1F1E30EC1300483008 /* CFAlertViewController.swift in Sources */,
-				2FC83E171F584E7600C4BAD7 /* CFAlertViewControllerNotificationTransition.swift in Sources */,
-				403168EC1E31F71800C29637 /* CFAlertViewControllerPopupTransition.swift in Sources */,
+				2F88C57B1F5E68BC006F054A /* CFAlertNotificationInteractiveTransition.swift in Sources */,
 				2F75E4B61F5D8A22006AE03E /* CFAlertBaseInteractiveTransition.swift in Sources */,
 				2F75E4BA1F5D8A6B006AE03E /* CFAlertBaseTransitionGestureRecognizer.swift in Sources */,
 				40102FEF1E30EC4900B63602 /* CFAlertTitleSubtitleTableViewCell.swift in Sources */,
 				2FD0E84D1E6FD8BD00F98307 /* UIColor+Helper.m in Sources */,
-				2FF92DE91F5A84370039312C /* CFAlertViewControllerNotificationInteractiveTransition.swift in Sources */,
+				2F88C5841F5E6A17006F054A /* CFAlertPopupTransition.swift in Sources */,
 				2F87B4911E36490D002317CC /* CFPushButton.swift in Sources */,
 				2F75A0DB1E2FAF89003414B8 /* CFAlertAction.swift in Sources */,
 				2F8E8FC01D181166004450F5 /* main.m in Sources */,
 				4004556F1E30A29E0035A3D4 /* CFAlertActionTableViewCell.swift in Sources */,
 				2F8E90001D1811C7004450F5 /* AppDelegate.m in Sources */,
 				2F8E90011D1811C7004450F5 /* CustomFooterView.m in Sources */,
-				2F75E4B21F5D890F006AE03E /* CFAlertViewControllerActionSheetTransition.swift in Sources */,
 				217A00761E6D7B4800415DA7 /* ColorPickerTableViewController.m in Sources */,
 				2F8E90031D1811C7004450F5 /* HomeTableViewController.m in Sources */,
 			);

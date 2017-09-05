@@ -1,40 +1,127 @@
 //
-//  CFAlertViewControllerNotificationTransition.swift
+//  CFAlertNotificationInteractiveTransition.swift
 //  CFAlertViewControllerDemo
 //
-//  Created by Shivam Bhalla on 1/20/17.
+//  Created by Shardul Patel on 02/09/17.
 //  Copyright © 2017 Codigami Inc. All rights reserved.
 //
 
 import UIKit
 
+class CFAlertNotificationInteractiveTransition: CFAlertBaseInteractiveTransition {
 
-public class CFAlertViewControllerNotificationTransition: NSObject {
-    
-    // MARK: - Declarations
-    @objc public enum CFAlertNotificationTransitionType : Int {
-        case present = 0
-        case dismiss
+    // MARK: - Initialisation Methods
+    public override init(modalViewController: UIViewController,
+                         swipeGestureView: UIView?,
+                         contentScrollView: UIScrollView?)
+    {
+        super.init(modalViewController: modalViewController,
+                   swipeGestureView: swipeGestureView,
+                   contentScrollView: contentScrollView)
     }
     
-    
-    // MARK: - Variables
-    // MARK: Public
-    public var transitionType = CFAlertNotificationTransitionType(rawValue: 0)
-    
-    
-    // MARK: - Initialisation Methods
-    public override init() {
-        super.init()
+    public override func updateUIState(transitionContext: UIViewControllerContextTransitioning,
+                                       percentComplete: CGFloat,
+                                       transitionType: CFAlertViewControllerTransitionType)
+    {
+        // Call Super Methods
+        super.updateUIState(transitionContext: transitionContext,
+                            percentComplete: percentComplete,
+                            transitionType: transitionType)
         
-        // Default Transition Type
-        transitionType = CFAlertNotificationTransitionType(rawValue: 0)
+        // Validation
+        var currentPercentage = percentComplete
+        if currentPercentage < 0.0 {
+            currentPercentage = 0.0
+        }
+        else if currentPercentage > 1.0  {
+            currentPercentage = 1.0
+        }
+        
+        // Grab the from and to view controllers from the context
+//        let duration = transitionDuration(using: transitionContext)
+//        let containerView = transitionContext.containerView
+        let fromViewController = transitionContext.viewController(forKey: .from)
+        let toViewController = transitionContext.viewController(forKey: .to)
+        
+        var viewController : UIViewController?
+        if transitionType == .present {
+            viewController = toViewController
+        }
+        else    {
+            viewController = fromViewController
+        }
+        
+        if let alertViewController = viewController as? CFAlertViewController {
+            
+            if let alertContainerView = alertViewController.containerView   {
+                
+                // Slide Container View
+                let currentTopOffset = CFAlertBaseInteractiveTransition.valueBetween(start: -alertContainerView.frame.size.height,
+                                                                                     andEnd: 0.0,
+                                                                                     forProgress: currentPercentage)
+                alertContainerView.frame = CGRect(x: alertContainerView.frame.origin.x,
+                                                  y: currentTopOffset,
+                                                  width: alertContainerView.frame.size.width,
+                                                  height: alertContainerView.frame.size.height)
+                
+                // Fade background View
+                if alertViewController.backgroundStyle == .blur    {
+                    alertViewController.backgroundBlurView?.alpha = currentPercentage
+                }
+                alertViewController.backgroundColorView?.alpha = currentPercentage
+            }
+        }
     }
 }
 
+extension CFAlertNotificationInteractiveTransition  {
+    
+    // MARK: Pan Gesture Handle Methods
+    @objc override public func handlePan(_ recognizer: UIPanGestureRecognizer)  {
+        
+        // Location reference
+        var location = recognizer.location(in: swipeGestureView?.window)
+        if let recognizerView = recognizer.view {
+            location = location.applying(recognizerView.transform.inverted())
+        }
+        
+        // Velocity reference
+        var velocity = recognizer.velocity(in: swipeGestureView?.window)
+        if let recognizerView = recognizer.view {
+            velocity = velocity.applying(recognizerView.transform.inverted())
+        }
+        
+        if recognizer.state == .began {
+            
+            isInteracting = true
+            panStartLocation = location
+            modalViewController?.dismiss(animated: true, completion: nil)
+        }
+        else if recognizer.state == .changed {
+            
+            if let alertViewController = modalViewController as? CFAlertViewController,
+                let alertContainerView = alertViewController.containerView,
+                let panStartLocation = panStartLocation
+            {
+                let animationRatio = (panStartLocation.y - location.y) / alertContainerView.bounds.height
+                update(animationRatio)
+            }
+        }
+        else if recognizer.state == .ended {
+            
+            if velocity.y < -100.0 {
+                finish()
+            }
+            else {
+                cancel()
+            }
+            isInteracting = false
+        }
+    }
+}
 
-// MARK: - UIViewControllerTransitioningDelegate
-extension CFAlertViewControllerNotificationTransition: UIViewControllerTransitioningDelegate {
+extension CFAlertNotificationInteractiveTransition: UIViewControllerTransitioningDelegate {
     
     public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning?    {
         transitionType = .present
@@ -45,14 +132,25 @@ extension CFAlertViewControllerNotificationTransition: UIViewControllerTransitio
         transitionType = .dismiss
         return self
     }
+    
+    public func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning?   {
+        return nil
+    }
+    
+    public func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning?  {
+        // Return nil if we are not interacting
+        if enableInteractiveTransition && isInteracting {
+            transitionType = .dismiss
+            return self
+        }
+        return nil
+    }
 }
 
-
-// MARK: - UIViewControllerAnimatedTransitioning
-extension CFAlertViewControllerNotificationTransition: UIViewControllerAnimatedTransitioning {
+extension CFAlertNotificationInteractiveTransition: UIViewControllerAnimatedTransitioning {
     
     public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 0.4
+        return transitionDuration
     }
     
     public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -66,7 +164,7 @@ extension CFAlertViewControllerNotificationTransition: UIViewControllerAnimatedT
         // Call Will System Methods
         fromViewController?.beginAppearanceTransition(false, animated: true)
         toViewController?.beginAppearanceTransition(true, animated: true)
-        if self.transitionType == .present {
+        if transitionType == .present {
             
             /** SHOW ANIMATION **/
             if let alertViewController = toViewController as? CFAlertViewController, let containerView = containerView   {
@@ -127,7 +225,7 @@ extension CFAlertViewControllerNotificationTransition: UIViewControllerAnimatedT
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             }
         }
-        else if self.transitionType == .dismiss {
+        else if transitionType == .dismiss {
             
             /** HIDE ANIMATION **/
             let alertViewController: CFAlertViewController? = (fromViewController as? CFAlertViewController)
@@ -158,5 +256,5 @@ extension CFAlertViewControllerNotificationTransition: UIViewControllerAnimatedT
             })
         }
     }
-    
 }
+

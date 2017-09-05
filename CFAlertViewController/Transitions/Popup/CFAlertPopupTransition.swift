@@ -1,5 +1,5 @@
 //
-//  CFAlertViewControllerActionSheetTransition.swift
+//  CFAlertPopupTransition.swift
 //  CFAlertViewControllerDemo
 //
 //  Created by Shivam Bhalla on 1/20/17.
@@ -9,10 +9,10 @@
 import UIKit
 
 
-public class CFAlertViewControllerActionSheetTransition: NSObject {
-    
+public class CFAlertPopupTransition: NSObject {
+
     // MARK: - Declarations
-    @objc public enum CFAlertActionSheetTransitionType : Int {
+    @objc public enum CFAlertPopupTransitionType : Int {
         case present = 0
         case dismiss
     }
@@ -20,7 +20,7 @@ public class CFAlertViewControllerActionSheetTransition: NSObject {
     
     // MARK: - Variables
     // MARK: Public
-    public var transitionType = CFAlertActionSheetTransitionType(rawValue: 0)
+    public var transitionType = CFAlertPopupTransitionType(rawValue: 0)
     
     
     // MARK: - Initialisation Methods
@@ -28,13 +28,13 @@ public class CFAlertViewControllerActionSheetTransition: NSObject {
         super.init()
         
         // Default Transition Type
-        transitionType = CFAlertActionSheetTransitionType(rawValue: 0)
+        transitionType = CFAlertPopupTransitionType(rawValue: 0)
     }
 }
 
 
 // MARK: - UIViewControllerTransitioningDelegate
-extension CFAlertViewControllerActionSheetTransition: UIViewControllerTransitioningDelegate {
+extension CFAlertPopupTransition: UIViewControllerTransitioningDelegate {
     
     public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning?    {
         transitionType = .present
@@ -49,7 +49,7 @@ extension CFAlertViewControllerActionSheetTransition: UIViewControllerTransition
 
 
 // MARK: - UIViewControllerAnimatedTransitioning
-extension CFAlertViewControllerActionSheetTransition: UIViewControllerAnimatedTransitioning {
+extension CFAlertPopupTransition: UIViewControllerAnimatedTransitioning   {
     
     public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.4
@@ -71,15 +71,15 @@ extension CFAlertViewControllerActionSheetTransition: UIViewControllerAnimatedTr
             /** SHOW ANIMATION **/
             if let alertViewController = toViewController as? CFAlertViewController, let containerView = containerView   {
                 
+                alertViewController.containerView?.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
                 alertViewController.view?.frame = containerView.frame
                 alertViewController.view?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
                 alertViewController.view?.translatesAutoresizingMaskIntoConstraints = true
                 containerView.addSubview(alertViewController.view)
                 alertViewController.view?.layoutIfNeeded()
                 
-                var frame: CGRect? = alertViewController.containerView?.frame
-                frame?.origin.y = containerView.frame.size.height
-                alertViewController.containerView?.frame = frame!
+                // Hide Container View
+                alertViewController.containerView?.alpha = 0.0
                 
                 // Background
                 if alertViewController.backgroundStyle == .blur    {
@@ -87,7 +87,7 @@ extension CFAlertViewControllerActionSheetTransition: UIViewControllerAnimatedTr
                 }
                 alertViewController.backgroundColorView?.alpha = 0.0
                 
-                UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.curveEaseIn, .beginFromCurrentState], animations: {() -> Void in
+                UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.curveEaseIn, .allowUserInteraction, .beginFromCurrentState], animations: {() -> Void in
                     
                     // Background
                     if alertViewController.backgroundStyle == .blur    {
@@ -98,13 +98,10 @@ extension CFAlertViewControllerActionSheetTransition: UIViewControllerAnimatedTr
                 }, completion: nil)
                 
                 // Animate height changes
-                UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.curveEaseIn, .beginFromCurrentState], animations: {() -> Void in
+                UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 14.0, options: [.curveEaseIn, .allowUserInteraction, .beginFromCurrentState], animations: {() -> Void in
                     
-                    alertViewController.view?.layoutIfNeeded()
-                    if var frame = alertViewController.containerView?.frame    {
-                        frame.origin.y = frame.origin.y - frame.size.height - 10
-                        alertViewController.containerView?.frame = frame
-                    }
+                    alertViewController.containerView?.transform = CGAffineTransform.identity
+                    alertViewController.containerView?.alpha = 1.0
                     
                 }, completion: {(_ finished: Bool) -> Void in
                     
@@ -132,12 +129,10 @@ extension CFAlertViewControllerActionSheetTransition: UIViewControllerAnimatedTr
             let alertViewController: CFAlertViewController? = (fromViewController as? CFAlertViewController)
             
             // Animate height changes
-            UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.curveEaseIn, .beginFromCurrentState], animations: {() -> Void in
+            UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.curveEaseOut, .beginFromCurrentState], animations: {() -> Void in
                 
-                alertViewController?.view?.layoutIfNeeded()
-                var frame: CGRect? = alertViewController?.containerView?.frame
-                frame?.origin.y = (containerView?.frame.size.height)!
-                alertViewController?.containerView?.frame = frame!
+                alertViewController?.containerView?.transform = CGAffineTransform(scaleX: 0.94, y: 0.94)
+                alertViewController?.containerView?.alpha = 0.0
                 
                 // Background
                 if alertViewController?.backgroundStyle == .blur    {
@@ -146,11 +141,9 @@ extension CFAlertViewControllerActionSheetTransition: UIViewControllerAnimatedTr
                 alertViewController?.backgroundColorView?.alpha = 0.0
                 
             }, completion: {(_ finished: Bool) -> Void in
-                
                 // Call Did System Methods
                 toViewController?.endAppearanceTransition()
                 fromViewController?.endAppearanceTransition()
-                
                 // Declare Animation Finished
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             })

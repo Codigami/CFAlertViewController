@@ -82,7 +82,7 @@ class CFAlertBaseInteractiveTransition: UIPercentDrivenInteractiveTransition {
                 swipeGestureView: UIView?,
                 contentScrollView: UIScrollView?)
     {
-        // By Default Interactive Transition Is Turned Off
+        // By Default Interactive Transition Is Turned On
         enableInteractiveTransition = true
         
         super.init()

@@ -90,7 +90,6 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "CFAlertViewController/*.swift", "CFAlertViewController/**/*.swift", "CFAlertViewController/**/**/*.swift"
   #  s.exclude_files = "Classes/Exclude"
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -134,9 +133,11 @@ Pod::Spec.new do |s|
   s.default_subspec = 'Core'
   
   s.subspec 'Core' do |core|
+  	core.source_files  = "CFAlertViewController/*.swift", "CFAlertViewController/**/*.swift", "CFAlertViewController/**/**/*.swift"
   end
   
   s.subspec 'Extension' do |ext|
+  	ext.source_files  = "CFAlertViewController/*.swift", "CFAlertViewController/**/*.swift", "CFAlertViewController/**/**/*.swift"
     ext.xcconfig = { "OTHER_SWIFT_FLAGS" => "-D CFALERTVC_EXTENSION"}
   end
 

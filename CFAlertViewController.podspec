@@ -15,7 +15,6 @@ Pod::Spec.new do |s|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  s.name         = "CFAlertViewController"
   s.version      = "2.3.2"
   s.summary      = "CFAlertViewController is a library that helps you display and customise alerts and action sheets on iPad and iPhone."
 
@@ -133,10 +132,12 @@ Pod::Spec.new do |s|
   s.default_subspec = 'Core'
   
   s.subspec 'Core' do |core|
+	core.name          = "CFAlertViewController"
   	core.source_files  = "CFAlertViewController/*.swift", "CFAlertViewController/**/*.swift", "CFAlertViewController/**/**/*.swift"
   end
   
   s.subspec 'Extension' do |ext|
+  	ext.name          = "CFAlertViewController_Extension"
   	ext.source_files  = "CFAlertViewController/*.swift", "CFAlertViewController/**/*.swift", "CFAlertViewController/**/**/*.swift"
     ext.xcconfig = { "OTHER_SWIFT_FLAGS" => "-D CFALERTVC_EXTENSION"}
   end

@@ -62,13 +62,12 @@ open class CFAlertViewController: UIViewController    {
                     self.tableViewLeadingConstraint?.priority = UILayoutPriority(rawValue: 749)
                     self.tableViewTrailingConstraint?.priority = UILayoutPriority(rawValue: 749)
                     
-                    if ProcessInfo.processInfo.operatingSystemVersion.majorVersion < 11 {
+                    if #available(iOS 11.0, *) {
+                        // NOTE : For iOS 11 we don't need to adjust status bar as safe area layout guide manages it automatically
+                    } else {
                         // For iOS version 8, 9 & 10 add table view top inset to leave space for status bar
                         if let tableView = self.tableView   {
-                            var statusbarHeight : CGFloat = 0.0
-//                            #if !CFALERTVC_EXTENSION
-//                                statusbarHeight = UIApplication.shared.statusBarFrame.size.height
-//                            #endif
+                            let statusbarHeight : CGFloat = self.topLayoutGuide.length
                             tableView.contentInset = UIEdgeInsetsMake(statusbarHeight, tableView.contentInset.left, tableView.contentInset.bottom, tableView.contentInset.right)
                             tableView.scrollIndicatorInsets = tableView.contentInset
                         }

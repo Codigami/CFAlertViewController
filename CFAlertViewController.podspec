@@ -130,5 +130,9 @@ Pod::Spec.new do |s|
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # s.dependency "JSONKit", "~> 1.4"
+  
+  s.subspec 'Extension' do |ext|
+    ext.xcconfig = { 'OTHER_SWIFT_FLAGS' => '$(inherited) -D CFALERTVC_EXTENSION'}
+  end
 
 end

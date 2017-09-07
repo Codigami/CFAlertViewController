@@ -10,14 +10,14 @@ import UIKit
 
 class ExamplesTableViewController: UIViewController {
 
-    enum SimpleExampleType: Int {
+    private enum SimpleExampleType: Int {
         case simpleExample1
         case simpleExample2
         case simpleExample3
         case simpleExample4
     }
     
-    enum AdvancedExampleType: Int {
+    private enum AdvancedExampleType: Int {
         case advancedExample1
         case advancedExample2
         case advancedExample3
@@ -31,20 +31,17 @@ class ExamplesTableViewController: UIViewController {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     // MARK: Constants
-    let alertTitle = "Title of the message"
-    let alertBodyText = "Add message body here. If the text exceeds a certain limit then the alert will automatically become scrollable."
-    let defaultActionTitle = "Action #1"
-    let defaultActionTitle2 = "Action #2"
+    private let alertTitle = "Title of the message"
+    private let alertBodyText = "Add message body here. If the text exceeds a certain limit then the alert will automatically become scrollable."
+    private let doneActionTitle = "Done"
+    private let cancelActionTitle = "Cancel"
+    private let defaultActionColor = UIColor.init(red: 41.0/255.0, green: 198.0/255.0, blue: 77.0/255.0, alpha: 1.0)
     
-    let defaultActionColor = UIColor.init(red: 41.0/255.0, green: 198.0/255.0, blue: 77.0/255.0, alpha: 1.0)
-    let destructiveActionColor = UIColor.init(red: 255.0/255.0, green: 75.0/255.0, blue: 75.0/255.0, alpha: 1.0)
-    
-    
-    
+    // MARK: Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Register table view cells
+        // Register table view cell
         let nib = UINib(nibName: ExampleTableViewCell.reuseIdentifier(), bundle: nil)
         tableView?.register(nib, forCellReuseIdentifier: ExampleTableViewCell.reuseIdentifier())
         
@@ -168,17 +165,17 @@ extension ExamplesTableViewController {
         // Single Action
         case .simpleExample1:
             let alert = CFAlertViewController.alertController(title: alertTitle, titleColor: .black, message: alertBodyText, messageColor: .black, textAlignment: .left, preferredStyle: styleForSelectedIndex(index: selectedControlIndex), headerView: nil, footerView: nil, didDismissAlertHandler: nil)
-            let defaultAction = CFAlertAction.action(title: defaultActionTitle, style: .Default, alignment: .right, backgroundColor: defaultActionColor, textColor: .white, handler: nil)
-            alert.addAction(defaultAction)
+            let doneAction = CFAlertAction.action(title: doneActionTitle, style: .Default, alignment: .right, backgroundColor: nil, textColor: nil, handler: nil)
+            alert.addAction(doneAction)
             self.present(alert, animated: true, completion: nil)
             
         // Multiple Actions
         case .simpleExample2:
             let alert = CFAlertViewController.alertController(title: alertTitle, titleColor: .black, message: alertBodyText, messageColor: .black, textAlignment: .left, preferredStyle: styleForSelectedIndex(index: selectedControlIndex), headerView: nil, footerView: nil, didDismissAlertHandler: nil)
-            let defaultAction = CFAlertAction.action(title: defaultActionTitle, style: .Default, alignment: .right, backgroundColor: defaultActionColor, textColor: .white, handler: nil)
-            let destructiveAction = CFAlertAction.action(title: defaultActionTitle2, style: .Default, alignment: .right, backgroundColor: destructiveActionColor, textColor: .white, handler: nil)
-            alert.addAction(defaultAction)
-            alert.addAction(destructiveAction)
+            let doneAction = CFAlertAction.action(title: doneActionTitle, style: .Default, alignment: .right, backgroundColor: nil, textColor: nil, handler: nil)
+            let cancelAction = CFAlertAction.action(title: cancelActionTitle, style: .Cancel, alignment: .right, backgroundColor: nil, textColor: nil, handler: nil)
+            alert.addAction(doneAction)
+            alert.addAction(cancelAction)
             self.present(alert, animated: true, completion: nil)
             
         // Custom Header
@@ -215,11 +212,8 @@ extension ExamplesTableViewController {
         
         // Airpods Bottom Sheet Style
         case .advancedExample2:
-            let headerView = UIImageView.init(image: UIImage.init(named: "airpods_image"))
-            headerView.frame = CGRect.init(x: 0, y: 0, width: 0, height: 260)
-            headerView.contentMode = .bottom
-            headerView.clipsToBounds = true
-            let alert = CFAlertViewController.alertController(title: nil, titleColor: .black, message: "Airpods", messageColor: .black, textAlignment: .center, preferredStyle: .actionSheet, headerView: headerView, footerView: nil, didDismissAlertHandler: nil)
+            let headerView = ConnectAirpodsHeaderView.init(frame: CGRect.init(x: 0, y: 0, width: 0, height: 260))
+            let alert = CFAlertViewController.alertController(title: nil, titleColor: .black, message: nil, messageColor: .black, textAlignment: .center, preferredStyle: .actionSheet, headerView: headerView, footerView: nil, didDismissAlertHandler: nil)
             let connectAction = CFAlertAction.action(title: "Connect", style: .Default, alignment: .justified, backgroundColor: UIColor.black.withAlphaComponent(0.14), textColor: .black, handler: nil)
             alert.addAction(connectAction)
             self.present(alert, animated: true, completion: nil)
@@ -243,7 +237,7 @@ extension ExamplesTableViewController {
             let headerContainerView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 80))
             headerContainerView.addSubview(headerView!)
             let alert = CFAlertViewController.alertController(title: "Rate Us", titleColor: nil, message: "If you enjoyed the app, it would be great if you could rate us and write a review.", messageColor: nil, textAlignment: .center, preferredStyle: .alert, headerView: headerContainerView, footerView: nil, didDismissAlertHandler: nil)
-            let action = CFAlertAction.action(title: "Submit", style: .Default, alignment: .center, backgroundColor: defaultActionColor, textColor: .white, handler: nil)
+            let action = CFAlertAction.action(title: "Submit", style: .Default, alignment: .center, backgroundColor: nil, textColor: nil, handler: nil)
             alert.addAction(action)
             alert.backgroundStyle = .blur
             self.present(alert, animated: true, completion: nil)
@@ -253,7 +247,7 @@ extension ExamplesTableViewController {
             let headerView = InputPasswordHeaderView.init(frame: CGRect.init(x: 0, y: 0, width: 0, height: 100))
             
             let alert = CFAlertViewController.alertController(title: nil, titleColor: nil, message: nil, messageColor: nil, textAlignment: .center, preferredStyle: .alert, headerView: headerView, footerView: nil, didDismissAlertHandler: nil)
-            let action = CFAlertAction.action(title: "Sign In", style: .Default, alignment: .center, backgroundColor: defaultActionColor, textColor: .white, shouldDismissAlertOnTap: false, handler: { (alertAction) in
+            let action = CFAlertAction.action(title: "Sign In", style: .Default, alignment: .center, backgroundColor: nil, textColor: nil, shouldDismissAlertOnTap: false, handler: { (alertAction) in
                 
                 // Add fade animation to background of alert
                 UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.curveEaseOut, .beginFromCurrentState, .allowUserInteraction], animations: {[weak self] in
@@ -307,8 +301,4 @@ extension ExamplesTableViewController {
             return .alert
         }
     }
-    
-    
-    
-    
 }

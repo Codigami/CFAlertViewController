@@ -28,6 +28,8 @@
 		4004556F1E30A29E0035A3D4 /* CFAlertActionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4004556E1E30A29E0035A3D4 /* CFAlertActionTableViewCell.swift */; };
 		40102FEF1E30EC4900B63602 /* CFAlertTitleSubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40102FEE1E30EC4900B63602 /* CFAlertTitleSubtitleTableViewCell.swift */; };
 		4019782B1F5E738A001866FE /* CFRatePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 401978281F5E738A001866FE /* CFRatePanel.m */; };
+		402E7EE81F612CD3000CEBA8 /* ConnectAirpodsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402E7EE71F612CD3000CEBA8 /* ConnectAirpodsHeaderView.swift */; };
+		402E7EEA1F612CFC000CEBA8 /* ConnectAirpodsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 402E7EE91F612CFC000CEBA8 /* ConnectAirpodsHeaderView.xib */; };
 		403168EA1E31F70D00C29637 /* CFAlertViewControllerActionSheetTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403168E91E31F70D00C29637 /* CFAlertViewControllerActionSheetTransition.swift */; };
 		403168EC1E31F71800C29637 /* CFAlertViewControllerPopupTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403168EB1E31F71800C29637 /* CFAlertViewControllerPopupTransition.swift */; };
 		405ED4831F5EB3EF0045C3E2 /* InputPasswordHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405ED4821F5EB3EF0045C3E2 /* InputPasswordHeaderView.swift */; };
@@ -82,6 +84,8 @@
 		40102FEE1E30EC4900B63602 /* CFAlertTitleSubtitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFAlertTitleSubtitleTableViewCell.swift; sourceTree = "<group>"; };
 		401978271F5E738A001866FE /* CFRatePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFRatePanel.h; sourceTree = "<group>"; };
 		401978281F5E738A001866FE /* CFRatePanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFRatePanel.m; sourceTree = "<group>"; };
+		402E7EE71F612CD3000CEBA8 /* ConnectAirpodsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectAirpodsHeaderView.swift; sourceTree = "<group>"; };
+		402E7EE91F612CFC000CEBA8 /* ConnectAirpodsHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConnectAirpodsHeaderView.xib; sourceTree = "<group>"; };
 		403168E91E31F70D00C29637 /* CFAlertViewControllerActionSheetTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFAlertViewControllerActionSheetTransition.swift; sourceTree = "<group>"; };
 		403168EB1E31F71800C29637 /* CFAlertViewControllerPopupTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFAlertViewControllerPopupTransition.swift; sourceTree = "<group>"; };
 		405ED4821F5EB3EF0045C3E2 /* InputPasswordHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputPasswordHeaderView.swift; sourceTree = "<group>"; };
@@ -285,6 +289,7 @@
 		401978231F5E738A001866FE /* Examples */ = {
 			isa = PBXGroup;
 			children = (
+				402E7EE61F612CCA000CEBA8 /* Connect Airpods */,
 				401362561F5E8952003A4B3D /* Password Popup */,
 				401978241F5E738A001866FE /* App Rate */,
 			);
@@ -298,6 +303,15 @@
 				401978281F5E738A001866FE /* CFRatePanel.m */,
 			);
 			path = "App Rate";
+			sourceTree = "<group>";
+		};
+		402E7EE61F612CCA000CEBA8 /* Connect Airpods */ = {
+			isa = PBXGroup;
+			children = (
+				402E7EE71F612CD3000CEBA8 /* ConnectAirpodsHeaderView.swift */,
+				402E7EE91F612CFC000CEBA8 /* ConnectAirpodsHeaderView.xib */,
+			);
+			path = "Connect Airpods";
 			sourceTree = "<group>";
 		};
 		40F4AFBD1F5931D900593D5F /* Table View Cells */ = {
@@ -403,6 +417,7 @@
 				2F8E90021D1811C7004450F5 /* CustomFooterView.xib in Resources */,
 				2F8E8FCB1D181166004450F5 /* Assets.xcassets in Resources */,
 				2F8E8FC91D181166004450F5 /* Main.storyboard in Resources */,
+				402E7EEA1F612CFC000CEBA8 /* ConnectAirpodsHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,6 +449,7 @@
 				2F8E90001D1811C7004450F5 /* AppDelegate.m in Sources */,
 				4072C25A1F584414002D82BC /* ExamplesTableViewController.swift in Sources */,
 				405ED4831F5EB3EF0045C3E2 /* InputPasswordHeaderView.swift in Sources */,
+				402E7EE81F612CD3000CEBA8 /* ConnectAirpodsHeaderView.swift in Sources */,
 				40F4AFC01F59320700593D5F /* ExampleTableViewCell.swift in Sources */,
 				2F8E90011D1811C7004450F5 /* CustomFooterView.m in Sources */,
 				217A00761E6D7B4800415DA7 /* ColorPickerTableViewController.m in Sources */,

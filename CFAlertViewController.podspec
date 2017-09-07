@@ -90,7 +90,7 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "find CFAlertViewController/ -type f -name "*.swift""
+  s.source_files  = "CFAlertViewController/*.swift", "CFAlertViewController/**/*.swift", "CFAlertViewController/**/**/*.swift"
   #  s.exclude_files = "Classes/Exclude"
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -102,7 +102,7 @@ Pod::Spec.new do |s|
   #
 
   # s.resource  = "icon.png"
-  s.source_files  = "CFAlertViewController/*.swift", "CFAlertViewController/**/*.swift", "CFAlertViewController/Subclass/**/*.swift", "CFAlertViewController/Transitions/**/*.swift"
+  s.resources = "CFAlertViewController/*.xib", "CFAlertViewController/**/*.xib"
 
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
 

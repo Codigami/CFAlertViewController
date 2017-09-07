@@ -66,9 +66,9 @@ open class CFAlertViewController: UIViewController    {
                         // For iOS version 8, 9 & 10 add table view top inset to leave space for status bar
                         if let tableView = self.tableView   {
                             var statusbarHeight : CGFloat = 0.0
-                            #if !CFALERTVC_EXTENSION
-                                statusbarHeight = UIApplication.shared.statusBarFrame.size.height
-                            #endif
+//                            #if !CFALERTVC_EXTENSION
+//                                statusbarHeight = UIApplication.shared.statusBarFrame.size.height
+//                            #endif
                             tableView.contentInset = UIEdgeInsetsMake(statusbarHeight, tableView.contentInset.left, tableView.contentInset.bottom, tableView.contentInset.right)
                             tableView.scrollIndicatorInsets = tableView.contentInset
                         }

@@ -63,10 +63,12 @@ open class CFAlertViewController: UIViewController    {
                     self.tableViewTrailingConstraint?.priority = UILayoutPriority(rawValue: 749)
                     
                     if ProcessInfo.processInfo.operatingSystemVersion.majorVersion < 11 {
-                        
-                        // For iOS version 8, 9 & 10, add table view top inset to leave space for status bar
+                        // For iOS version 8, 9 & 10 add table view top inset to leave space for status bar
                         if let tableView = self.tableView   {
-                            let statusbarHeight = UIApplication.shared.statusBarFrame.size.height
+                            var statusbarHeight : CGFloat = 0.0
+                            #if !CFALERTVC_EXTENSION
+                                statusbarHeight = UIApplication.shared.statusBarFrame.size.height
+                            #endif
                             tableView.contentInset = UIEdgeInsetsMake(statusbarHeight, tableView.contentInset.left, tableView.contentInset.bottom, tableView.contentInset.right)
                             tableView.scrollIndicatorInsets = tableView.contentInset
                         }
@@ -102,6 +104,7 @@ open class CFAlertViewController: UIViewController    {
             }
         }
     }
+    
     @objc public private(set) var actions: [CFAlertAction]?   {
         set {
             // Dont Do Anything
@@ -642,14 +645,6 @@ open class CFAlertViewController: UIViewController    {
             updateContainerViewFrame(withAnimation: false)
         }
     }
-    
-    
-    // MARK: - StatusBar Update Methods
-    #if NS_EXTENSION_UNAVAILABLE_IOS
-    override func prefersStatusBarHidden() -> Bool {
-        return UIApplication.shared.statusBarHidden
-    }
-    #endif
     
     
     // MARK: - Dealloc

@@ -4,14 +4,29 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>CFAlertViewController_App_Demo.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
 		<key>CFAlertViewController_Demo_iOS.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>CFAlertViewController_ShareExtension_Demo.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>2F62989D1F5FF8B70010273C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>2F8E8FBA1D181166004450F5</key>
 		<dict>
 			<key>primary</key>

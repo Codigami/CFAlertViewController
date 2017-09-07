@@ -7,9 +7,14 @@
 //
 
 #import "HomeTableViewController.h"
-#import "CFAlertViewControllerDemo-Swift.h"
 #import "CustomFooterView.h"
 #import "ColorPickerTableViewController.h"
+
+#if TARGET_APP_EXTENSION
+    #import "CFAlertViewControllerShareExtensionDemo-Swift.h"
+#else
+    #import "CFAlertViewControllerDemo-Swift.h"
+#endif
 
 
 
@@ -31,6 +36,9 @@
 
 
 @interface HomeTableViewController () <ColorPickerTableViewControllerDelegate>
+
+// Navigation
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *closeButton;
 
 // Alert Type
 @property (weak, nonatomic) IBOutlet UISegmentedControl *alertTypeSegment;
@@ -66,6 +74,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Remove Close Button If Not Share Extension
+#if !TARGET_APP_EXTENSION
+    self.navigationItem.leftBarButtonItem = nil;
+    self.closeButton = nil;
+#endif
+    
     // Set Global Tint Color
     self.navigationController.view.tintColor = [UIColor colorWithRed:29.0/255.0 green:161.0/255.0 blue:242.0/255.0 alpha:1];
     
@@ -94,6 +108,24 @@
 }
 
 #pragma mark - Button Click Events
+
+- (IBAction) closeButtonClicked:(id)sende   {
+    
+    // Get Weak Self Reference
+    __weak __typeof(self) weakSelf = self;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        // Dismiss View Controller
+        [weakSelf dismissViewControllerAnimated:YES completion:^{
+            
+            // Call Delegate
+            if ([weakSelf.delegate respondsToSelector:@selector(homeTableViewControllerDidClose:)]) {
+                [weakSelf.delegate homeTableViewControllerDidClose:weakSelf];
+            }
+        }];
+    });
+}
 
 - (IBAction) showAlertButtonClicked:(id)sender {
     

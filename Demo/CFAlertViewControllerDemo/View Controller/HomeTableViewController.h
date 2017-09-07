@@ -8,6 +8,25 @@
 
 #import <UIKit/UIKit.h>
 
+
+
+// Delegate Protocol
+@protocol HomeTableViewControllerDelegate;
+
+
+
 @interface HomeTableViewController : UITableViewController
+@property (nonatomic, weak) id<HomeTableViewControllerDelegate> delegate;
+@end
+
+
+// Delegate Declarations
+@protocol HomeTableViewControllerDelegate <NSObject>
+
+@optional
+- (void) homeTableViewControllerDidClose:(HomeTableViewController *)viewController;
 
 @end
+
+
+

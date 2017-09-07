@@ -8,7 +8,12 @@
 
 #import "CustomFooterView.h"
 #import "UIColor+Helper.h"
-#import "CFAlertViewControllerDemo-Swift.h"
+
+#if TARGET_APP_EXTENSION
+    #import "CFAlertViewControllerShareExtensionDemo-Swift.h"
+#else
+    #import "CFAlertViewControllerDemo-Swift.h"
+#endif
 
 
 

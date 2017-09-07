@@ -132,7 +132,7 @@ Pod::Spec.new do |s|
   # s.dependency "JSONKit", "~> 1.4"
   
   s.subspec 'Extension' do |ext|
-    ext.xcconfig = { 'OTHER_SWIFT_FLAGS' => '$(inherited) -D CFALERTVC_EXTENSION'}
+    ext.xcconfig = { "OTHER_SWIFT_FLAGS" => "-D CFALERTVC_EXTENSION"}
   end
 
 end

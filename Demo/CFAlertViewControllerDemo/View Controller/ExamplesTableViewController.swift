@@ -176,7 +176,7 @@ extension ExamplesTableViewController {
         case .simpleExample2:
             let alert = CFAlertViewController.alertController(title: alertTitle, titleColor: .black, message: alertBodyText, messageColor: .black, textAlignment: .left, preferredStyle: styleForSelectedIndex(index: selectedControlIndex), headerView: nil, footerView: nil, didDismissAlertHandler: nil)
             let defaultAction = CFAlertAction.action(title: defaultActionTitle, style: .Default, alignment: .right, backgroundColor: defaultActionColor, textColor: .white, handler: nil)
-            let destructiveAction = CFAlertAction.action(title: defaultActionTitle, style: .Default, alignment: .right, backgroundColor: destructiveActionColor, textColor: .white, handler: nil)
+            let destructiveAction = CFAlertAction.action(title: defaultActionTitle2, style: .Default, alignment: .right, backgroundColor: destructiveActionColor, textColor: .white, handler: nil)
             alert.addAction(defaultAction)
             alert.addAction(destructiveAction)
             self.present(alert, animated: true, completion: nil)
@@ -254,15 +254,26 @@ extension ExamplesTableViewController {
             
             let alert = CFAlertViewController.alertController(title: nil, titleColor: nil, message: nil, messageColor: nil, textAlignment: .center, preferredStyle: .alert, headerView: headerView, footerView: nil, didDismissAlertHandler: nil)
             let action = CFAlertAction.action(title: "Sign In", style: .Default, alignment: .center, backgroundColor: defaultActionColor, textColor: .white, shouldDismissAlertOnTap: false, handler: { (alertAction) in
-                if headerView.textField.text == "" {
-                    alert.backgroundColor = UIColor.red.withAlphaComponent(0.5)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
-                        alert.backgroundColor = nil
-                    })
-                }
-                else {
-                    alert.dismiss(animated: true, completion: nil)
-                }
+                
+                // Add fade animation to background of alert
+                UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.curveEaseOut, .beginFromCurrentState, .allowUserInteraction], animations: {[weak self] in
+                   
+                    if headerView.textField.text == "" {
+                        alert.backgroundColor = UIColor.red.withAlphaComponent(0.5)
+                        // Add shake animation to container view of alert
+                        self?.shakeView(view: alert.containerView!)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+                            alert.backgroundColor = nil
+                        })
+                    }
+                    else {
+                        alert.backgroundColor = self?.defaultActionColor.withAlphaComponent(0.5)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+                            alert.dismiss(animated: true, completion: nil)
+                        })
+                    }
+                    
+                }, completion: nil)
             })
             alert.shouldDismissOnBackgroundTap = false
             alert.addAction(action)
@@ -271,9 +282,17 @@ extension ExamplesTableViewController {
         default:
             break
         }
-        
-        
     }
+    
+    private func shakeView(view: UIView) {
+        
+        let animation = CAKeyframeAnimation.init(keyPath: "transform.translation.x")
+        animation.timingFunction = CAMediaTimingFunction.init(name: kCAMediaTimingFunctionLinear)
+        animation.duration = 0.6
+        animation.values = [-12, 12, -8, 8, -4, 4, 0]
+        view.layer.add(animation, forKey: "shake")
+    }
+    
     
     private func styleForSelectedIndex(index: Int) -> CFAlertViewController.CFAlertControllerStyle {
         

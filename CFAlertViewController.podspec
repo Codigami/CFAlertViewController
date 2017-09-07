@@ -102,7 +102,7 @@ Pod::Spec.new do |s|
   #
 
   # s.resource  = "icon.png"
-  s.resources = "CFAlertViewController/*.xib", "CFAlertViewController/Cells/*.xib"
+  s.source_files  = "CFAlertViewController/*.swift", "CFAlertViewController/**/*.swift", "CFAlertViewController/Subclass/**/*.swift", "CFAlertViewController/Transitions/**/*.swift"
 
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
 

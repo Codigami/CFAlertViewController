@@ -353,6 +353,10 @@ open class CFAlertViewController: UIViewController    {
     
     internal func loadDisplayContent() {
         
+        // Reload Background Color
+        let backgroundColorValue = backgroundColor
+        backgroundColor = backgroundColorValue
+        
         // Set Container View Default Background Color
         containerView?.backgroundColor = CFAlertViewController.CF_ALERT_DEFAULT_CONTAINER_VIEW_BACKGROUND_COLOR()
         
@@ -497,7 +501,7 @@ open class CFAlertViewController: UIViewController    {
         setFooterView(footerView, shouldUpdateContainerFrame: false, withAnimation: false)
         // Reload Table Content
         tableView?.reloadData()
-        // Update Background
+        // Update Background Style
         let currentBackgroundStyle = backgroundStyle
         backgroundStyle = currentBackgroundStyle
         // Update Container View Frame

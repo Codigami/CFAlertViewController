@@ -724,15 +724,13 @@ extension CFAlertViewController: UITableViewDataSource, UITableViewDelegate, CFA
             actionCell?.action = self.actionList[indexPath.row]
             // Set Top Margin For First Action
             if indexPath.row == 0 {
-                if let titleString = titleString, let messageString = messageString, (!titleString.isEmpty && !messageString.isEmpty)   {
-                    actionCell?.actionButtonTopMargin = 20.0
-                }
-                else {
-                    actionCell?.actionButtonTopMargin = 20.0
-                }
+                actionCell?.actionButtonTopMargin = 20.0
             }
             // Set Bottom Margin For Last Action
             if indexPath.row == self.actionList.count - 1 {
+                if indexPath.row > 0    {
+                    actionCell?.actionButtonTopMargin = 0.0
+                }
                 actionCell?.actionButtonBottomMargin = 20.0
             }
             else {

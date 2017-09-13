@@ -36,10 +36,10 @@ open class CFAlertViewController: UIViewController    {
         return UIColor.white
     }
     @objc open static func CF_ALERT_DEFAULT_TITLE_COLOR() -> UIColor {
-        return UIColor.init(red: 1.0/255.0, green: 51.0/255.0, blue: 86.0/255.0, alpha: 1.0)
+        return UIColor.black
     }
     @objc open static func CF_ALERT_DEFAULT_MESSAGE_COLOR() -> UIColor {
-        return UIColor.init(red: 1.0/255.0, green: 51.0/255.0, blue: 86.0/255.0, alpha: 1.0)
+        return UIColor.darkGray
     }
     
     // MARK: - Variables

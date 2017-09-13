@@ -194,8 +194,14 @@ open class CFAlertViewController: UIViewController    {
             // Check if keyboard Height Changed
             if keyboardHeight != oldValue {
                 
+                // Get Safe Area Bottom Inset
+                var safeAreaBottomInset : CGFloat = 0.0
+                if #available(iOS 11.0, *) {
+                    safeAreaBottomInset = view.safeAreaInsets.bottom
+                }
+                
                 // Update Main View Bottom Constraint
-                mainViewBottomConstraint?.constant = keyboardHeight
+                mainViewBottomConstraint?.constant = max(keyboardHeight, safeAreaBottomInset)
             }
         }
     }

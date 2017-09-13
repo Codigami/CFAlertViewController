@@ -51,6 +51,11 @@ open class CFAlertViewController: UIViewController    {
                 // Position Contraints for Container View
                 if self.preferredStyle == .notification {
                     
+                    if #available(iOS 11.0, *) {
+                        self.mainViewTopConstraint?.constant = 0.0
+                        self.mainViewBottomConstraint?.constant = self.view.safeAreaInsets.bottom
+                    }
+                    
                     self.containerViewTopConstraint?.isActive = true
                     self.containerViewLeadingConstraint?.constant = 0
                     self.containerViewCenterYConstraint?.isActive = false
@@ -75,6 +80,11 @@ open class CFAlertViewController: UIViewController    {
                 }
                 else if self.preferredStyle == .alert   {
                     
+                    if #available(iOS 11.0, *) {
+                        self.mainViewTopConstraint?.constant = self.view.safeAreaInsets.top
+                        self.mainViewBottomConstraint?.constant = self.view.safeAreaInsets.bottom
+                    }
+                    
                     self.containerViewTopConstraint?.isActive = false
                     self.containerViewLeadingConstraint?.constant = 10
                     self.containerViewCenterYConstraint?.isActive = true
@@ -86,6 +96,11 @@ open class CFAlertViewController: UIViewController    {
                     self.tableViewTrailingConstraint?.priority = UILayoutPriority(rawValue: 751)
                 }
                 else if self.preferredStyle == .actionSheet {
+                    
+                    if #available(iOS 11.0, *) {
+                        self.mainViewTopConstraint?.constant = self.view.safeAreaInsets.top
+                        self.mainViewBottomConstraint?.constant = self.view.safeAreaInsets.bottom
+                    }
                     
                     self.containerViewTopConstraint?.isActive = false
                     self.containerViewLeadingConstraint?.constant = 10
@@ -190,6 +205,7 @@ open class CFAlertViewController: UIViewController    {
     internal var transitionDelegate : UIViewControllerTransitioningDelegate?
     internal var interactiveTransitionDelegate : CFAlertBaseInteractiveTransition?
     
+    @IBOutlet internal weak var mainViewTopConstraint: NSLayoutConstraint?
     @IBOutlet internal weak var mainViewBottomConstraint: NSLayoutConstraint?
     @IBOutlet internal weak var tableView: UITableView?
     @IBOutlet internal weak var containerViewTopConstraint: NSLayoutConstraint?
@@ -365,10 +381,10 @@ open class CFAlertViewController: UIViewController    {
             containerView?.layer.cornerRadius = 0.0
         }
         else if preferredStyle == .alert    {
-            containerView?.layer.cornerRadius = 8.0
+            containerView?.layer.cornerRadius = 10.0
         }
         else if preferredStyle == .actionSheet   {
-            containerView?.layer.cornerRadius = 6.0
+            containerView?.layer.cornerRadius = 10.0
         }
         
         // Add Tap Gesture Recognizer On View

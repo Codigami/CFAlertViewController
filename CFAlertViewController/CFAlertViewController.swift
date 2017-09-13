@@ -573,16 +573,22 @@ open class CFAlertViewController: UIViewController    {
     // MARK: - Handle Tap Events
     @objc internal func viewDidTap(_ gestureRecognizer: UITapGestureRecognizer) {
         
-        // Get Tap Location
-        let tapLocation: CGPoint = gestureRecognizer.location(in: self.view)
-        
-        if let containerView = self.containerView, containerView.frame.contains(tapLocation) {
-            // Close Keyboard
-            self.view.endEditing(true)
-        }
-        else if shouldDismissOnBackgroundTap {
-            // Dismiss Alert
-            dismissAlertOnBackgroundTap(withAnimation: true, dismissReason: .onBackgroundTap, completion: nil)
+        if gestureRecognizer.state == .ended {
+         
+            // Get Tap Location
+            let tapLocation: CGPoint = gestureRecognizer.location(in: gestureRecognizer.view)
+            let tapView = gestureRecognizer.view?.hitTest(tapLocation, with: nil)
+            if let tapView = tapView,
+                let containerView = containerView,
+                tapView.isDescendant(of: containerView)
+            {
+                // Close Keyboard
+                view.endEditing(true)
+            }
+            else if shouldDismissOnBackgroundTap {
+                // Dismiss Alert
+                dismissAlertOnBackgroundTap(withAnimation: true, dismissReason: .onBackgroundTap, completion: nil)
+            }
         }
     }
     

@@ -58,27 +58,32 @@ class CFAlertActionSheetInteractiveTransition: CFAlertBaseInteractiveTransition 
             viewController = fromViewController
         }
         
-        if let alertViewController = viewController as? CFAlertViewController {
+        if let alertViewController = viewController as? CFAlertViewController, let alertContainerView = alertViewController.containerView {
             
-            if let alertContainerView = alertViewController.containerView   {
-                
-                // Slide Container View
-                let startY = alertViewController.view.frame.size.height - alertContainerView.frame.size.height - 10
-                let endY = alertViewController.view.frame.size.height
-                let currentTopOffset = CFAlertBaseInteractiveTransition.valueBetween(start: startY,
-                                                                                     andEnd: endY,
-                                                                                     forProgress: (1.0-currentPercentage))
-                alertContainerView.frame = CGRect(x: alertContainerView.frame.origin.x,
-                                                  y: currentTopOffset,
-                                                  width: alertContainerView.frame.size.width,
-                                                  height: alertContainerView.frame.size.height)
-                
-                // Fade background View
-                if alertViewController.backgroundStyle == .blur    {
-                    alertViewController.backgroundBlurView?.alpha = currentPercentage
-                }
-                alertViewController.backgroundColorView?.alpha = currentPercentage
+            // Get Safe Area Bottom Inset
+            var safeAreaTopInset : CGFloat = 0.0
+            var safeAreaBottomInset : CGFloat = 0.0
+            if #available(iOS 11.0, *) {
+                safeAreaTopInset = alertViewController.view.safeAreaInsets.top
+                safeAreaBottomInset = alertViewController.view.safeAreaInsets.bottom
             }
+            print(1.0-currentPercentage)
+            // Slide Container View
+            let startY = alertViewController.view.frame.size.height - safeAreaTopInset - alertContainerView.frame.size.height - 10 - safeAreaBottomInset
+            let endY = alertViewController.view.frame.size.height - safeAreaBottomInset
+            let currentTopOffset = CFAlertBaseInteractiveTransition.valueBetween(start: startY,
+                                                                                 andEnd: endY,
+                                                                                 forProgress: (1.0-currentPercentage))
+            alertContainerView.frame = CGRect(x: alertContainerView.frame.origin.x,
+                                              y: currentTopOffset,
+                                              width: alertContainerView.frame.size.width,
+                                              height: alertContainerView.frame.size.height)
+            
+            // Fade background View
+            if alertViewController.backgroundStyle == .blur    {
+                alertViewController.backgroundBlurView?.alpha = currentPercentage
+            }
+            alertViewController.backgroundColorView?.alpha = currentPercentage
         }
     }
 }
@@ -112,7 +117,13 @@ extension CFAlertActionSheetInteractiveTransition  {
                 let alertContainerView = alertViewController.containerView,
                 let panStartLocation = panStartLocation
             {
-                let animationRatio = (location.y - panStartLocation.y) / alertContainerView.bounds.height
+                // Get Safe Area Bottom Inset
+                var safeAreaBottomInset : CGFloat = 0.0
+                if #available(iOS 11.0, *) {
+                    safeAreaBottomInset = alertViewController.view.safeAreaInsets.bottom
+                }
+                
+                let animationRatio = (location.y - panStartLocation.y) / (alertContainerView.bounds.height + 10 + safeAreaBottomInset)
                 update(animationRatio)
             }
         }
@@ -184,7 +195,14 @@ extension CFAlertActionSheetInteractiveTransition   {
                     
                     alertViewController.view?.layoutIfNeeded()
                     if var frame = alertViewController.containerView?.frame    {
-                        frame.origin.y = frame.origin.y - frame.size.height - 10
+                        
+                        // Get Safe Area Bottom Inset
+                        var safeAreaBottomInset : CGFloat = 0.0
+                        if #available(iOS 11.0, *) {
+                            safeAreaBottomInset = alertViewController.view.safeAreaInsets.bottom
+                        }
+                        
+                        frame.origin.y = frame.origin.y - frame.size.height - 10 - safeAreaBottomInset
                         alertViewController.containerView?.frame = frame
                     }
                     
@@ -216,7 +234,7 @@ extension CFAlertActionSheetInteractiveTransition   {
             // Animate height changes
             UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.curveEaseIn, .beginFromCurrentState], animations: {() -> Void in
                 
-                alertViewController?.view?.layoutIfNeeded()
+                //alertViewController?.view?.layoutIfNeeded()
                 var frame: CGRect? = alertViewController?.containerView?.frame
                 frame?.origin.y = (containerView?.frame.size.height)!
                 alertViewController?.containerView?.frame = frame!

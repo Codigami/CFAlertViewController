@@ -67,7 +67,7 @@ class CFAlertActionSheetInteractiveTransition: CFAlertBaseInteractiveTransition 
                 safeAreaTopInset = alertViewController.view.safeAreaInsets.top
                 safeAreaBottomInset = alertViewController.view.safeAreaInsets.bottom
             }
-            print(1.0-currentPercentage)
+            
             // Slide Container View
             let startY = alertViewController.view.frame.size.height - safeAreaTopInset - alertContainerView.frame.size.height - 10 - safeAreaBottomInset
             let endY = alertViewController.view.frame.size.height - safeAreaBottomInset

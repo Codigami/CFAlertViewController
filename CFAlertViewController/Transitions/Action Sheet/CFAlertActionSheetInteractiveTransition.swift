@@ -180,31 +180,12 @@ extension CFAlertActionSheetInteractiveTransition   {
                 }
                 alertViewController.backgroundColorView?.alpha = 0.0
                 
-                UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.curveEaseIn, .beginFromCurrentState], animations: {() -> Void in
-                    
-                    // Background
-                    if alertViewController.backgroundStyle == .blur    {
-                        alertViewController.backgroundBlurView?.alpha = 1.0
-                    }
-                    alertViewController.backgroundColorView?.alpha = 1.0
-                    
-                }, completion: nil)
-                
                 // Animate height changes
                 UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.curveEaseIn, .beginFromCurrentState], animations: {() -> Void in
                     
-                    alertViewController.view?.layoutIfNeeded()
-                    if var frame = alertViewController.containerView?.frame    {
-                        
-                        // Get Safe Area Bottom Inset
-                        var safeAreaBottomInset : CGFloat = 0.0
-                        if #available(iOS 11.0, *) {
-                            safeAreaBottomInset = alertViewController.view.safeAreaInsets.bottom
-                        }
-                        
-                        frame.origin.y = frame.origin.y - frame.size.height - 10 - safeAreaBottomInset
-                        alertViewController.containerView?.frame = frame
-                    }
+                    self.updateUIState(transitionContext: transitionContext,
+                                       percentComplete: 1.0,
+                                       transitionType: .present)
                     
                 }, completion: {(_ finished: Bool) -> Void in
                     
@@ -229,21 +210,12 @@ extension CFAlertActionSheetInteractiveTransition   {
         else if transitionType == .dismiss {
             
             /** HIDE ANIMATION **/
-            let alertViewController: CFAlertViewController? = (fromViewController as? CFAlertViewController)
-            
             // Animate height changes
             UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.curveEaseIn, .beginFromCurrentState], animations: {() -> Void in
                 
-                //alertViewController?.view?.layoutIfNeeded()
-                var frame: CGRect? = alertViewController?.containerView?.frame
-                frame?.origin.y = (containerView?.frame.size.height)!
-                alertViewController?.containerView?.frame = frame!
-                
-                // Background
-                if alertViewController?.backgroundStyle == .blur    {
-                    alertViewController?.backgroundBlurView?.alpha = 0.0
-                }
-                alertViewController?.backgroundColorView?.alpha = 0.0
+                self.updateUIState(transitionContext: transitionContext,
+                                   percentComplete: 0.0,
+                                   transitionType: .dismiss)
                 
             }, completion: {(_ finished: Bool) -> Void in
                 

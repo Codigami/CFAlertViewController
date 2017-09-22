@@ -4,7 +4,7 @@
 [![license](https://img.shields.io/github/license/codigami/cfalertviewcontroller.svg)](https://github.com/Codigami/CFAlertViewController/blob/master/README.md)
 [![Twitter URL](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/home?status=CFAlertViewController%20-%20Now%20display%20and%20customise%20alerts%20and%20action%20sheets%20on%20iOS%20like%20never%20before!%20%23OpenSource%20https%3A//github.com/Codigami/CFAlertViewController)
 
-`CFAlertViewController` is a library that helps you display and customise **alerts and action sheets** on iPad and iPhone. It offers screen rotation as well as an adaptive UI support. CFAlertViewController’s functionality is almost similar to the native UIAlertController.
+`CFAlertViewController` is a library that helps you display and customise **alerts and action sheets** on iPad and iPhone. It offers screen rotation as well as an adaptive UI support. CFAlertViewController’s API is almost similar to the native UIAlertController but it has many more functionality than native UIAlertController.
 
 <img src="https://github.com/Codigami/CFAlertViewController/blob/develop/Images/Demo.gif">
 
@@ -31,30 +31,28 @@ Open the downloaded project in Xcode, then drag and drop folder named **CFAlertV
 
 The above shown alert and actionsheet can easily be implemented using the code snippet given below by some small tweaks
 ```swift
-// Create Alert
-var alertController: CFAlertViewController = CFAlertViewController(title: "You've hit the limit",
-                                                                   message: "Looks like you've hit your daily follow/unfollow limit. Upgrade to our paid plan to be able to remove your limits.",
-                                                                   textAlignment: .left,
-                                                                   preferredStyle: .alert) { (didTapBackground) in
-                                                                        if (didTapBackground) {
-                                                                             // Handle background tap here
-                                                                        }
-}
+// Create Alet View Controller
+let alertController = CFAlertViewController(title: "You've hit the limit",
+                                            message: "Looks like you've hit your daily follow/unfollow limit. Upgrade to our paid plan to be able to remove your limits.",
+                                            textAlignment: .left,
+                                            preferredStyle: .notification,
+                                            didDismissAlertHandler: nil)
 
-        
-var defaultAction = CFAlertAction(title: "UPGRADE",
+// Create Upgrade Action
+let defaultAction = CFAlertAction(title: "UPGRADE",
                                   style: .Default,
-                                  alignment: .justified,
+                                  alignment: .right,
                                   backgroundColor: UIColor(red: CGFloat(46.0 / 255.0), green: CGFloat(204.0 / 255.0), blue: CGFloat(113.0 / 255.0), alpha: CGFloat(1)),
-                                  textColor: UIColor.white) { (action) in
-                                       print("Button with \(action.title) title tapped")
-}
-    
+                                  textColor: nil,
+                                  handler: { (action) in
+                                    print("Button with title '" + action.title! + "' tapped")
+})
+
 // Add Action Button Into Alert
 alertController.addAction(defaultAction)
 
 // Present Alert View Controller
-self.present(alertController, animated: true, completion: nil)
+present(alertController, animated: true, completion: nil)
 ```
 
 ## Customisations :
@@ -85,14 +83,17 @@ You can customise alignment of the title and message. Set the `textAlignment` pr
 ```swift
 NSTextAlignment.left,    
 NSTextAlignment.right,    
-NSTextAlignment.center
+NSTextAlignment.center,
+NSTextAlignment.justified,
+NSTextAlignment.natural
 ```
 
 ##### Alert Style  
 Presentation style of the alert can be customised as Alert or Action sheet. Just set the `preferredStyle` property with one of the following values :
 ```swift
+CFAlertControllerStyle.alert,
 CFAlertControllerStyle.actionSheet,
-CFAlertControllerStyle.alert
+CFAlertControllerStyle.notification
 ```
 
 ##### Background style
@@ -123,7 +124,13 @@ By default, the alert gets dismissed after tapping on the background (overlay). 
 </p>
 
 ##### Callback
-A block (of type CFAlertViewControllerDismissBlock) gets called when the Alert / Action Sheet is dismissed. You can use it to handle call back.
+A block (of type CFAlertViewControllerDismissBlock) gets called when the Alert / Action Sheet is dismissed. You can use it to handle dismiss call back. It also gives you a reason of dismiss with below mentioned enums,
+```swift
+CFAlertControllerDismissReason.none,
+CFAlertControllerDismissReason.onActionTap
+CFAlertControllerDismissReason.onBackgroundTap
+CFAlertControllerDismissReason.onInteractiveTransition
+```
 
 ### Actions
 ```swift
@@ -132,7 +139,7 @@ public convenience init(title: String?,
                         alignment: CFAlertActionAlignment,
                         backgroundColor: UIColor?,
                         textColor: UIColor?,
-                        handler: CFAlertActionHandlerBlock?) {
+                        handler: CFAlertActionHandlerBlock?)
 ```                           
 ##### Title
 You can set the title of action button to be added.  

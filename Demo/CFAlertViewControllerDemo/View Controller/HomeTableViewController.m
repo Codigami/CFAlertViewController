@@ -135,7 +135,7 @@
         headerView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"header_image"]];
         headerView.contentMode = UIViewContentModeBottom;
         headerView.clipsToBounds = YES;
-        headerView.frame = CGRectMake(0, 0, 0, 70.0);
+        headerView.frame = CGRectMake(0, 0, 0, 110.0);
     }
     
     // Create Title & Subtitle

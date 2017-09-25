@@ -183,7 +183,7 @@
         headerView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"header_image"]];
         headerView.contentMode = UIViewContentModeBottom;
         headerView.clipsToBounds = YES;
-        headerView.frame = CGRectMake(0, 0, self.alertController.containerView.frame.size.width, 70.0);
+        headerView.frame = CGRectMake(0, 0, self.alertController.containerView.frame.size.width, 110.0);
         headerView.alpha = 0.0;
     }
     

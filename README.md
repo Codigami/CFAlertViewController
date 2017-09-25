@@ -26,7 +26,7 @@ Open the downloaded project in Xcode, then drag and drop folder named **CFAlertV
 
 ## Usage :  
 <p>
-    <img src="https://github.com/Codigami/CFAlertViewController/blob/develop/Images/Alert%20%26%20Action%20sheet.png" style="width: 100%" />
+    <img src="https://github.com/Codigami/CFAlertViewController/blob/develop/Images/Use%20Cases.png" style="width: 100%" />
 </p>
 
 The above shown alert and actionsheet can easily be implemented using the code snippet given below by some small tweaks

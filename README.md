@@ -108,7 +108,7 @@ CFAlertControllerBackgroundStyle.blur
 You can change the background (overlay) color of the alert/actionsheet using the property `backgroundColor`.
 
 ##### Dismiss on background tap
-By default, the alert gets dismissed after tapping on the background (overlay). Change `shouldDismissOnBackgroundTap` property to `false` to disable it.
+By default, the alert gets dismissed after tapping on the background (overlay). Change `shouldDismissOnBackgroundTap` property to `false` to disable it. Do remember that whenever `shouldDismissOnBackgroundTap` property is set to `true`, in that case user will be able to dismiss `ActionSheet` and `Notification` using interactive swipe gesture.
 
 ##### Header / Footer
  You can add header and footer to the alert. Set properties `headerView` and `footerView` with custom views (subclass of UIView). You can pass nil to this properties to opt them out.  

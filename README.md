@@ -6,7 +6,7 @@
 
 `CFAlertViewController` is a library that helps you display and customise **alerts and action sheets** on iPad and iPhone. It offers screen rotation as well as an adaptive UI support. CFAlertViewController’s API is almost similar to the native UIAlertController but it has many more functionality than native UIAlertController.
 
-<img align="left" src="https://github.com/Codigami/CFAlertViewController/blob/develop/Images/Demo_1.gif"> <img align="right" src="https://github.com/Codigami/CFAlertViewController/blob/develop/Images/Demo_1.gif">
+<img align="left" src="https://github.com/Codigami/CFAlertViewController/blob/develop/Images/Demo_1.gif"> <img align="right" src="https://github.com/Codigami/CFAlertViewController/blob/develop/Images/Demo_2.gif">
 
 ## Requirements :
 

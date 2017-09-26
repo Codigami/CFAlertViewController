@@ -35,7 +35,7 @@ Open the downloaded project in Xcode, then drag and drop folder named **CFAlertV
     <img src="https://github.com/Codigami/CFAlertViewController/blob/develop/Images/Use%20Cases.png" style="width: 100%" />
 </p>
 
-The above shown alert and actionsheet can easily be implemented using the code snippet given below by some small tweaks
+The above shown alert can easily be implemented using the code snippet
 ```swift
 // Create Alet View Controller
 let alertController = CFAlertViewController(title: "You've hit the limit",

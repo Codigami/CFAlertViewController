@@ -6,9 +6,13 @@
 
 `CFAlertViewController` is a library that helps you display and customise **Alerts, Action Sheets, and Notifications** on iPad and iPhone. It offers screen rotation as well as an adaptive UI support. CFAlertViewController’s API is almost similar to the native UIAlertController but it has a lot more functionalities than the native UIAlertController.
 
-<img align="left" src="https://github.com/Codigami/CFAlertViewController/blob/develop/Images/Demo_1.gif">
+#### Types of use cases:
 
-<img align="right" src="https://github.com/Codigami/CFAlertViewController/blob/develop/Images/Demo_2.gif">
+![Demo 1](https://github.com/Codigami/CFAlertViewController/blob/develop/Images/Demo_1.gif)
+
+#### Configuration options:
+
+![Demo 2](https://github.com/Codigami/CFAlertViewController/blob/develop/Images/Demo_2.gif)
 
 ## Requirements :
 
@@ -110,7 +114,7 @@ CFAlertControllerBackgroundStyle.blur
 You can change the background (overlay) color of the alert/actionsheet using the property `backgroundColor`.
 
 ##### Dismiss on background tap
-By default, the alert gets dismissed after tapping on the background (overlay). Change `shouldDismissOnBackgroundTap` property to `false` to disable it. Do remember that whenever `shouldDismissOnBackgroundTap` property is set to `true`, in that case user will be able to dismiss `ActionSheet` and `Notification` using interactive swipe gesture.
+By default, the alert gets dismissed after tapping on the background (overlay). Change `shouldDismissOnBackgroundTap` property to `false` to disable it. Do remember that whenever `shouldDismissOnBackgroundTap` property is set to `true`, the user will be able to dismiss `ActionSheet` or `Notification` using interactive swipe gesture.
 
 ##### Header / Footer
  You can add header and footer to the alert. Set properties `headerView` and `footerView` with custom views (subclass of UIView). You can pass nil to this properties to opt them out.  

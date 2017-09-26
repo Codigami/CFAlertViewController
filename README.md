@@ -4,9 +4,11 @@
 [![license](https://img.shields.io/github/license/codigami/cfalertviewcontroller.svg)](https://github.com/Codigami/CFAlertViewController/blob/master/README.md)
 [![Twitter URL](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/home?status=CFAlertViewController%20-%20Now%20display%20and%20customise%20alerts%20and%20action%20sheets%20on%20iOS%20like%20never%20before!%20%23OpenSource%20https%3A//github.com/Codigami/CFAlertViewController)
 
-`CFAlertViewController` is a library that helps you display and customise **alerts and action sheets** on iPad and iPhone. It offers screen rotation as well as an adaptive UI support. CFAlertViewController’s API is almost similar to the native UIAlertController but it has many more functionality than native UIAlertController.
+`CFAlertViewController` is a library that helps you display and customise **Alerts, Action Sheets, and Notifications** on iPad and iPhone. It offers screen rotation as well as an adaptive UI support. CFAlertViewController’s API is almost similar to the native UIAlertController but it has a lot more functionalities than the native UIAlertController.
 
-<img align="left" src="https://github.com/Codigami/CFAlertViewController/blob/develop/Images/Demo_1.gif"> <img align="right" src="https://github.com/Codigami/CFAlertViewController/blob/develop/Images/Demo_2.gif">
+<img align="left" src="https://github.com/Codigami/CFAlertViewController/blob/develop/Images/Demo_1.gif">
+
+<img align="right" src="https://github.com/Codigami/CFAlertViewController/blob/develop/Images/Demo_2.gif">
 
 ## Requirements :
 

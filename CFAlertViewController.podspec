@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
                    DESC
 
   s.homepage     = "https://github.com/Codigami/CFAlertViewController"
-  s.screenshots  = "https://github.com/Codigami/CFAlertViewController/blob/master/Images/Alert%20With%20Header.png", "https://github.com/Codigami/CFAlertViewController/blob/master/Images/Alert%20With%20Footer.png", "https://github.com/Codigami/CFAlertViewController/blob/master/Images/Use%20Cases.png"
+  s.screenshots  = "https://raw.githubusercontent.com/Codigami/CFAlertViewController/master/Images/Alert%20With%20Header.png", "https://raw.githubusercontent.com/Codigami/CFAlertViewController/master/Images/Alert%20With%20Footer.png", "https://raw.githubusercontent.com/Codigami/CFAlertViewController/master/Images/Use%20Cases.png"
 
 
   # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

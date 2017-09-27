@@ -32,7 +32,7 @@ Open the downloaded project in Xcode, then drag and drop folder named **CFAlertV
 
 ## Usage :  
 <p>
-    <img src="https://github.com/Codigami/CFAlertViewController/blob/develop/Images/Use%20Cases.png" style="width: 100%" />
+    <img src="/Images/Use%20Cases.png" style="width: 100%" />
 </p>
 
 The above shown alert can easily be implemented using the code snippet
@@ -121,12 +121,12 @@ By default, the alert gets dismissed after tapping on the background (overlay). 
  
  1) Some examples where you can make the use of header in alert (the dollar image is in header)
 <p>
-    <img src="https://github.com/Codigami/CFAlertViewController/blob/develop/Images/Alert%20With%20Header.png" style="width: 100%" />
+    <img src="/Images/Alert%20With%20Header.png" style="width: 100%" />
 </p>
 
 2) Some examples where you can make the use of footer in alert
 <p>
-    <img src="https://github.com/Codigami/CFAlertViewController/blob/develop/Images/Alert%20With%20Footer.png" style="width: 100%" />
+    <img src="/Images/Alert%20With%20Footer.png" style="width: 100%" />
 </p>
 
 ##### Callback

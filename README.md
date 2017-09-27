@@ -1,10 +1,12 @@
-# CFAlertViewController
+#  CFAlertViewController
 [![CocoaPods](https://img.shields.io/cocoapods/v/CFAlertViewController.svg)](https://cocoapods.org/pods/CFAlertViewController)
 [![CocoaPods](https://img.shields.io/cocoapods/dt/CFAlertViewController.svg)](https://cocoapods.org/pods/CFAlertViewController)
 [![license](https://img.shields.io/github/license/codigami/cfalertviewcontroller.svg)](https://github.com/Codigami/CFAlertViewController/blob/master/README.md)
 [![Twitter URL](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/home?status=CFAlertViewController%20-%20Now%20display%20and%20customise%20alerts%20and%20action%20sheets%20on%20iOS%20like%20never%20before!%20%23OpenSource%20https%3A//github.com/Codigami/CFAlertViewController)
 
 `CFAlertViewController` is a library that helps you display and customise **Alerts, Action Sheets, and Notifications** on iPad and iPhone. It offers screen rotation as well as an adaptive UI support. CFAlertViewController’s API is almost similar to the native UIAlertController but it has a lot more functionalities than the native UIAlertController.
+
+You can also check out the same library for ![Android](http://res.cloudinary.com/hy4kyit2a/image/upload/v1372379037/00-android-4-0_icons.png.png) **Android** by clicking [here](https://github.com/Codigami/CFAlertDialog)
 
 #### Types of use cases:
 
@@ -35,7 +37,7 @@ Open the downloaded project in Xcode, then drag and drop folder named **CFAlertV
     <img src="/Images/Use%20Cases.png" style="width: 100%" />
 </p>
 
-The above shown alert can easily be implemented using the code snippet
+The above shown alert can easily be implemented using the code snippet:
 ```swift
 // Create Alet View Controller
 let alertController = CFAlertViewController(title: "You've hit the limit",

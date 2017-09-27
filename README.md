@@ -8,11 +8,11 @@
 
 #### Types of use cases:
 
-![Demo 1](https://github.com/Codigami/CFAlertViewController/blob/develop/Images/Demo_1.gif)
+![Demo 1](/Images/Demo_1.gif)
 
 #### Configuration options:
 
-![Demo 2](https://github.com/Codigami/CFAlertViewController/blob/develop/Images/Demo_2.gif)
+![Demo 2](/Images/Demo_2.gif)
 
 ## Requirements :
 

@@ -35,7 +35,7 @@ class CFAlertActionSheetTransitionGestureRecognizer: CFAlertBaseTransitionGestur
         let nowPoint = touches.first?.location(in: view) ?? CGPoint.zero
         let prevPoint = touches.first?.previousLocation(in: view) ?? CGPoint.zero
         
-        if ((fabs(velocity.x) < fabs(velocity.y)) &&
+        if ((abs(velocity.x) < abs(velocity.y)) &&
             (nowPoint.y > prevPoint.y) &&
             (scrollView.contentOffset.y <= 0))
         {

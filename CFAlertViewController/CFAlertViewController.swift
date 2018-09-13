@@ -29,16 +29,16 @@ open class CFAlertViewController: UIViewController    {
         case plain = 0
         case blur
     }
-    @objc open static func CF_ALERT_DEFAULT_BACKGROUND_COLOR() -> UIColor   {
+    @objc public static func CF_ALERT_DEFAULT_BACKGROUND_COLOR() -> UIColor   {
         return UIColor(white: 0.0, alpha: 0.7)
     }
-    @objc open static func CF_ALERT_DEFAULT_CONTAINER_VIEW_BACKGROUND_COLOR() -> UIColor   {
+    @objc public static func CF_ALERT_DEFAULT_CONTAINER_VIEW_BACKGROUND_COLOR() -> UIColor   {
         return UIColor.white
     }
-    @objc open static func CF_ALERT_DEFAULT_TITLE_COLOR() -> UIColor {
+    @objc public static func CF_ALERT_DEFAULT_TITLE_COLOR() -> UIColor {
         return UIColor.black
     }
-    @objc open static func CF_ALERT_DEFAULT_MESSAGE_COLOR() -> UIColor {
+    @objc public static func CF_ALERT_DEFAULT_MESSAGE_COLOR() -> UIColor {
         return UIColor.darkGray
     }
     
@@ -73,7 +73,7 @@ open class CFAlertViewController: UIViewController    {
                         // For iOS version 8, 9 & 10 add table view top inset to leave space for status bar
                         if let tableView = self.tableView   {
                             let statusbarHeight : CGFloat = self.topLayoutGuide.length
-                            tableView.contentInset = UIEdgeInsetsMake(statusbarHeight, tableView.contentInset.left, tableView.contentInset.bottom, tableView.contentInset.right)
+                            tableView.contentInset = UIEdgeInsets.init(top: statusbarHeight, left: tableView.contentInset.left, bottom: tableView.contentInset.bottom, right: tableView.contentInset.right)
                             tableView.scrollIndicatorInsets = tableView.contentInset
                         }
                     }
@@ -356,12 +356,12 @@ open class CFAlertViewController: UIViewController    {
     internal func loadVariables() {
         
         // Register For Keyboard Notification Observer
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         // Text Field & Text View Notifications
-        NotificationCenter.default.addObserver(self, selector: #selector(textViewOrTextFieldDidBeginEditing), name: NSNotification.Name.UITextFieldTextDidBeginEditing, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(textViewOrTextFieldDidBeginEditing), name: NSNotification.Name.UITextViewTextDidBeginEditing, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(textViewOrTextFieldDidBeginEditing), name: UITextField.textDidBeginEditingNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(textViewOrTextFieldDidBeginEditing), name: UITextView.textDidBeginEditingNotification, object: nil)
         
         // Register Cells For Table
         let actionCellNib = UINib(nibName: CFAlertActionTableViewCell.identifier(), bundle: Bundle(for: CFAlertActionTableViewCell.self))
@@ -604,7 +604,7 @@ open class CFAlertViewController: UIViewController    {
         
         let info: [AnyHashable: Any]? = notification.userInfo
         if let info = info  {
-            if let kbRect = info[UIKeyboardFrameEndUserInfoKey] as? CGRect {
+            if let kbRect = info[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
                 if let viewRect = self.view.window?.convert(self.view.frame, from: self.view)   {
                     let intersectRect: CGRect = kbRect.intersection(viewRect)
                     if intersectRect.size.height > 0.0 {
@@ -781,11 +781,11 @@ extension CFAlertViewController: UITableViewDataSource, UITableViewDelegate, CFA
     }
     
     public func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     

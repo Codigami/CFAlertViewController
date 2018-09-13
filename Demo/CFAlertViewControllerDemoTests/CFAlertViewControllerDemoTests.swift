@@ -24,10 +24,6 @@ class CFAlertViewControllerDemoTests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        
-        let alert = CFAlertViewController(title: "title", message: "subtitle", textAlignment: .natural, preferredStyle: .alert) { (backgroundTapped) in
-            print("Dismiss")
-        }
     }
     
     func testPerformanceExample() {

@@ -10,11 +10,11 @@ You can also check out this library for ![Android](/Images/android_small.png) **
 
 #### Types of use cases:
 
-<img align="left" src="https://github.com/ivanvorobei/CFAlertViewController/blob/master/Images/Demo_1.gif" width="280"/>
+<img src="https://github.com/ivanvorobei/CFAlertViewController/blob/master/Images/Demo_1.gif" width="280"/>
 
 #### Configuration options:
 
-<img align="left" src="https://github.com/ivanvorobei/CFAlertViewController/blob/master/Images/Demo_2.gif" width="280"/>
+<img src="https://github.com/ivanvorobei/CFAlertViewController/blob/master/Images/Demo_2.gif" width="280"/>
 
 ## Requirements :
 

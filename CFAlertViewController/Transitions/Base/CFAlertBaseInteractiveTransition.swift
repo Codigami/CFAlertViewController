@@ -9,7 +9,7 @@
 import UIKit
 
 
-@objc public protocol CFAlertInteractiveTransitionDelegate: class {
+@objc public protocol CFAlertInteractiveTransitionDelegate: AnyObject {
     @objc optional func alertViewControllerTransitionWillBegin(_ transition: CFAlertBaseInteractiveTransition)
     @objc optional func alertViewControllerTransitionWillFinish(_ transition: CFAlertBaseInteractiveTransition)
     @objc optional func alertViewControllerTransitionDidFinish(_ transition: CFAlertBaseInteractiveTransition)

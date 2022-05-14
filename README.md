@@ -23,11 +23,23 @@ CFAlertViewController works on devices (iPhone and iPad) with iOS 8.0+. It depen
 * Foundation.framework
 * UIKit.framework
 
-#### Install using Cocoapods (recommended)
+## Installation
+
+#### Cocoapods (recommended)
 We assume that your Cocoapods is already configured. If you are new to Cocoapods, have a look at the [documentation](https://cocoapods.org/)
 
 1. Add `pod 'CFAlertViewController'` to your Podfile.
 2. Install the pod(s) by running `pod install` in terminal (in folder where `Podfile` file is located).
+
+#### Swift Package Manager
+CFAlertViewController is available through [Swift Package Manager](https://www.swift.org/package-manager/). To install
+it using SPM, simply add the following line to your `Package.swift` file:
+
+``` swift
+    dependencies: [
+        .package(name: "CFAlertViewController", url: "https://github.com/Codigami/CFAlertViewController.git", branch: "master"),
+    ]
+```
 
 #### Install using Source file  
 Open the downloaded project in Xcode, then drag and drop folder named **CFAlertViewController** onto your project (use the "Product Navigator view"). Make sure to select Copy items when asked if you extracted the code archive outside of your project.

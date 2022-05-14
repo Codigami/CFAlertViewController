@@ -293,11 +293,8 @@ open class CFAlertViewController: UIViewController    {
                                   footerView: UIView?,
                                   didDismissAlertHandler dismiss: CFAlertViewControllerDismissBlock?) {
         
-        // Get Current Bundle
-        let bundle = Bundle(for: CFAlertViewController.self)
-        
         // Create New Instance Of Alert Controller
-        self.init(nibName: "CFAlertViewController", bundle: bundle)
+        self.init(nibName: "CFAlertViewController", bundle: .current)
         
         // Assign Properties
         self.preferredStyle = preferredStyle
@@ -364,9 +361,9 @@ open class CFAlertViewController: UIViewController    {
         NotificationCenter.default.addObserver(self, selector: #selector(textViewOrTextFieldDidBeginEditing(_:)), name: UITextView.textDidBeginEditingNotification, object: nil)
         
         // Register Cells For Table
-        let actionCellNib = UINib(nibName: CFAlertActionTableViewCell.identifier(), bundle: Bundle(for: CFAlertActionTableViewCell.self))
+        let actionCellNib = UINib(nibName: CFAlertActionTableViewCell.identifier(), bundle: .current)
         tableView?.register(actionCellNib, forCellReuseIdentifier: CFAlertActionTableViewCell.identifier())
-        let titleSubtitleCellNib = UINib(nibName: CFAlertTitleSubtitleTableViewCell.identifier(), bundle: Bundle(for: CFAlertTitleSubtitleTableViewCell.self))
+        let titleSubtitleCellNib = UINib(nibName: CFAlertTitleSubtitleTableViewCell.identifier(), bundle: .current)
         tableView?.register(titleSubtitleCellNib, forCellReuseIdentifier: CFAlertTitleSubtitleTableViewCell.identifier())
         
         // Add Key Value Observer
@@ -837,4 +834,13 @@ extension NSObject  {
     }
 }
 
-
+// MARK: - Bundle Extension
+extension Bundle {
+    static var current: Bundle? {
+        #if SWIFT_PACKAGE
+        return .module
+        #else
+        return Bundle(for: CFAlertViewController.self)
+        #endif
+    }
+}
